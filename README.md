@@ -6,6 +6,10 @@
 
 Her full name is ショウジョウバエ. A public male *Drosophila* connectome dataset is her brain; the girl is the VRM character [Yumi](research/avatar/YUMI.md). Everything runs in a MuJoCo physics simulation.
 
+| G1 body (pixiv sample avatar) | Yumi body |
+|---|---|
+| ![G1 body driven by the full connectome](assets/preview-g1.png) | ![Yumi body driven by the full connectome](assets/preview-yumi.png) |
+
 ## Overview
 We set out to validate one engineering chain: **turn a fruit fly's real neural wiring into a control network, and let it drive a walking body.**
 
@@ -91,10 +95,6 @@ cd D:\Project\Neuromechfly
 ```
 
 Open the [studio](http://127.0.0.1:8740). The VRM character on the page walks in real time, with every action computed on your machine.
-
-| G1 body (pixiv sample avatar) | Yumi body |
-|---|---|
-| ![G1 body driven by the full connectome](assets/preview-g1.png) | ![Yumi body driven by the full connectome](assets/preview-yumi.png) |
 
 Both panels are the same live studio: the left pane renders the physics-driven VRM character and gait stats, the right pane shows 2,048 sampled neuron activity rates of the 166,700-neuron connectome.
 
