@@ -108,7 +108,7 @@ The UI supports pause, resume, reset, target speed and heading, lateral pushes, 
 
 | Mode | Entry | Address | Notes |
 |---|---|---|---|
-| Local studio (mainline) | `.\start.ps1 [-Body g1|yumi]` | 8740 | Full connectome + MuJoCo locally; body switchable in the page |
+| Local studio (mainline) | `.\start.ps1 [-Body g1\|yumi]` | 8740 | Full connectome + MuJoCo locally; body switchable in the page |
 | Cloud full graph | `.\cloud.ps1 Preview` | 8742 | AutoDL instance over an SSH tunnel, bound to localhost |
 
 The 8,192-neuron subgraph prototype (`app/server.py`) remains as legacy code without a start script.

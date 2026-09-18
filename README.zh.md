@@ -108,7 +108,7 @@ cd D:\Project\Neuromechfly
 
 | 模式 | 入口 | 地址 | 说明 |
 |---|---|---|---|
-| 本机实验室（主线） | `.\start.ps1 [-Body g1|yumi]` | 8740 | 本机跑完整连接组 + MuJoCo，身体在页面内切换 |
+| 本机实验室（主线） | `.\start.ps1 [-Body g1\|yumi]` | 8740 | 本机跑完整连接组 + MuJoCo，身体在页面内切换 |
 | 云端全图 | `.\cloud.ps1 Preview` | 8742 | AutoDL 实例，经 SSH 隧道访问，只监听本机地址 |
 
 8,192 神经元子图原型（`app/server.py`）保留为 legacy 代码，不再有启动脚本。
