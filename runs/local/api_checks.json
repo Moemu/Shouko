@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "local": true,
+  "avatar": "Yumi",
+  "training_disabled": true,
+  "checkpoint_sha256": "f1d5147ce4ba76e3365e8d5b037de7c32dae469d0428d5fc987be27ee2cc65ed",
+  "evaluation_complete": true,
+  "browser_checks": [
+    "Yumi materials and full body visible",
+    "VRM0 arms down and walking leg rotations",
+    "live play and pause",
+    "reset returns to a new episode",
+    "speed and heading sliders reach backend",
+    "push leaves body upright",
+    "disconnected brain falls and stops",
+    "intact connection resets and walks",
+    "skeleton lines remain visible beyond 100m",
+    "local 9/9, 120s and 3/3 results shown",
+    "training button disabled"
+  ],
+  "browser": "External Edge",
+  "final_target": {
+    "speed": 0.5,
+    "yaw": 0,
+    "lesion": "intact",
+    "view": "avatar"
+  }
+}

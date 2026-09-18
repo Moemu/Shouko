@@ -1,0 +1,38 @@
+{
+  "event": "Verified existing PPO6 restart after agent interruption; no duplicate trainer started",
+  "observed_at": "2026-09-15T21:21:38.783947+08:00",
+  "pid": 4303,
+  "argv": [
+    ".venv/bin/python",
+    "-u",
+    "-m",
+    "app.ppo_yumi",
+    "--max-seconds",
+    "15600",
+    "--eval-every",
+    "5",
+    "--resume",
+    "runs/yumi/iter65_baseline.pt"
+  ],
+  "baseline_iteration": 65,
+  "baseline_sha256": "e11ff401e9ed0ab47438ae64d2a7cd10d54730c92c9858803a5ffc599c550478",
+  "ppo_state_initialization": "Fresh value network and log_std; fresh Adam optimizers. No --resume-state. This is a new PPO run from baseline policy weights, not an exact optimizer-state continuation.",
+  "last_training_row": {
+    "iteration": 45,
+    "reward": 1.3019590377807617,
+    "pi_loss": -0.015082537329622678,
+    "v_loss": 162.99751717703683,
+    "std": 0.4004230499267578,
+    "approx_kl": 0.02201845170930028,
+    "clipfrac": 0.28125,
+    "lr": 0.0005913553643877546,
+    "kl_stop": true,
+    "elapsed": 249.73419540002942
+  },
+  "last_evaluation": {
+    "iteration": 40,
+    "successes": 0,
+    "score": -0.367,
+    "mean_duration": 3.8
+  }
+}

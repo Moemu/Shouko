@@ -1,0 +1,19 @@
+{
+  "seed": 42,
+  "target_speed": 0.5,
+  "seconds": 119.99999999990173,
+  "mean_speed": 0.4842104075685754,
+  "forward_m": 58.105248908181466,
+  "lateral_m": -0.294603895746806,
+  "speed_rmse": 0.02837879512242194,
+  "minimum_height": 0.7623318777566517,
+  "minimum_upright": 0.996635789553741,
+  "foot_strikes": [
+    150,
+    151
+  ],
+  "fallen": false,
+  "success": true,
+  "score": 1.9691661724113816,
+  "wall_seconds": 46.34291110000049
+}

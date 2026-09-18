@@ -1,0 +1,10 @@
+{
+  "name": "neuromechfly",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {"dev": "vite web --host 127.0.0.1", "build": "vite build web", "test": "node web/brain-activity.test.js && node web/i18n.test.js && node web/training-series.test.js"},
+  "dependencies": {"three": "^0.180.0", "@pixiv/three-vrm": "^3.4.2"},
+  "devDependencies": {"vite": "^7.1.5"}
+}

@@ -1,0 +1,178 @@
+{
+  "generated_by": "research/provenance/release_manifest.py",
+  "graph_sha256": "307342120f2a8bae2e21586a2a987408b54a6a4aa8dca983a3835dbb443bb1a5",
+  "code_revision": null,
+  "code_revision_note": "仓库尚无 git 提交；建立远程仓库后应填首个发布的 commit SHA。",
+  "units": {
+    "L0_subgraph": {
+      "note": "setup.ps1 自动训练；复训命令与种子见 README「复现训练过程」。"
+    },
+    "L1_full_g1": {
+      "note": "训练与验收经过见 research/guides/CLOUD.md 与 research/experiments/；2026-09-18 独立验收绑定 best.pt（runs/cloud/evaluations/）。"
+    },
+    "L2_yumi": {
+      "note": "PPO 编年与验收见 research/experiments/PPO_POSTURE_20260916.md；best.pt 为 9/9 验收世系（a7a4281f…）。"
+    },
+    "L3_yumi_vrm": {
+      "note": "禁止再分发；获取指引与许可见 research/avatar/YUMI.md。缺失时页面回退默认角色。"
+    },
+    "avatar": {
+      "note": "pixiv/three-vrm 示例模型，哈希同源记录于 provenance.json。"
+    }
+  },
+  "artifacts": [
+    {
+      "unit": "L0_subgraph",
+      "path": "runs/best.npz",
+      "role": "weight",
+      "bytes": 5650,
+      "sha256": "c4077cde45dcf9f39ff919c95090b92945a9b9caac32a280304921439a421987"
+    },
+    {
+      "unit": "L0_subgraph",
+      "path": "runs/readout_1024.npz",
+      "role": "weight",
+      "bytes": 5650,
+      "sha256": "c4077cde45dcf9f39ff919c95090b92945a9b9caac32a280304921439a421987"
+    },
+    {
+      "unit": "L0_subgraph",
+      "path": "runs/readout_128.npz",
+      "role": "weight",
+      "bytes": 5663,
+      "sha256": "3e0ab1f1cede0b80efa54a1d29875c44256ff4ee48dbc3fb275ca8e79f600433"
+    },
+    {
+      "unit": "L0_subgraph",
+      "path": "runs/readout_1536.npz",
+      "role": "weight",
+      "bytes": 5648,
+      "sha256": "173102f4a9244f5ab306e7c4c82c2cdf6f9b2c898a583751b32e87845f472f91"
+    },
+    {
+      "unit": "L0_subgraph",
+      "path": "runs/readout_256.npz",
+      "role": "weight",
+      "bytes": 5667,
+      "sha256": "d37d352a9036cf7ff5a9a43486a8e2624fa64f64a79fcbb9489610f689360770"
+    },
+    {
+      "unit": "L0_subgraph",
+      "path": "runs/readout_512.npz",
+      "role": "weight",
+      "bytes": 5647,
+      "sha256": "f38fd6f7985c9ddc79c9cef37eb01d1e03df8f214b5eb88ecccd8624f1f90835"
+    },
+    {
+      "unit": "L0_subgraph",
+      "path": "runs/readout_64.npz",
+      "role": "weight",
+      "bytes": 5641,
+      "sha256": "50fc9f81cf722d573d816aa06731a82b05128226ee4b267e263769fea73e253c"
+    },
+    {
+      "unit": "L0_subgraph",
+      "path": "runs/training_features.npz",
+      "role": "feature",
+      "bytes": 2581434,
+      "sha256": "e4dfd188c8fe664320b147edc672a274c5b5dcc014c5e78bc82e3517f1bbe9ed"
+    },
+    {
+      "unit": "L1_full_g1",
+      "path": "runs/cloud/best.pt",
+      "role": "weight",
+      "bytes": 311785917,
+      "sha256": "ffcf9a9799ae54332cb5c07ec56d79145ba7e1b557100c78ef082e878713271b"
+    },
+    {
+      "unit": "L1_full_g1",
+      "path": "runs/cloud/demonstrations.pt",
+      "role": "dagger_buffer",
+      "bytes": 7931613,
+      "sha256": "de0ae67b35d599957adcfa72463a4864a77d41141c3151b54508e868dcdaebb3"
+    },
+    {
+      "unit": "L1_full_g1",
+      "path": "runs/cloud/training.json",
+      "role": "training_record",
+      "bytes": 14927,
+      "sha256": "595e5128a39d248d05d25a6c6afab3d466f2999fbfc8409d2eec2d77d88200a4"
+    },
+    {
+      "unit": "L1_full_g1",
+      "path": "runs/cloud/evaluation.json",
+      "role": "screening_eval",
+      "bytes": 4676,
+      "sha256": "c3921a1e1f20a684930910b29ee44cb92e99b63ebf649e3b5e0a8a4b6a3498e4"
+    },
+    {
+      "unit": "L1_full_g1",
+      "path": "runs/cloud/heldout.json",
+      "role": "acceptance_legacy",
+      "bytes": 13890,
+      "sha256": "ab4f49bb7c493d0479e66a069f0cb53b18c19cba8e59ac84a8561f7782eb2951"
+    },
+    {
+      "unit": "L1_full_g1",
+      "path": "runs/local/heldout.json",
+      "role": "acceptance_legacy",
+      "bytes": 16245,
+      "sha256": "252c942032b8d0cd43f53f0b8a652f796834f7a4c22460eed0142ae12e0b9393"
+    },
+    {
+      "unit": "L1_full_g1",
+      "path": "runs/cloud/evaluations/7ea830656e3e457ebfe5d274d6174658/heldout.json",
+      "role": "acceptance",
+      "bytes": 9612,
+      "sha256": "e9bdab322a95d26bdf6274ebd48dca44385d3d6c094b93b5ce0f45a1809a03f1",
+      "bound_checkpoint_sha256": "ffcf9a9799ae54332cb5c07ec56d79145ba7e1b557100c78ef082e878713271b",
+      "successes": 6,
+      "attempts": 9
+    },
+    {
+      "unit": "L2_yumi",
+      "path": "runs/yumi/best.pt",
+      "role": "weight",
+      "bytes": 311787261,
+      "sha256": "a7a4281f604c82831bf947fe599d490dd5d223bf479c9c44289e7b4d76508d97"
+    },
+    {
+      "unit": "L2_yumi",
+      "path": "runs/yumi/ppo_state_best.pt",
+      "role": "optimizer_state",
+      "bytes": 213562065,
+      "sha256": "9fddf0b516f06807051e952fe582c81d6f9fa908ceb841f5e36be4393138be42"
+    },
+    {
+      "unit": "L2_yumi",
+      "path": "runs/yumi/evaluation.json",
+      "role": "screening_eval",
+      "bytes": 8898,
+      "sha256": "e0a7061645b132a34ffcbc8372c04e0998e2801e6c97d4dfe56c998a46c8c0a3"
+    },
+    {
+      "unit": "L2_yumi",
+      "path": "runs/local/heldout_yumi.json",
+      "role": "acceptance",
+      "bytes": 15693,
+      "sha256": "0c7d5e7aa792ab9b018c850c3c8847927efb4cb2cb4e7993ea98fe398db53f95",
+      "bound_checkpoint_sha256": "a7a4281f604c82831bf947fe599d490dd5d223bf479c9c44289e7b4d76508d97",
+      "successes": 9,
+      "attempts": 9
+    },
+    {
+      "unit": "L3_yumi_vrm",
+      "path": "web/public/yumi.vrm",
+      "role": "avatar_reference_only",
+      "bytes": 25754408,
+      "sha256": "3f1eaf5767567c784948bd9faae7ab60e8f7c4bff3b58ff19dac2ddbaad588db"
+    },
+    {
+      "unit": "avatar",
+      "path": "web/public/avatar.vrm",
+      "role": "avatar",
+      "bytes": 10776032,
+      "sha256": "12c2b97e95e700783a6a550dc0eee2d7880aeedccef9ae67bc4c5a2f0f2631a2"
+    }
+  ]
+}

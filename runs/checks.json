@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": [
+    "pre-to-post propagation",
+    "determinism",
+    "finite action",
+    "exact neuron IDs",
+    "disjoint sensory/motor groups",
+    "zero disconnected output",
+    "checkpoint roundtrip",
+    "checkpoint-evidence hash match",
+    "held-out walking evidence",
+    "learning improvement",
+    "separate validation/test seeds"
+  ]
+}

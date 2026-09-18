@@ -1,0 +1,590 @@
+{
+  "kind": "held_out_native_mujoco",
+  "robot": "yumi",
+  "checkpoint_sha256": "a7a4281f604c82831bf947fe599d490dd5d223bf479c9c44289e7b4d76508d97",
+  "graph_sha256": "72a6a9ade0117063d3b2515b12ceec3633d9f429ae43f0f8b73b2066a9e51b89",
+  "checkpoint_updates": 10,
+  "teacher_used": false,
+  "tests": [
+    {
+      "seed": 8001,
+      "target_speed": 0.35,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.4254325033295673,
+      "forward_m": 12.762975099884573,
+      "lateral_m": 1.2108085319327777,
+      "fallen": false,
+      "foot_strikes": [
+        137,
+        123
+      ],
+      "alternations": 228,
+      "contact_fraction": [
+        0.7486666666666667,
+        0.76
+      ],
+      "minimum_height": 0.7943865533621315,
+      "minimum_upright": 0.9424177865207661,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.479434832930565,
+      "inference_ms_p95": 11.61535158753395,
+      "wall_seconds": 12.194711495190859
+    },
+    {
+      "seed": 8002,
+      "target_speed": 0.5,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.5270960057683403,
+      "forward_m": 15.812880173047176,
+      "lateral_m": 1.648570664292929,
+      "fallen": false,
+      "foot_strikes": [
+        154,
+        138
+      ],
+      "alternations": 268,
+      "contact_fraction": [
+        0.7126666666666667,
+        0.7226666666666667
+      ],
+      "minimum_height": 0.7799911463181103,
+      "minimum_upright": 0.9436445914398708,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.398325949907303,
+      "inference_ms_p95": 11.553270556032658,
+      "wall_seconds": 11.610804110765457
+    },
+    {
+      "seed": 8003,
+      "target_speed": 0.65,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.6830448060472664,
+      "forward_m": 20.491344181414064,
+      "lateral_m": 0.3041500420582824,
+      "fallen": false,
+      "foot_strikes": [
+        170,
+        150
+      ],
+      "alternations": 298,
+      "contact_fraction": [
+        0.6473333333333333,
+        0.676
+      ],
+      "minimum_height": 0.8031243691123601,
+      "minimum_upright": 0.9421802334035618,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.376555353403091,
+      "inference_ms_p95": 11.581104435026646,
+      "wall_seconds": 11.583641950041056
+    },
+    {
+      "seed": 8004,
+      "target_speed": 0.35,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.45140617909284525,
+      "forward_m": 13.542185372782763,
+      "lateral_m": 1.1094575534824231,
+      "fallen": false,
+      "foot_strikes": [
+        142,
+        124
+      ],
+      "alternations": 230,
+      "contact_fraction": [
+        0.7433333333333333,
+        0.7486666666666667
+      ],
+      "minimum_height": 0.7975533802468029,
+      "minimum_upright": 0.9422819623816705,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.054910063743591,
+      "inference_ms_p95": 11.628017574548721,
+      "wall_seconds": 11.224361278116703
+    },
+    {
+      "seed": 8005,
+      "target_speed": 0.5,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.513232748572442,
+      "forward_m": 15.39698245717031,
+      "lateral_m": 0.2294055951022974,
+      "fallen": false,
+      "foot_strikes": [
+        153,
+        129
+      ],
+      "alternations": 252,
+      "contact_fraction": [
+        0.706,
+        0.7326666666666667
+      ],
+      "minimum_height": 0.7685031898779291,
+      "minimum_upright": 0.9444785804108129,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 8.284449577331543,
+      "inference_ms_p95": 11.644035577774048,
+      "wall_seconds": 12.910766933113337
+    },
+    {
+      "seed": 8006,
+      "target_speed": 0.65,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.6565475335481299,
+      "forward_m": 19.696426006440124,
+      "lateral_m": 1.159625878453095,
+      "fallen": false,
+      "foot_strikes": [
+        165,
+        148
+      ],
+      "alternations": 289,
+      "contact_fraction": [
+        0.656,
+        0.6766666666666666
+      ],
+      "minimum_height": 0.8049110478121057,
+      "minimum_upright": 0.9439984138355031,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.497679442167282,
+      "inference_ms_p95": 11.60302646458149,
+      "wall_seconds": 12.283721547573805
+    },
+    {
+      "seed": 8007,
+      "target_speed": 0.35,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.4701732562955908,
+      "forward_m": 14.105197688865022,
+      "lateral_m": 1.1485629682509346,
+      "fallen": false,
+      "foot_strikes": [
+        141,
+        124
+      ],
+      "alternations": 235,
+      "contact_fraction": [
+        0.7373333333333333,
+        0.7566666666666667
+      ],
+      "minimum_height": 0.792573883494883,
+      "minimum_upright": 0.9425831182091531,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.378606125712395,
+      "inference_ms_p95": 11.555909924209118,
+      "wall_seconds": 11.531570386141539
+    },
+    {
+      "seed": 8008,
+      "target_speed": 0.5,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.5816319720008251,
+      "forward_m": 17.44895916002141,
+      "lateral_m": 0.7355074544915426,
+      "fallen": false,
+      "foot_strikes": [
+        156,
+        136
+      ],
+      "alternations": 266,
+      "contact_fraction": [
+        0.6846666666666666,
+        0.712
+      ],
+      "minimum_height": 0.798661867862046,
+      "minimum_upright": 0.9427117619416174,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.427765056490898,
+      "inference_ms_p95": 11.574428528547287,
+      "wall_seconds": 11.661894533783197
+    },
+    {
+      "seed": 8009,
+      "target_speed": 0.65,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.6322487747325053,
+      "forward_m": 18.967463241971526,
+      "lateral_m": 0.5254448278499347,
+      "fallen": false,
+      "foot_strikes": [
+        170,
+        147
+      ],
+      "alternations": 290,
+      "contact_fraction": [
+        0.662,
+        0.6806666666666666
+      ],
+      "minimum_height": 0.803245180227311,
+      "minimum_upright": 0.9463463391171114,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 6.753047928214073,
+      "inference_ms_p95": 11.561755649745464,
+      "wall_seconds": 10.763942550867796
+    }
+  ],
+  "controls": [
+    {
+      "seed": 8001,
+      "target_speed": 0.35,
+      "requested_seconds": 30,
+      "seconds": 0.9600000000000007,
+      "lesion": "disconnected",
+      "push": false,
+      "mean_speed": 0.13381565040314533,
+      "forward_m": 0.12846302438701962,
+      "lateral_m": 0.6880859727575575,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "contact_fraction": [
+        0.875,
+        0.3958333333333333
+      ],
+      "minimum_height": 0.651750492581112,
+      "minimum_upright": 0.43782519976969203,
+      "criteria": {
+        "survived": false,
+        "speed": false,
+        "both_feet": false,
+        "alternation": false,
+        "upright": false,
+        "direction": true
+      },
+      "success": false,
+      "inference_ms_median": 7.638704031705856,
+      "inference_ms_p95": 11.79596334695816,
+      "wall_seconds": 0.3772914856672287
+    },
+    {
+      "seed": 8002,
+      "target_speed": 0.5,
+      "requested_seconds": 30,
+      "seconds": 0.9800000000000008,
+      "lesion": "disconnected",
+      "push": false,
+      "mean_speed": 0.14234891272711184,
+      "forward_m": 0.1395019344725697,
+      "lateral_m": 0.7123321556516492,
+      "fallen": true,
+      "foot_strikes": [
+        2,
+        1
+      ],
+      "alternations": 2,
+      "contact_fraction": [
+        0.9183673469387755,
+        0.40816326530612246
+      ],
+      "minimum_height": 0.6422848544881792,
+      "minimum_upright": 0.40767425936124124,
+      "criteria": {
+        "survived": false,
+        "speed": false,
+        "both_feet": false,
+        "alternation": false,
+        "upright": false,
+        "direction": true
+      },
+      "success": false,
+      "inference_ms_median": 7.662706077098846,
+      "inference_ms_p95": 11.782211810350418,
+      "wall_seconds": 0.3885570354759693
+    },
+    {
+      "seed": 8003,
+      "target_speed": 0.65,
+      "requested_seconds": 30,
+      "seconds": 0.9800000000000008,
+      "lesion": "disconnected",
+      "push": false,
+      "mean_speed": 0.13109832230414012,
+      "forward_m": 0.12847635585805742,
+      "lateral_m": 0.6830097903749032,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "contact_fraction": [
+        0.8979591836734694,
+        0.3877551020408163
+      ],
+      "minimum_height": 0.6529670197664835,
+      "minimum_upright": 0.4403878184884211,
+      "criteria": {
+        "survived": false,
+        "speed": false,
+        "both_feet": false,
+        "alternation": false,
+        "upright": false,
+        "direction": true
+      },
+      "success": false,
+      "inference_ms_median": 7.580127567052841,
+      "inference_ms_p95": 11.883295327425003,
+      "wall_seconds": 0.38498084992170334
+    }
+  ],
+  "perturbations": [
+    {
+      "seed": 8201,
+      "target_speed": 0.5,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": true,
+      "mean_speed": 0.5700581513003686,
+      "forward_m": 17.101744539007782,
+      "lateral_m": 0.19565612003717836,
+      "fallen": false,
+      "foot_strikes": [
+        160,
+        136
+      ],
+      "alternations": 266,
+      "contact_fraction": [
+        0.6966666666666667,
+        0.714
+      ],
+      "minimum_height": 0.7721874384931798,
+      "minimum_upright": 0.9430966016179809,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.154252380132675,
+      "inference_ms_p95": 11.594964750111103,
+      "wall_seconds": 11.303828064352274
+    },
+    {
+      "seed": 8202,
+      "target_speed": 0.5,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": true,
+      "mean_speed": 0.533824413016226,
+      "forward_m": 16.01473239048371,
+      "lateral_m": 1.902521299428785,
+      "fallen": false,
+      "foot_strikes": [
+        155,
+        139
+      ],
+      "alternations": 268,
+      "contact_fraction": [
+        0.7013333333333334,
+        0.72
+      ],
+      "minimum_height": 0.8000325243398979,
+      "minimum_upright": 0.9433631368822635,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.470717653632164,
+      "inference_ms_p95": 11.644738167524338,
+      "wall_seconds": 12.688617028295994
+    },
+    {
+      "seed": 8203,
+      "target_speed": 0.5,
+      "requested_seconds": 30,
+      "seconds": 29.99999999999425,
+      "lesion": "intact",
+      "push": true,
+      "mean_speed": 0.5517408167452855,
+      "forward_m": 16.552224502355394,
+      "lateral_m": 0.6215684970185572,
+      "fallen": false,
+      "foot_strikes": [
+        158,
+        136
+      ],
+      "alternations": 265,
+      "contact_fraction": [
+        0.6993333333333334,
+        0.7133333333333334
+      ],
+      "minimum_height": 0.8017394813198743,
+      "minimum_upright": 0.9470792976231988,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 8.943427354097366,
+      "inference_ms_p95": 11.643347516655922,
+      "wall_seconds": 13.153543137013912
+    }
+  ],
+  "long_walks": [
+    {
+      "seed": 8101,
+      "target_speed": 0.5,
+      "requested_seconds": 120,
+      "seconds": 119.99999999990173,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.5462568628939466,
+      "forward_m": 65.5508235472199,
+      "lateral_m": 0.134142181491116,
+      "fallen": false,
+      "foot_strikes": [
+        623,
+        539
+      ],
+      "alternations": 1049,
+      "contact_fraction": [
+        0.703,
+        0.7278333333333333
+      ],
+      "minimum_height": 0.7927580074349655,
+      "minimum_upright": 0.9426703413113939,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": true,
+      "inference_ms_median": 7.479298859834671,
+      "inference_ms_p95": 11.622595600783825,
+      "wall_seconds": 49.903183311223984
+    }
+  ],
+  "runtime": {
+    "device": "cuda:0",
+    "torch": "2.12.1+cu130",
+    "platform": "Linux-5.15.0-94-generic-x86_64-with-glibc2.35",
+    "mujoco": "3.13.0",
+    "gpu": "NVIDIA GeForce RTX 4090 D",
+    "process_rss_mb": 840.15625,
+    "peak_tensor_vram_mb": 597.130859375
+  },
+  "heading_feedback": "Clipped proportional target-yaw error supplied as a sensory command; no joint control outside the learned policy.",
+  "successes": 9,
+  "attempts": 9,
+  "complete": true,
+  "criterion": "No fall; speed error <= 0.15 m/s; >= 0.5 strikes/s per foot; >= 1 alternating strike/s; upright >= 0.7; lateral deviation <= max(1m, 20% target forward distance)."
+}

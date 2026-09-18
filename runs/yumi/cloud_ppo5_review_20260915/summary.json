@@ -1,0 +1,310 @@
+{
+  "review_created_at": "2026-09-15T21:07:02.767211+08:00",
+  "log_copied_at": "2026-09-15T21:05:37.359369+08:00",
+  "last_training_row": {
+    "iteration": 151,
+    "reward": 1.9868909120559692,
+    "pi_loss": 0.015625702289980836,
+    "v_loss": 72.88805174827576,
+    "std": 0.4723629653453827,
+    "elapsed": 1894.5831069126725
+  },
+  "best_log_evaluation": {
+    "iteration": 65,
+    "successes": 16,
+    "score": 0.721,
+    "mean_duration": 15.0
+  },
+  "last_log_evaluation": {
+    "iteration": 150,
+    "successes": 0,
+    "score": 0.487,
+    "mean_duration": 15.0
+  },
+  "all_log_evaluations": [
+    {
+      "iteration": 5,
+      "successes": 0,
+      "score": 0.054,
+      "mean_duration": 8.7
+    },
+    {
+      "iteration": 10,
+      "successes": 0,
+      "score": -0.582,
+      "mean_duration": 10.8
+    },
+    {
+      "iteration": 15,
+      "successes": 0,
+      "score": -0.254,
+      "mean_duration": 10.5
+    },
+    {
+      "iteration": 20,
+      "successes": 0,
+      "score": -0.313,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 25,
+      "successes": 0,
+      "score": -1.172,
+      "mean_duration": 8.3
+    },
+    {
+      "iteration": 30,
+      "successes": 0,
+      "score": -0.529,
+      "mean_duration": 10.4
+    },
+    {
+      "iteration": 35,
+      "successes": 0,
+      "score": -0.016,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 40,
+      "successes": 8,
+      "score": 0.632,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 45,
+      "successes": 0,
+      "score": -0.017,
+      "mean_duration": 14.0
+    },
+    {
+      "iteration": 50,
+      "successes": 0,
+      "score": -0.605,
+      "mean_duration": 14.8
+    },
+    {
+      "iteration": 55,
+      "successes": 0,
+      "score": 0.106,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 60,
+      "successes": 0,
+      "score": 0.472,
+      "mean_duration": 12.2
+    },
+    {
+      "iteration": 65,
+      "successes": 16,
+      "score": 0.721,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 70,
+      "successes": 0,
+      "score": 0.488,
+      "mean_duration": 13.5
+    },
+    {
+      "iteration": 75,
+      "successes": 0,
+      "score": -0.013,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 80,
+      "successes": 3,
+      "score": 0.618,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 85,
+      "successes": 0,
+      "score": 0.277,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 90,
+      "successes": 0,
+      "score": 0.045,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 95,
+      "successes": 0,
+      "score": 0.094,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 100,
+      "successes": 2,
+      "score": 0.54,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 105,
+      "successes": 11,
+      "score": 0.689,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 110,
+      "successes": 0,
+      "score": 0.579,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 115,
+      "successes": 0,
+      "score": 0.593,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 120,
+      "successes": 0,
+      "score": 0.527,
+      "mean_duration": 14.8
+    },
+    {
+      "iteration": 125,
+      "successes": 0,
+      "score": -0.062,
+      "mean_duration": 6.6
+    },
+    {
+      "iteration": 130,
+      "successes": 7,
+      "score": 0.617,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 135,
+      "successes": 0,
+      "score": -0.002,
+      "mean_duration": 7.2
+    },
+    {
+      "iteration": 140,
+      "successes": 0,
+      "score": 0.496,
+      "mean_duration": 14.6
+    },
+    {
+      "iteration": 145,
+      "successes": 0,
+      "score": 0.221,
+      "mean_duration": 15.0
+    },
+    {
+      "iteration": 150,
+      "successes": 0,
+      "score": 0.487,
+      "mean_duration": 15.0
+    }
+  ],
+  "last_status_evaluation": {
+    "successes": 0,
+    "attempts": 32,
+    "mean_duration": 15.000153541564941,
+    "mean_speed": 0.14107096195220947,
+    "score": 0.48655542731285095,
+    "wall_seconds": 10.281564194709063,
+    "teacher_used": false,
+    "criterion": "Duration and forward-speed screening; final foot-contact and held-out tests remain required.",
+    "iteration": 150
+  },
+  "native": {
+    "checkpoint_updates": 65,
+    "checkpoint_sha256": "e11ff401e9ed0ab47438ae64d2a7cd10d54730c92c9858803a5ffc599c550478",
+    "complete": true,
+    "successes": 1,
+    "attempts": 9,
+    "survivors": 9,
+    "criteria_failures": {
+      "survived": 0,
+      "speed": 3,
+      "both_feet": 0,
+      "alternation": 0,
+      "upright": 0,
+      "direction": 8
+    },
+    "long_walks": [
+      {
+        "seed": 8101,
+        "target_speed": 0.5,
+        "requested_seconds": 120,
+        "seconds": 119.99999999990173,
+        "lesion": "intact",
+        "push": false,
+        "mean_speed": 0.4516817288828584,
+        "forward_m": 54.201807465898625,
+        "lateral_m": 26.997033921131127,
+        "fallen": false,
+        "foot_strikes": [
+          586,
+          501
+        ],
+        "alternations": 976,
+        "contact_fraction": [
+          0.711,
+          0.738
+        ],
+        "minimum_height": 0.795789531028975,
+        "minimum_upright": 0.942860837793563,
+        "criteria": {
+          "survived": true,
+          "speed": true,
+          "both_feet": true,
+          "alternation": true,
+          "upright": true,
+          "direction": false
+        },
+        "success": false,
+        "inference_ms_median": 9.016918018460274,
+        "inference_ms_p95": 11.64569016546011,
+        "wall_seconds": 53.9827879332006
+      }
+    ],
+    "perturbation_survivors": 3,
+    "perturbation_successes": 1,
+    "disconnected_durations": [
+      0.9800000000000008,
+      1.0000000000000007,
+      1.0000000000000007
+    ]
+  },
+  "native_by_target": [
+    {
+      "target_speed": 0.35,
+      "attempts": 3,
+      "successes": 1,
+      "mean_speed": 0.4152056765839314,
+      "mean_lateral_m": 4.533465926411703
+    },
+    {
+      "target_speed": 0.5,
+      "attempts": 3,
+      "successes": 0,
+      "mean_speed": 0.4935569568893363,
+      "mean_lateral_m": 4.477556597278471
+    },
+    {
+      "target_speed": 0.65,
+      "attempts": 3,
+      "successes": 0,
+      "mean_speed": 0.48258921696772894,
+      "mean_lateral_m": 10.907091939416793
+    }
+  ],
+  "source_sha256": {
+    "acceptance.log": "66cbc9028b0da7f240545befe1991d2f9b03334abb929ab105722c0ddfb064cc",
+    "heldout_yumi.json": "e3d1d7031254be5fc8835fe5b8e364e295edf3748052de376113512779b77f70",
+    "ppo5.log": "d56044e7ec0be148a788e45595f88edb11f6c91774e2931bf04563078c9d5a04",
+    "remote_source\\evaluate_full.py": "42012a9065d259aa6e50cea3abbd5adef482c22bed0d8577b214fccf0d7c3a25",
+    "remote_source\\gpu_body.py": "6262aef5af763c6ce9da047802dd1541977c010b3f8407023956d1141dbfdb50",
+    "remote_source\\ppo_yumi.py": "4c9072a6870d41ab8fa1369d38e89d33fd34f9f5f5f83a7f33013ffaa1b96a3f",
+    "remote_source\\train_full.py": "667d5ca799635dceac9c6916c3431ff883a8247651502d51040b986e308047ff",
+    "training.json": "a11348c3e179dee395bdce469b995ff9973112e602d15f49eaedcdb9fca88779"
+  }
+}

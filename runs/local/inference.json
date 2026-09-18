@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "checkpoint_sha256": "f1d5147ce4ba76e3365e8d5b037de7c32dae469d0428d5fc987be27ee2cc65ed",
+  "graph_sha256": "72a6a9ade0117063d3b2515b12ceec3633d9f429ae43f0f8b73b2066a9e51b89",
+  "neurons": 166700,
+  "edges": 25582938,
+  "teacher_used": false,
+  "device": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "platform": "Windows-11-10.0.26340-SP0",
+  "torch": "2.12.1+cu130",
+  "cpu_median_ms": 187.0156500081066,
+  "gpu_median_ms": 10.043599992059171,
+  "gpu_p95_ms": 12.000439998519141,
+  "gpu_samples": 100,
+  "cpu_gpu_max_action_error": 4.76837158203125e-07,
+  "peak_tensor_vram_mb": 506.50927734375,
+  "process_rss_mb": 1290.40625,
+  "ram_available_mb": 332.35546875
+}

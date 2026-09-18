@@ -1,0 +1,23 @@
+--extra-index-url https://download.pytorch.org/whl/cu130
+torch==2.12.1+cu130
+numpy==2.4.6
+psutil==7.2.2
+PyYAML==6.0.3
+annotated-doc==0.0.5
+annotated-types==0.8.0
+click==8.5.0
+etils==1.14.0
+fastapi==0.141.1
+glfw==2.10.2
+mujoco==3.13.0
+mujoco-warp==3.13.0
+pyarrow==25.0.1
+pydantic==2.13.5
+pydantic_core==2.46.5
+PyOpenGL==3.1.10
+scipy==1.18.1
+starlette==1.6.0
+typing-inspection==0.4.4
+uvicorn==0.53.0
+warp-lang==1.17.0
+zipp==4.1.0

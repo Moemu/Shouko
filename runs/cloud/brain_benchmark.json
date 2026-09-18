@@ -1,0 +1,80 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4090 D",
+  "torch": "2.12.1+cu130",
+  "cuda": "13.0",
+  "graph": {
+    "dataset": "MaleCNS v1.0",
+    "neurons": 166700,
+    "edges": 25582938,
+    "contacts": 124177617,
+    "input_neurons": 17336,
+    "output_neurons": 815,
+    "ambiguous_sign_neurons": 3718,
+    "graph_sha256": "72a6a9ade0117063d3b2515b12ceec3633d9f429ae43f0f8b73b2066a9e51b89",
+    "source_hashes": {
+      "annotations.feather": {
+        "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/body-annotations-male-cns-v1.0-minconf-0.5.feather",
+        "bytes": 14483314,
+        "sha256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2"
+      },
+      "neurotransmitters.feather": {
+        "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/body-neurotransmitters-male-cns-v1.0.feather",
+        "bytes": 43282834,
+        "sha256": "95c9289220663abeb3409f3ad9e5a7f8a53f8093f5139d15502cd08da8879621"
+      },
+      "edges.feather": {
+        "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+        "bytes": 1051241946,
+        "sha256": "e35da783d1c686b2b58b3b87cd6a403ae43bfcfba8bff28e08ef752c1a56afc1"
+      }
+    },
+    "selection": "Every retained neuron and every released connection between them; no extra pruning.",
+    "input_mapping": "Learned body-observation encoder into annotated sensory neurons.",
+    "output_mapping": "Learned joint readout from annotated VNC and CB motor neurons.",
+    "dynamics": "Engineered signed rate network; not a validated biological spiking model."
+  },
+  "parameters": 26575852,
+  "checks": "sparse direction, forward and parameter/input gradients match dense reference",
+  "measurement": "Full sensory encoder, complete sparse graph, joint readout, backward and Adam; excludes physics.",
+  "results": [
+    {
+      "batch": 128,
+      "neural_steps": 4,
+      "seconds": 0.11176482196121167,
+      "observations_per_second": 1145.261968425296,
+      "peak_allocated_gib": 3.5083985328674316,
+      "peak_reserved_gib": 3.794921875,
+      "loss": 0.9861043691635132,
+      "edge_gradient_max": 0.001140544773079455,
+      "encoder_gradient_max": 0.006406005471944809,
+      "edge_gradient_nonzero_fraction": 0.16032317280769348,
+      "neuron_activity_nonzero_fraction": 0.9995421767234802
+    },
+    {
+      "batch": 256,
+      "neural_steps": 4,
+      "seconds": 0.16614087500299016,
+      "observations_per_second": 1540.8610313108836,
+      "peak_allocated_gib": 4.415886878967285,
+      "peak_reserved_gib": 5.876953125,
+      "loss": 0.9969546794891357,
+      "edge_gradient_max": 0.0008294071303680539,
+      "encoder_gradient_max": 0.00264182616956532,
+      "edge_gradient_nonzero_fraction": 0.8189461827278137,
+      "neuron_activity_nonzero_fraction": 0.9995424151420593
+    },
+    {
+      "batch": 512,
+      "neural_steps": 4,
+      "seconds": 0.3146655729506165,
+      "observations_per_second": 1627.1242996142864,
+      "peak_allocated_gib": 6.503283500671387,
+      "peak_reserved_gib": 9.44921875,
+      "loss": 1.0116328001022339,
+      "edge_gradient_max": 0.0004667714238166809,
+      "encoder_gradient_max": 0.0019569878932088614,
+      "edge_gradient_nonzero_fraction": 0.8189461827278137,
+      "neuron_activity_nonzero_fraction": 0.9995426535606384
+    }
+  ]
+}

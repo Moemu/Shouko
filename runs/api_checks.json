@@ -1,0 +1,24 @@
+{
+  "/api/meta": {
+    "status": 200,
+    "bytes": 81715
+  },
+  "/api/training": {
+    "status": 200,
+    "bytes": 3187
+  },
+  "/api/evaluation": {
+    "status": 200,
+    "bytes": 15851
+  },
+  "/api/report": {
+    "status": 200,
+    "bytes": 11119
+  },
+  "/": {
+    "status": 200,
+    "bytes": 10643
+  },
+  "bad_speed": 422,
+  "foreign_origin": 403
+}

@@ -1,0 +1,183 @@
+{
+  "kind": "training_seed_native_diagnostic",
+  "checkpoint_sha256": "0071562a3f3e53f2f7648b59146fc030985298c2748f1bdc2cb61903f5c64dc1",
+  "checkpoint_updates": 115,
+  "robot": "yumi",
+  "teacher_used": false,
+  "final_acceptance": false,
+  "torch": "2.12.1+cu130",
+  "body_sha256": {
+    "scene.xml": "ee74d38fc44c7c2d0b0ae8bdc04e66dc77ddd3bf9e2a2ba072a5749097157561",
+    "yumi.xml": "0cb67caf36fc38924f482cc03f83983eec1e3e92a99345fd2fd29644bace83d7",
+    "yumi.yaml": "18626fc6a37ba127d7ab85d9e60c0fa3d018967cb7886a0048c7749cb4c3b0c9"
+  },
+  "gpu_screening": {
+    "successes": 0,
+    "attempts": 32,
+    "mean_duration": 9.580679893493652,
+    "mean_speed": 0.5573585033416748,
+    "score": -0.026526212692260742,
+    "wall_seconds": 48.97391239999888,
+    "teacher_used": false,
+    "criterion": "Duration and forward-speed screening; final foot-contact and held-out tests remain required.",
+    "iteration": 115
+  },
+  "gpu_survivors": [
+    {
+      "seed": 1001,
+      "environment": 5,
+      "target_speed": 0.6499999761581421,
+      "seconds": 15.000153541564941,
+      "mean_speed": 0.932514488697052,
+      "forward_m": 13.987860679626465,
+      "minimum_height": 0.7504004836082458,
+      "fallen": false,
+      "lateral_m": 1.6993951797485352,
+      "success": false
+    },
+    {
+      "seed": 1001,
+      "environment": 11,
+      "target_speed": 0.6499999761581421,
+      "seconds": 15.000153541564941,
+      "mean_speed": 0.1747061014175415,
+      "forward_m": 2.6206183433532715,
+      "minimum_height": 0.7845761179924011,
+      "fallen": false,
+      "lateral_m": 6.824663162231445,
+      "success": false
+    },
+    {
+      "seed": 1001,
+      "environment": 29,
+      "target_speed": 0.6499999761581421,
+      "seconds": 15.000153541564941,
+      "mean_speed": 0.3346779942512512,
+      "forward_m": 5.02022123336792,
+      "minimum_height": 0.7706754207611084,
+      "fallen": false,
+      "lateral_m": 6.306092262268066,
+      "success": false
+    },
+    {
+      "seed": 1001,
+      "environment": 31,
+      "target_speed": 0.5,
+      "seconds": 15.000153541564941,
+      "mean_speed": 0.14102980494499207,
+      "forward_m": 2.115468740463257,
+      "minimum_height": 0.7904433012008667,
+      "fallen": false,
+      "lateral_m": 6.933901309967041,
+      "success": false
+    }
+  ],
+  "tests": [
+    {
+      "seed": 1001,
+      "target_speed": 0.35,
+      "requested_seconds": 15,
+      "seconds": 7.73999999999937,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.05837926575494965,
+      "forward_m": 0.45185551694327347,
+      "lateral_m": 0.22269233595554722,
+      "fallen": true,
+      "foot_strikes": [
+        16,
+        16
+      ],
+      "alternations": 19,
+      "contact_fraction": [
+        0.8062015503875969,
+        0.9018087855297158
+      ],
+      "minimum_height": 0.5246574317369395,
+      "minimum_upright": 0.4546072203279443,
+      "criteria": {
+        "survived": false,
+        "speed": false,
+        "both_feet": true,
+        "alternation": true,
+        "upright": false,
+        "direction": true
+      },
+      "success": false,
+      "inference_ms_median": 9.127200000875746,
+      "inference_ms_p95": 12.34249000044656,
+      "wall_seconds": 4.062929299998359
+    },
+    {
+      "seed": 1001,
+      "target_speed": 0.5,
+      "requested_seconds": 15,
+      "seconds": 8.159999999999394,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.20329375784568934,
+      "forward_m": 1.658877064020702,
+      "lateral_m": 0.11124693959150149,
+      "fallen": true,
+      "foot_strikes": [
+        23,
+        28
+      ],
+      "alternations": 43,
+      "contact_fraction": [
+        0.8186274509803921,
+        0.8382352941176471
+      ],
+      "minimum_height": 0.5286880000231414,
+      "minimum_upright": 0.5523586622880783,
+      "criteria": {
+        "survived": false,
+        "speed": false,
+        "both_feet": true,
+        "alternation": true,
+        "upright": false,
+        "direction": true
+      },
+      "success": false,
+      "inference_ms_median": 9.215000000040163,
+      "inference_ms_p95": 10.507689999576542,
+      "wall_seconds": 4.061307800000577
+    },
+    {
+      "seed": 1001,
+      "target_speed": 0.65,
+      "requested_seconds": 15,
+      "seconds": 4.779999999999696,
+      "lesion": "intact",
+      "push": false,
+      "mean_speed": 0.817813129450977,
+      "forward_m": 3.909146758775421,
+      "lateral_m": 0.2756922152924258,
+      "fallen": true,
+      "foot_strikes": [
+        16,
+        22
+      ],
+      "alternations": 27,
+      "contact_fraction": [
+        0.6150627615062761,
+        0.6652719665271967
+      ],
+      "minimum_height": 0.5480729170342616,
+      "minimum_upright": 0.8373282286184345,
+      "criteria": {
+        "survived": false,
+        "speed": false,
+        "both_feet": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true
+      },
+      "success": false,
+      "inference_ms_median": 8.938299999499577,
+      "inference_ms_p95": 9.870440001031966,
+      "wall_seconds": 2.277010199999495
+    }
+  ],
+  "complete": true
+}

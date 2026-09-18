@@ -1,0 +1,169 @@
+{
+  "phase": "complete",
+  "sample": 1536,
+  "total": 1536,
+  "history": [
+    {
+      "samples": 0,
+      "validation_mse": 0.11452735349380679,
+      "evaluation": {
+        "seed": 202,
+        "target_speed": 0.5,
+        "seconds": 12.000000000000677,
+        "mean_speed": 0.010973557898986038,
+        "forward_m": 0.1316826947878399,
+        "lateral_m": -0.25194392430389345,
+        "speed_rmse": 0.4879844887778142,
+        "minimum_height": 0.7721604940556617,
+        "minimum_upright": 0.9960967600343349,
+        "foot_strikes": [
+          15,
+          16
+        ],
+        "fallen": false,
+        "success": false,
+        "score": 1.4910201841969752,
+        "wall_seconds": 4.843920700004674
+      }
+    },
+    {
+      "samples": 64,
+      "validation_mse": 0.0006979093810225778,
+      "evaluation": {
+        "seed": 202,
+        "target_speed": 0.5,
+        "seconds": 19.999999999999794,
+        "mean_speed": 0.4666748581952396,
+        "forward_m": 9.333497163904696,
+        "lateral_m": -0.2929498898467657,
+        "speed_rmse": 0.03630950372227602,
+        "minimum_height": 0.7582302054956468,
+        "minimum_upright": 0.9942922571413386,
+        "foot_strikes": [
+          25,
+          26
+        ],
+        "fallen": false,
+        "success": true,
+        "score": 1.9490430017853648,
+        "wall_seconds": 8.25528160000249
+      }
+    },
+    {
+      "samples": 128,
+      "validation_mse": 0.00018201604846786155,
+      "evaluation": {
+        "seed": 202,
+        "target_speed": 0.5,
+        "seconds": 19.999999999999794,
+        "mean_speed": 0.46823182406117153,
+        "forward_m": 9.364636481223334,
+        "lateral_m": -0.32031110703229243,
+        "speed_rmse": 0.034536914257907766,
+        "minimum_height": 0.7583200799606924,
+        "minimum_upright": 0.9939000908151328,
+        "foot_strikes": [
+          25,
+          26
+        ],
+        "fallen": false,
+        "success": true,
+        "score": 1.9494475303904568,
+        "wall_seconds": 7.832012999999279
+      }
+    },
+    {
+      "samples": 256,
+      "validation_mse": 0.00013165149506267506,
+      "evaluation": {
+        "seed": 202,
+        "target_speed": 0.5,
+        "seconds": 19.999999999999794,
+        "mean_speed": 0.4700250434512009,
+        "forward_m": 9.40050086902392,
+        "lateral_m": -0.3117616306532737,
+        "speed_rmse": 0.03289500545166449,
+        "minimum_height": 0.758763347204319,
+        "minimum_upright": 0.9939605704069774,
+        "foot_strikes": [
+          25,
+          26
+        ],
+        "fallen": false,
+        "success": true,
+        "score": 1.951516913015651,
+        "wall_seconds": 7.794030800003384
+      }
+    },
+    {
+      "samples": 512,
+      "validation_mse": 8.743601377197692e-05,
+      "evaluation": {
+        "seed": 202,
+        "target_speed": 0.5,
+        "seconds": 19.999999999999794,
+        "mean_speed": 0.475541106208672,
+        "forward_m": 9.510822124173343,
+        "lateral_m": -0.2831820455866769,
+        "speed_rmse": 0.02930952235874459,
+        "minimum_height": 0.758738051138343,
+        "minimum_upright": 0.9939610026250421,
+        "foot_strikes": [
+          25,
+          26
+        ],
+        "fallen": false,
+        "success": true,
+        "score": 1.956531375361901,
+        "wall_seconds": 7.158246599996346
+      }
+    },
+    {
+      "samples": 1024,
+      "validation_mse": 7.376958589382923e-05,
+      "evaluation": {
+        "seed": 202,
+        "target_speed": 0.5,
+        "seconds": 19.999999999999794,
+        "mean_speed": 0.4778206134248426,
+        "forward_m": 9.556412268496754,
+        "lateral_m": -0.25632320268197983,
+        "speed_rmse": 0.02825447964053589,
+        "minimum_height": 0.7584402859514466,
+        "minimum_upright": 0.9938943507292615,
+        "foot_strikes": [
+          25,
+          26
+        ],
+        "fallen": false,
+        "success": true,
+        "score": 1.9589293602253444,
+        "wall_seconds": 7.388381199998548
+      }
+    },
+    {
+      "samples": 1536,
+      "validation_mse": 6.549280858119419e-05,
+      "evaluation": {
+        "seed": 202,
+        "target_speed": 0.5,
+        "seconds": 19.999999999999794,
+        "mean_speed": 0.47775073835157456,
+        "forward_m": 9.555014767031393,
+        "lateral_m": -0.25810535306956234,
+        "speed_rmse": 0.02834535639426221,
+        "minimum_height": 0.7584172874120332,
+        "minimum_upright": 0.9938758756208195,
+        "foot_strikes": [
+          25,
+          26
+        ],
+        "fallen": false,
+        "success": true,
+        "score": 1.958749375952239,
+        "wall_seconds": 7.576811600003566
+      }
+    }
+  ],
+  "elapsed": 295.58639309999853
+}

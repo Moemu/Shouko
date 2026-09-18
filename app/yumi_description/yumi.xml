@@ -1,0 +1,109 @@
+<mujoco model="yumi_12dof">
+  <!--
+    Yumi 物理身体：按 web/public/yumi.vrm 骨架实测尺寸建立的 12 关节人形代理。
+    关节语义与 G1 12-DoF 完全一致（顺序、轴向、零位），因此脑网络的 12 维
+    关节输出和 47 维观测接口不变，可以直接用现有检查点测试。
+
+    实测尺寸（app/yumi_skeleton.py，VRM T-pose，单位米）：
+      髋高 0.97231，髋半宽 0.07229，髋关节在骨盆中心下 0.039
+      大腿 0.39215，小腿 0.44377，踝高 0.09818，踝到脚尖 0.11655
+      肩宽 0.14578，臂长 0.47897，头顶 1.44344
+
+    假设（不属于实测，需标明）：
+      总质量 38 kg，按人体节段比例分配（Dempster）：躯干+头+臂 25.7，
+      每腿大腿 3.2 / 小腿 1.77 / 足 0.55，中间小连杆 0.3/0.3/0.05。
+      脚跟在踝后 0.045，足宽 0.07；足底碰撞球半径 0.022。
+      力矩上限参考 G1 并下调：髋 88/100/60，膝 100，踝 40 N·m。
+      手臂与躯干固定（与 G1 代理一致），不参与关节控制。
+  -->
+  <compiler angle="radian"/>
+
+  <default>
+    <joint damping="0.001" armature="0.01" frictionloss="0.1"/>
+  </default>
+
+  <worldbody>
+    <body name="pelvis" pos="0 0 0.923">
+      <inertial pos="0 0 0.15" mass="25.7" diaginertia="0.66 0.77 0.24"/>
+      <joint name="floating_base_joint" type="free" limited="false" actuatorfrclimited="false"/>
+      <geom type="capsule" size="0.13 0.20" pos="0 0 0.15" contype="0" conaffinity="1" density="0" rgba="0.7 0.7 0.7 1"/>
+
+      <body name="left_hip_pitch_link" pos="0 0.07229 -0.039">
+        <inertial pos="0 0 0" mass="0.3" diaginertia="0.0003 0.0003 0.0003"/>
+        <joint name="left_hip_pitch_joint" pos="0 0 0" axis="0 1 0" range="-2.5307 2.8798" actuatorfrcrange="-120 120"/>
+        <body name="left_hip_roll_link" pos="0 0 0">
+          <inertial pos="0 0 0" mass="0.3" diaginertia="0.0003 0.0003 0.0003"/>
+          <joint name="left_hip_roll_joint" pos="0 0 0" axis="1 0 0" range="-0.5236 2.9671" actuatorfrcrange="-150 150"/>
+          <body name="left_hip_yaw_link" pos="0 0 0">
+            <inertial pos="0 0 -0.196" mass="3.2" diaginertia="0.043 0.043 0.0058"/>
+            <joint name="left_hip_yaw_joint" pos="0 0 0" axis="0 0 1" range="-2.7576 2.7576" actuatorfrcrange="-88 88"/>
+            <geom type="capsule" size="0.06 0.166" pos="0 0 -0.196" contype="0" conaffinity="1" density="0" rgba="0.7 0.7 0.7 1"/>
+            <body name="left_knee_link" pos="0 0 -0.39215">
+              <inertial pos="0 0 -0.222" mass="1.77" diaginertia="0.0295 0.0295 0.0018"/>
+              <joint name="left_knee_joint" pos="0 0 0" axis="0 1 0" range="-0.087267 2.8798" actuatorfrcrange="-150 150"/>
+              <geom type="capsule" size="0.045 0.199" pos="0 0 -0.222" contype="0" conaffinity="1" density="0" rgba="0.7 0.7 0.7 1"/>
+              <body name="left_ankle_pitch_link" pos="0 0 -0.44377">
+                <inertial pos="0 0 0" mass="0.05" diaginertia="1e-5 1e-5 1e-5"/>
+                <joint name="left_ankle_pitch_joint" pos="0 0 0" axis="0 1 0" range="-0.87267 0.5236" actuatorfrcrange="-60 60"/>
+                <body name="left_ankle_roll_link" pos="0 0 0">
+                  <inertial pos="0.028 0 -0.04" mass="0.55" diaginertia="0.00034 0.00129 0.0014"/>
+                  <joint name="left_ankle_roll_joint" pos="0 0 0" axis="1 0 0" range="-0.2618 0.2618" actuatorfrcrange="-60 60"/>
+                  <geom size="0.022" pos="-0.045 0.025 -0.076" rgba="0.2 0.2 0.2 1"/>
+                  <geom size="0.022" pos="-0.045 -0.025 -0.076" rgba="0.2 0.2 0.2 1"/>
+                  <geom size="0.022" pos="0.10 0.025 -0.076" rgba="0.2 0.2 0.2 1"/>
+                  <geom size="0.022" pos="0.10 -0.025 -0.076" rgba="0.2 0.2 0.2 1"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+
+      <body name="right_hip_pitch_link" pos="0 -0.07229 -0.039">
+        <inertial pos="0 0 0" mass="0.3" diaginertia="0.0003 0.0003 0.0003"/>
+        <joint name="right_hip_pitch_joint" pos="0 0 0" axis="0 1 0" range="-2.5307 2.8798" actuatorfrcrange="-120 120"/>
+        <body name="right_hip_roll_link" pos="0 0 0">
+          <inertial pos="0 0 0" mass="0.3" diaginertia="0.0003 0.0003 0.0003"/>
+          <joint name="right_hip_roll_joint" pos="0 0 0" axis="1 0 0" range="-2.9671 0.5236" actuatorfrcrange="-150 150"/>
+          <body name="right_hip_yaw_link" pos="0 0 0">
+            <inertial pos="0 0 -0.196" mass="3.2" diaginertia="0.043 0.043 0.0058"/>
+            <joint name="right_hip_yaw_joint" pos="0 0 0" axis="0 0 1" range="-2.7576 2.7576" actuatorfrcrange="-88 88"/>
+            <geom type="capsule" size="0.06 0.166" pos="0 0 -0.196" contype="0" conaffinity="1" density="0" rgba="0.7 0.7 0.7 1"/>
+            <body name="right_knee_link" pos="0 0 -0.39215">
+              <inertial pos="0 0 -0.222" mass="1.77" diaginertia="0.0295 0.0295 0.0018"/>
+              <joint name="right_knee_joint" pos="0 0 0" axis="0 1 0" range="-0.087267 2.8798" actuatorfrcrange="-150 150"/>
+              <geom type="capsule" size="0.045 0.199" pos="0 0 -0.222" contype="0" conaffinity="1" density="0" rgba="0.7 0.7 0.7 1"/>
+              <body name="right_ankle_pitch_link" pos="0 0 -0.44377">
+                <inertial pos="0 0 0" mass="0.05" diaginertia="1e-5 1e-5 1e-5"/>
+                <joint name="right_ankle_pitch_joint" pos="0 0 0" axis="0 1 0" range="-0.87267 0.5236" actuatorfrcrange="-60 60"/>
+                <body name="right_ankle_roll_link" pos="0 0 0">
+                  <inertial pos="0.028 0 -0.04" mass="0.55" diaginertia="0.00034 0.00129 0.0014"/>
+                  <joint name="right_ankle_roll_joint" pos="0 0 0" axis="1 0 0" range="-0.2618 0.2618" actuatorfrcrange="-60 60"/>
+                  <geom size="0.022" pos="-0.045 0.025 -0.076" rgba="0.2 0.2 0.2 1"/>
+                  <geom size="0.022" pos="-0.045 -0.025 -0.076" rgba="0.2 0.2 0.2 1"/>
+                  <geom size="0.022" pos="0.10 0.025 -0.076" rgba="0.2 0.2 0.2 1"/>
+                  <geom size="0.022" pos="0.10 -0.025 -0.076" rgba="0.2 0.2 0.2 1"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="left_hip_pitch_joint" joint="left_hip_pitch_joint"/>
+    <motor name="left_hip_roll_joint" joint="left_hip_roll_joint"/>
+    <motor name="left_hip_yaw_joint" joint="left_hip_yaw_joint"/>
+    <motor name="left_knee_joint" joint="left_knee_joint"/>
+    <motor name="left_ankle_pitch_joint" joint="left_ankle_pitch_joint"/>
+    <motor name="left_ankle_roll_joint" joint="left_ankle_roll_joint"/>
+    <motor name="right_hip_pitch_joint" joint="right_hip_pitch_joint"/>
+    <motor name="right_hip_roll_joint" joint="right_hip_roll_joint"/>
+    <motor name="right_hip_yaw_joint" joint="right_hip_yaw_joint"/>
+    <motor name="right_knee_joint" joint="right_knee_joint"/>
+    <motor name="right_ankle_pitch_joint" joint="right_ankle_pitch_joint"/>
+    <motor name="right_ankle_roll_joint" joint="right_ankle_roll_joint"/>
+  </actuator>
+</mujoco>

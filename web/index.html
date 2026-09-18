@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#f3f6fa">
+<link rel="icon" type="image/png" href="/favicon.png">
+<title data-i18n="page.title">ショウコ · 硝子 · 实验室</title>
+</head>
+<body>
+<div class="shell">
+  <aside class="rail">
+    <button class="brand" id="brandHome" aria-label="ショウコ 首页" data-i18n-attr="aria-label:nav.home,title:nav.home"><img src="/favicon.png" alt="" width="38" height="38"></button>
+    <button class="nav active" data-view="studio" aria-label="实验室" data-i18n-attr="aria-label:nav.studio,title:nav.studio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 8.6A2 2 0 0 0 6.8 21h10.4a2 2 0 0 0 1.8-3.4L14 9V3"/></svg><span class="nav-label" data-i18n="nav.studio">实验室</span></button>
+    <button class="nav" data-view="results" aria-label="评估结果" data-i18n-attr="aria-label:nav.results,title:nav.results"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 20h16M7.5 20v-8M12 20V5M16.5 20v-5.5"/></svg><span class="nav-label" data-i18n="nav.results">评估结果</span></button>
+    <button class="nav" data-view="research" aria-label="研究与方法" data-i18n-attr="aria-label:nav.research,title:nav.research"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v4h4M9.8 12h5M9.8 16h3.4"/></svg><span class="nav-label" data-i18n="nav.research">研究与方法</span></button>
+    <div class="rail-bottom"><span class="local-led" id="railLed"></span><span id="railLabel">SERVER</span></div>
+  </aside>
+  <main>
+    <header class="topbar">
+      <div class="wordmark">ショウコ<span>硝子</span></div>
+      <div class="breadcrumb" id="breadcrumb">实验室</div>
+      <div class="segmented body-switch" id="bodySwitch" hidden>
+        <button id="bodyG1" aria-pressed="false" data-i18n="body.g1">G1</button>
+        <button id="bodyYumi" aria-pressed="false" data-i18n="body.yumi">Yumi</button>
+      </div>
+      <button class="lang-toggle" id="languageToggle" aria-label="Switch language" data-i18n-attr="aria-label:lang.switch,title:lang.switch"><span id="langCurrent">EN</span></button>
+      <div class="connection"><i></i><span id="connection" data-i18n="connection.connecting">正在连接仿真</span></div>
+      <span class="version" id="datasetChip">—</span>
+    </header>
+    <div id="studioView" class="view active">
+      <div class="metrics">
+        <article><label><i class="dot lilac"></i><span data-i18n="metric.speed">前进速度</span></label><div><b id="speed">—</b><span>m/s</span></div><small id="speedState" data-i18n="metric.upright.waiting">等待物理状态</small><svg viewBox="0 0 100 26" aria-hidden="true"><path id="speedSpark"/></svg></article>
+        <article><label title="躯干朝上的投影" data-i18n-attr="title:metric.upright.hint"><i class="dot mint"></i><span data-i18n="metric.upright">身体直立度</span></label><div><b id="upright">—</b><span>%</span></div><small id="balanceState" data-i18n="metric.upright.waiting">等待物理状态</small><div class="mini-track"><i id="balanceBar"></i></div></article>
+        <article><label><i class="dot blue"></i><span data-i18n="metric.distance">累计移动距离</span></label><div><b id="distance">—</b><span>m</span></div><small><span data-i18n="metric.distance.episode">当前回合</span> · <em id="simTime">0.0</em> s</small></article>
+        <article><label><i class="dot amber"></i><span data-i18n="metric.neurons">参与计算的神经元</span></label><div><b id="neuronCount">—</b></div><small id="edgeCount" data-i18n="metric.neurons.sub">载入实测连接组</small></article>
+      </div>
+      <div class="workspace">
+        <section class="stage panel">
+          <div class="panel-head stage-head"><div><span class="dot mint"></span><strong data-i18n="stage.title">身体实验场</strong><span class="quiet" data-i18n="stage.sub">BODY SIMULATION</span></div><div class="segmented"><button class="selected" id="avatarMode" aria-pressed="true" data-i18n="stage.avatar">角色</button><button id="skeletonMode" aria-pressed="false" data-i18n="stage.skeleton">骨架</button></div></div>
+          <div id="viewport"><div class="loading" id="modelLoading"><span class="loader"></span><span data-i18n="stage.loading">载入 3D 角色…</span></div><div class="stage-overlay" id="stageOverlay" hidden></div></div>
+          <div class="stage-label"><span class="pill" id="liveBadge"><i></i><span data-i18n="stage.live">实时物理仿真</span></span></div>
+          <div class="stage-info"><div class="avatar-name">Hikari <span>ひかり</span></div><p id="stageMeta" data-i18n="stage.meta">VRM 角色 · G1 物理代理 · 12 主动关节</p><p id="avatarCredit" title="VRM 许可要求的角色署名" data-i18n-attr="title:stage.credit.hint">pixiv Inc.</p></div>
+          <div class="scene-tools"><button id="cameraReset" title="重置镜头" data-i18n-attr="title:scene.reset,aria-label:scene.reset" aria-label="重置镜头">⌾</button><button id="pushButton" title="侧向轻推，测试恢复" data-i18n-attr="title:scene.push,aria-label:scene.push" aria-label="侧向轻推，测试恢复">↝</button></div>
+          <div class="stage-footer"><span id="feedbackState"><i class="dot mint"></i><span data-i18n="stage.feedback">身体反馈已连接</span></span><span id="rtf">— ×</span><span id="actualHeading">—</span><span data-i18n="stage.drag">拖动旋转 · 滚轮缩放</span></div>
+        </section>
+        <aside class="brain-column">
+          <section class="panel brain-panel">
+            <div class="panel-head"><strong data-i18n="brain.title">神经活动</strong><div class="brain-tabs" aria-label="神经活动显示"><button id="brainchange" aria-pressed="true" data-i18n="brain.change">变化</button><button id="brainstrength" aria-pressed="false" data-i18n="brain.strength">强度</button></div></div>
+            <div id="brainViewport"></div>
+            <div class="brain-legend"><span><span id="brainLegendLow">下降</span><i></i><span id="brainLegendHigh">上升</span></span><small id="brainScale">固定色标 ±0.5/s · 超出饱和</small></div>
+            <p class="brain-readout" id="brainReadout">点越大、颜色越明显，幅度越大</p>
+            <div class="brain-meta"><span id="activityLabel">变化速率 RMS</span><b id="activityRms">—</b><span data-i18n="brain.compute">神经计算</span><b id="brainMs">— ms</b><span title="送往运动层的信号" data-i18n-attr="title:brain.downstream.hint" data-i18n="brain.downstream">下行信号 RMS</span><b id="outputRms">—</b></div>
+            <p class="micro" id="sampleCount">仅显示有实测坐标的神经元</p>
+          </section>
+        </aside>
+      </div>
+      <section class="control-strip panel">
+        <div class="playback"><button id="playButton" class="primary" aria-label="暂停仿真"><span class="glyph" aria-hidden="true">Ⅱ</span><span id="playLabel" data-i18n="ctrl.pause">暂停</span></button><button id="resetButton" class="square" title="重置回合" data-i18n-attr="title:ctrl.reset,aria-label:ctrl.reset" aria-label="重置回合">↺</button></div>
+        <div class="slider-control"><label for="targetSpeed"><span data-i18n="ctrl.speed">目标速度</span> <b id="targetLabel">0.50 <small>m/s</small></b></label><input type="range" id="targetSpeed" min="0" max="0.75" step="0.05" value="0.5"></div>
+        <div class="slider-control heading"><label for="heading"><span data-i18n="ctrl.heading">目标朝向</span> <b id="headingLabel">0°</b></label><input type="range" id="heading" min="-80" max="80" step="5" value="0"></div>
+        <div class="lesion-control"><label for="lesion" id="lesionLabel" data-i18n="ctrl.lesion" title="断开或打乱脑内连接，确认结果确实由连接结构产生。断连失败只说明连接参与控制，不证明果蝇连接优于随机网络。" data-i18n-attr="title:ctrl.lesion.hint">因果对照</label><select id="lesion"><option value="intact" data-i18n="lesion.intact">正常连接</option><option value="disconnected" data-i18n="lesion.disconnected">断开所有连接</option><option value="rewired" data-i18n="lesion.rewired">打乱连接终点</option></select></div>
+      </section>
+      <details class="panel studio-gait"><summary class="training-summary"><strong data-i18n="chart.gait.title">步态与反馈</strong><span class="quiet" data-i18n="chart.gait.sub">最近 12 秒</span></summary><div class="panel-head"><span class="legend-line"><span data-i18n="chart.gait.actual">实测速度</span><i></i><span data-i18n="chart.gait.target">目标</span></span></div><div class="chart-wrap"><canvas id="gaitChart" role="img" data-i18n-attr="aria-label:chart.gait.title"></canvas></div><div class="chart-foot"><div class="feet"><span id="leftFoot" data-i18n="chart.feet.left">L 左脚</span><span id="rightFoot" data-i18n="chart.feet.right">R 右脚</span></div><span id="steps">--</span></div></details>
+    </div>
+    <div id="resultsView" class="view">
+      <section class="panel training-console" aria-labelledby="trainingTitle">
+        <div class="panel-head"><div><strong id="trainingTitle" data-i18n="train.title">训练工作台</strong><span id="trainIdentity" class="quiet">--</span></div><span class="tiny-pill" id="trainPhase" role="status" data-i18n="chart.train.phase">读取训练记录</span></div>
+        <div class="training-toolbar"><button class="primary" id="trainButton" disabled data-i18n="train.start">开始新一轮训练</button><button class="outline" id="trainPause" disabled data-i18n="train.pause">暂停训练</button><button class="outline" id="trainResume" disabled data-i18n="train.resume">继续当前进程</button><button class="outline" id="trainStop" disabled data-i18n="chart.train.stop">停止训练</button></div>
+        <p id="trainAvailability" class="console-note" role="status"></p><p id="trainError" class="console-error" role="alert" hidden></p>
+        <form id="trainConfig" class="training-config">
+          <fieldset id="trainFields"><legend data-i18n="train.config">下一轮配置</legend><div class="config-grid">
+            <label><span data-i18n="train.worlds">并行世界</span><input id="trainWorlds" type="number" min="1" max="64" step="1" value="16" required></label>
+            <label id="trainBatchOption"><span data-i18n="train.batch">监督批大小</span><input id="trainBatch" type="number" min="1" max="256" step="1" value="64" required></label>
+            <label><span data-i18n="train.duration">有效训练时限 (s)</span><input id="trainDuration" type="number" min="1" max="86400" step="1" value="1800" required></label>
+            <label class="ppo-option"><span data-i18n="train.minibatch">PPO 小批大小</span><input id="trainMinibatch" type="number" min="1" max="512" step="1" value="128" required></label>
+            <label class="ppo-option"><span data-i18n="train.steps">每个世界采样步数</span><input id="trainSteps" type="number" min="1" max="512" step="1" value="128" required></label>
+          </div><div class="config-checks"><label><input id="trainWarmStart" type="checkbox" checked><span data-i18n="train.warmStart">从现有权重开始</span></label><label class="ppo-option"><input id="trainFreeze" type="checkbox" checked><span data-i18n="train.freeze">冻结脑内参数 (PPO)</span></label></div><p class="micro" data-i18n="train.warmHint">权重热启动会创建新训练进程，不会恢复优化器或当前暂停进程。</p></fieldset>
+        </form>
+        <div class="run-readout"><span id="trainRun">--</span><span id="trainStats">--</span></div>
+        <progress id="trainProgress" max="100" value="0" data-i18n-attr="aria-label:train.budget"></progress>
+        <p id="trainSubtitle" class="console-note" data-i18n="train.metricsHint">实际记录 · 每项指标独立线性刻度 · 缺失值不绘制</p>
+        <div id="trainingCharts" class="training-charts"></div>
+        <details class="console-details" id="trainingTableDetails"><summary data-i18n="train.table">查看曲线数据表</summary><div id="trainingTable" class="table-scroll"></div></details>
+        <section class="training-log"><div class="log-head"><strong data-i18n="train.logs">训练进程日志</strong><label><input id="trainFollow" type="checkbox" checked><span data-i18n="train.follow">跟随最新</span></label><span id="trainLogState" class="quiet"></span></div><pre id="trainLogs" tabindex="0" data-i18n-attr="aria-label:train.logs">--</pre><p class="micro" data-i18n="train.logHint">仅此页可见时每秒读取 · 最多保留 1,000 行 · 原始进程输出</p></section>
+      </section>
+      <section class="panel evaluation-console">
+        <div class="evaluation-heading"><details id="evaluationDetails"><summary class="training-summary"><strong data-i18n="eval.title">独立评估</strong><span id="evaluationState" class="tiny-pill" role="status" data-i18n="eval.absent">尚无匹配结果</span></summary></details><div class="evaluation-actions"><select id="evaluationProtocol" data-i18n-attr="aria-label:eval.protocol"><option value="quick" data-i18n="eval.quick">快速 · 9 × 20 s</option><option value="full" data-i18n="eval.full">完整 · 加长走 / 扰动 / 对照</option></select><button id="evaluateButton" class="outline" data-i18n="eval.run">评估现有检查点</button></div></div>
+        <p id="evaluationJob" class="console-note" role="status" hidden></p><p id="evaluationError" class="console-error" role="alert" hidden></p>
+        <div id="evaluationContent" hidden>
+      <section class="document-panel">
+        <div class="eyebrow" data-i18n="results.eyebrow">HELD-OUT EVALUATION</div>
+        <h2 data-i18n="results.h2">用结果，而不是动画，验证行走。</h2>
+        <p id="resultsIntro" data-i18n="results.p">独立测试种子。统计跌倒、速度和双脚触地。断连对照保留同一个运动控制器。</p>
+        <div id="evaluationSummary" class="evaluation-summary"></div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th data-i18n="results.th.seed">种子 / 条件</th><th data-i18n="results.th.target">目标速度</th><th data-i18n="results.th.mean">平均速度</th><th data-i18n="results.th.absError">速度绝对误差</th><th data-i18n="results.th.seconds">时长</th><th data-i18n="results.th.strikes">触地 L / R</th><th data-i18n="results.th.alternations">交替次数</th><th data-i18n="results.th.contacts">触地占比</th><th data-i18n="results.th.upright">最小直立度</th><th data-i18n="results.th.latency">神经延迟 中位 / p95</th><th data-i18n="results.th.outcome">结果</th></tr></thead>
+            <tbody id="evaluationRows"></tbody>
+          </table>
+        </div>
+        <p class="micro" id="resultsCriteria" data-i18n="results.micro">通过条件：连续 30 秒不跌倒；平均速度误差 &lt; 0.2 m/s；双脚分别至少 4 次触地。此测试不证明果蝇连接结构优于随机网络。</p>
+        <a class="text-button" href="/api/evaluation" target="_blank" data-i18n="results.json">下载原始评估 JSON</a>
+      </section>
+        </div>
+      </section>
+      <div class="integrity"><span aria-hidden="true">◉</span><p id="integrityText" data-i18n="integrity.text">当前实验训练神经读出层，复用预训练人形运动控制。角色由物理状态驱动，尚未训练完整果蝇大脑或人体肌肉系统。</p><button class="text-button" data-view="research" data-i18n="integrity.link">查看范围</button></div>
+    </div>
+    <div id="researchView" class="view">
+      <header class="research-intro">
+        <p data-i18n="study.kicker">ショウコ / 研究与方法</p>
+        <h1 data-i18n="study.title">从果蝇的接线，到身体的行动。</h1>
+        <p class="research-lead" data-i18n="study.lead">真实的神经连接结构，能否参与跨身体的行走控制？先认识这份接线从哪里来，再看我们如何把它变成控制网络。</p>
+        <div class="research-origins"><span data-i18n="study.origin.data">测量：连接结构</span><span data-i18n="study.origin.model">建模：神经动力学</span><span data-i18n="study.origin.learn">学习：控制参数</span><span data-i18n="study.origin.physics">仿真：身体运动</span></div>
+        <p class="micro" id="researchContext" data-i18n="study.context.wait">方法说明独立于仿真操作；历史实验不代表当前权重的表现。</p>
+      </header>
+      <div class="research-layout">
+        <nav class="research-toc" aria-label="研究章节" data-i18n-attr="aria-label:study.contents">
+          <strong data-i18n="study.contents">阅读目录</strong>
+          <a href="#study-brain" data-i18n="study.nav.brain">大脑与连接组</a>
+          <a href="#study-loop" data-i18n="study.nav.loop">实际控制链</a>
+          <a href="#study-learning" data-i18n="study.nav.learning">训练演进</a>
+          <a href="#study-body" data-i18n="study.nav.body">身体与画面</a>
+          <a href="#study-evidence" data-i18n="study.nav.evidence">实验证据</a>
+          <a href="#study-lessons" data-i18n="study.nav.lessons">失败与复现</a>
+          <a href="#study-sources" data-i18n="study.nav.sources">来源与下一步</a>
+        </nav>
+        <div class="research-body">
+          <section id="study-brain" class="research-section" tabindex="-1">
+            <h2 data-i18n="study.brain.title">先有神经系统，再有它的接线图。</h2>
+            <p data-i18n="study.brain.intro">果蝇的中枢神经系统包含脑与腹神经索。神经元通过突触形成相互连接的回路；感觉输入、内部状态和身体反馈共同影响行为，不是一个“大脑开关”直接控制所有动作。</p>
+            <div class="research-pair">
+              <article><h3 data-i18n="study.brain.regions.title">脑不是一团相同的节点</h3><p data-i18n="study.brain.regions">视叶参与视觉处理，触角叶处理嗅觉输入；蘑菇体与学习、记忆有关，中央复合体参与定向等过程。这些只是功能概括，各脑区通过回路协作，并非互相独立的程序模块。</p></article>
+              <article><h3 data-i18n="study.brain.vnc.title">身体控制也不只在脑内</h3><p data-i18n="study.brain.vnc">脑与腹神经索之间有下行与上行通路。腹神经索包含与身体感觉、运动有关的回路。这不等同于本项目的人形身体：果蝇回路到人形关节的接口需要人工定义和训练。</p></article>
+            </div>
+            <h3 data-i18n="study.reconstruction.title">研究者怎样重建连接组？</h3>
+            <p data-i18n="study.reconstruction.intro">这里的“构建”是从组织图像重建接线，不是在计算机里培养一颗脑。下面是概念流程，步骤可交错、自动化结果仍需质量检查。</p>
+            <ol class="research-process">
+              <li><strong data-i18n="study.reconstruction.image">电子显微成像</strong><p data-i18n="study.reconstruction.image.p">将组织中的微细结构记录成可对齐的图像体积。</p></li>
+              <li><strong data-i18n="study.reconstruction.trace">分割与追踪</strong><p data-i18n="study.reconstruction.trace.p">跨图像追踪神经突起，将片段归入相应细胞，并校对错接、漏接。</p></li>
+              <li><strong data-i18n="study.reconstruction.synapse">识别与注释</strong><p data-i18n="study.reconstruction.synapse.p">标注突触前后关系与细胞类别；递质等属性可能来自预测，需保留不确定性。</p></li>
+              <li><strong data-i18n="study.reconstruction.graph">汇总成有向图</strong><p data-i18n="study.reconstruction.graph.p">以神经元为节点，按细胞对汇总连接与接触计数。多个接触可以合成一条图边。</p></li>
+            </ol>
+            <div class="research-note"><strong data-i18n="study.brain.boundary.title">接线图告诉我们“谁连接谁”，不直接告诉我们“脑怎样思考”。</strong><p data-i18n="study.brain.boundary">结构数据不会自动给出受体性质、动态突触强度、学习规则、个体经历或意识。本项目使用 MaleCNS v1.0 导入的脑与腹神经索数据；166,700 是筛选后参与计算的神经元数，不是所有果蝇大脑统一的细胞总数。</p></div>
+            <a href="https://male-cns.janelia.org/" target="_blank" rel="noreferrer" data-i18n="study.brain.source">数据与重建背景：MaleCNS 官方项目</a>
+          </section>
+          <section id="study-loop" class="research-section" tabindex="-1">
+            <h2 data-i18n="study.loop.title">把接线变成控制网络，还需要哪些设计？</h2>
+            <p data-i18n="study.loop.intro">以下是全图主线的计算路径，不是生物脑区解剖图。感觉编码、神经动力学和动作接口都经过工程定义，推理阶段不加载 G1 教师策略。</p>
+            <figure class="research-loop">
+              <figcaption data-i18n="study.loop.caption">全图控制闭环 · 展开节点查看输入、输出与假设</figcaption>
+              <div class="research-loop-nodes">
+                <details><summary data-i18n="study.loop.observe">身体观测与目标</summary><p data-i18n="study.loop.observe.p">目标速度、朝向与身体状态组成工程观测。当前不是复眼图像或真实视觉输入；上一动作也属于观测信息。</p></details>
+                <details><summary data-i18n="study.loop.encode">感觉编码</summary><p data-i18n="study.loop.encode.p">可训练编码器将身体观测注入数据标注的感觉神经元。输入组与运动读出组分开，没有从输入直接绕过连接组输出关节的捷径。</p></details>
+                <details><summary data-i18n="study.loop.graph">连接组传播</summary><p data-i18n="study.loop.graph.p">166,700 个神经元、25,582,938 条神经元对连接。每次决策展开 4 次活动率更新，随后读出；活动状态不跨决策保留。</p></details>
+                <details><summary data-i18n="study.loop.output">运动读出</summary><p data-i18n="study.loop.output.p">从数据标注的 VNC / CB 运动神经元活动读出 12 个关节目标。它们不是肌肉激活或直接关节力矩。</p></details>
+                <details><summary data-i18n="study.loop.physics">执行器与物理</summary><p data-i18n="study.loop.physics.p">PD 控制将关节目标转换为力矩，MuJoCo 计算重力、碰撞与接触。PD 是执行器控制，不是预训练行走策略。</p></details>
+              </div>
+              <p class="research-feedback" data-i18n="study.loop.feedback">身体运动产生下一次观测，闭环回到输入。</p>
+            </figure>
+            <details class="research-technical"><summary data-i18n="study.loop.math.title">技术细节：权重、活动率与符号</summary><p data-i18n="study.loop.math">以 W[post, pre] 表示传播方向。初始边权由 sign × sqrt(contact_count) 构造，按目标节点归一化。连接增益保持初始符号；是否训练增益取决于实验阶段。</p><pre><code>r ← a · r + b · tanh(W · r + sensory_drive)</code></pre><p data-i18n="study.loop.rate">这是活动率更新的示意式，不是生物脉冲或完整生理时间模型。带正负号的活动值也不能解释成真实放电频率。</p><p data-i18n="study.loop.sign">乙酰胆碱按兴奋处理，GABA、谷氨酸、组胺按抑制处理；神经调质与未知类别默认正号。这是简化政策，不是逐突触受体测量。</p></details>
+          </section>
+          <section id="study-learning" class="research-section" tabindex="-1">
+            <h2 data-i18n="study.learning.title">从读出原型，到跨身体适配。</h2>
+            <ol class="research-timeline">
+              <li><h3 data-i18n="study.learning.prototype.title">子图原型：先验证控制链</h3><p data-i18n="study.learning.prototype">8,192 神经元，训练线性运动读出，输出速度指令后交给冻结的 G1 步态策略。原型报告中的“只训练读出”与“全图尚未实测”属于这个历史阶段。</p></li>
+              <li><h3 data-i18n="study.learning.g1.title">全图 G1：从示范学习关节动作</h3><p data-i18n="study.learning.g1">先模仿 G1 教师动作，再用 DAgger 收集学生走偏时的状态、由教师重新标注。感觉编码、神经偏置、连接增益和运动输出共同训练；评估与预览只运行连接组策略。</p></li>
+              <li><h3 data-i18n="study.learning.yumi.title">Yumi：同一接口，不同身体</h3><p data-i18n="study.learning.yumi">G1 权重直接迁移不能稳定行走。Yumi 用 PPO 从 G1 权重微调，以速度、直立、方向、存活与双足交替等奖励适配新的身体。后续姿态分支冻结了部分参数，不能都概括成“全参数一起训练”。</p></li>
+            </ol>
+            <p class="research-note" data-i18n="study.learning.limit">教师示范、奖励优化都属于工程训练。当前没有复现 STDP、多巴胺驱动的生物学习或个体记忆。</p>
+          </section>
+          <section id="study-body" class="research-section" tabindex="-1">
+            <h2 data-i18n="study.body.title">画面里看见的，不全是物理里计算的。</h2>
+            <div class="research-pair research-body-layers">
+              <article><h3 data-i18n="study.body.physics.title">物理层</h3><p data-i18n="study.body.physics">G1 与 Yumi 都用 12 个下肢主动关节。Yumi 按 VRM 骨架测量重建：髋高约 0.972 m、大腿约 0.392 m、小腿约 0.444 m。质量 38 kg 与分段质量分配是建模假设，不是人体测量。</p></article>
+              <article><h3 data-i18n="study.body.visual.title">显示层</h3><p data-i18n="study.body.visual">VRM 骨骼跟随物理关节状态，蒙皮与服装呈现角色外观。当前上半身在物理中刚性合并，上肢视觉跟随不参与主动平衡；头发与服装显示不等于其质量和碰撞已被模拟。</p></article>
+            </div>
+            <p data-i18n="study.body.boundary">因此，Yumi 不只是 G1 换皮，但也不是完整人体或肌肉模型。身体比例、质量、惯性与力矩限制改变了控制问题，换身体需要重新训练和验证。</p>
+          </section>
+          <section id="study-evidence" class="research-section" tabindex="-1">
+            <h2 data-i18n="study.evidence.title">实验回答具体问题，不为更大的结论背书。</h2>
+            <div class="table-scroll"><table><caption data-i18n="study.evidence.caption">测试逻辑与结论边界</caption><thead><tr><th data-i18n="study.evidence.test">实验</th><th data-i18n="study.evidence.support">能够说明</th><th data-i18n="study.evidence.limit">不能推出</th></tr></thead><tbody>
+              <tr><th scope="row" data-i18n="study.evidence.walk">独立初态与持续行走</th><td data-i18n="study.evidence.walk.yes">规定条件下持续控制身体</td><td data-i18n="study.evidence.walk.no">任意地形或初始姿态都能泛化</td></tr>
+              <tr><th scope="row" data-i18n="study.evidence.push">侧向轻推</th><td data-i18n="study.evidence.push.yes">恢复指定强度的扰动</td><td data-i18n="study.evidence.push.no">已具备通用全身平衡能力</td></tr>
+              <tr><th scope="row" data-i18n="study.evidence.cut">断开脑内连接</th><td data-i18n="study.evidence.cut.yes">当前控制器依赖这些连接</td><td data-i18n="study.evidence.cut.no">果蝇拓扑优于同预算重训的随机图</td></tr>
+              <tr><th scope="row" data-i18n="study.evidence.random">同预算随机网络对照</th><td data-i18n="study.evidence.random.yes">待检验连接结构的相对优势</td><td data-i18n="study.evidence.random.no">尚未完成，不提前给结论</td></tr>
+            </tbody></table></div>
+            <details class="research-technical"><summary data-i18n="study.evidence.history.title">历史验收：不是当前加载状态的成绩</summary><p data-i18n="study.evidence.g1">全图 G1 基线 f1d5147c：9 个独立初态各 30 秒通过；120 秒前进 55.40 m；3 次轻推恢复。3 次断连约 1.4 秒跌倒，属于符合预期的阴性对照。</p><p data-i18n="study.evidence.yumi">Yumi PPO9 基线 a7a4281f，配套旧 home：9 个初态各 30 秒通过；120 秒约 65.6 m、横漂约 0.13 m；3 次轻推恢复。3 次断连约 1 秒跌倒。依据：YUMI_BODY.md 中的历史验收记录。</p><p data-i18n="study.evidence.binding">这些记录必须绑定身体、权重、home、测试协议与日期。训练分数、快速筛查、留出验收不是同一种证据；不能把历史通过数自动赋给当前权重。</p></details>
+            <button class="outline" data-view="results" data-i18n="study.evidence.open">查看当前训练与评估</button>
+          </section>
+          <section id="study-lessons" class="research-section" tabindex="-1">
+            <h2 data-i18n="study.lessons.title">失败记录，也是方法的一部分。</h2>
+            <div class="research-lessons">
+              <article><h3 data-i18n="study.lessons.transfer.title">接上新身体，不等于适配成功</h3><p data-i18n="study.lessons.transfer">记录中 G1 权重或教师直接驱动 Yumi 约 1.6–1.8 秒便跌倒。动作接口兼容并不意味着动力学兼容，因此引入身体专属的强化学习适配。</p></article>
+              <article><h3 data-i18n="study.lessons.posture.title">更直立，也可能更慢、更不稳</h3><p data-i18n="study.lessons.posture">后续姿态实验提升骨盆高度时，速度和筛查通过率出现退化。训练 score 的提高不等于独立行走验收通过，也不能据此宣布自然步态已经解决。</p></article>
+              <article><h3 data-i18n="study.lessons.home.title">检查点不是完整的实验状态</h3><p data-i18n="study.lessons.home">home A/B 记录中，同一旧权重配旧关节参考姿态能走满 10 秒，换新参考姿态约 2 秒跌倒。恢复后做的是 9 × 10 秒 quick 检查，不是重新完成 9 × 30 秒验收。</p></article>
+            </div>
+            <p class="research-note" data-i18n="study.lessons.rule">复现时同时保存权重、身体配置、关节参考姿态与测试协议。失败现象和机制假说分开记录，不把一次对比当作所有根因都已排除。</p>
+          </section>
+          <section id="study-sources" class="research-section" tabindex="-1">
+            <h2 data-i18n="study.sources.title">研究从哪里来，又准备走向哪里？</h2>
+            <ul class="research-sources">
+              <li><a href="https://male-cns.janelia.org/" target="_blank" rel="noreferrer">MaleCNS</a><p data-i18n="study.sources.male">连接结构、细胞注释与数据来源；不是一个已经具备行走功能的预训练脑。</p></li>
+              <li><a href="https://www.nature.com/articles/s41592-024-02497-y" target="_blank" rel="noreferrer">NeuroMechFly v2</a><p data-i18n="study.sources.nmf">果蝇身体、感觉反馈与闭环控制的研究参考。FlyGym 并不参与本项目的人形运行。</p></li>
+              <li><a href="https://www.nature.com/articles/s41586-024-07763-9" target="_blank" rel="noreferrer" data-i18n="study.sources.shiu.title">Shiu 等：连接组动力学模型</a><p data-i18n="study.sources.shiu">以 LIF 等模型研究感觉—运动通路。本项目采用活动率近似，没有复现该脉冲模型。</p></li>
+              <li><a href="https://github.com/lntegrals/flycube-public" target="_blank" rel="noreferrer">FlyCube</a><p data-i18n="study.sources.flycube">数据导入、递质符号与早期读出思路的工程参考。游戏展示不是生物认知能力的证据。</p></li>
+              <li><a href="https://github.com/unitreerobotics/unitree_rl_gym" target="_blank" rel="noreferrer">Unitree RL Gym</a><p data-i18n="study.sources.unitree">G1 身体资源、教师策略与控制约定。MuJoCo 负责物理，VRM 负责角色显示；这些作用不能互相替代。</p></li>
+            </ul>
+            <details class="research-technical"><summary data-i18n="study.sources.future.title">下一步：待验证，不是现成功能</summary><p data-i18n="study.sources.future">同预算随机图对照；上肢主动平衡；停走、变速与跑步；视觉或光流输入；STDP、多巴胺调制与局部可塑性。生物学机制提供研究动机，但不保证接入后会自然避障、跑步或学会新任务。</p></details>
+            <h3 data-i18n="study.sources.records.title">项目记录与复现索引</h3>
+            <p data-i18n="study.sources.records.intro">以下为仓库相对路径，按阶段阅读；历史记录中的“尚未实现”不等于当前状态。运行指南可通过下方链接打开，其他记录在本地仓库查阅。</p>
+            <dl class="research-records">
+              <dt data-i18n="study.sources.records.prototype">子图原型 / 历史范围</dt><dd><code>research/REPORT.md</code></dd>
+              <dt data-i18n="study.sources.records.g1">全图 G1 / 训练与本地复测</dt><dd><code>research/guides/CLOUD.md</code><code>research/guides/LOCAL.md</code></dd>
+              <dt data-i18n="study.sources.records.body">Yumi / 身体、验收与授权</dt><dd><code>research/avatar/YUMI_BODY.md</code><code>research/avatar/YUMI.md</code></dd>
+              <dt data-i18n="study.sources.records.experiments">姿态与 home / 2026-09-16 实验</dt><dd><code>research/experiments/PPO_POSTURE_20260916.md</code><code>research/experiments/HOME_REFERENCE_MISMATCH_20260916.md</code></dd>
+            </dl>
+            <a href="/api/report" id="researchReport" target="_blank" rel="noreferrer" data-i18n="research.studio.a">使用指南与实验记录</a>
+            <p class="micro" data-i18n="study.sources.guideNote">指南保留历史测量条件；旧端口与脚本说明可能滞后，当前启动方式以 README 为准。角色资料用于署名与许可说明，不提供模型资产再分发。</p>
+            <details class="research-technical"><summary id="hardwareTitle" data-i18n="research.hw.title">运行设备资源</summary><p id="hardwareText">—</p><p id="hardwareNote"></p><p data-i18n="study.sources.resources">资源为连接时的快照，不是性能保证。历史 GPU 延迟是特定硬件与预热条件下的短测；训练进程耗时折算费用也不是云平台的实际账单。</p></details>
+          </section>
+        </div>
+      </div>
+    </div>
+    <footer><span><span data-i18n="footer.a">ショウコ · 硝子</span> <i>/</i> <span data-i18n="footer.tagline">从连接到行动</span></span><span id="footerMode" data-i18n="footer.b">本地计算 · 实测数据 · 可复现实验</span><span id="checkpointHash">CHECKPOINT —</span></footer>
+  </main>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="/main.js"></script>
+</body></html>

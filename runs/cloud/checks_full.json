@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "checkpoint_sha256": "f1d5147ce4ba76e3365e8d5b037de7c32dae469d0428d5fc987be27ee2cc65ed",
+  "trainable_parameters": 26575852,
+  "gradient_maxima": {
+    "edge_delta": 0.009106239303946495,
+    "neuron_bias": 0.2344892919063568,
+    "encoder.weight": 0.07805529236793518,
+    "normalizer.weight": 0.052164431661367416,
+    "normalizer.bias": 0.01490158773958683,
+    "readout.weight": 1.921507477760315,
+    "readout.bias": 0.20435386896133423
+  },
+  "changed_edge_fraction": 0.8189461827278137,
+  "checks": [
+    "sparse forward and backward dense reference",
+    "complete source graph",
+    "disjoint sensory and motor neurons",
+    "gradients reach every parameter group",
+    "trained connectome weights",
+    "teacher-free inference body",
+    "checkpoint-bound independent walking and causal controls"
+  ]
+}

@@ -1,0 +1,23 @@
+.venv/
+.venv-gpu/
+vendor/
+data/
+node_modules/
+web/dist/
+__pycache__/
+
+# 训练产物与运行日志：体积大，不入库
+runs/**/*.pt
+runs/**/*.pt.bak
+runs/**/*.npz
+runs/**/*.tgz
+runs/**/*.log
+runs/**/*.pid
+runs/**/*.jsonl
+runs/**/brain_activity.json
+
+web/public/avatar.vrm
+web/public/yumi.vrm
+
+# 云端目标（私有 SSH 端点），仅本机保存
+runs/cloud/target.json

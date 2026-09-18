@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-15",
+  "browser": "Codex in-app browser",
+  "ui_checks": {
+    "live_neural_and_physics_stream": true,
+    "pause_resume": true,
+    "speed_slider_0_50_to_0_55": true,
+    "heading_target_10_actual_9_6_degrees": true,
+    "disconnection_readout_zero": true,
+    "physics_skeleton_toggle": true,
+    "lateral_velocity_perturbation": true,
+    "evaluation_table_includes_failed_controls": true,
+    "retrain_archives_previous_run": true,
+    "retrain_completes_and_loads_checkpoint": true,
+    "responsive_390px_no_horizontal_overflow": true,
+    "latest_browser_bundle_no_warn_or_error": true,
+    "default_view_restored": true
+  },
+  "retraining": 283.95532329999696,
+  "frontend_build": "npm run build passed",
+  "api_checks": "runs/api_checks.json",
+  "numerical_checks": "runs/checks.json",
+  "long_walk": "runs/long_walk.json"
+}
