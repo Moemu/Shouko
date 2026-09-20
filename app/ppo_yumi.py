@@ -16,10 +16,12 @@ from pathlib import Path
 
 import numpy as np
 import torch
+import yaml
 from torch import nn
 
 from .full_brain import ConnectomePolicy, ROOT
 from .gpu_body import GPUHumanoid
+from .sim import observation_interface
 from . import train_full
 
 RUNS = ROOT / 'runs/yumi'
@@ -42,9 +44,23 @@ def quad_yaw(qpos):
     return torch.atan2(2*(w*z+x*y), 1-2*(y*y+z*z))
 
 
+def checkpoint_observation_size(path):
+    """Peek the observation size recorded in a checkpoint (47 before 2026-09-20)."""
+    checkpoint = torch.load(path, map_location='cpu', weights_only=True)
+    return int(checkpoint.get('observation_size') or 47)
+
+
 def train(args):
+    global RUNS
+    if args.runs_dir:
+        # Experiment isolation: a 50-dim checkpoint must never land on
+        # runs/yumi/best.pt, where the 47-dim native acceptance path would break.
+        RUNS = ROOT / args.runs_dir
+        train_full.RUNS = RUNS
     RUNS.mkdir(parents=True, exist_ok=True)
     torch.manual_seed(args.seed)
+    if args.resume is None:
+        args.resume = str(RUNS / 'best.pt')
     control = train_full.TrainingControl(args.max_seconds)
     history = []
     status = dict(phase='initializing', robot='yumi',
@@ -62,8 +78,17 @@ def train(args):
 
     write_status('initializing')
     device = 'cuda'
-    env = GPUHumanoid(args.worlds, robot='yumi')
-    policy = ConnectomePolicy(neural_steps=args.neural_steps)
+    interface = None
+    if args.interface_yaml:
+        # Pair the body config with the checkpoint explicitly (lesson of
+        # HOME_REFERENCE_MISMATCH_20260916): the upright lineage trains against
+        # runs/local/yumi_tall.yaml, not whatever yumi.yaml currently holds.
+        interface = observation_interface(
+            yaml.safe_load((ROOT / args.interface_yaml).read_text(encoding='utf-8')))
+    observation_size = checkpoint_observation_size(args.resume)
+    env = GPUHumanoid(args.worlds, robot='yumi', interface=interface,
+                      observation_size=observation_size)
+    policy = ConnectomePolicy(neural_steps=args.neural_steps, observation_size=observation_size)
     resumed = policy.load(args.resume, interface=env.interface)
     value = Value(policy.encoder.in_features).to(device)
     log_std = nn.Parameter(torch.full((12,), np.log(args.std0), device=device))
@@ -225,9 +250,17 @@ def train(args):
                 # ~zero gradient, so it silently taxed walking without pulling
                 # the posture up (ppo10 run 4). The ramp gives constant pull.
                 height_ramp = ((height - 0.80) / (args.height_target - 0.80)).clamp(0, 1)
+                if args.knee_gate == 'stance':
+                    # GAIT_MEASUREMENT_20260918: swing-leg knee flexion is the
+                    # only foot-clearance mechanism this body has (per-bout lift
+                    # 1-2 cm); taxing it subsidizes the shuffle. Tax the loaded
+                    # (lowest) leg's knee only.
+                    knee_tax = torch.relu(knee.gather(1, low[:, None]).squeeze(1) - 0.5)
+                else:
+                    knee_tax = torch.relu(knee - 0.5).mean(dim=1)
                 reward = (reward
                           + walk_gate * (args.posture_w * height_ramp
-                                         - args.knee_w * torch.relu(knee - 0.5).mean(dim=1)))
+                                         - args.knee_w * knee_tax))
                 reward = torch.where(fallen, reward - 1.0, reward)
                 knee_sum += float(knee.mean()); height_sum += float(height.mean()); pose_count += 1
                 obs_buf.append(obs); act_buf.append(action); logp_buf.append(dist.log_prob(action).sum(-1))
@@ -359,6 +392,8 @@ if __name__ == '__main__':
                         help='weight of the pelvis-height Gaussian posture term')
     parser.add_argument('--knee-w', type=float, default=0.2,
                         help='weight of the soft knee-flexion penalty above 0.5 rad')
+    parser.add_argument('--knee-gate', choices=['stance', 'both'], default='both',
+                        help="tax only the stance (lowest) leg's knee ('both' = legacy two-leg penalty)")
     parser.add_argument('--height-target', type=float, default=0.93,
                         help='target pelvis height (m); straight-leg is ~0.96')
     parser.add_argument('--posture-select-w', type=float, default=0.5,
@@ -367,7 +402,13 @@ if __name__ == '__main__':
     parser.add_argument('--eval-every', type=int, default=5)
     parser.add_argument('--max-seconds', type=float, default=270)
     parser.add_argument('--seed', type=int, default=2026)
-    parser.add_argument('--resume', default=str(RUNS/'best.pt'))
+    parser.add_argument('--resume', default=None,
+                        help='checkpoint to warm start from (default <runs-dir>/best.pt)')
+    parser.add_argument('--runs-dir', default=None,
+                        help='experiment directory for checkpoints/status (default runs/yumi)')
+    parser.add_argument('--interface-yaml', default=None,
+                        help='body yaml to pair with the checkpoint (e.g. runs/local/yumi_tall.yaml); '
+                             'default is the robot spec yaml')
     parser.add_argument('--resume-state', action='store_true',
                         help='Restore verified PPO state beside --resume; not a live-process resume')
     train(parser.parse_args())

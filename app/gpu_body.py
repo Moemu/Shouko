@@ -26,10 +26,11 @@ def pd_torque(qpos: wp.array2d(dtype=float), qvel: wp.array2d(dtype=float),
 
 
 class GPUHumanoid:
-    def __init__(self, worlds=64, robot='g1', interface=None):
+    def __init__(self, worlds=64, robot='g1', interface=None, observation_size=47):
         spec = ROBOTS[robot]
         self.robot = robot
         self.fall_height = spec['fall_height']
+        self.observation_size = observation_size
         wp.init()
         self.worlds = worlds
         self.dt = 0.02
@@ -107,10 +108,18 @@ class GPUHumanoid:
 
     def observation(self):
         phase = self.time * (2 * torch.pi / 0.8)
-        return torch.cat([self.qvel[:, 3:6] * 0.25, self.gravity(),
-                          self.command * torch.tensor([2, 2, 0.25], device='cuda'),
-                          self.qpos[:, 7:] - self.home, self.qvel[:, 6:] * 0.05,
-                          self.actions, torch.sin(phase)[:, None], torch.cos(phase)[:, None]], dim=1)
+        fields = [self.qvel[:, 3:6] * 0.25, self.gravity(),
+                  self.command * torch.tensor([2, 2, 0.25], device='cuda'),
+                  self.qpos[:, 7:] - self.home, self.qvel[:, 6:] * 0.05,
+                  self.actions, torch.sin(phase)[:, None], torch.cos(phase)[:, None]]
+        if self.observation_size >= 50:
+            # 50-dim interface (GAIT_MEASUREMENT_20260918): the reward tracks body
+            # linear velocity and pelvis height, which the 47-dim layout never made
+            # observable. Appended at the end so 47-dim checkpoints keep their
+            # column meaning; new encoder columns start at zero (expand_observation).
+            fields += [self.qvel[:, 0:2] * 0.25,
+                       (self.qpos[:, 2] - self.initial_qpos[2])[:, None]]
+        return torch.cat(fields, dim=1)
 
     def step(self, action):
         self.actions.copy_(action.clamp(-8, 8))

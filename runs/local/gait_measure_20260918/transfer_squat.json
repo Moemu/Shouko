@@ -1,0 +1,1570 @@
+{
+  "kind": "cmd_to_vx_transfer",
+  "seconds": 30.0,
+  "seeds": [
+    8001,
+    8002,
+    8003
+  ],
+  "cmds": [
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75
+  ],
+  "provenance": {
+    "lineage": "squat",
+    "checkpoint": "runs\\yumi\\best.pt",
+    "checkpoint_sha256": "a7a4281f604c82831bf947fe599d490dd5d223bf479c9c44289e7b4d76508d97",
+    "interface_yaml": "app\\yumi_description\\yumi.yaml",
+    "interface_yaml_sha256": "f81b94129766ffb0d18a5f8396efd97445a7fda6b79f88be4a1c3cdaed6060cc",
+    "physics_interface": {
+      "default_angles": [
+        -0.1,
+        0.0,
+        0.0,
+        0.3,
+        -0.2,
+        0.0,
+        -0.1,
+        0.0,
+        0.0,
+        0.3,
+        -0.2,
+        0.0
+      ],
+      "action_scale": 0.25,
+      "cmd_scale": [
+        2.0,
+        2.0,
+        0.25
+      ],
+      "ang_vel_scale": 0.25,
+      "dof_vel_scale": 0.05,
+      "control_decimation": 10
+    },
+    "physics_interface_sha256": "ab9e11e36132eab20e4dffc934dad56f6b5167b00b95eca3bf2da82f9a8e84b5",
+    "expect_checkpoint_sha_prefix": "a7a4281f",
+    "native_clock_s": 1.0,
+    "training_env_clock_s": 0.8,
+    "git_revision": "b5370de9d79cba2b5d28f6321eb80e6ce2de2cac",
+    "mujoco": "3.13.0",
+    "torch": "2.12.1+cu130"
+  },
+  "rows": [
+    {
+      "target_speed": 0.15,
+      "mean_speed": 0.31,
+      "speeds": [
+        0.3312913632119544,
+        0.2894269565544464,
+        0.30916605197325814
+      ],
+      "survivors": 3,
+      "mean_height": 0.8265,
+      "heldout_anchor_delta": null,
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.15,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.3312913632119544,
+          "forward_m": 9.938740896356729,
+          "lateral_m": 1.2885815673394625,
+          "foot_strikes": [
+            112,
+            104
+          ],
+          "strike_rate_hz": [
+            3.733,
+            3.467
+          ],
+          "alternations": 189,
+          "duty_factor": [
+            0.81,
+            0.812
+          ],
+          "double_support_fraction": 0.6227,
+          "mean_height": 0.8266,
+          "minimum_height": 0.774,
+          "minimum_upright": 0.939,
+          "final_knee_rad": [
+            0.7784,
+            1.1148
+          ],
+          "mean_knee_rad": [
+            0.8024,
+            1.1789
+          ],
+          "inference_ms_median": 5.75,
+          "wall_seconds": 19.43
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.15,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.2894269565544464,
+          "forward_m": 8.682808696631728,
+          "lateral_m": 0.876877074009603,
+          "foot_strikes": [
+            115,
+            85
+          ],
+          "strike_rate_hz": [
+            3.833,
+            2.833
+          ],
+          "alternations": 161,
+          "duty_factor": [
+            0.8173,
+            0.842
+          ],
+          "double_support_fraction": 0.6593,
+          "mean_height": 0.8266,
+          "minimum_height": 0.7779,
+          "minimum_upright": 0.9411,
+          "final_knee_rad": [
+            0.7955,
+            1.1306
+          ],
+          "mean_knee_rad": [
+            0.8061,
+            1.1806
+          ],
+          "inference_ms_median": 4.07,
+          "wall_seconds": 18.01
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.15,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.30916605197325814,
+          "forward_m": 9.274981559195966,
+          "lateral_m": 1.312572181254601,
+          "foot_strikes": [
+            112,
+            93
+          ],
+          "strike_rate_hz": [
+            3.733,
+            3.1
+          ],
+          "alternations": 170,
+          "duty_factor": [
+            0.8167,
+            0.8307
+          ],
+          "double_support_fraction": 0.648,
+          "mean_height": 0.8263,
+          "minimum_height": 0.7771,
+          "minimum_upright": 0.9386,
+          "final_knee_rad": [
+            0.7403,
+            1.0468
+          ],
+          "mean_knee_rad": [
+            0.8068,
+            1.1806
+          ],
+          "inference_ms_median": 5.92,
+          "wall_seconds": 20.93
+        }
+      ]
+    },
+    {
+      "target_speed": 0.2,
+      "mean_speed": 0.2196,
+      "speeds": [
+        0.27436183231307054,
+        0.21944951154751555,
+        0.16510701145759787
+      ],
+      "survivors": 3,
+      "mean_height": 0.8292,
+      "heldout_anchor_delta": null,
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.2,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.27436183231307054,
+          "forward_m": 8.230854969390538,
+          "lateral_m": 2.645563976237783,
+          "foot_strikes": [
+            106,
+            92
+          ],
+          "strike_rate_hz": [
+            3.533,
+            3.067
+          ],
+          "alternations": 166,
+          "duty_factor": [
+            0.8273,
+            0.84
+          ],
+          "double_support_fraction": 0.6687,
+          "mean_height": 0.8258,
+          "minimum_height": 0.7724,
+          "minimum_upright": 0.9409,
+          "final_knee_rad": [
+            0.6863,
+            1.0579
+          ],
+          "mean_knee_rad": [
+            0.8094,
+            1.1829
+          ],
+          "inference_ms_median": 6.37,
+          "wall_seconds": 19.75
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.2,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.21944951154751555,
+          "forward_m": 6.583485346424205,
+          "lateral_m": 5.049179179602212,
+          "foot_strikes": [
+            107,
+            90
+          ],
+          "strike_rate_hz": [
+            3.567,
+            3.0
+          ],
+          "alternations": 162,
+          "duty_factor": [
+            0.824,
+            0.8453
+          ],
+          "double_support_fraction": 0.6693,
+          "mean_height": 0.8266,
+          "minimum_height": 0.7846,
+          "minimum_upright": 0.9423,
+          "final_knee_rad": [
+            0.6725,
+            1.1413
+          ],
+          "mean_knee_rad": [
+            0.8045,
+            1.1782
+          ],
+          "inference_ms_median": 5.5,
+          "wall_seconds": 19.88
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.2,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.16510701145759787,
+          "forward_m": 4.953210343726987,
+          "lateral_m": 2.8313884732408616,
+          "foot_strikes": [
+            99,
+            72
+          ],
+          "strike_rate_hz": [
+            3.3,
+            2.4
+          ],
+          "alternations": 138,
+          "duty_factor": [
+            0.834,
+            0.8793
+          ],
+          "double_support_fraction": 0.714,
+          "mean_height": 0.8353,
+          "minimum_height": 0.7776,
+          "minimum_upright": 0.9406,
+          "final_knee_rad": [
+            0.6342,
+            1.0018
+          ],
+          "mean_knee_rad": [
+            0.797,
+            1.1527
+          ],
+          "inference_ms_median": 8.22,
+          "wall_seconds": 21.56
+        }
+      ]
+    },
+    {
+      "target_speed": 0.25,
+      "mean_speed": 0.3412,
+      "speeds": [
+        0.3454109592085953,
+        0.3436220593494998,
+        0.33465011942615663
+      ],
+      "survivors": 3,
+      "mean_height": 0.8267,
+      "heldout_anchor_delta": null,
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.25,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.3454109592085953,
+          "forward_m": 10.362328776255874,
+          "lateral_m": 0.8880043912335904,
+          "foot_strikes": [
+            117,
+            100
+          ],
+          "strike_rate_hz": [
+            3.9,
+            3.333
+          ],
+          "alternations": 191,
+          "duty_factor": [
+            0.8013,
+            0.8033
+          ],
+          "double_support_fraction": 0.606,
+          "mean_height": 0.8274,
+          "minimum_height": 0.7792,
+          "minimum_upright": 0.9413,
+          "final_knee_rad": [
+            0.7197,
+            1.1277
+          ],
+          "mean_knee_rad": [
+            0.7993,
+            1.1759
+          ],
+          "inference_ms_median": 6.49,
+          "wall_seconds": 19.46
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.25,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.3436220593494998,
+          "forward_m": 10.30866178048302,
+          "lateral_m": 2.570466049543977,
+          "foot_strikes": [
+            123,
+            98
+          ],
+          "strike_rate_hz": [
+            4.1,
+            3.267
+          ],
+          "alternations": 187,
+          "duty_factor": [
+            0.7847,
+            0.808
+          ],
+          "double_support_fraction": 0.5933,
+          "mean_height": 0.8268,
+          "minimum_height": 0.7781,
+          "minimum_upright": 0.9423,
+          "final_knee_rad": [
+            0.7629,
+            1.1295
+          ],
+          "mean_knee_rad": [
+            0.8126,
+            1.1821
+          ],
+          "inference_ms_median": 1.14,
+          "wall_seconds": 13.88
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.25,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.33465011942615663,
+          "forward_m": 10.039503582782775,
+          "lateral_m": 2.1179195597576514,
+          "foot_strikes": [
+            119,
+            98
+          ],
+          "strike_rate_hz": [
+            3.967,
+            3.267
+          ],
+          "alternations": 186,
+          "duty_factor": [
+            0.8027,
+            0.8147
+          ],
+          "double_support_fraction": 0.618,
+          "mean_height": 0.8258,
+          "minimum_height": 0.7654,
+          "minimum_upright": 0.9396,
+          "final_knee_rad": [
+            0.7739,
+            1.1467
+          ],
+          "mean_knee_rad": [
+            0.8038,
+            1.1817
+          ],
+          "inference_ms_median": 1.26,
+          "wall_seconds": 14.34
+        }
+      ]
+    },
+    {
+      "target_speed": 0.3,
+      "mean_speed": 0.4245,
+      "speeds": [
+        0.434040059293291,
+        0.4103820869737033,
+        0.42908044673336787
+      ],
+      "survivors": 3,
+      "mean_height": 0.8285,
+      "heldout_anchor_delta": null,
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.3,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.434040059293291,
+          "forward_m": 13.021201778796234,
+          "lateral_m": 1.3247922305107633,
+          "foot_strikes": [
+            132,
+            115
+          ],
+          "strike_rate_hz": [
+            4.4,
+            3.833
+          ],
+          "alternations": 220,
+          "duty_factor": [
+            0.7493,
+            0.7693
+          ],
+          "double_support_fraction": 0.5187,
+          "mean_height": 0.8296,
+          "minimum_height": 0.7763,
+          "minimum_upright": 0.9414,
+          "final_knee_rad": [
+            0.7064,
+            1.1197
+          ],
+          "mean_knee_rad": [
+            0.8072,
+            1.1731
+          ],
+          "inference_ms_median": 1.15,
+          "wall_seconds": 14.27
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.3,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.4103820869737033,
+          "forward_m": 12.311462609208741,
+          "lateral_m": 0.8233674660701854,
+          "foot_strikes": [
+            130,
+            113
+          ],
+          "strike_rate_hz": [
+            4.333,
+            3.767
+          ],
+          "alternations": 213,
+          "duty_factor": [
+            0.7647,
+            0.78
+          ],
+          "double_support_fraction": 0.5453,
+          "mean_height": 0.828,
+          "minimum_height": 0.766,
+          "minimum_upright": 0.9422,
+          "final_knee_rad": [
+            0.6635,
+            1.0882
+          ],
+          "mean_knee_rad": [
+            0.8044,
+            1.1765
+          ],
+          "inference_ms_median": 1.23,
+          "wall_seconds": 14.36
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.3,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.42908044673336787,
+          "forward_m": 12.87241340199857,
+          "lateral_m": 1.8242368237389237,
+          "foot_strikes": [
+            133,
+            120
+          ],
+          "strike_rate_hz": [
+            4.433,
+            4.0
+          ],
+          "alternations": 231,
+          "duty_factor": [
+            0.758,
+            0.7653
+          ],
+          "double_support_fraction": 0.5253,
+          "mean_height": 0.8279,
+          "minimum_height": 0.7723,
+          "minimum_upright": 0.9411,
+          "final_knee_rad": [
+            0.8435,
+            1.1802
+          ],
+          "mean_knee_rad": [
+            0.8118,
+            1.1819
+          ],
+          "inference_ms_median": 1.13,
+          "wall_seconds": 14.18
+        }
+      ]
+    },
+    {
+      "target_speed": 0.35,
+      "mean_speed": 0.4268,
+      "speeds": [
+        0.40811458928662747,
+        0.4067146077917076,
+        0.4654875930962832
+      ],
+      "survivors": 3,
+      "mean_height": 0.8283,
+      "heldout_anchor_delta": [
+        0.0401
+      ],
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.35,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.40811458928662747,
+          "forward_m": 12.243437678596479,
+          "lateral_m": 0.723342598153755,
+          "foot_strikes": [
+            139,
+            115
+          ],
+          "strike_rate_hz": [
+            4.633,
+            3.833
+          ],
+          "alternations": 219,
+          "duty_factor": [
+            0.764,
+            0.7727
+          ],
+          "double_support_fraction": 0.538,
+          "mean_height": 0.8281,
+          "minimum_height": 0.7817,
+          "minimum_upright": 0.9437,
+          "final_knee_rad": [
+            0.8309,
+            1.1699
+          ],
+          "mean_knee_rad": [
+            0.8013,
+            1.1756
+          ],
+          "inference_ms_median": 1.17,
+          "wall_seconds": 14.26
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.35,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.4067146077917076,
+          "forward_m": 12.20143823374889,
+          "lateral_m": 1.5031936289279568,
+          "foot_strikes": [
+            133,
+            114
+          ],
+          "strike_rate_hz": [
+            4.433,
+            3.8
+          ],
+          "alternations": 219,
+          "duty_factor": [
+            0.7673,
+            0.776
+          ],
+          "double_support_fraction": 0.5467,
+          "mean_height": 0.8278,
+          "minimum_height": 0.7933,
+          "minimum_upright": 0.9448,
+          "final_knee_rad": [
+            0.7335,
+            1.2535
+          ],
+          "mean_knee_rad": [
+            0.8081,
+            1.1791
+          ],
+          "inference_ms_median": 1.12,
+          "wall_seconds": 14.18
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.35,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.4654875930962832,
+          "forward_m": 13.96462779288582,
+          "lateral_m": 0.9343889592770004,
+          "foot_strikes": [
+            142,
+            118
+          ],
+          "strike_rate_hz": [
+            4.733,
+            3.933
+          ],
+          "alternations": 228,
+          "duty_factor": [
+            0.7407,
+            0.7593
+          ],
+          "double_support_fraction": 0.504,
+          "mean_height": 0.829,
+          "minimum_height": 0.7944,
+          "minimum_upright": 0.9431,
+          "final_knee_rad": [
+            0.7638,
+            1.3393
+          ],
+          "mean_knee_rad": [
+            0.8103,
+            1.179
+          ],
+          "inference_ms_median": 1.18,
+          "wall_seconds": 14.26
+        }
+      ]
+    },
+    {
+      "target_speed": 0.4,
+      "mean_speed": 0.4817,
+      "speeds": [
+        0.4709741107290812,
+        0.4668315460734873,
+        0.5071692837221109
+      ],
+      "survivors": 3,
+      "mean_height": 0.8297,
+      "heldout_anchor_delta": null,
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.4,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.4709741107290812,
+          "forward_m": 14.129223321869729,
+          "lateral_m": 0.6931548447783639,
+          "foot_strikes": [
+            142,
+            121
+          ],
+          "strike_rate_hz": [
+            4.733,
+            4.033
+          ],
+          "alternations": 237,
+          "duty_factor": [
+            0.742,
+            0.7447
+          ],
+          "double_support_fraction": 0.488,
+          "mean_height": 0.8291,
+          "minimum_height": 0.802,
+          "minimum_upright": 0.9452,
+          "final_knee_rad": [
+            0.9552,
+            1.1147
+          ],
+          "mean_knee_rad": [
+            0.8075,
+            1.1765
+          ],
+          "inference_ms_median": 1.02,
+          "wall_seconds": 13.85
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.4,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.4668315460734873,
+          "forward_m": 14.004946382201936,
+          "lateral_m": 2.6546524241900094,
+          "foot_strikes": [
+            139,
+            121
+          ],
+          "strike_rate_hz": [
+            4.633,
+            4.033
+          ],
+          "alternations": 238,
+          "duty_factor": [
+            0.7393,
+            0.7487
+          ],
+          "double_support_fraction": 0.4913,
+          "mean_height": 0.829,
+          "minimum_height": 0.7709,
+          "minimum_upright": 0.9461,
+          "final_knee_rad": [
+            0.7705,
+            1.1428
+          ],
+          "mean_knee_rad": [
+            0.8152,
+            1.1784
+          ],
+          "inference_ms_median": 0.96,
+          "wall_seconds": 13.25
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.4,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.5071692837221109,
+          "forward_m": 15.21507851166041,
+          "lateral_m": 2.4374602521595428,
+          "foot_strikes": [
+            149,
+            134
+          ],
+          "strike_rate_hz": [
+            4.967,
+            4.467
+          ],
+          "alternations": 260,
+          "duty_factor": [
+            0.708,
+            0.7193
+          ],
+          "double_support_fraction": 0.432,
+          "mean_height": 0.831,
+          "minimum_height": 0.7691,
+          "minimum_upright": 0.945,
+          "final_knee_rad": [
+            0.7791,
+            1.2731
+          ],
+          "mean_knee_rad": [
+            0.805,
+            1.1703
+          ],
+          "inference_ms_median": 1.0,
+          "wall_seconds": 13.25
+        }
+      ]
+    },
+    {
+      "target_speed": 0.5,
+      "mean_speed": 0.5284,
+      "speeds": [
+        0.5210374905932087,
+        0.5341848594137187,
+        0.529949669134254
+      ],
+      "survivors": 3,
+      "mean_height": 0.8308,
+      "heldout_anchor_delta": [
+        0.0029
+      ],
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.5,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.5210374905932087,
+          "forward_m": 15.631124717793265,
+          "lateral_m": 0.006285373743302958,
+          "foot_strikes": [
+            152,
+            126
+          ],
+          "strike_rate_hz": [
+            5.067,
+            4.2
+          ],
+          "alternations": 247,
+          "duty_factor": [
+            0.7067,
+            0.73
+          ],
+          "double_support_fraction": 0.4407,
+          "mean_height": 0.8309,
+          "minimum_height": 0.8028,
+          "minimum_upright": 0.9447,
+          "final_knee_rad": [
+            0.706,
+            1.1504
+          ],
+          "mean_knee_rad": [
+            0.8039,
+            1.1736
+          ],
+          "inference_ms_median": 1.02,
+          "wall_seconds": 13.74
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.5,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.5341848594137187,
+          "forward_m": 16.025545782408493,
+          "lateral_m": 0.5718927668633687,
+          "foot_strikes": [
+            152,
+            129
+          ],
+          "strike_rate_hz": [
+            5.067,
+            4.3
+          ],
+          "alternations": 250,
+          "duty_factor": [
+            0.7033,
+            0.7287
+          ],
+          "double_support_fraction": 0.4347,
+          "mean_height": 0.8305,
+          "minimum_height": 0.7963,
+          "minimum_upright": 0.9453,
+          "final_knee_rad": [
+            0.7744,
+            1.1675
+          ],
+          "mean_knee_rad": [
+            0.8061,
+            1.1747
+          ],
+          "inference_ms_median": 1.03,
+          "wall_seconds": 13.73
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.5,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.529949669134254,
+          "forward_m": 15.898490074024574,
+          "lateral_m": 0.509472932188232,
+          "foot_strikes": [
+            153,
+            128
+          ],
+          "strike_rate_hz": [
+            5.1,
+            4.267
+          ],
+          "alternations": 252,
+          "duty_factor": [
+            0.706,
+            0.73
+          ],
+          "double_support_fraction": 0.4407,
+          "mean_height": 0.8311,
+          "minimum_height": 0.7979,
+          "minimum_upright": 0.9439,
+          "final_knee_rad": [
+            0.7388,
+            1.15
+          ],
+          "mean_knee_rad": [
+            0.8056,
+            1.1731
+          ],
+          "inference_ms_median": 1.08,
+          "wall_seconds": 14.29
+        }
+      ]
+    },
+    {
+      "target_speed": 0.55,
+      "mean_speed": 0.5367,
+      "speeds": [
+        0.5258982250369539,
+        0.5318137419238941,
+        0.5522462960739195
+      ],
+      "survivors": 3,
+      "mean_height": 0.8305,
+      "heldout_anchor_delta": null,
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.55,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.5258982250369539,
+          "forward_m": 15.776946751105594,
+          "lateral_m": 1.0761158943233282,
+          "foot_strikes": [
+            154,
+            129
+          ],
+          "strike_rate_hz": [
+            5.133,
+            4.3
+          ],
+          "alternations": 251,
+          "duty_factor": [
+            0.704,
+            0.73
+          ],
+          "double_support_fraction": 0.436,
+          "mean_height": 0.8303,
+          "minimum_height": 0.785,
+          "minimum_upright": 0.9445,
+          "final_knee_rad": [
+            0.6839,
+            1.1822
+          ],
+          "mean_knee_rad": [
+            0.8043,
+            1.1748
+          ],
+          "inference_ms_median": 1.09,
+          "wall_seconds": 14.08
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.55,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.5318137419238941,
+          "forward_m": 15.954412257713765,
+          "lateral_m": 1.3252103342491117,
+          "foot_strikes": [
+            155,
+            134
+          ],
+          "strike_rate_hz": [
+            5.167,
+            4.467
+          ],
+          "alternations": 261,
+          "duty_factor": [
+            0.7167,
+            0.7273
+          ],
+          "double_support_fraction": 0.4453,
+          "mean_height": 0.8305,
+          "minimum_height": 0.8027,
+          "minimum_upright": 0.9451,
+          "final_knee_rad": [
+            0.8497,
+            1.1234
+          ],
+          "mean_knee_rad": [
+            0.8062,
+            1.1742
+          ],
+          "inference_ms_median": 1.02,
+          "wall_seconds": 13.79
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.55,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.5522462960739195,
+          "forward_m": 16.56738888221441,
+          "lateral_m": 0.8258857853853951,
+          "foot_strikes": [
+            160,
+            139
+          ],
+          "strike_rate_hz": [
+            5.333,
+            4.633
+          ],
+          "alternations": 273,
+          "duty_factor": [
+            0.6913,
+            0.7173
+          ],
+          "double_support_fraction": 0.412,
+          "mean_height": 0.8308,
+          "minimum_height": 0.7971,
+          "minimum_upright": 0.9436,
+          "final_knee_rad": [
+            0.8082,
+            1.1335
+          ],
+          "mean_knee_rad": [
+            0.8048,
+            1.1744
+          ],
+          "inference_ms_median": 1.0,
+          "wall_seconds": 13.76
+        }
+      ]
+    },
+    {
+      "target_speed": 0.6,
+      "mean_speed": 0.5607,
+      "speeds": [
+        0.5420064960485849,
+        0.5821164928375274,
+        0.5580130160171052
+      ],
+      "survivors": 3,
+      "mean_height": 0.8309,
+      "heldout_anchor_delta": null,
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.6,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.5420064960485849,
+          "forward_m": 16.26019488145443,
+          "lateral_m": 1.1604076355172366,
+          "foot_strikes": [
+            156,
+            134
+          ],
+          "strike_rate_hz": [
+            5.2,
+            4.467
+          ],
+          "alternations": 263,
+          "duty_factor": [
+            0.692,
+            0.718
+          ],
+          "double_support_fraction": 0.414,
+          "mean_height": 0.8305,
+          "minimum_height": 0.8032,
+          "minimum_upright": 0.9444,
+          "final_knee_rad": [
+            0.7757,
+            1.1065
+          ],
+          "mean_knee_rad": [
+            0.8046,
+            1.1765
+          ],
+          "inference_ms_median": 0.98,
+          "wall_seconds": 13.73
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.6,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.5821164928375274,
+          "forward_m": 17.463494785122478,
+          "lateral_m": 0.7519550123348648,
+          "foot_strikes": [
+            160,
+            140
+          ],
+          "strike_rate_hz": [
+            5.333,
+            4.667
+          ],
+          "alternations": 276,
+          "duty_factor": [
+            0.682,
+            0.7053
+          ],
+          "double_support_fraction": 0.3907,
+          "mean_height": 0.8312,
+          "minimum_height": 0.7988,
+          "minimum_upright": 0.9452,
+          "final_knee_rad": [
+            0.7706,
+            1.1131
+          ],
+          "mean_knee_rad": [
+            0.8047,
+            1.1744
+          ],
+          "inference_ms_median": 0.96,
+          "wall_seconds": 13.71
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.6,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.5580130160171052,
+          "forward_m": 16.740390480509948,
+          "lateral_m": 0.787061085973279,
+          "foot_strikes": [
+            155,
+            133
+          ],
+          "strike_rate_hz": [
+            5.167,
+            4.433
+          ],
+          "alternations": 264,
+          "duty_factor": [
+            0.6873,
+            0.708
+          ],
+          "double_support_fraction": 0.3973,
+          "mean_height": 0.8311,
+          "minimum_height": 0.8052,
+          "minimum_upright": 0.944,
+          "final_knee_rad": [
+            0.7675,
+            1.2487
+          ],
+          "mean_knee_rad": [
+            0.8015,
+            1.1738
+          ],
+          "inference_ms_median": 0.99,
+          "wall_seconds": 13.77
+        }
+      ]
+    },
+    {
+      "target_speed": 0.65,
+      "mean_speed": 0.6338,
+      "speeds": [
+        0.6255184652379469,
+        0.6442991317337879,
+        0.6314397056906689
+      ],
+      "survivors": 3,
+      "mean_height": 0.8326,
+      "heldout_anchor_delta": [
+        -0.0516
+      ],
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.65,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.6255184652379469,
+          "forward_m": 18.76555395713481,
+          "lateral_m": 0.5488470955410358,
+          "foot_strikes": [
+            162,
+            145
+          ],
+          "strike_rate_hz": [
+            5.4,
+            4.833
+          ],
+          "alternations": 284,
+          "duty_factor": [
+            0.662,
+            0.6873
+          ],
+          "double_support_fraction": 0.352,
+          "mean_height": 0.8328,
+          "minimum_height": 0.8028,
+          "minimum_upright": 0.9449,
+          "final_knee_rad": [
+            0.7761,
+            1.1293
+          ],
+          "mean_knee_rad": [
+            0.804,
+            1.1719
+          ],
+          "inference_ms_median": 0.95,
+          "wall_seconds": 13.69
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.65,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.6442991317337879,
+          "forward_m": 19.328973952009935,
+          "lateral_m": 2.692814521375043,
+          "foot_strikes": [
+            161,
+            147
+          ],
+          "strike_rate_hz": [
+            5.367,
+            4.9
+          ],
+          "alternations": 291,
+          "duty_factor": [
+            0.6547,
+            0.6807
+          ],
+          "double_support_fraction": 0.3393,
+          "mean_height": 0.8326,
+          "minimum_height": 0.7982,
+          "minimum_upright": 0.9456,
+          "final_knee_rad": [
+            0.7969,
+            1.176
+          ],
+          "mean_knee_rad": [
+            0.8074,
+            1.175
+          ],
+          "inference_ms_median": 0.95,
+          "wall_seconds": 13.71
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.65,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.6314397056906689,
+          "forward_m": 18.943191170716435,
+          "lateral_m": 1.0481016883784806,
+          "foot_strikes": [
+            168,
+            146
+          ],
+          "strike_rate_hz": [
+            5.6,
+            4.867
+          ],
+          "alternations": 285,
+          "duty_factor": [
+            0.6613,
+            0.6967
+          ],
+          "double_support_fraction": 0.3613,
+          "mean_height": 0.8325,
+          "minimum_height": 0.8064,
+          "minimum_upright": 0.9441,
+          "final_knee_rad": [
+            0.8312,
+            1.152
+          ],
+          "mean_knee_rad": [
+            0.8072,
+            1.1761
+          ],
+          "inference_ms_median": 0.94,
+          "wall_seconds": 13.69
+        }
+      ]
+    },
+    {
+      "target_speed": 0.7,
+      "mean_speed": 0.6631,
+      "speeds": [
+        0.665973887890577,
+        0.6854160982775787,
+        0.6378399652447335
+      ],
+      "survivors": 3,
+      "mean_height": 0.8328,
+      "heldout_anchor_delta": null,
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.7,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.665973887890577,
+          "forward_m": 19.97921663671348,
+          "lateral_m": 0.5448760281930723,
+          "foot_strikes": [
+            167,
+            149
+          ],
+          "strike_rate_hz": [
+            5.567,
+            4.967
+          ],
+          "alternations": 293,
+          "duty_factor": [
+            0.6433,
+            0.678
+          ],
+          "double_support_fraction": 0.3247,
+          "mean_height": 0.8331,
+          "minimum_height": 0.8044,
+          "minimum_upright": 0.9452,
+          "final_knee_rad": [
+            0.8855,
+            1.073
+          ],
+          "mean_knee_rad": [
+            0.8075,
+            1.1749
+          ],
+          "inference_ms_median": 0.98,
+          "wall_seconds": 13.7
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.7,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.6854160982775787,
+          "forward_m": 20.56248294832342,
+          "lateral_m": 3.881458692012536,
+          "foot_strikes": [
+            169,
+            150
+          ],
+          "strike_rate_hz": [
+            5.633,
+            5.0
+          ],
+          "alternations": 297,
+          "duty_factor": [
+            0.636,
+            0.6627
+          ],
+          "double_support_fraction": 0.2993,
+          "mean_height": 0.8331,
+          "minimum_height": 0.8037,
+          "minimum_upright": 0.9462,
+          "final_knee_rad": [
+            0.8029,
+            1.1059
+          ],
+          "mean_knee_rad": [
+            0.8032,
+            1.1721
+          ],
+          "inference_ms_median": 0.93,
+          "wall_seconds": 13.64
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.7,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.6378399652447335,
+          "forward_m": 19.13519895733834,
+          "lateral_m": 0.9865794222566862,
+          "foot_strikes": [
+            168,
+            152
+          ],
+          "strike_rate_hz": [
+            5.6,
+            5.067
+          ],
+          "alternations": 303,
+          "duty_factor": [
+            0.6547,
+            0.6773
+          ],
+          "double_support_fraction": 0.3367,
+          "mean_height": 0.8323,
+          "minimum_height": 0.802,
+          "minimum_upright": 0.9443,
+          "final_knee_rad": [
+            0.9138,
+            1.1006
+          ],
+          "mean_knee_rad": [
+            0.8048,
+            1.1739
+          ],
+          "inference_ms_median": 1.08,
+          "wall_seconds": 13.83
+        }
+      ]
+    },
+    {
+      "target_speed": 0.75,
+      "mean_speed": 0.702,
+      "speeds": [
+        0.6741199173722371,
+        0.7158514415707777,
+        0.7160395215554495
+      ],
+      "survivors": 3,
+      "mean_height": 0.8339,
+      "heldout_anchor_delta": null,
+      "episodes": [
+        {
+          "seed": 8001,
+          "target_speed": 0.75,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.6741199173722371,
+          "forward_m": 20.22359752116324,
+          "lateral_m": 0.1657905079262963,
+          "foot_strikes": [
+            168,
+            153
+          ],
+          "strike_rate_hz": [
+            5.6,
+            5.1
+          ],
+          "alternations": 301,
+          "duty_factor": [
+            0.646,
+            0.6667
+          ],
+          "double_support_fraction": 0.3153,
+          "mean_height": 0.833,
+          "minimum_height": 0.7989,
+          "minimum_upright": 0.9453,
+          "final_knee_rad": [
+            0.8257,
+            1.1269
+          ],
+          "mean_knee_rad": [
+            0.8055,
+            1.1746
+          ],
+          "inference_ms_median": 0.93,
+          "wall_seconds": 13.67
+        },
+        {
+          "seed": 8002,
+          "target_speed": 0.75,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.7158514415707777,
+          "forward_m": 21.475543247119216,
+          "lateral_m": 4.762306331428407,
+          "foot_strikes": [
+            169,
+            154
+          ],
+          "strike_rate_hz": [
+            5.633,
+            5.133
+          ],
+          "alternations": 307,
+          "duty_factor": [
+            0.626,
+            0.6547
+          ],
+          "double_support_fraction": 0.2847,
+          "mean_height": 0.8338,
+          "minimum_height": 0.7949,
+          "minimum_upright": 0.9462,
+          "final_knee_rad": [
+            0.8789,
+            1.1317
+          ],
+          "mean_knee_rad": [
+            0.8066,
+            1.1736
+          ],
+          "inference_ms_median": 0.95,
+          "wall_seconds": 13.66
+        },
+        {
+          "seed": 8003,
+          "target_speed": 0.75,
+          "clock_period_s": 1.0,
+          "seconds": 29.99999999999425,
+          "fallen": false,
+          "mean_speed": 0.7160395215554495,
+          "forward_m": 21.48118564665937,
+          "lateral_m": 5.128745442275643,
+          "foot_strikes": [
+            169,
+            153
+          ],
+          "strike_rate_hz": [
+            5.633,
+            5.1
+          ],
+          "alternations": 305,
+          "duty_factor": [
+            0.626,
+            0.6507
+          ],
+          "double_support_fraction": 0.2793,
+          "mean_height": 0.8349,
+          "minimum_height": 0.8071,
+          "minimum_upright": 0.9447,
+          "final_knee_rad": [
+            0.9065,
+            1.1126
+          ],
+          "mean_knee_rad": [
+            0.8063,
+            1.1704
+          ],
+          "inference_ms_median": 0.91,
+          "wall_seconds": 13.61
+        }
+      ]
+    }
+  ]
+}

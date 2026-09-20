@@ -1,0 +1,658 @@
+{
+  "kind": "gait_record_50hz",
+  "seconds": 30.0,
+  "seeds": [
+    8001,
+    8002,
+    8003
+  ],
+  "cmds": [
+    0.35,
+    0.5,
+    0.65
+  ],
+  "provenance": {
+    "lineage": "squat",
+    "checkpoint": "runs\\yumi\\best.pt",
+    "checkpoint_sha256": "a7a4281f604c82831bf947fe599d490dd5d223bf479c9c44289e7b4d76508d97",
+    "interface_yaml": "app\\yumi_description\\yumi.yaml",
+    "interface_yaml_sha256": "f81b94129766ffb0d18a5f8396efd97445a7fda6b79f88be4a1c3cdaed6060cc",
+    "physics_interface": {
+      "default_angles": [
+        -0.1,
+        0.0,
+        0.0,
+        0.3,
+        -0.2,
+        0.0,
+        -0.1,
+        0.0,
+        0.0,
+        0.3,
+        -0.2,
+        0.0
+      ],
+      "action_scale": 0.25,
+      "cmd_scale": [
+        2.0,
+        2.0,
+        0.25
+      ],
+      "ang_vel_scale": 0.25,
+      "dof_vel_scale": 0.05,
+      "control_decimation": 10
+    },
+    "physics_interface_sha256": "ab9e11e36132eab20e4dffc934dad56f6b5167b00b95eca3bf2da82f9a8e84b5",
+    "expect_checkpoint_sha_prefix": "a7a4281f",
+    "native_clock_s": 1.0,
+    "training_env_clock_s": 0.8,
+    "git_revision": "b5370de9d79cba2b5d28f6321eb80e6ce2de2cac",
+    "mujoco": "3.13.0",
+    "torch": "2.12.1+cu130"
+  },
+  "episodes": [
+    {
+      "seed": 8001,
+      "target_speed": 0.35,
+      "clock_period_s": 1.0,
+      "seconds": 29.99999999999425,
+      "fallen": false,
+      "mean_speed": 0.4376294649620361,
+      "forward_m": 13.128883948858567,
+      "lateral_m": 2.2324642502772254,
+      "foot_strikes": [
+        140,
+        120
+      ],
+      "strike_rate_hz": [
+        4.667,
+        4.0
+      ],
+      "alternations": 228,
+      "duty_factor": [
+        0.7487,
+        0.7647
+      ],
+      "double_support_fraction": 0.5153,
+      "mean_height": 0.8286,
+      "minimum_height": 0.7928,
+      "minimum_upright": 0.9437,
+      "final_knee_rad": [
+        0.8156,
+        1.2692
+      ],
+      "mean_knee_rad": [
+        0.8104,
+        1.1795
+      ],
+      "inference_ms_median": 1.17,
+      "wall_seconds": 14.52,
+      "per_leg": [
+        {
+          "hip_pitch_mean_rad": -0.0044,
+          "hip_pitch_amplitude_rad": 0.4083,
+          "knee_mean_rad": 0.8104,
+          "knee_range_rad": 0.8961,
+          "ankle_pitch_mean_rad": -0.6519,
+          "cadence_hz_knee": 5.5,
+          "cadence_hz_contact": 5.8,
+          "foot_height_range_m": 0.0592
+        },
+        {
+          "hip_pitch_mean_rad": -0.5116,
+          "hip_pitch_amplitude_rad": 0.6234,
+          "knee_mean_rad": 1.1795,
+          "knee_range_rad": 1.2032,
+          "ankle_pitch_mean_rad": -0.5336,
+          "cadence_hz_knee": 1.1666666666666667,
+          "cadence_hz_contact": 5.666666666666667,
+          "foot_height_range_m": 0.0927
+        }
+      ],
+      "cadence_hz_knee_mean": 3.333,
+      "strike_length_m": [
+        0.0938,
+        0.1094
+      ],
+      "pelvis_height_std_m": 0.0181,
+      "strike_symmetry_l_over_r": 1.167,
+      "yaw_total_deg": -8.35
+    },
+    {
+      "seed": 8002,
+      "target_speed": 0.35,
+      "clock_period_s": 1.0,
+      "seconds": 29.99999999999425,
+      "fallen": false,
+      "mean_speed": 0.45228542925817344,
+      "forward_m": 13.568562877742604,
+      "lateral_m": 1.2198017986042768,
+      "foot_strikes": [
+        145,
+        120
+      ],
+      "strike_rate_hz": [
+        4.833,
+        4.0
+      ],
+      "alternations": 231,
+      "duty_factor": [
+        0.746,
+        0.7587
+      ],
+      "double_support_fraction": 0.5087,
+      "mean_height": 0.8286,
+      "minimum_height": 0.7985,
+      "minimum_upright": 0.9448,
+      "final_knee_rad": [
+        0.7163,
+        1.1545
+      ],
+      "mean_knee_rad": [
+        0.81,
+        1.1778
+      ],
+      "inference_ms_median": 1.01,
+      "wall_seconds": 13.85,
+      "per_leg": [
+        {
+          "hip_pitch_mean_rad": 0.0004,
+          "hip_pitch_amplitude_rad": 0.415,
+          "knee_mean_rad": 0.81,
+          "knee_range_rad": 0.9208,
+          "ankle_pitch_mean_rad": -0.6516,
+          "cadence_hz_knee": 5.633333333333333,
+          "cadence_hz_contact": 5.633333333333333,
+          "foot_height_range_m": 0.0631
+        },
+        {
+          "hip_pitch_mean_rad": -0.5138,
+          "hip_pitch_amplitude_rad": 0.6013,
+          "knee_mean_rad": 1.1778,
+          "knee_range_rad": 1.1751,
+          "ankle_pitch_mean_rad": -0.5302,
+          "cadence_hz_knee": 1.0,
+          "cadence_hz_contact": 5.633333333333333,
+          "foot_height_range_m": 0.0911
+        }
+      ],
+      "cadence_hz_knee_mean": 3.317,
+      "strike_length_m": [
+        0.0936,
+        0.1131
+      ],
+      "pelvis_height_std_m": 0.0172,
+      "strike_symmetry_l_over_r": 1.208,
+      "yaw_total_deg": -3.0
+    },
+    {
+      "seed": 8003,
+      "target_speed": 0.35,
+      "clock_period_s": 1.0,
+      "seconds": 29.99999999999425,
+      "fallen": false,
+      "mean_speed": 0.4387371911982626,
+      "forward_m": 13.162115735945356,
+      "lateral_m": 0.0815156312486255,
+      "foot_strikes": [
+        139,
+        119
+      ],
+      "strike_rate_hz": [
+        4.633,
+        3.967
+      ],
+      "alternations": 229,
+      "duty_factor": [
+        0.75,
+        0.7593
+      ],
+      "double_support_fraction": 0.5113,
+      "mean_height": 0.8286,
+      "minimum_height": 0.7795,
+      "minimum_upright": 0.9431,
+      "final_knee_rad": [
+        0.8585,
+        1.1908
+      ],
+      "mean_knee_rad": [
+        0.8053,
+        1.1755
+      ],
+      "inference_ms_median": 0.92,
+      "wall_seconds": 13.35,
+      "per_leg": [
+        {
+          "hip_pitch_mean_rad": 0.0049,
+          "hip_pitch_amplitude_rad": 0.4429,
+          "knee_mean_rad": 0.8053,
+          "knee_range_rad": 0.9323,
+          "ankle_pitch_mean_rad": -0.6549,
+          "cadence_hz_knee": 5.666666666666667,
+          "cadence_hz_contact": 5.666666666666667,
+          "foot_height_range_m": 0.061
+        },
+        {
+          "hip_pitch_mean_rad": -0.519,
+          "hip_pitch_amplitude_rad": 0.672,
+          "knee_mean_rad": 1.1755,
+          "knee_range_rad": 1.1722,
+          "ankle_pitch_mean_rad": -0.527,
+          "cadence_hz_knee": 1.0,
+          "cadence_hz_contact": 5.666666666666667,
+          "foot_height_range_m": 0.0942
+        }
+      ],
+      "cadence_hz_knee_mean": 3.333,
+      "strike_length_m": [
+        0.0947,
+        0.1106
+      ],
+      "pelvis_height_std_m": 0.0181,
+      "strike_symmetry_l_over_r": 1.168,
+      "yaw_total_deg": -2.84
+    },
+    {
+      "seed": 8001,
+      "target_speed": 0.5,
+      "clock_period_s": 1.0,
+      "seconds": 29.99999999999425,
+      "fallen": false,
+      "mean_speed": 0.5148055992420548,
+      "forward_m": 15.444167977258687,
+      "lateral_m": 1.0301937445093516,
+      "foot_strikes": [
+        154,
+        129
+      ],
+      "strike_rate_hz": [
+        5.133,
+        4.3
+      ],
+      "alternations": 249,
+      "duty_factor": [
+        0.708,
+        0.732
+      ],
+      "double_support_fraction": 0.4447,
+      "mean_height": 0.8301,
+      "minimum_height": 0.7987,
+      "minimum_upright": 0.9447,
+      "final_knee_rad": [
+        0.6909,
+        1.2035
+      ],
+      "mean_knee_rad": [
+        0.8069,
+        1.1763
+      ],
+      "inference_ms_median": 0.97,
+      "wall_seconds": 13.43,
+      "per_leg": [
+        {
+          "hip_pitch_mean_rad": 0.0028,
+          "hip_pitch_amplitude_rad": 0.4256,
+          "knee_mean_rad": 0.8069,
+          "knee_range_rad": 0.91,
+          "ankle_pitch_mean_rad": -0.6514,
+          "cadence_hz_knee": 5.7,
+          "cadence_hz_contact": 5.7,
+          "foot_height_range_m": 0.0645
+        },
+        {
+          "hip_pitch_mean_rad": -0.5029,
+          "hip_pitch_amplitude_rad": 0.5886,
+          "knee_mean_rad": 1.1763,
+          "knee_range_rad": 1.1662,
+          "ankle_pitch_mean_rad": -0.5328,
+          "cadence_hz_knee": 1.0,
+          "cadence_hz_contact": 5.7,
+          "foot_height_range_m": 0.0956
+        }
+      ],
+      "cadence_hz_knee_mean": 3.35,
+      "strike_length_m": [
+        0.1003,
+        0.1197
+      ],
+      "pelvis_height_std_m": 0.0171,
+      "strike_symmetry_l_over_r": 1.194,
+      "yaw_total_deg": -0.39
+    },
+    {
+      "seed": 8002,
+      "target_speed": 0.5,
+      "clock_period_s": 1.0,
+      "seconds": 29.99999999999425,
+      "fallen": false,
+      "mean_speed": 0.5285860164258073,
+      "forward_m": 15.857580492771179,
+      "lateral_m": 1.0331554968933707,
+      "foot_strikes": [
+        149,
+        128
+      ],
+      "strike_rate_hz": [
+        4.967,
+        4.267
+      ],
+      "alternations": 252,
+      "duty_factor": [
+        0.714,
+        0.724
+      ],
+      "double_support_fraction": 0.4407,
+      "mean_height": 0.8311,
+      "minimum_height": 0.7967,
+      "minimum_upright": 0.9453,
+      "final_knee_rad": [
+        0.9288,
+        1.133
+      ],
+      "mean_knee_rad": [
+        0.808,
+        1.1734
+      ],
+      "inference_ms_median": 0.96,
+      "wall_seconds": 13.28,
+      "per_leg": [
+        {
+          "hip_pitch_mean_rad": 0.0023,
+          "hip_pitch_amplitude_rad": 0.397,
+          "knee_mean_rad": 0.808,
+          "knee_range_rad": 0.8954,
+          "ankle_pitch_mean_rad": -0.6501,
+          "cadence_hz_knee": 5.7,
+          "cadence_hz_contact": 5.7,
+          "foot_height_range_m": 0.0613
+        },
+        {
+          "hip_pitch_mean_rad": -0.4997,
+          "hip_pitch_amplitude_rad": 0.6201,
+          "knee_mean_rad": 1.1734,
+          "knee_range_rad": 1.237,
+          "ankle_pitch_mean_rad": -0.531,
+          "cadence_hz_knee": 5.7,
+          "cadence_hz_contact": 5.7,
+          "foot_height_range_m": 0.0975
+        }
+      ],
+      "cadence_hz_knee_mean": 5.7,
+      "strike_length_m": [
+        0.1064,
+        0.1239
+      ],
+      "pelvis_height_std_m": 0.0166,
+      "strike_symmetry_l_over_r": 1.164,
+      "yaw_total_deg": -11.28
+    },
+    {
+      "seed": 8003,
+      "target_speed": 0.5,
+      "clock_period_s": 1.0,
+      "seconds": 29.99999999999425,
+      "fallen": false,
+      "mean_speed": 0.5000126199124739,
+      "forward_m": 15.000378597371345,
+      "lateral_m": 1.5543142399399537,
+      "foot_strikes": [
+        150,
+        124
+      ],
+      "strike_rate_hz": [
+        5.0,
+        4.133
+      ],
+      "alternations": 246,
+      "duty_factor": [
+        0.7167,
+        0.7453
+      ],
+      "double_support_fraction": 0.4647,
+      "mean_height": 0.83,
+      "minimum_height": 0.7963,
+      "minimum_upright": 0.9439,
+      "final_knee_rad": [
+        0.6823,
+        1.3435
+      ],
+      "mean_knee_rad": [
+        0.8077,
+        1.177
+      ],
+      "inference_ms_median": 1.23,
+      "wall_seconds": 13.71,
+      "per_leg": [
+        {
+          "hip_pitch_mean_rad": -0.0006,
+          "hip_pitch_amplitude_rad": 0.354,
+          "knee_mean_rad": 0.8077,
+          "knee_range_rad": 0.8949,
+          "ankle_pitch_mean_rad": -0.6511,
+          "cadence_hz_knee": 5.7,
+          "cadence_hz_contact": 5.7,
+          "foot_height_range_m": 0.0637
+        },
+        {
+          "hip_pitch_mean_rad": -0.5007,
+          "hip_pitch_amplitude_rad": 0.5872,
+          "knee_mean_rad": 1.177,
+          "knee_range_rad": 1.1496,
+          "ankle_pitch_mean_rad": -0.5352,
+          "cadence_hz_knee": 1.0,
+          "cadence_hz_contact": 5.8,
+          "foot_height_range_m": 0.1023
+        }
+      ],
+      "cadence_hz_knee_mean": 3.35,
+      "strike_length_m": [
+        0.1,
+        0.121
+      ],
+      "pelvis_height_std_m": 0.0169,
+      "strike_symmetry_l_over_r": 1.21,
+      "yaw_total_deg": -9.36
+    },
+    {
+      "seed": 8001,
+      "target_speed": 0.65,
+      "clock_period_s": 1.0,
+      "seconds": 29.99999999999425,
+      "fallen": false,
+      "mean_speed": 0.5859016434044302,
+      "forward_m": 17.577049302129538,
+      "lateral_m": 0.5774782530310754,
+      "foot_strikes": [
+        159,
+        139
+      ],
+      "strike_rate_hz": [
+        5.3,
+        4.633
+      ],
+      "alternations": 276,
+      "duty_factor": [
+        0.678,
+        0.7033
+      ],
+      "double_support_fraction": 0.384,
+      "mean_height": 0.8316,
+      "minimum_height": 0.7998,
+      "minimum_upright": 0.9449,
+      "final_knee_rad": [
+        0.7419,
+        1.2154
+      ],
+      "mean_knee_rad": [
+        0.8039,
+        1.1751
+      ],
+      "inference_ms_median": 1.15,
+      "wall_seconds": 13.68,
+      "per_leg": [
+        {
+          "hip_pitch_mean_rad": 0.0052,
+          "hip_pitch_amplitude_rad": 0.4101,
+          "knee_mean_rad": 0.8039,
+          "knee_range_rad": 0.894,
+          "ankle_pitch_mean_rad": -0.6476,
+          "cadence_hz_knee": 5.7,
+          "cadence_hz_contact": 5.733333333333333,
+          "foot_height_range_m": 0.0655
+        },
+        {
+          "hip_pitch_mean_rad": -0.4897,
+          "hip_pitch_amplitude_rad": 0.5592,
+          "knee_mean_rad": 1.1751,
+          "knee_range_rad": 1.1827,
+          "ankle_pitch_mean_rad": -0.5356,
+          "cadence_hz_knee": 5.7,
+          "cadence_hz_contact": 5.7,
+          "foot_height_range_m": 0.1151
+        }
+      ],
+      "cadence_hz_knee_mean": 5.7,
+      "strike_length_m": [
+        0.1105,
+        0.1265
+      ],
+      "pelvis_height_std_m": 0.0161,
+      "strike_symmetry_l_over_r": 1.144,
+      "yaw_total_deg": 11.14
+    },
+    {
+      "seed": 8002,
+      "target_speed": 0.65,
+      "clock_period_s": 1.0,
+      "seconds": 29.99999999999425,
+      "fallen": false,
+      "mean_speed": 0.6390135630814171,
+      "forward_m": 19.17040689243884,
+      "lateral_m": 2.4225943624565507,
+      "foot_strikes": [
+        171,
+        143
+      ],
+      "strike_rate_hz": [
+        5.7,
+        4.767
+      ],
+      "alternations": 284,
+      "duty_factor": [
+        0.6567,
+        0.6753
+      ],
+      "double_support_fraction": 0.334,
+      "mean_height": 0.8328,
+      "minimum_height": 0.7982,
+      "minimum_upright": 0.9456,
+      "final_knee_rad": [
+        0.7417,
+        1.1803
+      ],
+      "mean_knee_rad": [
+        0.8045,
+        1.1719
+      ],
+      "inference_ms_median": 1.25,
+      "wall_seconds": 14.11,
+      "per_leg": [
+        {
+          "hip_pitch_mean_rad": 0.0055,
+          "hip_pitch_amplitude_rad": 0.3906,
+          "knee_mean_rad": 0.8045,
+          "knee_range_rad": 0.8847,
+          "ankle_pitch_mean_rad": -0.6415,
+          "cadence_hz_knee": 5.766666666666667,
+          "cadence_hz_contact": 5.766666666666667,
+          "foot_height_range_m": 0.0652
+        },
+        {
+          "hip_pitch_mean_rad": -0.4895,
+          "hip_pitch_amplitude_rad": 0.5654,
+          "knee_mean_rad": 1.1719,
+          "knee_range_rad": 1.198,
+          "ankle_pitch_mean_rad": -0.532,
+          "cadence_hz_knee": 5.766666666666667,
+          "cadence_hz_contact": 5.766666666666667,
+          "foot_height_range_m": 0.1135
+        }
+      ],
+      "cadence_hz_knee_mean": 5.767,
+      "strike_length_m": [
+        0.1121,
+        0.1341
+      ],
+      "pelvis_height_std_m": 0.0157,
+      "strike_symmetry_l_over_r": 1.196,
+      "yaw_total_deg": -3.61
+    },
+    {
+      "seed": 8003,
+      "target_speed": 0.65,
+      "clock_period_s": 1.0,
+      "seconds": 29.99999999999425,
+      "fallen": false,
+      "mean_speed": 0.6002147566716186,
+      "forward_m": 18.006442700145108,
+      "lateral_m": 1.9076112202124444,
+      "foot_strikes": [
+        164,
+        144
+      ],
+      "strike_rate_hz": [
+        5.467,
+        4.8
+      ],
+      "alternations": 286,
+      "duty_factor": [
+        0.674,
+        0.7013
+      ],
+      "double_support_fraction": 0.3793,
+      "mean_height": 0.8314,
+      "minimum_height": 0.8,
+      "minimum_upright": 0.9441,
+      "final_knee_rad": [
+        0.7654,
+        1.1367
+      ],
+      "mean_knee_rad": [
+        0.8086,
+        1.1779
+      ],
+      "inference_ms_median": 1.63,
+      "wall_seconds": 14.25,
+      "per_leg": [
+        {
+          "hip_pitch_mean_rad": -0.0002,
+          "hip_pitch_amplitude_rad": 0.3449,
+          "knee_mean_rad": 0.8086,
+          "knee_range_rad": 0.8946,
+          "ankle_pitch_mean_rad": -0.6467,
+          "cadence_hz_knee": 5.7,
+          "cadence_hz_contact": 5.7,
+          "foot_height_range_m": 0.0634
+        },
+        {
+          "hip_pitch_mean_rad": -0.4877,
+          "hip_pitch_amplitude_rad": 0.555,
+          "knee_mean_rad": 1.1779,
+          "knee_range_rad": 1.2345,
+          "ankle_pitch_mean_rad": -0.5366,
+          "cadence_hz_knee": 5.7,
+          "cadence_hz_contact": 5.7,
+          "foot_height_range_m": 0.1059
+        }
+      ],
+      "cadence_hz_knee_mean": 5.7,
+      "strike_length_m": [
+        0.1098,
+        0.125
+      ],
+      "pelvis_height_std_m": 0.0163,
+      "strike_symmetry_l_over_r": 1.139,
+      "yaw_total_deg": 6.86
+    }
+  ]
+}
