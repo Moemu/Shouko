@@ -3,8 +3,8 @@
 Appends three observation channels (gpu_body.observation, 50-dim branch):
 qvel[0:2]*0.25 (body linear velocity) and relative pelvis height. The encoder's
 three new input columns are zero-initialized and obs_mean/obs_std are padded
-with 0/1, so the expanded policy reproduces the source checkpoint's actions
-bit-for-bit at load time (verify with the warm-start check before training).
+with 0/1, preserving the mapping for the same original 47 inputs, up to
+floating-point rounding. This does not prove identical simulated trajectories.
 """
 import argparse
 import hashlib
@@ -37,6 +37,8 @@ def main(args):
     state['obs_mean'] = torch.cat([state['obs_mean'], torch.zeros(NEW_DIMS)])
     state['obs_std'] = torch.cat([state['obs_std'], torch.ones(NEW_DIMS)])
     checkpoint['observation_size'] = old_size + NEW_DIMS
+    if checkpoint.get('physics_interface') is not None:
+        checkpoint['physics_interface'] = dict(checkpoint['physics_interface'], observation_size=50)
     extra = dict(checkpoint.get('extra') or {})
     extra['expanded_from'] = dict(checkpoint=str(args.checkpoint), sha256=file_sha256(source),
                                   observation_size=old_size, added_dims=NEW_DIMS,

@@ -19,9 +19,10 @@ import torch
 import yaml
 from torch import nn
 
-from .full_brain import ConnectomePolicy, ROOT
+from .full_brain import ConnectomePolicy, ROOT, checkpoint_configuration
 from .gpu_body import GPUHumanoid
 from .sim import observation_interface
+from .value_diagnostics import gae_targets, save_rollout
 from . import train_full
 
 RUNS = ROOT / 'runs/yumi'
@@ -44,20 +45,29 @@ def quad_yaw(qpos):
     return torch.atan2(2*(w*z+x*y), 1-2*(y*y+z*z))
 
 
-def checkpoint_observation_size(path):
-    """Peek the observation size recorded in a checkpoint (47 before 2026-09-20)."""
-    checkpoint = torch.load(path, map_location='cpu', weights_only=True)
-    return int(checkpoint.get('observation_size') or 47)
-
-
 def same_weights(stored, live):
     """Exact state-dict comparison; True when an evaluation is of unchanged weights."""
     if not stored:
         return False
-    live_cpu = {key: value.detach().cpu() for key, value in live.items()}
-    if set(stored) != set(live_cpu):
+    if set(stored) != set(live):
         return False
-    return all(torch.equal(stored[key], live_cpu[key]) for key in stored)
+    return all(torch.equal(stored[key], live[key].detach().cpu()) for key in stored)
+
+
+def unchanged_checkpoint(path, state):
+    if not path.exists():
+        return False
+    stored = torch.load(path, map_location='cpu', weights_only=True, mmap=True)
+    return same_weights(stored.get('state_dict'), state)
+
+
+def value_gate_ready(losses, threshold):
+    """Require two complete, consecutive five-iteration windows."""
+    if len(losses) < 6:
+        return False
+    recent = losses[-6:]
+    return (all(np.isfinite(v) and v >= 0 for v in recent) and
+            sum(recent[:5]) / 5 < threshold and sum(recent[1:]) / 5 < threshold)
 
 
 def transfer_slope(result):
@@ -82,9 +92,10 @@ def transfer_slope(result):
 
 def train(args):
     global RUNS
+    if args.value_abort_vloss > 0 and args.value_warmup < 6:
+        raise ValueError('The value gate requires at least six warmup iterations')
     if args.runs_dir:
-        # Experiment isolation: a 50-dim checkpoint must never land on
-        # runs/yumi/best.pt, where the 47-dim native acceptance path would break.
+        # Keep experimental checkpoints and evidence separate from the accepted lineage.
         RUNS = ROOT / args.runs_dir
         train_full.RUNS = RUNS
     RUNS.mkdir(parents=True, exist_ok=True)
@@ -108,14 +119,15 @@ def train(args):
 
     write_status('initializing')
     device = 'cuda'
-    interface = None
+    configuration = checkpoint_configuration(args.resume)
+    interface = dict(configuration['physics_interface'] or {})
     if args.interface_yaml:
         # Pair the body config with the checkpoint explicitly (lesson of
         # HOME_REFERENCE_MISMATCH_20260916): the upright lineage trains against
         # runs/local/yumi_tall.yaml, not whatever yumi.yaml currently holds.
-        interface = observation_interface(
-            yaml.safe_load((ROOT / args.interface_yaml).read_text(encoding='utf-8')))
-    observation_size = checkpoint_observation_size(args.resume)
+        interface.update(observation_interface(
+            yaml.safe_load((ROOT / args.interface_yaml).read_text(encoding='utf-8'))))
+    observation_size = configuration['observation_size']
     env = GPUHumanoid(args.worlds, robot='yumi', interface=interface,
                       observation_size=observation_size)
     policy = ConnectomePolicy(neural_steps=args.neural_steps, observation_size=observation_size)
@@ -215,7 +227,7 @@ def train(args):
     same_as_best = False
     if best_path.exists():
         try:
-            stored = torch.load(best_path, map_location='cpu', weights_only=True)
+            stored = torch.load(best_path, map_location='cpu', weights_only=True, mmap=True)
             stored_extra = stored.get('extra') or {}
             stored_bar = stored_extra.get('combined_bar')
             if stored_bar is None:
@@ -224,14 +236,11 @@ def train(args):
         except Exception as e:
             print(json.dumps(dict(best_load_warning=str(e))), flush=True)
     if same_as_best:
-        # Re-evaluating unchanged weights must never raise the selection bar
-        # (winner's curse, PPO_OBS50_20260920: 0.844 -> 0.869 on identical
-        # tensors). Any stored number for these weights is just one draw;
-        # re-anchor to the fresh one and persist it as the explicit bar.
-        best_combined = combined(base)
-        save_checkpoint('best', base, updates=resumed.get('updates', 0), combined_bar=best_combined)
-        print(json.dumps(dict(reevaluation_reanchor=round(best_combined, 3),
-                              stale_stored_bar=None if stored_bar is None else round(stored_bar, 3))), flush=True)
+        # A new evaluation of identical tensors is evidence, not a new model.
+        # Preserve the checkpoint, its paired PPO state, and its selection bar.
+        best_combined = stored_bar if stored_bar is not None else combined(base)
+        print(json.dumps(dict(unchanged_policy=True, fresh_combined=round(combined(base), 3),
+                              kept_combined_bar=round(best_combined, 3))), flush=True)
     elif stored_bar is not None and stored_bar > combined(base):
         best_combined = stored_bar
         print(json.dumps(dict(kept_historical_best=round(stored_bar, 3), base_score=round(base['score'], 3))), flush=True)
@@ -267,6 +276,8 @@ def train(args):
 
     iteration = 0
     env_steps = 0  # This launch's training rollout transitions; excludes evaluations.
+    warmup_end = args.value_warmup
+    value_gate_open = False
     while control.safe_point(write_status) and not control.budget_exceeded():
         write_status('training', iteration=iteration, env_steps=env_steps)
         # ---- collect ----
@@ -338,13 +349,16 @@ def train(args):
         rewards = torch.stack(rew_buf)          # T x W
         values = torch.stack(val_buf + [next_val])
         dones = torch.stack(done_buf)
-        advantages = torch.zeros_like(rewards)
-        gae = torch.zeros(env.worlds, device=device)
-        for t in reversed(range(args.steps)):
-            delta = rewards[t] + args.gamma * values[t+1] * (1-dones[t]) - values[t]
-            gae = delta + args.gamma * args.lam * (1-dones[t]) * gae
-            advantages[t] = gae
-        returns = advantages + values[:-1]
+        advantages, returns = gae_targets(rewards, values, dones, args.gamma, args.lam)
+        if args.dump_rollout and iteration == 0:
+            save_rollout(args.dump_rollout, observations=torch.stack(obs_buf), actions=torch.stack(act_buf),
+                         rewards=rewards, dones=dones, values=values, std=std,
+                         advantages=advantages, returns=returns,
+                         gamma=args.gamma, lam=args.lam, interface=env.interface,
+                         iteration=iteration, seed=args.seed,
+                         checkpoint_sha256=train_full.file_sha256(args.resume),
+                         reward_config=dict(posture_w=args.posture_w, knee_w=args.knee_w,
+                                            knee_gate=args.knee_gate, height_target=args.height_target))
         obs_b = torch.cat(obs_buf); act_b = torch.cat(act_buf); logp_b = torch.cat(logp_buf)
         adv_b = advantages.reshape(-1); ret_b = returns.reshape(-1)
         adv_b = (adv_b - adv_b.mean()) / (adv_b.std() + 1e-8)
@@ -354,7 +368,7 @@ def train(args):
         # Value warmup: with a fresh value network the first advantages are
         # noise; updating the policy on them destroys a good baseline within a
         # few iterations (observed in ppo7: 12/32 -> 0/32 in 5 iterations).
-        policy_frozen = iteration < args.value_warmup
+        policy_frozen = iteration < warmup_end
         pi_loss_total = v_loss_total = kl_total = clipfrac_total = 0.0
         count = 0
         stop_early = False
@@ -400,6 +414,8 @@ def train(args):
                    v_loss=v_loss_total/count, std=float(log_std.exp().mean()),
                    approx_kl=kl_total/max(count, 1), clipfrac=clipfrac_total/max(count, 1),
                    lr=optimizer.param_groups[0]['lr'], kl_stop=stop_early, value_warmup=policy_frozen,
+                   learning_rates=[dict(parameters=names, lr=group['lr'])
+                                   for names, group in zip(optimizer_names, optimizer.param_groups)],
                    mean_knee=round(knee_sum / max(pose_count, 1), 3),
                    mean_height=round(height_sum / max(pose_count, 1), 3),
                    elapsed=control.wall_elapsed(), active_elapsed=control.active_elapsed(),
@@ -408,19 +424,17 @@ def train(args):
         print(json.dumps(row), flush=True)
         write_status('training', iteration=iteration, peak_vram_gib=torch.cuda.max_memory_allocated()/2**30)
 
-        if (args.value_abort_vloss > 0 and iteration == args.value_warmup
-                and len(history) >= 2):
-            # Pre-registered falsification point: if the value net cannot get
-            # its loss under the threshold even with exclusive training, the
-            # advantage signal stays noise and policy updates are skipped.
-            recent = [abs(h['v_loss']) for h in history[-min(5, len(history)):]]
-            v_ma = sum(recent) / len(recent)
-            print(json.dumps(dict(value_warmup_end=True, v_loss_ma=round(v_ma, 2),
-                                  abort_threshold=args.value_abort_vloss)), flush=True)
-            if v_ma > args.value_abort_vloss:
+        if args.value_abort_vloss > 0 and policy_frozen and not value_gate_open:
+            losses = [h['v_loss'] for h in history]
+            if value_gate_ready(losses, args.value_abort_vloss):
+                warmup_end = iteration
+                value_gate_open = True
+                print(json.dumps(dict(value_ready=True, iteration=iteration,
+                                      v_loss_ma=sum(losses[-5:]) / 5)), flush=True)
+            elif iteration >= args.value_warmup:
                 save_checkpoint('last', status.get('evaluation'), updates=iteration, final=True)
-                write_status('value_not_converged', iteration=iteration, v_loss_ma=round(v_ma, 2),
-                             note='Pre-registered abort: value loss above threshold after warmup; policy updates skipped.')
+                write_status('value_not_converged', iteration=iteration,
+                             note='Two complete value-loss windows did not pass; policy updates skipped.')
                 return
 
         if iteration % args.eval_every == 0:
@@ -437,6 +451,13 @@ def train(args):
                                   transfer_slope=slope, per_cmd=tiers)), flush=True)
             save_checkpoint('last', result, updates=iteration)
             if combined(result) > best_combined:
+                same_as_best = unchanged_checkpoint(RUNS/'best.pt', policy.state_dict())
+            else:
+                same_as_best = False
+            if same_as_best:
+                print(json.dumps(dict(unchanged_policy=True, iteration=iteration,
+                                      kept_combined_bar=round(best_combined, 3))), flush=True)
+            if combined(result) > best_combined and not same_as_best:
                 # Confirmation draw: accept on the mean only, and store the mean
                 # as the bar (single-eval max selection was the winner's curse).
                 confirm = evaluate(policy, env, seconds=args.eval_seconds)
@@ -479,9 +500,9 @@ if __name__ == '__main__':
     parser.add_argument('--std-override', type=float, default=-1,
                         help='if > 0, reset exploration noise to this std after resuming')
     parser.add_argument('--freeze-brain', action='store_true',
-                        help='freeze connectome edges/biases; fine-tune readout+encoder only')
+                        help='freeze connectome edges; train neuron bias, readout and encoder')
     parser.add_argument('--posture-w', type=float, default=0.4,
-                        help='weight of the pelvis-height Gaussian posture term')
+                        help='weight of the linear pelvis-height posture term')
     parser.add_argument('--knee-w', type=float, default=0.2,
                         help='weight of the soft knee-flexion penalty above 0.5 rad')
     parser.add_argument('--knee-gate', choices=['stance', 'both'], default='both',
@@ -493,7 +514,9 @@ if __name__ == '__main__':
     parser.add_argument('--ratchet-margin', type=float, default=0.03,
                         help='mean of two evaluations must beat the bar by this much to take over best')
     parser.add_argument('--value-abort-vloss', type=float, default=-1,
-                        help='abort before policy updates if mean v_loss over the last warmup iterations exceeds this')
+                        help='require two complete five-iteration loss windows below this threshold; abort at warmup limit otherwise')
+    parser.add_argument('--dump-rollout', default=None,
+                        help='save the first real rollout before updates for CPU diagnostics; training continues')
     parser.add_argument('--eval-seconds', type=float, default=30)
     parser.add_argument('--eval-every', type=int, default=5)
     parser.add_argument('--max-seconds', type=float, default=270)
@@ -504,7 +527,7 @@ if __name__ == '__main__':
                         help='experiment directory for checkpoints/status (default runs/yumi)')
     parser.add_argument('--interface-yaml', default=None,
                         help='body yaml to pair with the checkpoint (e.g. runs/local/yumi_tall.yaml); '
-                             'default is the robot spec yaml')
+                             'default is the checkpoint interface over the robot spec yaml')
     parser.add_argument('--resume-state', action='store_true',
                         help='Restore verified PPO state beside --resume; not a live-process resume')
     train(parser.parse_args())

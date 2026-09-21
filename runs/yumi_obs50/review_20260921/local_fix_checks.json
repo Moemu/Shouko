@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-21",
+  "scope": "local CPU corrections; not a training experiment",
+  "resources": {
+    "ram_available_gib": 3.33,
+    "cpu_percent": 14.7,
+    "gpu": "RTX 4070 Laptop GPU",
+    "gpu_memory_used_mib": 1931,
+    "gpu_memory_total_mib": 8188,
+    "gpu_utilization_percent": 54,
+    "gpu_power_w": 24.8,
+    "note": "Read during the initial CPU regression checks; not a capacity benchmark"
+  },
+  "checks": {
+    "policy_contract": "passed",
+    "value_diagnostics": "passed",
+    "studio_server": "passed",
+    "training_control": "passed: 3 tests",
+    "frontend": "passed: activity, i18n, training series",
+    "py_compile": "passed",
+    "git_diff_check": "passed"
+  },
+  "gpu_training_started": false,
+  "full_connectome_inference_started": false,
+  "cloud_modified": false
+}

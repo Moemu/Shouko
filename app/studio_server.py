@@ -30,8 +30,9 @@ from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from .full_brain import ConnectomePolicy, ROOT
+from .full_brain import ConnectomePolicy, ROOT, checkpoint_configuration
 from .sim import Body
+from .evaluate_full import interface_digest
 
 DEVICE = os.environ.get('FLYBODY_DEVICE', 'cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -147,24 +148,35 @@ class Studio:
     def checkpoint_path(self):
         return Path(os.environ.get('FLYBODY_CHECKPOINT', str(self.runs/'best.pt')))
 
+    def load_checkpoint(self, checkpoint):
+        configuration = checkpoint_configuration(checkpoint)
+        body = Body(load_motor_policy=False, robot=self.robot,
+                    interface=configuration['physics_interface'],
+                    observation_size=configuration['observation_size'])
+        architecture = {key: configuration[key] for key in
+                        ('observation_size', 'action_size', 'neural_steps')}
+        brain = self.brain
+        if (brain.encoder.in_features != architecture['observation_size'] or
+                brain.readout.out_features != architecture['action_size'] or
+                brain.neural_steps != architecture['neural_steps']):
+            brain = ConnectomePolicy(device=DEVICE, **architecture).eval()
+        extra = brain.load(checkpoint, interface=body.interface)
+        body.reset(4242)
+        self.body, self.brain = body, brain
+        return extra
+
     def loop(self):
         deadline = time.perf_counter()
         try:
             while not self.stop.is_set():
                 checkpoint = self.checkpoint_path()
                 if checkpoint.exists() and checkpoint.stat().st_mtime != self.checkpoint_mtime:
-                    extra = self.brain.load(checkpoint)
+                    extra = self.load_checkpoint(checkpoint)
                     self.checkpoint_mtime = checkpoint.stat().st_mtime
                     self.checkpoint = f"u{extra.get('updates', 0):07d}"
                     self.checkpoint_updates = extra.get('updates', 0)
                     with checkpoint.open('rb') as handle:
                         self.checkpoint_hash = hashlib.file_digest(handle, 'sha256').hexdigest()
-                    if self.brain.physics_interface and self.brain.physics_interface != self.body.interface:
-                        # 检查点自带观测基准（home 等）且与当前 yaml 不同时，按检查点重建身体，
-                        # 两条世系可共存而不互相污染（HOME_REFERENCE_MISMATCH 的结构性修复）。
-                        self.body = Body(load_motor_policy=False, robot=self.robot,
-                                         interface=self.brain.physics_interface)
-                    self.body.reset(4242)
                     self.episode += 1
                     self.running = False
                 while not self.commands.empty():
@@ -193,14 +205,15 @@ class Studio:
                     state = self.body.step_joints(joint_action)
                 else:
                     state = self.body.snapshot()
+                control_dt = self.body.cfg['simulation_dt'] * self.body.cfg['control_decimation']
                 state.update(episode=self.episode, running=self.running, target_speed=self.speed, target_yaw=self.yaw,
                     lesion=self.lesion, brain_ms=self.neural_ms, activity=self.activity.tolist(), output_rms=self.output_rms,
-                    real_time_factor=0.02/max(time.perf_counter()-start, 0.02) if self.running else 0,
+                    real_time_factor=control_dt/max(time.perf_counter()-start, control_dt) if self.running else 0,
                     checkpoint=self.checkpoint_hash or self.checkpoint, checkpoint_updates=self.checkpoint_updates,
                     **avatar_identity(self.robot))
                 with self.lock:
                     self.state = state
-                deadline = max(deadline+0.02, time.perf_counter()-0.1)
+                deadline = max(deadline+control_dt, time.perf_counter()-0.1)
                 self.stop.wait(max(0, deadline-time.perf_counter()))
         except Exception as exc:
             with self.lock:
@@ -423,6 +436,8 @@ def meta():
     gpu_name = torch.cuda.get_device_name(0) if torch.cuda.is_available() else None
     reason = training_unavailable_reason(studio.robot)
     return dict(**studio.brain.meta, mode='full_connectome',
+                observation_size=studio.body.observation_size,
+                gait_period_s=studio.body.cfg['gait_period_s'],
                 training_enabled=reason is None, training_unavailable_reason=reason,
                 training_method='ppo' if yumi_body else 'dagger',
                 training_checkpoint_available=(runs_for(studio.robot)/'best.pt').exists(),
@@ -611,7 +626,9 @@ def evaluation():
     for path in candidates:
         record = read_json(path)
         if (studio.checkpoint_hash and record.get('checkpoint_sha256') == studio.checkpoint_hash
-                and record.get('robot') == robot and record.get('kind') == 'held_out_native_mujoco'):
+                and record.get('robot') == robot and record.get('kind') == 'held_out_native_mujoco'
+                and record.get('physics_interface_sha256', interface_digest(studio.body.interface))
+                    == interface_digest(studio.body.interface)):
             return JSONResponse(record)
     raise HTTPException(404, '本机当前检查点的验证尚未完成' if robot == 'yumi' else
                         'Independent evaluation for the loaded checkpoint has not finished')

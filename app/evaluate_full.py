@@ -10,7 +10,7 @@ import mujoco
 import torch
 import psutil
 
-from .full_brain import ConnectomePolicy, ROOT
+from .full_brain import ConnectomePolicy, ROOT, checkpoint_configuration
 from .sim import Body
 
 
@@ -29,8 +29,9 @@ def episode(model, body, seed, speed, seconds, lesion=False, push=False, heading
     started = time.perf_counter()
     frames = []
     neural_ms = []
-    for step in range(round(seconds / 0.02)):
-        if push and step == 500:
+    dt = body.model.opt.timestep * body.cfg['control_decimation']
+    for step in range(max(1, round(seconds / dt))):
+        if push and step == round(10 / dt):
             body.data.qvel[1] += 0.25
         _, yaw = body.observation()
         yaw_rate = float(np.clip(-yaw * 1.4, -0.2, 0.2)) if heading_control else 0.0
@@ -78,15 +79,20 @@ def main(args):
     checkpoint = ROOT / args.checkpoint
     with checkpoint.open('rb') as handle:
         checkpoint_hash = hashlib.file_digest(handle, 'sha256').hexdigest()
-    model = ConnectomePolicy(device=args.device).eval()
-    extra = model.load(checkpoint)
+    configuration = checkpoint_configuration(checkpoint)
+    model = ConnectomePolicy(device=args.device, observation_size=configuration['observation_size'],
+                             neural_steps=configuration['neural_steps'],
+                             action_size=configuration['action_size']).eval()
     # 检查点自带观测/动作接口（home、缩放）时优先采用，验收与训练基准保持一致；
     # 旧检查点无该字段则回退当前 yaml。
-    body = Body(load_motor_policy=False, robot=args.robot, interface=model.physics_interface)
+    body = Body(load_motor_policy=False, robot=args.robot, interface=configuration['physics_interface'],
+                observation_size=configuration['observation_size'])
+    extra = model.load(checkpoint, interface=body.interface)
     assert body.policy is None
     report = dict(kind='held_out_native_mujoco', robot=args.robot, checkpoint_sha256=checkpoint_hash,
                   graph_sha256=model.meta['graph_sha256'], checkpoint_updates=extra.get('updates'),
                   physics_interface_sha256=interface_digest(body.interface),
+                  observation_size=body.observation_size, gait_period_s=body.cfg['gait_period_s'],
                   teacher_used=False, tests=[], controls=[], perturbations=[], long_walks=[],
                   runtime=dict(device=str(model.weight.device), torch=torch.__version__,
                                platform=platform.platform(), mujoco=mujoco.__version__,

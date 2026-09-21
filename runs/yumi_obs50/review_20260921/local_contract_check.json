@@ -1,0 +1,46 @@
+[
+  {
+    "checkpoint": "runs/yumi/best.pt",
+    "observation_size": 47,
+    "gait_period_s": 1.0,
+    "interface_keys": [
+      "default_angles",
+      "action_scale",
+      "cmd_scale",
+      "ang_vel_scale",
+      "dof_vel_scale",
+      "control_decimation"
+    ]
+  },
+  {
+    "checkpoint": "runs/yumi/best_tall.pt",
+    "observation_size": 47,
+    "gait_period_s": 1.0,
+    "interface_keys": [
+      "default_angles",
+      "action_scale",
+      "cmd_scale",
+      "ang_vel_scale",
+      "dof_vel_scale",
+      "control_decimation"
+    ]
+  },
+  {
+    "checkpoint": "runs/yumi_obs50/best_tall_obs50.pt",
+    "observation_size": 50,
+    "gait_period_s": 0.8,
+    "interface_keys": [
+      "default_angles",
+      "action_scale",
+      "cmd_scale",
+      "ang_vel_scale",
+      "dof_vel_scale",
+      "control_decimation",
+      "simulation_dt",
+      "observation_size",
+      "gait_period_s",
+      "linear_velocity_scale",
+      "height_reference"
+    ]
+  }
+]

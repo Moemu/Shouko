@@ -10,6 +10,19 @@ from torch import nn
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def checkpoint_configuration(path):
+    """Read small metadata using memory mapping, without loading the graph or CUDA."""
+    checkpoint = torch.load(path, map_location='cpu', weights_only=True, mmap=True)
+    size = int(checkpoint.get('observation_size') or 47)
+    if size not in (47, 50):
+        raise ValueError(f'Unsupported checkpoint observation size: {size}')
+    if checkpoint['state_dict']['encoder.weight'].shape[1] != size:
+        raise ValueError('Checkpoint encoder and observation metadata disagree')
+    return dict(observation_size=size, action_size=int(checkpoint.get('action_size', 12)),
+                neural_steps=int(checkpoint.get('neural_steps', 4)),
+                physics_interface=checkpoint.get('physics_interface'))
+
+
 class SparseMessage(torch.autograd.Function):
     """Compute gradients only at measured edges; native CSR backward densifies N by N."""
     @staticmethod
@@ -90,7 +103,8 @@ class ConnectomePolicy(nn.Module):
         if checkpoint['neural_steps'] != self.neural_steps:
             raise ValueError('Checkpoint neural update count mismatch')
         recorded = checkpoint.get('physics_interface')
-        if recorded is not None and interface is not None and recorded != interface:
+        if recorded is not None and interface is not None and any(
+                interface.get(key) != value for key, value in recorded.items()):
             raise ValueError('Checkpoint physics interface mismatch: home/scales differ from the live body config')
         self.physics_interface = recorded
         self.load_state_dict(checkpoint['state_dict'])

@@ -28,7 +28,9 @@ ROBOTS = {
 # 它们是模型接口的一部分，与权重一起进检查点并在加载时比对，
 # 防止 2026-09-16 那类 home 漂移静默错配（见 research/experiments/HOME_REFERENCE_MISMATCH_20260916.md）。
 INTERFACE_KEYS = ("default_angles", "action_scale", "cmd_scale",
-                  "ang_vel_scale", "dof_vel_scale", "control_decimation")
+                  "ang_vel_scale", "dof_vel_scale", "control_decimation",
+                  "simulation_dt", "observation_size", "gait_period_s",
+                  "linear_velocity_scale", "height_reference")
 
 
 def observation_interface(cfg):
@@ -37,6 +39,8 @@ def observation_interface(cfg):
     for key in INTERFACE_KEYS:
         if key not in cfg:
             continue
+        if key == 'simulation_dt' and 'observation_size' not in cfg:
+            continue  # Preserve historical six-field interface hashes.
         value = cfg[key]
         interface[key] = [float(v) for v in value] if isinstance(value, (list, tuple)) else float(value)
     return interface
@@ -49,15 +53,52 @@ def apply_interface(cfg, interface):
     return merged
 
 
+def configure_observation(cfg, observation_size, default_period, initial_height):
+    """Resolve the policy contract without changing the source body config."""
+    cfg = dict(cfg)
+    recorded_size = cfg.get('observation_size')
+    size = observation_size if observation_size is not None else recorded_size or 47
+    if size not in (47, 50) or (recorded_size is not None and recorded_size != size):
+        raise ValueError('Observation layout must be 47 or 50 and match the checkpoint interface')
+    cfg.update(observation_size=int(size),
+               gait_period_s=float(cfg.get('gait_period_s', default_period)),
+               linear_velocity_scale=float(cfg.get('linear_velocity_scale', 0.25)),
+               height_reference=float(cfg.get('height_reference', initial_height)))
+    if not np.isfinite(cfg['gait_period_s']) or cfg['gait_period_s'] <= 0:
+        raise ValueError('Gait period must be finite and positive')
+    if not np.isfinite(cfg['linear_velocity_scale']) or cfg['linear_velocity_scale'] <= 0:
+        raise ValueError('Linear velocity scale must be finite and positive')
+    if not np.isfinite(cfg['height_reference']):
+        raise ValueError('Height reference must be finite')
+    decimation = cfg['control_decimation']
+    if not np.isfinite(decimation) or decimation < 1 or int(decimation) != decimation:
+        raise ValueError('Control decimation must be a positive integer')
+    cfg['control_decimation'] = int(decimation)
+    if not np.isfinite(cfg['simulation_dt']) or cfg['simulation_dt'] <= 0:
+        raise ValueError('Simulation timestep must be finite and positive')
+    return cfg
+
+
 class Body:
-    def __init__(self, load_motor_policy=True, robot="g1", interface=None):
+    def __init__(self, load_motor_policy=True, robot="g1", interface=None, observation_size=None):
         spec = ROBOTS[robot]
         self.robot = robot
         self.initial_height = spec["initial_height"]
         self.fall_height = spec["fall_height"]
         self.hips_height = spec["hips_height"]
         self.cfg = apply_interface(yaml.safe_load(spec["cfg"].read_text(encoding="utf-8")), interface)
+        legacy_interface = observation_interface(self.cfg)
+        size = observation_size if observation_size is not None else self.cfg.get('observation_size', 47)
+        # Historical native 47-dim acceptance used 1 s; the original 50-dim
+        # checkpoints were trained on the GPU path at 0.8 s.
+        self.cfg = configure_observation(self.cfg, observation_size,
+                                         0.8 if size == 50 else 1.0, self.initial_height)
+        self.observation_size = self.cfg['observation_size']
         self.interface = observation_interface(self.cfg)
+        if size == 47 and not any(k in legacy_interface for k in ('observation_size', 'gait_period_s')):
+            self.interface = legacy_interface
+        if load_motor_policy and size != 47:
+            raise ValueError('The legacy Unitree motor policy requires 47 observations')
         self.model = mujoco.MjModel.from_xml_path(str(spec["xml"]))
         self.model.opt.timestep = self.cfg["simulation_dt"]
         if not load_motor_policy:
@@ -101,14 +142,18 @@ class Body:
 
     def motor_observation(self, command):
         gravity, _ = self.observation()
-        phase = self.data.time / 1.0 * 2*np.pi
-        return np.concatenate([
+        phase = self.data.time / self.cfg['gait_period_s'] * 2*np.pi
+        fields = [
             self.data.qvel[3:6] * self.cfg["ang_vel_scale"], gravity,
             np.asarray(command) * self.cfg["cmd_scale"],
             self.data.qpos[7:] - self.home,
             self.data.qvel[6:] * self.cfg["dof_vel_scale"], self.action,
             [np.sin(phase), np.cos(phase)],
-        ]).astype(np.float32)
+        ]
+        if self.observation_size == 50:
+            fields.extend([self.data.qvel[:2] * self.cfg['linear_velocity_scale'],
+                           [self.data.qpos[2] - self.cfg['height_reference']]])
+        return np.concatenate(fields).astype(np.float32)
 
     def step(self, command):
         if self.policy is None:

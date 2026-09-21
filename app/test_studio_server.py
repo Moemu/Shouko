@@ -10,6 +10,7 @@ from pathlib import Path
 
 from app import studio_server as s
 from starlette.requests import Request
+from app.test_policy_contract import tiny_graph
 
 
 def make_request(origin, host, method='POST', scheme='http'):
@@ -153,9 +154,13 @@ def check_physics_interface():
 
 
 if __name__ == '__main__':
-    check_capabilities()
-    check_ownership()
-    check_timeout()
-    asyncio.run(check_same_origin())
-    asyncio.run(check_boot())
-    check_physics_interface()
+    # Exercise production loading without allocating the full connectome or CUDA.
+    with tiny_graph() as root, patch.object(s, 'ROOT', root), patch.object(s, 'DEVICE', 'cpu'), \
+            patch.object(s, 'training_dependencies', return_value='cuda_unavailable'), \
+            patch.object(s.torch.cuda, 'is_available', return_value=False):
+        check_capabilities()
+        check_ownership()
+        check_timeout()
+        asyncio.run(check_same_origin())
+        asyncio.run(check_boot())
+        check_physics_interface()

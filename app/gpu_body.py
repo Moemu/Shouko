@@ -11,35 +11,44 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 UNITREE = ROOT / 'vendor/unitree_rl_gym'
 
-from .sim import ROBOTS, observation_interface, apply_interface
+from .sim import ROBOTS, observation_interface, apply_interface, configure_observation
 
 
 @wp.kernel
 def pd_torque(qpos: wp.array2d(dtype=float), qvel: wp.array2d(dtype=float),
               action: wp.array2d(dtype=float), home: wp.array(dtype=float),
-              kp: wp.array(dtype=float), kd: wp.array(dtype=float), limit: wp.array(dtype=float),
+              kp: wp.array(dtype=float), kd: wp.array(dtype=float), limit: wp.array(dtype=float), action_scale: float,
               ctrl: wp.array2d(dtype=float)):
     world, joint = wp.tid()
-    torque = kp[joint] * (home[joint] + 0.25 * action[world, joint] - qpos[world, 7 + joint])
+    torque = kp[joint] * (home[joint] + action_scale * action[world, joint] - qpos[world, 7 + joint])
     torque -= kd[joint] * qvel[world, 6 + joint]
     ctrl[world, joint] = wp.clamp(torque, -limit[joint], limit[joint])
 
 
 class GPUHumanoid:
-    def __init__(self, worlds=64, robot='g1', interface=None, observation_size=47):
+    def __init__(self, worlds=64, robot='g1', interface=None, observation_size=None):
         spec = ROBOTS[robot]
         self.robot = robot
         self.fall_height = spec['fall_height']
-        self.observation_size = observation_size
         wp.init()
         self.worlds = worlds
-        self.dt = 0.02
         self.torch_stream = torch.cuda.Stream()
         self.stream = wp.stream_from_torch(self.torch_stream)
         cfg = apply_interface(yaml.safe_load(spec['cfg'].read_text(encoding='utf-8')), interface)
+        cfg = configure_observation(cfg, observation_size, 0.8, spec['initial_height'])
+        self.observation_size = cfg['observation_size']
+        self.gait_period_s = cfg['gait_period_s']
+        self.linear_velocity_scale = cfg['linear_velocity_scale']
+        self.height_reference = cfg['height_reference']
+        self.ang_vel_scale = cfg['ang_vel_scale']
+        self.dof_vel_scale = cfg['dof_vel_scale']
+        self.cmd_scale = torch.tensor(cfg['cmd_scale'], device='cuda')
+        self.action_scale = float(cfg['action_scale'])
+        self.control_decimation = int(cfg['control_decimation'])
+        self.dt = float(cfg['simulation_dt']) * self.control_decimation
         self.interface = observation_interface(cfg)
         self.cpu_model = mujoco.MjModel.from_xml_path(str(spec['xml']))
-        self.cpu_model.opt.timestep = 0.002
+        self.cpu_model.opt.timestep = cfg['simulation_dt']
         self.cpu_model.opt.iterations = 50
         self.cpu_model.opt.ls_iterations = 50
         self.cpu_model.opt.tolerance = 1e-6
@@ -79,7 +88,7 @@ class GPUHumanoid:
             self._substep()
             wp.synchronize_stream(self.stream)
             with wp.ScopedCapture(stream=self.stream) as capture:
-                for _ in range(10):
+                for _ in range(self.control_decimation):
                     self._substep()
         self.graph = capture.graph
         torch.cuda.current_stream().wait_stream(self.torch_stream)
@@ -87,7 +96,7 @@ class GPUHumanoid:
 
     def _substep(self):
         wp.launch(pd_torque, dim=(self.worlds, 12), inputs=[self.data.qpos, self.data.qvel,
-                  self.wp_actions, self.wp_home, self.kp, self.kd, self.limit], outputs=[self.data.ctrl])
+                  self.wp_actions, self.wp_home, self.kp, self.kd, self.limit, self.action_scale], outputs=[self.data.ctrl])
         mjw.step(self.model, self.data)
 
     def reset(self, mask, randomize=False):
@@ -107,18 +116,18 @@ class GPUHumanoid:
         return torch.stack([2*(-z*x+w*y), -2*(z*y+w*x), 1-2*(w*w+z*z)], dim=1)
 
     def observation(self):
-        phase = self.time * (2 * torch.pi / 0.8)
-        fields = [self.qvel[:, 3:6] * 0.25, self.gravity(),
-                  self.command * torch.tensor([2, 2, 0.25], device='cuda'),
-                  self.qpos[:, 7:] - self.home, self.qvel[:, 6:] * 0.05,
+        phase = self.time * (2 * torch.pi / self.gait_period_s)
+        fields = [self.qvel[:, 3:6] * self.ang_vel_scale, self.gravity(),
+                  self.command * self.cmd_scale,
+                  self.qpos[:, 7:] - self.home, self.qvel[:, 6:] * self.dof_vel_scale,
                   self.actions, torch.sin(phase)[:, None], torch.cos(phase)[:, None]]
-        if self.observation_size >= 50:
+        if self.observation_size == 50:
             # 50-dim interface (GAIT_MEASUREMENT_20260918): the reward tracks body
             # linear velocity and pelvis height, which the 47-dim layout never made
             # observable. Appended at the end so 47-dim checkpoints keep their
             # column meaning; new encoder columns start at zero (expand_observation).
-            fields += [self.qvel[:, 0:2] * 0.25,
-                       (self.qpos[:, 2] - self.initial_qpos[2])[:, None]]
+            fields += [self.qvel[:, 0:2] * self.linear_velocity_scale,
+                       (self.qpos[:, 2] - self.height_reference)[:, None]]
         return torch.cat(fields, dim=1)
 
     def step(self, action):
