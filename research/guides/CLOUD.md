@@ -108,6 +108,10 @@ cd /root/autodl-tmp/neuromechfly
 
 Windows 端使用 `./cloud.ps1 Preview` 恢复隧道与预览，`./cloud.ps1 Status` 查看状态。SSH 目标用 `-CloudHost user@host -CloudPort 12345` 传入，或一次性写入 `runs/cloud/target.json`（git-ignored），格式 `{"host": "user@host", "port": "12345"}`。训练有时间上限；预览保持在线时实例继续计费。停止训练不会自动关闭整个云实例。
 
+### 保留 GPU 资源（2026-09-21 用户偏好）
+
+训练结束或短暂空闲时保留实例，避免释放 GPU 后长时间等待空闲卡。关机、释放或切换无卡模式由用户明确决定，执行规则见仓库 `AGENTS.md` 的「云实例保留」。预算要计入这段空闲保留时间；接近上限前提醒用户确定后续安排。
+
 ## 来源
 
 - [MaleCNS](https://male-cns.janelia.org/)

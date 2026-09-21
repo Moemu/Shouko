@@ -17,6 +17,11 @@
 - 本地启动：`.\start.ps1 [-Body g1|yumi] [-Device cuda|cpu] [-Port 8740]`；停止 `.\stop.ps1`。双环境：`.venv`（CPU）/`.venv-gpu`（CUDA）。
 - 云端：`.\cloud.ps1 Status|Preview|Train|Sync`，SSH 目标经 `-CloudHost/-CloudPort` 参数或 `runs/cloud/target.json`（git-ignored）传入。
 
+## 云实例保留
+
+- GPU 资源可能长期无空闲。训练结束或暂时无任务时，默认保留实例，不自行关机、释放 GPU 或切换无卡模式；需要释放时由用户明确决定。
+- 预算包含保留实例的空闲费用。接近预算上限前提醒用户，提前确定继续保留的预算或释放时间；停止训练不等于停止计费。
+
 ## 硬约束
 
 1. **隐私红线**：任何入库文件不得出现真实 SSH 主机/端口、用户名路径（`C:\Users\...`）、聊天记录路径等个人信息。云端目标只存在 `runs/cloud/target.json`（已 ignore）。写实验记录时用占位符（如 `root@<AutoDL 主机>`）。
@@ -47,5 +52,6 @@
 
 - 训练/评估逻辑：`research/REPORT.md`（方法与边界）、`research/guides/LOCAL.md`、`guides/CLOUD.md`。
 - 身体与角色：`research/avatar/YUMI.md`、`YUMI_BODY.md`（VRM 许可约束见 `THIRD_PARTY.md`，署名不可去除）。
-- 当前实验状态：`research/experiments/PPO_OBS50_20260920.md`（最新编年，ppo17：50 维观测热启动续训、棘轮统计缺陷发现）。
+- 当前实验状态：`research/experiments/GPU_CALIBRATION_20260921.md`（最新编年：PPO 状态迁移、冻结梯度提速与四组短训复测，尚无稳定提升）；前序见 `PPO_OBS50_20260920.md`。
+- 新观测后续：`research/experiments/INPUT_LEARNING_AUDIT_20260921.md`（CPU 审计完成；用户要求完整连接组对照留待云端，尚未开始新一轮在线训练）。
 - 双语说明：`README.md` / `README.zh.md` 改动需保持一致。
