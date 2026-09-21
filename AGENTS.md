@@ -47,5 +47,5 @@
 
 - 训练/评估逻辑：`research/REPORT.md`（方法与边界）、`research/guides/LOCAL.md`、`guides/CLOUD.md`。
 - 身体与角色：`research/avatar/YUMI.md`、`YUMI_BODY.md`（VRM 许可约束见 `THIRD_PARTY.md`，署名不可去除）。
-- 当前实验状态：`research/experiments/GAIT_MEASUREMENT_20260918.md`（最新编年，Step 0 步态测量与提案裁决）。
+- 当前实验状态：`research/experiments/PPO_OBS50_20260920.md`（最新编年，ppo17：50 维观测热启动续训、棘轮统计缺陷发现）。
 - 双语说明：`README.md` / `README.zh.md` 改动需保持一致。
