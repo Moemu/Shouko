@@ -2,18 +2,30 @@
 
 **English** · [简体中文](README.zh.md)
 
-**We trained a fruit fly to drive an anime girl's body. Here is the training process, and how to run and train it locally.**
+**We trained a fruit fly connectome network to control Yumi's legs for flat-ground walking. Here is the training process, and how to run and train it locally.**
 
 Her full name is ショウジョウバエ. A public male *Drosophila* connectome dataset is her brain; the girl is the VRM character [Yumi](research/avatar/YUMI.md). Everything runs in a MuJoCo physics simulation.
 
-| G1 body (pixiv sample avatar) | Yumi body |
+## Status preview
+
+**Current milestone: Yumi lower-limb walking on flat ground.** The policy controls 12 hip, knee and ankle joints, six per leg. The upper body is fixed to the pelvis in the physics model. Visible arm swing is display animation; the policy does not control the arms or use them for balance.
+
+| G1 lower-limb walking (earlier stage; pixiv sample avatar) | Yumi lower-limb walking (current stage) |
 |---|---|
-| ![G1 body driven by the full connectome](assets/preview-g1.png) | ![Yumi body driven by the full connectome](assets/preview-yumi.png) |
+| ![G1 lower-limb walking preview](assets/preview-g1.png) | ![Yumi lower-limb walking preview; arm motion is display animation](assets/preview-yumi.png) |
+
+| Stage | Scope and status | Preview / acceptance evidence |
+|---|---|---|
+| **Current: lower-limb walking** | Yumi flat-ground walking; accepted checkpoint `a7a4281f` | Preview above; results below |
+| Next stage — reserved | Scope and acceptance criteria to be confirmed | Pending |
+| Later stage — reserved | Fill in after the stage is confirmed | Pending |
+
+Future rows reserve space for confirmed stages. They do not commit to a schedule or mark candidate research as implemented.
 
 ## Overview
 We set out to validate one engineering chain: **turn a fruit fly's real neural wiring into a control network, and let it drive a walking body.**
 
-A fly's **connectome** records which neuron connects to which. It carries no brain function by itself. This project imports that wiring list as a neural network, trains it to output 12 joint targets, hands them to MuJoCo for gravity and contact, and lets the character skeleton follow the same physical state.
+A fly's **connectome** records which neuron connects to which. It carries no brain function by itself. This project imports that wiring list as a neural network, trains it to output 12 lower-limb joint targets, hands them to MuJoCo for gravity and contact, and lets the character skeleton follow the same physical state.
 
 The data is [MaleCNS v1.0](https://male-cns.janelia.org/): **166,700 neurons and 25,582,938 connections**. The project has gone through three generations:
 
@@ -21,11 +33,13 @@ The data is [MaleCNS v1.0](https://male-cns.janelia.org/): **166,700 neurons and
 |---|---|---|---|
 | Subgraph prototype | 8,192 neurons | G1 proxy + frozen gait policy | Accepted |
 | Cloud full connectome | Full connectome | G1 proxy | Accepted |
-| **Current mainline** | Full connectome | **Yumi body** | Accepted, real-time local preview |
+| **Current mainline** | Full connectome | **Yumi lower limbs** | Flat-ground walking accepted; real-time local preview |
 
-### Results
+### Lower-limb walking results
 
-| | Full-graph G1 body | Yumi body |
+These results apply to the listed walking checkpoints. They do not validate upper-limb control, running or natural human gait.
+
+| | Full-graph G1 body | Yumi lower-limb walking |
 |---|---|---|
 | 9 fresh initial states × 30 s | 9/9 | 9/9 |
 | 120 s continuous walk | 55.40 m | 65.55 m (0.13 m lateral drift) |
@@ -41,7 +55,7 @@ A same-scale random-network control, rough terrain, starting and stopping, upper
 
 ### Future work
 
-Proposals come from the technical reviews in `research/experiments/`.
+The following are candidate directions from the technical reviews in `research/experiments/`. They are not confirmed stages or accepted capabilities. Add a stage to the status table after its scope and acceptance criteria are agreed.
 
 **Upper limbs.** Above the pelvis, the chest, neck, head and both arms are one 25.7 kg capsule welded to the pelvis, leaving 13 bodies in the physics model; arm swing is a frontend JS tween driven by leg angle and takes no part in balance. Running cannot be built on that: a leg kicking forward at speed generates a large yaw moment, and without counter-swinging arms acting as a momentum flywheel the torso whips sideways and the character falls. Once both feet leave the ground, ground reaction moments are zero and arm swing is the only way to tune the landing angle in the air.
 
@@ -63,7 +77,7 @@ Data-labelled sensory neurons
     ↓
 Data-labelled VNC / CB motor neurons (readout)
     ↓
-12 joint targets → PD torque → MuJoCo gravity and contact
+12 lower-limb joint targets → PD torque → MuJoCo gravity and contact
     ↓
 Pose feedback; the VRM skeleton displays the same physical state
 ```
@@ -96,7 +110,7 @@ cd D:\Project\Neuromechfly
 
 Open the [studio](http://127.0.0.1:8740). The VRM character on the page walks in real time, with every action computed on your machine.
 
-Both panels are the same live studio: the left pane renders the physics-driven VRM character and gait stats, the right pane shows 2,048 sampled neuron activity rates of the 166,700-neuron connectome.
+Both panels are the same live studio: the left pane displays lower-limb walking and gait stats. Arm motion is display animation. The right pane shows 2,048 sampled neuron activity rates of the 166,700-neuron connectome.
 
 - Defaults to the G1 body and CUDA. The page's top bar switches between G1 and Yumi live; training must not be running.
 - `.\stop.ps1` stops it. The startup log is `runs/cloud/server-error.log` (or `runs/yumi/server-error.log`).
