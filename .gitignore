@@ -21,3 +21,6 @@ web/public/yumi.vrm
 
 # 云端目标（私有 SSH 端点），仅本机保存
 runs/cloud/target.json
+
+# Optional third-party reference cache; never publish downloaded source copies.
+/.cache/references/

@@ -1,0 +1,94 @@
+{
+  "collected_on": "2026-09-21",
+  "note": "Live website is not proven to match the pinned public Git commit. Hashes identify the retrieved bytes, not a release.",
+  "sources": [
+    {
+      "url": "https://hae.satoru.net/tech/?lang=en",
+      "collected_on": "2026-09-21",
+      "kind": "live_deployment_unpinned",
+      "content_type": "text/html",
+      "resolved_url": "https://hae.satoru.net/tech/?lang=en",
+      "retrieval": "ok",
+      "bytes": 136028,
+      "sha256": "4edace36b0ccda4229caad300d9c4febdda832ad715c56a8ac32b3a6f781954b"
+    },
+    {
+      "url": "https://hae.satoru.net/faq/?lang=en",
+      "collected_on": "2026-09-21",
+      "kind": "live_deployment_unpinned",
+      "content_type": "text/html",
+      "resolved_url": "https://hae.satoru.net/faq/?lang=en",
+      "retrieval": "ok",
+      "bytes": 60577,
+      "sha256": "e6395d718acd0584ba9066d2c1735b2b39bb32d69224d31b526b404d74d761af"
+    },
+    {
+      "url": "https://hae.satoru.net/juku/hand.mjs",
+      "collected_on": "2026-09-21",
+      "kind": "live_deployment_unpinned",
+      "content_type": "application/javascript",
+      "resolved_url": "https://hae.satoru.net/juku/hand.mjs",
+      "retrieval": "ok",
+      "bytes": 7335,
+      "sha256": "c6b0e60d3e165948b2163031e79326da301840ab9d375b21a6e27a91ce62b062",
+      "review_status": "selected_sections_read_not_executed"
+    },
+    {
+      "url": "https://hae.satoru.net/ningen/school/migrate_reflex.mjs",
+      "collected_on": "2026-09-21",
+      "kind": "live_deployment_unpinned",
+      "content_type": "application/javascript",
+      "resolved_url": "https://hae.satoru.net/ningen/school/migrate_reflex.mjs",
+      "retrieval": "ok",
+      "bytes": 4073,
+      "sha256": "10f2a53b3dce76213f415a26bc01a07911015789d70be9d7b5e067f06b686771",
+      "review_status": "selected_sections_read_not_executed"
+    },
+    {
+      "url": "https://hae.satoru.net/ningen/web/reflex.mjs",
+      "collected_on": "2026-09-21",
+      "kind": "live_deployment_unpinned",
+      "content_type": "application/javascript",
+      "resolved_url": "https://hae.satoru.net/ningen/web/reflex.mjs",
+      "retrieval": "ok",
+      "bytes": 3918,
+      "sha256": "ffd2b495d64536587b1e1cee7849e03083b88fa490aac70b725fb4a130c454b9",
+      "review_status": "selected_sections_read_not_executed"
+    },
+    {
+      "url": "https://hae.satoru.net/ningen/school/chooser.mjs",
+      "collected_on": "2026-09-21",
+      "kind": "live_deployment_unpinned",
+      "content_type": "application/javascript",
+      "resolved_url": "https://hae.satoru.net/ningen/school/chooser.mjs",
+      "retrieval": "ok",
+      "bytes": 8692,
+      "sha256": "b8d78c464bf6a2e60f0f98812dc94951d53c941ef652ad98ec684a78e74da1d2",
+      "review_status": "downloaded_and_hash_compared_not_semantically_audited"
+    },
+    {
+      "url": "https://hae.satoru.net/ningen/web/brain-worker.js",
+      "collected_on": "2026-09-21",
+      "kind": "live_deployment_unpinned",
+      "content_type": "application/javascript",
+      "resolved_url": "https://hae.satoru.net/ningen/web/brain-worker.js",
+      "retrieval": "ok",
+      "bytes": 12956,
+      "sha256": "f262d9efdd5c9d75f4746cdf78c01aa64b9eaa84f9a73618ab585741f35f72e9",
+      "review_status": "downloaded_and_hash_compared_not_semantically_audited"
+    },
+    {
+      "url": "https://hae.satoru.net/ningen/web/data/tame783.json",
+      "collected_on": "2026-09-21",
+      "kind": "live_deployment_unpinned",
+      "content_type": "application/json",
+      "resolved_url": "https://hae.satoru.net/ningen/web/data/tame783.json",
+      "retrieval": "ok",
+      "bytes": 1113,
+      "sha256": "cb415333073492a3e76e16a9e606edb07b99715dd983f93f8232d18c4bb0af1b"
+    }
+  ],
+  "storage": "References and hashes only. Optional local objects: .cache/references/objects/<sha256>, relative to repository root. Cache presence is not guaranteed.",
+  "update_policy": "Baseline evidence collected on 2026-09-21. Preserve these records; record changed sources in dated review deltas, without copying unchanged inventories or source bodies.",
+  "license_status": "Coverage of these exact deployment bytes is unverified. Repository MIT must not be assumed to cover them. No source bodies are distributed here."
+}

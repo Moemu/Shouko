@@ -1,0 +1,55 @@
+{
+  "collected_on": "2026-09-21",
+  "status": "existing_local_record_not_rerun",
+  "source": "runs/local/heldout_yumi.json",
+  "source_sha256": "0c7d5e7aa792ab9b018c850c3c8847927efb4cb2cb4e7993ea98fe398db53f95",
+  "checkpoint_sha256": "a7a4281f604c82831bf947fe599d490dd5d223bf479c9c44289e7b4d76508d97",
+  "graph_sha256": "72a6a9ade0117063d3b2515b12ceec3633d9f429ae43f0f8b73b2066a9e51b89",
+  "teacher_used": false,
+  "successes": 9,
+  "attempts": 9,
+  "criterion": "No fall; speed error <= 0.15 m/s; >= 0.5 strikes/s per foot; >= 1 alternating strike/s; upright >= 0.7; lateral deviation <= max(1m, 20% target forward distance).",
+  "controls": [
+    {
+      "lesion": "disconnected",
+      "seed": 8001,
+      "seconds": 0.9600000000000007,
+      "fallen": true
+    },
+    {
+      "lesion": "disconnected",
+      "seed": 8002,
+      "seconds": 0.9800000000000008,
+      "fallen": true
+    },
+    {
+      "lesion": "disconnected",
+      "seed": 8003,
+      "seconds": 0.9800000000000008,
+      "fallen": true
+    }
+  ],
+  "perturbations": [
+    {
+      "seed": 8201,
+      "success": true
+    },
+    {
+      "seed": 8202,
+      "success": true
+    },
+    {
+      "seed": 8203,
+      "success": true
+    }
+  ],
+  "long_walks": [
+    {
+      "seed": 8101,
+      "seconds": 119.99999999990173,
+      "forward_m": 65.5508235472199,
+      "lateral_m": 0.134142181491116,
+      "fallen": false
+    }
+  ]
+}
