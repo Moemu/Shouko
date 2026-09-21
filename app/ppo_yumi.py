@@ -12,6 +12,7 @@ measured connectome edges exactly as in DAgger training.
 import argparse
 import json
 import os
+import time
 from pathlib import Path
 
 import numpy as np
@@ -38,6 +39,12 @@ class Value(nn.Module):
 
     def forward(self, x):
         return self.net(x).squeeze(-1)
+
+
+def freeze_policy_core(policy):
+    """Only the bias, encoder and readout belong to the frozen-core optimizer."""
+    policy.edge_delta.requires_grad_(False)
+    policy.normalizer.requires_grad_(False)
 
 
 def quad_yaw(qpos):
@@ -92,6 +99,8 @@ def transfer_slope(result):
 
 def train(args):
     global RUNS
+    if args.max_iterations is not None and args.max_iterations < 1:
+        raise ValueError('Maximum iterations must be positive')
     if args.value_abort_vloss > 0 and args.value_warmup < 6:
         raise ValueError('The value gate requires at least six warmup iterations')
     if args.runs_dir:
@@ -136,13 +145,13 @@ def train(args):
     log_std = nn.Parameter(torch.full((12,), np.log(args.std0), device=device))
 
     if args.freeze_brain:
-        # Freeze ONLY the 25.6M synaptic edges (the topology stabilizer).
+        # Freeze the synaptic edges and normalization parameters.
         # Train neuron_bias (166k operating-point thresholds) + readout +
         # encoder (~210k params total). Readout-only (40k) was under-capacity
         # for the new straight-leg gait (ppo12 plateaued at score 0.2-0.3);
         # full-network updates destroy the recurrent attractor within 10-15
         # iterations (ppo9/ppo10/ppo13). This is the stable middle ground.
-        policy.edge_delta.requires_grad = False
+        freeze_policy_core(policy)
         optimizer = torch.optim.Adam([
             # neuron_bias sits inside a 4-step recurrent tanh; large updates
             # saturate the activations and shatter the limit cycle (~iter 30
@@ -159,6 +168,7 @@ def train(args):
             dict(params=[log_std], lr=args.lr),
         ], foreach=False)
     value_opt = torch.optim.Adam(value.parameters(), lr=1e-3)
+    optimized_parameters = [p for group in optimizer.param_groups for p in group['params']]
     base_lrs = [g['lr'] for g in optimizer.param_groups]
     parameter_names = {id(p): n for n, p in policy.named_parameters()}
     parameter_names[id(log_std)] = 'log_std'
@@ -278,11 +288,15 @@ def train(args):
     env_steps = 0  # This launch's training rollout transitions; excludes evaluations.
     warmup_end = args.value_warmup
     value_gate_open = False
-    while control.safe_point(write_status) and not control.budget_exceeded():
+    while (control.safe_point(write_status) and not control.budget_exceeded() and
+           (args.max_iterations is None or iteration < args.max_iterations)):
         write_status('training', iteration=iteration, env_steps=env_steps)
+        rollout_started = time.perf_counter()
         # ---- collect ----
         obs_buf, act_buf, logp_buf, rew_buf, val_buf, done_buf = [], [], [], [], [], []
-        knee_sum = height_sum = 0.0; pose_count = 0
+        knee_sum = torch.zeros((), device=device)
+        height_sum = torch.zeros((), device=device)
+        pose_count = 0
         policy.eval()
         with torch.no_grad():
             for t in range(args.steps):
@@ -338,7 +352,7 @@ def train(args):
                           + walk_gate * (args.posture_w * height_ramp
                                          - args.knee_w * knee_tax))
                 reward = torch.where(fallen, reward - 1.0, reward)
-                knee_sum += float(knee.mean()); height_sum += float(height.mean()); pose_count += 1
+                knee_sum += knee.mean(); height_sum += height.mean(); pose_count += 1
                 obs_buf.append(obs); act_buf.append(action); logp_buf.append(dist.log_prob(action).sum(-1))
                 rew_buf.append(reward); val_buf.append(val); done_buf.append(fallen.float())
                 if bool(fallen.any()):
@@ -362,8 +376,11 @@ def train(args):
         obs_b = torch.cat(obs_buf); act_b = torch.cat(act_buf); logp_b = torch.cat(logp_buf)
         adv_b = advantages.reshape(-1); ret_b = returns.reshape(-1)
         adv_b = (adv_b - adv_b.mean()) / (adv_b.std() + 1e-8)
+        torch.cuda.synchronize()
+        rollout_seconds = time.perf_counter() - rollout_started
 
         # ---- update ----
+        update_started = time.perf_counter()
         policy.train()
         # Value warmup: with a fresh value network the first advantages are
         # noise; updating the policy on them destroys a good baseline within a
@@ -371,6 +388,7 @@ def train(args):
         policy_frozen = iteration < warmup_end
         pi_loss_total = v_loss_total = kl_total = clipfrac_total = 0.0
         count = 0
+        policy_update_samples = 0
         stop_early = False
         for epoch in range(args.epochs * (2 if policy_frozen else 1)):
             if stop_early:
@@ -392,8 +410,9 @@ def train(args):
                     pi_loss = -torch.min(s1, s2).mean() - args.entropy * dist.entropy().sum(-1).mean()
                     optimizer.zero_grad(set_to_none=True)
                     pi_loss.backward()
-                    torch.nn.utils.clip_grad_norm_([p for p in policy.parameters() if p.requires_grad] + [log_std], 5.0, foreach=False)
+                    torch.nn.utils.clip_grad_norm_(optimized_parameters, 5.0, foreach=False)
                     optimizer.step()
+                    policy_update_samples += len(mb)
                     pi_loss_total += float(pi_loss)
                     kl_total += float(approx_kl); clipfrac_total += float(clipfrac)
                 v = value((obs_b[mb] - policy.obs_mean) / policy.obs_std)
@@ -406,6 +425,8 @@ def train(args):
                     stop_early = True
                     break
         iteration += 1
+        torch.cuda.synchronize()
+        update_seconds = time.perf_counter() - update_started
         env_steps += args.steps * env.worlds
         frac = min(control.active_elapsed() / args.max_seconds, 1.0)
         for group, base in zip(optimizer.param_groups, base_lrs):
@@ -416,8 +437,13 @@ def train(args):
                    lr=optimizer.param_groups[0]['lr'], kl_stop=stop_early, value_warmup=policy_frozen,
                    learning_rates=[dict(parameters=names, lr=group['lr'])
                                    for names, group in zip(optimizer_names, optimizer.param_groups)],
-                   mean_knee=round(knee_sum / max(pose_count, 1), 3),
-                   mean_height=round(height_sum / max(pose_count, 1), 3),
+                   mean_knee=round(float(knee_sum) / max(pose_count, 1), 3),
+                   mean_height=round(float(height_sum) / max(pose_count, 1), 3),
+                   rollout_seconds=rollout_seconds, update_seconds=update_seconds,
+                   policy_update_samples=policy_update_samples,
+                   policy_optimizer_steps=0 if policy_frozen else count,
+                   rollout_samples_per_second=args.steps * env.worlds / rollout_seconds,
+                   training_samples_per_second=args.steps * env.worlds / (rollout_seconds + update_seconds),
                    elapsed=control.wall_elapsed(), active_elapsed=control.active_elapsed(),
                    env_steps=env_steps)
         history.append(row)
@@ -477,6 +503,9 @@ def train(args):
             reset_extras(torch.ones(env.worlds, dtype=torch.bool, device=device))
     save_checkpoint('last', status.get('evaluation'), updates=iteration, final=True)
     write_status('stopped' if control.finish_requested else 'budget_finished', iteration=iteration, env_steps=env_steps,
+                 stop_reason=('requested' if control.finish_requested else
+                              'iteration_limit' if args.max_iterations is not None and iteration >= args.max_iterations
+                              else 'time_budget'),
                  note='PPO fine-tune ended. Walking acceptance requires the held-out evaluation.')
 
 
@@ -520,6 +549,8 @@ if __name__ == '__main__':
     parser.add_argument('--eval-seconds', type=float, default=30)
     parser.add_argument('--eval-every', type=int, default=5)
     parser.add_argument('--max-seconds', type=float, default=270)
+    parser.add_argument('--max-iterations', type=int, default=None,
+                        help='optional update-count budget, in addition to the time budget')
     parser.add_argument('--seed', type=int, default=2026)
     parser.add_argument('--resume', default=None,
                         help='checkpoint to warm start from (default <runs-dir>/best.pt)')

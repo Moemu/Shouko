@@ -38,8 +38,10 @@ class SparseMessage(torch.autograd.Function):
         n = activity.shape[0]
         matrix = torch.sparse_csr_tensor(ptr, pre, values, size=(n, n), check_invariants=False)
         gradient = gradient.contiguous()
-        edge_gradient = torch.sparse.sampled_addmm(matrix, gradient, activity.T, beta=0).values()
-        activity_gradient = torch.sparse.mm(matrix.transpose(0, 1), gradient)
+        edge_gradient = (torch.sparse.sampled_addmm(matrix, gradient, activity.T, beta=0).values()
+                         if ctx.needs_input_grad[0] else None)
+        activity_gradient = (torch.sparse.mm(matrix.transpose(0, 1), gradient)
+                             if ctx.needs_input_grad[1] else None)
         return edge_gradient, activity_gradient, None, None
 
 

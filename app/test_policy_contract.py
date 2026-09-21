@@ -11,7 +11,7 @@ import numpy as np
 import torch
 
 from app import full_brain
-from app.full_brain import ConnectomePolicy, checkpoint_configuration
+from app.full_brain import ConnectomePolicy, SparseMessage, checkpoint_configuration
 from app.sim import Body
 
 
@@ -139,8 +139,37 @@ def check_evidence_binding():
             assert studio.evaluation().status_code == 200
 
 
+def check_frozen_edges():
+    from app.gpu_benchmark import sparse_check
+    sparse_check('cpu')
+    ptr = torch.tensor([0, 1, 3], dtype=torch.int32)
+    pre = torch.tensor([1, 0, 1], dtype=torch.int32)
+    values = torch.tensor([0.4, -0.2, 0.3])
+    activity = torch.tensor([[0.2, -0.3], [0.7, 0.4]], requires_grad=True)
+    reference_activity = activity.detach().clone().requires_grad_()
+    reference = torch.tensor([[0., 0.4], [-0.2, 0.3]]) @ reference_activity
+    with patch.object(torch.sparse, 'sampled_addmm', side_effect=AssertionError('Frozen edge gradient requested')):
+        result = SparseMessage.apply(values, activity, ptr, pre)
+        result.square().sum().backward()
+    reference.square().sum().backward()
+    torch.testing.assert_close(result, reference)
+    torch.testing.assert_close(activity.grad, reference_activity.grad)
+    from app.ppo_yumi import freeze_policy_core
+    with tiny_graph():
+        policy = ConnectomePolicy(device='cpu')
+        freeze_policy_core(policy)
+        expected = {'neuron_bias', 'encoder.weight', 'readout.weight', 'readout.bias'}
+        assert {name for name, p in policy.named_parameters() if p.requires_grad} == expected
+        optimizer = torch.optim.Adam([p for p in policy.parameters() if p.requires_grad])
+        for _ in range(2):
+            optimizer.zero_grad(set_to_none=True)
+            policy(torch.randn(2, 47))[0].square().sum().backward()
+            assert policy.normalizer.weight.grad is None and policy.normalizer.bias.grad is None
+
+
 if __name__ == '__main__':
     check_observations()
     check_reload()
     check_evidence_binding()
+    check_frozen_edges()
     print('Policy contract: legacy, 47/50 reload, native/batched observations, CPU episode OK')

@@ -77,10 +77,10 @@ def restore_optimizer(optimizer, saved, saved_names=None, live_names=None):
 
 
 @torch.no_grad()
-def evaluate(model, env, seconds=30, record=False):
+def evaluate(model, env, seconds=30, record=False, seed=1001):
     mask = torch.ones(env.worlds, device='cuda', dtype=torch.bool)
     env.reset(mask)
-    generator = torch.Generator(device='cuda').manual_seed(1001)
+    generator = torch.Generator(device='cuda').manual_seed(seed)
     env.qvel[:, :2] = torch.randn(env.worlds, 2, device='cuda', generator=generator) * 0.015
     env.command.zero_()
     env.command[:, 0] = torch.tensor([0.35, 0.5, 0.65], device='cuda').repeat((env.worlds+2)//3)[:env.worlds]
@@ -118,7 +118,7 @@ def evaluate(model, env, seconds=30, record=False):
         env.reset(~alive)
     speed = forward / duration.clamp_min(env.dt)
     target = env.command[:, 0]
-    results = [dict(seed=1001, environment=i, target_speed=float(target[i]), seconds=float(duration[i]),
+    results = [dict(seed=seed, environment=i, target_speed=float(target[i]), seconds=float(duration[i]),
                     mean_speed=float(speed[i]), forward_m=float(forward[i]),
                     minimum_height=float(min_height[i]), fallen=not bool(alive[i]),
                     lateral_m=float(lateral[i]),
