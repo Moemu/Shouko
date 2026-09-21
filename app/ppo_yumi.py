@@ -50,6 +50,36 @@ def checkpoint_observation_size(path):
     return int(checkpoint.get('observation_size') or 47)
 
 
+def same_weights(stored, live):
+    """Exact state-dict comparison; True when an evaluation is of unchanged weights."""
+    if not stored:
+        return False
+    live_cpu = {key: value.detach().cpu() for key, value in live.items()}
+    if set(stored) != set(live_cpu):
+        return False
+    return all(torch.equal(stored[key], live_cpu[key]) for key in stored)
+
+
+def transfer_slope(result):
+    """Per-command mean speeds and the cmd -> vx slope fitted across tiers.
+
+    Score on this lineage has a +-0.09 evaluation spread; the tier means and
+    their slope are the primary monitoring quantities for the 50-dim
+    experiment (observation closure should first move the dead 0.35 tier).
+    """
+    per_cmd = {}
+    for row in result.get('tests', []):
+        per_cmd.setdefault(round(row['target_speed'], 2), []).append(row['mean_speed'])
+    tiers = {cmd: round(sum(v) / len(v), 3) for cmd, v in sorted(per_cmd.items())}
+    if len(tiers) < 2:
+        return None, tiers
+    xs = list(tiers)
+    ys = [tiers[x] for x in xs]
+    mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
+    slope = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)
+    return round(slope, 3), tiers
+
+
 def train(args):
     global RUNS
     if args.runs_dir:
@@ -155,10 +185,15 @@ def train(args):
         h = ev.get('mean_height', 0.826)
         return ev['score'] + args.posture_select_w * min(max((h - 0.80) / 0.13, 0), 1)
 
-    def save_checkpoint(name, evaluation=None, updates=0, final=False):
+    def save_checkpoint(name, evaluation=None, updates=0, final=False, combined_bar=None):
         state_path = RUNS/('ppo_state_best.pt' if name == 'best' else 'ppo_state.pt')
-        train_full.atomic_model_save(policy, RUNS/f'{name}.pt',
-                                    dict(evaluation=evaluation, updates=updates, ppo=True, final=final),
+        extra = dict(evaluation=evaluation, updates=updates, ppo=True, final=final)
+        if combined_bar is not None:
+            # Honest selection bar: the mean the candidate was accepted under,
+            # so a later launch recomputes the same threshold instead of a
+            # lucky draw's combined value.
+            extra['combined_bar'] = combined_bar
+        train_full.atomic_model_save(policy, RUNS/f'{name}.pt', extra,
                                     dict(value=value.state_dict(), log_std=log_std.detach().cpu(),
                                          optimizer=optimizer.state_dict(), optimizer_names=optimizer_names,
                                          value_optimizer=value_opt.state_dict()), state_path,
@@ -170,21 +205,51 @@ def train(args):
         return
     write_status('evaluating', iteration=0)
     base = evaluate(policy, env, seconds=args.eval_seconds)
+    base_slope, base_tiers = transfer_slope(base)
+    base['transfer_slope'], base['per_cmd_mean_speed'] = base_slope, base_tiers
     print(json.dumps(dict(iteration=-1, successes=base['successes'], score=round(base['score'], 3),
-                          mean_height=round(base.get('mean_height', 0), 3))), flush=True)
-    best_combined = combined(base)
+                          mean_height=round(base.get('mean_height', 0), 3),
+                          transfer_slope=base_slope, per_cmd=base_tiers)), flush=True)
     best_path = RUNS/'best.pt'
-    old_combined = float('-inf')
+    stored_bar = None
+    same_as_best = False
     if best_path.exists():
         try:
-            old_combined = combined(torch.load(best_path, map_location='cpu', weights_only=True).get('extra', {}).get('evaluation'))
+            stored = torch.load(best_path, map_location='cpu', weights_only=True)
+            stored_extra = stored.get('extra') or {}
+            stored_bar = stored_extra.get('combined_bar')
+            if stored_bar is None:
+                stored_bar = combined(stored_extra.get('evaluation'))
+            same_as_best = same_weights(stored.get('state_dict'), policy.state_dict())
         except Exception as e:
             print(json.dumps(dict(best_load_warning=str(e))), flush=True)
-    if old_combined > best_combined:
-        best_combined = old_combined
-        print(json.dumps(dict(kept_historical_best=round(old_combined, 3), base_score=round(base['score'], 3))), flush=True)
+    if same_as_best:
+        # Re-evaluating unchanged weights must never raise the selection bar
+        # (winner's curse, PPO_OBS50_20260920: 0.844 -> 0.869 on identical
+        # tensors). Any stored number for these weights is just one draw;
+        # re-anchor to the fresh one and persist it as the explicit bar.
+        best_combined = combined(base)
+        save_checkpoint('best', base, updates=resumed.get('updates', 0), combined_bar=best_combined)
+        print(json.dumps(dict(reevaluation_reanchor=round(best_combined, 3),
+                              stale_stored_bar=None if stored_bar is None else round(stored_bar, 3))), flush=True)
+    elif stored_bar is not None and stored_bar > combined(base):
+        best_combined = stored_bar
+        print(json.dumps(dict(kept_historical_best=round(stored_bar, 3), base_score=round(base['score'], 3))), flush=True)
     else:
-        save_checkpoint('best', base, updates=resumed.get('updates', 0))
+        # Different weights taking over at startup face the same confirmation
+        # rule as mid-run candidates.
+        confirm = evaluate(policy, env, seconds=args.eval_seconds)
+        pair = (combined(base) + combined(confirm)) / 2
+        print(json.dumps(dict(ratchet_candidate=round(combined(base), 3),
+                              ratchet_confirm=round(combined(confirm), 3),
+                              ratchet_mean=round(pair, 3))), flush=True)
+        threshold = (stored_bar if stored_bar is not None else float('-inf')) + args.ratchet_margin
+        if pair > threshold:
+            best_combined = pair
+            save_checkpoint('best', base, updates=resumed.get('updates', 0), combined_bar=pair)
+        else:
+            best_combined = stored_bar if stored_bar is not None else combined(base)
+            print(json.dumps(dict(kept_historical_best=round(best_combined, 3))), flush=True)
     status['evaluation'] = base
 
     mask = torch.ones(env.worlds, dtype=torch.bool, device=device)
@@ -343,19 +408,46 @@ def train(args):
         print(json.dumps(row), flush=True)
         write_status('training', iteration=iteration, peak_vram_gib=torch.cuda.max_memory_allocated()/2**30)
 
+        if (args.value_abort_vloss > 0 and iteration == args.value_warmup
+                and len(history) >= 2):
+            # Pre-registered falsification point: if the value net cannot get
+            # its loss under the threshold even with exclusive training, the
+            # advantage signal stays noise and policy updates are skipped.
+            recent = [abs(h['v_loss']) for h in history[-min(5, len(history)):]]
+            v_ma = sum(recent) / len(recent)
+            print(json.dumps(dict(value_warmup_end=True, v_loss_ma=round(v_ma, 2),
+                                  abort_threshold=args.value_abort_vloss)), flush=True)
+            if v_ma > args.value_abort_vloss:
+                save_checkpoint('last', status.get('evaluation'), updates=iteration, final=True)
+                write_status('value_not_converged', iteration=iteration, v_loss_ma=round(v_ma, 2),
+                             note='Pre-registered abort: value loss above threshold after warmup; policy updates skipped.')
+                return
+
         if iteration % args.eval_every == 0:
             write_status('evaluating', iteration=iteration, env_steps=env_steps)
             result = evaluate(policy, env, seconds=args.eval_seconds, record=True)
             result['iteration'] = iteration
+            slope, tiers = transfer_slope(result)
+            result['transfer_slope'], result['per_cmd_mean_speed'] = slope, tiers
             atomic_json(RUNS/'evaluation.json', result)
             print(json.dumps(dict(iteration=iteration, successes=result['successes'],
                                   score=round(result['score'], 3),
                                   mean_height=round(result.get('mean_height', 0), 3),
-                                  mean_duration=round(result['mean_duration'], 1))), flush=True)
+                                  mean_duration=round(result['mean_duration'], 1),
+                                  transfer_slope=slope, per_cmd=tiers)), flush=True)
             save_checkpoint('last', result, updates=iteration)
             if combined(result) > best_combined:
-                best_combined = combined(result)
-                save_checkpoint('best', result, updates=iteration)
+                # Confirmation draw: accept on the mean only, and store the mean
+                # as the bar (single-eval max selection was the winner's curse).
+                confirm = evaluate(policy, env, seconds=args.eval_seconds)
+                pair = (combined(result) + combined(confirm)) / 2
+                print(json.dumps(dict(ratchet_candidate=round(combined(result), 3),
+                                      ratchet_confirm=round(combined(confirm), 3),
+                                      ratchet_mean=round(pair, 3), bar=round(best_combined, 3))), flush=True)
+                if pair > best_combined + args.ratchet_margin:
+                    best_combined = pair
+                    result['combined_bar'] = pair
+                    save_checkpoint('best', result, updates=iteration, combined_bar=pair)
             status['evaluation'] = result
             # Return to collection distribution after evaluation resets commands.
             env.reset(torch.ones(env.worlds, dtype=torch.bool, device=device), randomize=True)
@@ -398,6 +490,10 @@ if __name__ == '__main__':
                         help='target pelvis height (m); straight-leg is ~0.96')
     parser.add_argument('--posture-select-w', type=float, default=0.5,
                         help='weight of mean pelvis height in the best-checkpoint selection metric')
+    parser.add_argument('--ratchet-margin', type=float, default=0.03,
+                        help='mean of two evaluations must beat the bar by this much to take over best')
+    parser.add_argument('--value-abort-vloss', type=float, default=-1,
+                        help='abort before policy updates if mean v_loss over the last warmup iterations exceeds this')
     parser.add_argument('--eval-seconds', type=float, default=30)
     parser.add_argument('--eval-every', type=int, default=5)
     parser.add_argument('--max-seconds', type=float, default=270)
