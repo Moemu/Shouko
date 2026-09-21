@@ -1,0 +1,5 @@
+{
+  "available": false,
+  "reason": "SSH connection closed; current remote state unverified",
+  "observed_at": "2026-09-21T14:16:06.375774+08:00"
+}

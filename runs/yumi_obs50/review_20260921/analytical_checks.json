@@ -1,0 +1,33 @@
+{
+  "kind": "analytical_counterexamples_not_training_results",
+  "noise": {
+    "configured_std": 0.08,
+    "current_diagnostic_std": 1.0512710963760241,
+    "correct_std": 0.07999999999999999
+  },
+  "gae_constant_reward": {
+    "reward": 2.0,
+    "gamma": 0.99,
+    "lambda": 0.95,
+    "exact_value": 199.99999999999983,
+    "td_residual": 0.0,
+    "gae_advantage_with_exact_value": 0.0,
+    "lambda_return": 200.0,
+    "truncated_MC_128_without_bootstrap": 144.7496664601582
+  },
+  "claimed_variance_explanation": {
+    "hypothetical_mse_range": [
+      80,
+      100
+    ],
+    "hypothetical_target_std_range": [
+      15,
+      25
+    ],
+    "one_minus_mse_over_variance_range": [
+      0.5555555555555556,
+      0.872
+    ],
+    "note": "Arithmetic check of a conversation claim; target variance was not measured."
+  }
+}
