@@ -2,7 +2,7 @@
 
 > 提出时间：2026-09-16
 > 提出方：独立审查。逐行读 `app/full_brain.py`、`app/gpu_body.py`、`app/ppo_yumi.py`、`app/train_full.py`、`app/sim.py`，并自行计算 `runs/local/heldout_yumi.json`（深蹲世系 30 s 逐种子）与 `runs/yumi/replay.json`（真实关节轨迹）后形成。
-> 文档定位：与 `NEXT_STEP_PROPOSAL_20260916(GLM5.3-Flash).md`、`experiments/PPO_POSTURE_20260916.md` 末尾"下一步候选"**并列的第三方方案**。所有论断附代码行号或数据出处；推断处显式标注；与另两份方案的分歧集中在 §5。**结论与他们不同：我认为瓶颈既不在奖励权重，也不在"固定步频"这个接口本身，而在回路里缺传感器。**
+> 文档定位：与 [GLM5.3-Flash-步态接口与直立提速](../2026-09-16/GLM5.3-Flash-步态接口与直立提速.md)、`experiments/PPO_POSTURE_20260916.md` 末尾"下一步候选"**并列的第三方方案**。所有论断附代码行号或数据出处；推断处显式标注；与另两份方案的分歧集中在 §5。**结论与他们不同：我认为瓶颈既不在奖励权重，也不在"固定步频"这个接口本身，而在回路里缺传感器。**
 
 ---
 
@@ -146,7 +146,7 @@ LayerNorm 对整体增益是**尺度不变**的。若连接组表达"走快一�
 
 ## 4. 与另两份方案的关系
 
-`NEXT_STEP_PROPOSAL_20260916(GLM5.3-Flash).md` 的 Step 1（课程化 + 追踪核锐化 + 膝惩罚支撑腿门控）与 `experiments/PPO_POSTURE_20260916.md` 的"下一步候选 1"（vx 1.5→2.5、指令收窄 0.4~0.75）本质相同，是我的**子集或无关项**，不冲突。分歧点：
+[GLM5.3-Flash-步态接口与直立提速](../2026-09-16/GLM5.3-Flash-步态接口与直立提速.md) 的 Step 1（课程化 + 追踪核锐化 + 膝惩罚支撑腿门控）与 `experiments/PPO_POSTURE_20260916.md` 的"下一步候选 1"（vx 1.5→2.5、指令收窄 0.4~0.75）本质相同，是我的**子集或无关项**，不冲突。分歧点：
 
 | 议题 | GLM5.3-Flash 提案 | 另一 Agent 方案 | 本提案 |
 |---|---|---|---|
@@ -224,7 +224,7 @@ LayerNorm 对整体增益是**尺度不变**的。若连接组表达"走快一�
 
 **数据**：`runs/local/heldout_yumi.json`（深蹲世系 30 s 逐种子，hash a7a4281f，本轮 §2.1/§2.2/§2.3 的一手来源）、`runs/yumi/replay.json`（world 0 关节轨迹，§2.2）、`runs/yumi/evaluation.json`（10 s 评估，§2.4 的否证对象）、`runs/yumi/training.json`、`runs/local/heldout.json`（G1 代理世系，25.58 万——非本身体）。
 
-**文档**：`research/REPORT.md`、`research/guides/{LOCAL,CLOUD}.md`、`research/avatar/{YUMI,YUMI_BODY}.md`、`research/experiments/{PPO_POSTURE_20260916,POSTURE_AND_STABILITY_REVIEW_20260916}.md`、`research/NEXT_STEP_PROPOSAL_20260916(GLM5.3-Flash).md`。
+**文档**：`research/REPORT.md`、`research/guides/{LOCAL,CLOUD}.md`、`research/avatar/{YUMI,YUMI_BODY}.md`、`research/experiments/{PPO_POSTURE_20260916,POSTURE_AND_STABILITY_REVIEW_20260916}.md`、[GLM5.3-Flash-步态接口与直立提速](../2026-09-16/GLM5.3-Flash-步态接口与直立提速.md)。
 
 **推断声明**：
 - §2.1 中直立世系"增益≈0"由文档区间 0.18–0.23 m/s 反推，未核对云端逐种子数据。

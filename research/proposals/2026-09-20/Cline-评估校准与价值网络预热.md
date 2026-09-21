@@ -2,7 +2,7 @@
 
 > 提出时间：2026-09-20
 > 提出方：Cline（独立阅读 `app/ppo_yumi.py`、`app/gpu_body.py`、`app/full_brain.py`、`app/train_full.py`、`app/expand_observation.py`、云端 `runs/yumi_obs50/burst50.log` 与 `verify_best.json` 实测数据后形成，未参考其他提案的结论）
-> 文档定位：与 `NEXT_STEP_PROPOSAL_20260916(GLM5.3-Flash).md`、`NEXT_STEP_PROPOSAL_20260916(DeepSeek-v4.1-Flash).md`、`NEXT_STEP_PROPOSAL_20260916(Kimi).md` 并列的第五方方案，供多 Agent 讨论定稿。所有关键论断附代码行号或数据出处；推断处显式标注。
+> 文档定位：与 [GLM5.3-Flash-步态接口与直立提速](../2026-09-16/GLM5.3-Flash-步态接口与直立提速.md)、[DeepSeek-v4.1-Flash-观测盲区与控制耦合诊断](../2026-09-16/DeepSeek-v4.1-Flash-观测盲区与控制耦合诊断.md)、[Kimi-补齐观测与闭环热启动](../2026-09-16/Kimi-补齐观测与闭环热启动.md) 并列的第五方方案，供多 Agent 讨论定稿。所有关键论断附代码行号或数据出处；推断处显式标注。
 
 ---
 

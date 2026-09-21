@@ -1,6 +1,6 @@
 # research/ 目录索引
 
-按用途分层：根目录放主报告与当前活跃文档，其余按 运行指南 / 实验记录 / 角色与身体 / 溯源数据 分层。
+按用途分层：根目录放主报告与当前修正交接，其余按 提案讨论 / 运行指南 / 实验记录 / 角色与身体 / 溯源数据 分层。
 
 ## 固定路径（代码与脚本依赖，移动前必须同步改引用）
 
@@ -13,9 +13,14 @@
 ## 根目录
 
 - `REPORT.md` — 主报告：论文调研、方法、结果、算力、未完成范围（2026-09-15 基线）。
-- `NEXT_STEP_PROPOSAL_20260916(GLM5.3-Flash).md` — 直立步态提速破局提案（供多 Agent 讨论定稿，含另一 Agent 方案的对比与合并建议）。
-- `NEXT_STEP_PROPOSAL_20260916(Observability).md` — 独立审查提案：观测盲区（缺线速度/骨盆高）与单旋钮锁死的诊断、实测速度-指令拟合、与另两份方案的分歧、建议先测量后训练。
-- `NEXT_STEP_PROPOSAL_20260916(Kimi).md` — 独立审查提案：观测缺失（奖励要求的线速度/骨盆高不在 47 维观测内、策略无记忆）为真正断点；主张先测 (cmd, vx) 传递曲线，再零初始化补观测热启动 + 膝惩罚支撑腿门控，时钟改动条件触发。
+- [LOCAL_FIXES_20260921.md](LOCAL_FIXES_20260921.md) — 无卡修正、CPU 验证与待执行的 GPU 检查。
+
+## proposals/ — 提案与综合讨论
+
+- [提案索引](proposals/README.md) — 按 `YYYY-MM-DD/模型或Agent名-提案概要.md` 归档，保留各方原始观点。
+- [2026-09-16](proposals/README.md#2026-09-16) — GLM5.3-Flash、DeepSeek-v4.1-Flash、Kimi 的步态与观测提案。
+- [2026-09-20](proposals/README.md#2026-09-20) — Cline 的评估与价值网络提案。
+- [2026-09-21](proposals/README.md#2026-09-21) — Codex 独立提案与综合讨论。
 
 ## guides/ — 运行与复现
 
@@ -27,8 +32,11 @@
 - `PPO5_REVIEW_20260915.md` — ppo5 前后评审。
 - `PPO8_FIXES_20260915.md` — ppo8 修复记录。
 - `POSTURE_AND_STABILITY_REVIEW_20260916.md` — 全景技术报告：深蹲病因四因素、ppo11~14 复盘、上肢与仿生前瞻。
-- `PPO_POSTURE_20260916.md` — 姿态实验编年 ppo10~16 与当前状态（最新的实验记录，含"下一步候选"）。
+- `PPO_POSTURE_20260916.md` — 姿态实验编年 ppo10~16（含"下一步候选"）。
 - `HOME_REFERENCE_MISMATCH_20260916.md` — `home` 观测基准与检查点不匹配：11:41 改 `default_angles` 让此前所有检查点失效；含 A/B 证据、影响范围与待做的结构性修复。
+- [GAIT_MEASUREMENT_20260918.md](experiments/GAIT_MEASUREMENT_20260918.md) — 步态、时钟与速度传递测量。
+- [G1_CHECKPOINT_REBIND_20260918.md](experiments/G1_CHECKPOINT_REBIND_20260918.md) — G1 检查点与验收记录绑定。
+- [PPO_OBS50_20260920.md](experiments/PPO_OBS50_20260920.md) — 最新编年：50 维观测续训、最佳检查点筛选与价值预热。
 
 ## avatar/ — 角色与身体
 

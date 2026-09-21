@@ -2,7 +2,7 @@
 
 > 提出时间：2026-09-16
 > 提出方：Kimi。独立通读 `app/gpu_body.py`、`app/full_brain.py`、`app/ppo_yumi.py`、`app/yumi_description/yumi.yaml` 与 `runs/yumi/evaluation.json` 实测数据后形成，未参考另外三份提案的结论。
-> 文档定位：与 `NEXT_STEP_PROPOSAL_20260916(GLM5.3-Flash).md`、`NEXT_STEP_PROPOSAL_20260916(DeepSeek-v4.1-Flash).md`、`experiments/PPO_POSTURE_20260916.md` 末尾"下一步候选"**并列的第四方方案**，供多 Agent 讨论定稿。所有关键论断附代码行号或数据出处；推断处显式标注。
+> 文档定位：与 [GLM5.3-Flash-步态接口与直立提速](../2026-09-16/GLM5.3-Flash-步态接口与直立提速.md)、[DeepSeek-v4.1-Flash-观测盲区与控制耦合诊断](../2026-09-16/DeepSeek-v4.1-Flash-观测盲区与控制耦合诊断.md)、`experiments/PPO_POSTURE_20260916.md` 末尾"下一步候选"**并列的第四方方案**，供多 Agent 讨论定稿。所有关键论断附代码行号或数据出处；推断处显式标注。
 
 ---
 
