@@ -1,0 +1,22 @@
+{
+  "started_utc": "2026-09-21T07:08:37.076948+00:00",
+  "git_commit": "e99d210461d78023461646c4e2d21edc638f17d9",
+  "files": {
+    "data/full_graph.npz": {
+      "sha256": "72a6a9ade0117063d3b2515b12ceec3633d9f429ae43f0f8b73b2066a9e51b89",
+      "bytes": 95585874
+    },
+    "data/full_graph.json": {
+      "sha256": "600f53cb3d8bda1c1e1b348065797233cfd4a4832a57f9867e8ecfa588cdb498",
+      "bytes": 1540
+    },
+    "runs/yumi_obs50/best_tall_obs50.pt": {
+      "sha256": "780f4f4f03fc7720e9be7bcc5d786d0b92a8a79e417001f242d783e0947a8a1a",
+      "bytes": 311995993
+    },
+    "runs/local/yumi_tall.yaml": {
+      "sha256": "d0278d892f81f83ad300948dda9978f8866adf5cd0f04a40429e413895c996ea",
+      "bytes": 1042
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "kind": "collection_and_backward_microbenchmark",
+  "gpu": "NVIDIA GeForce RTX 4090 D",
+  "torch": "2.12.1+cu130",
+  "checks": "sparse direction, forward and parameter/input gradients match dense reference",
+  "scope": "Full graph plus physics collection; isolated frozen-edge backward. No optimizer steps, reward or value fitting.",
+  "checkpoint": "runs/yumi_obs50/best.pt",
+  "collection": [
+    {
+      "worlds": 32,
+      "steps": 128,
+      "seconds": 1.3276468850672245,
+      "samples_per_second": 3085.1576922071426,
+      "reset_count": 8,
+      "peak_tensor_gib": 0.5392322540283203,
+      "device_used_gib": 1.115478515625
+    },
+    {
+      "worlds": 64,
+      "steps": 128,
+      "seconds": 1.7233374528586864,
+      "samples_per_second": 4753.566973439266,
+      "reset_count": 22,
+      "peak_tensor_gib": 0.6066551208496094,
+      "device_used_gib": 1.156494140625
+    },
+    {
+      "worlds": 128,
+      "steps": 128,
+      "seconds": 3.0173665806651115,
+      "samples_per_second": 5429.900398906291,
+      "reset_count": 22,
+      "peak_tensor_gib": 0.8070135116577148,
+      "device_used_gib": 1.355712890625
+    }
+  ],
+  "backward": [
+    {
+      "minibatch": 128,
+      "legacy": {
+        "seconds": 0.08516103401780128,
+        "samples_per_second": 1503.0348266232188,
+        "peak_tensor_gib": 3.086186408996582,
+        "peak_reserved_gib": 3.3046875
+      },
+      "optimized": {
+        "seconds": 0.07519512126843135,
+        "samples_per_second": 1702.2380952491044,
+        "peak_tensor_gib": 2.797834873199463,
+        "peak_reserved_gib": 3.3046875
+      },
+      "speedup": 1.1325340338742675,
+      "gradient_max_abs_error": {
+        "neuron_bias": 1.1920928955078125e-07,
+        "encoder.weight": 5.960464477539062e-07,
+        "normalizer.weight": 5.960464477539063e-08,
+        "normalizer.bias": 1.4901161193847656e-08,
+        "readout.weight": 2.0265579223632812e-06,
+        "readout.bias": 7.450580596923828e-08
+      }
+    },
+    {
+      "minibatch": 256,
+      "legacy": {
+        "seconds": 0.1313894564906756,
+        "samples_per_second": 1948.4059591811138,
+        "peak_tensor_gib": 4.041888236999512,
+        "peak_reserved_gib": 4.267578125
+      },
+      "optimized": {
+        "seconds": 0.10681105529268582,
+        "samples_per_second": 2396.7556476106674,
+        "peak_tensor_gib": 3.7535367012023926,
+        "peak_reserved_gib": 4.267578125
+      },
+      "speedup": 1.2301110229707921,
+      "gradient_max_abs_error": {
+        "neuron_bias": 1.1920928955078125e-07,
+        "encoder.weight": 4.6938657760620117e-07,
+        "normalizer.weight": 2.9802322387695312e-08,
+        "normalizer.bias": 1.4901161193847656e-08,
+        "readout.weight": 4.76837158203125e-07,
+        "readout.bias": 4.470348358154297e-08
+      }
+    },
+    {
+      "minibatch": 512,
+      "legacy": {
+        "seconds": 0.25265146419405937,
+        "samples_per_second": 2026.5071553542919,
+        "peak_tensor_gib": 5.970449447631836,
+        "peak_reserved_gib": 6.212890625
+      },
+      "optimized": {
+        "seconds": 0.1701296679675579,
+        "samples_per_second": 3009.469224953954,
+        "peak_tensor_gib": 5.682896137237549,
+        "peak_reserved_gib": 6.212890625
+      },
+      "speedup": 1.4850523557257373,
+      "gradient_max_abs_error": {
+        "neuron_bias": 5.960464477539063e-08,
+        "encoder.weight": 4.76837158203125e-07,
+        "normalizer.weight": 1.4901161193847656e-08,
+        "normalizer.bias": 1.1175870895385742e-08,
+        "readout.weight": 1.3113021850585938e-06,
+        "readout.bias": 1.4901161193847656e-08
+      }
+    }
+  ]
+}

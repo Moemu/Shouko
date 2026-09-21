@@ -1,0 +1,8 @@
+{
+  "source": "nvidia-smi command output observed during short128_low_lr, transcribed from tool output",
+  "timestamp_recorded": false,
+  "gpu_memory_used_mib": 6887,
+  "gpu_utilization_percent": 97,
+  "power_draw_watts": 323.69,
+  "limitation": "Single observation, not a run-wide average."
+}

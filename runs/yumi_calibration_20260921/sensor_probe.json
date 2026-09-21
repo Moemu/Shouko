@@ -1,0 +1,77 @@
+{
+  "kind": "fixed_observation_sensitivity",
+  "source_rollout_checkpoint": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+  "observations": 64,
+  "limitation": "Input interventions only, not a locomotion experiment or a proof of causality.",
+  "results": [
+    {
+      "checkpoint": "runs/yumi_obs50/best.pt",
+      "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+      "new_encoder_rms": 0.0,
+      "zero_new_inputs_action_rms": 1.2049311237660731e-07,
+      "one_std_input_shift": {
+        "vx": {
+          "raw_observation_std": 0.08117300271987915,
+          "normalized_std": 0.08117300271987915,
+          "action_rms_change": 1.2439743102277134e-07
+        },
+        "vy": {
+          "raw_observation_std": 0.06434640288352966,
+          "normalized_std": 0.06434640288352966,
+          "action_rms_change": 1.281444497180928e-07
+        },
+        "height": {
+          "raw_observation_std": 0.04135676473379135,
+          "normalized_std": 0.04135676473379135,
+          "action_rms_change": 1.1924805676244432e-07
+        }
+      }
+    },
+    {
+      "checkpoint": "runs/yumi_calibration_20260921/short128_normfix/last.pt",
+      "checkpoint_sha256": "ef794944f45e7b05c0907976b4bc78faaf3c2e166653eddf982dc815705b6dbd",
+      "new_encoder_rms": 0.0003204367822036147,
+      "zero_new_inputs_action_rms": 3.9880902477307245e-05,
+      "one_std_input_shift": {
+        "vx": {
+          "raw_observation_std": 0.08117300271987915,
+          "normalized_std": 0.08117300271987915,
+          "action_rms_change": 3.20865074172616e-05
+        },
+        "vy": {
+          "raw_observation_std": 0.06434640288352966,
+          "normalized_std": 0.06434640288352966,
+          "action_rms_change": 4.34341563959606e-05
+        },
+        "height": {
+          "raw_observation_std": 0.04135676473379135,
+          "normalized_std": 0.04135676473379135,
+          "action_rms_change": 4.490717856242554e-06
+        }
+      }
+    },
+    {
+      "checkpoint": "runs/yumi_calibration_20260921/short128_low_lr/last.pt",
+      "checkpoint_sha256": "b5677243d062aff32db0cc6380d01e4f97abd5fca81bbd38a99577a9705f62d4",
+      "new_encoder_rms": 9.366375161334872e-05,
+      "zero_new_inputs_action_rms": 1.057302415574668e-05,
+      "one_std_input_shift": {
+        "vx": {
+          "raw_observation_std": 0.08117300271987915,
+          "normalized_std": 0.08117300271987915,
+          "action_rms_change": 6.0710713114531245e-06
+        },
+        "vy": {
+          "raw_observation_std": 0.06434640288352966,
+          "normalized_std": 0.06434640288352966,
+          "action_rms_change": 1.0344864676881116e-05
+        },
+        "height": {
+          "raw_observation_std": 0.04135676473379135,
+          "normalized_std": 0.04135676473379135,
+          "action_rms_change": 3.793732958001783e-06
+        }
+      }
+    }
+  ]
+}

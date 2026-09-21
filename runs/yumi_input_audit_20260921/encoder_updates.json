@@ -1,0 +1,45 @@
+{
+  "kind": "saved_encoder_and_adam_audit",
+  "source_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+  "results": [
+    {
+      "checkpoint": "runs/yumi_calibration_20260921/short128_normfix/last.pt",
+      "checkpoint_sha256": "ef794944f45e7b05c0907976b4bc78faaf3c2e166653eddf982dc815705b6dbd",
+      "encoder_adam_step": 307,
+      "encoder_lr": 2.5e-05,
+      "sensory_drive_rms_old_new": [
+        2.5266215854617493,
+        4.1336362810809904e-05
+      ],
+      "encoder_delta_rms_old": 0.0003002526063937694,
+      "encoder_delta_rms_new": 0.00032043675309978426,
+      "adam_direction_rms_old": 0.15342600643634796,
+      "adam_direction_rms_new": 0.12923431396484375
+    },
+    {
+      "checkpoint": "runs/yumi_calibration_20260921/short128_low_lr/last.pt",
+      "checkpoint_sha256": "b5677243d062aff32db0cc6380d01e4f97abd5fca81bbd38a99577a9705f62d4",
+      "encoder_adam_step": 768,
+      "encoder_lr": 2.5e-06,
+      "sensory_drive_rms_old_new": [
+        2.5266100562775633,
+        1.2574284297121255e-05
+      ],
+      "encoder_delta_rms_old": 8.953497308539227e-05,
+      "encoder_delta_rms_new": 9.366375888930634e-05,
+      "adam_direction_rms_old": 0.17272181808948517,
+      "adam_direction_rms_new": 0.17231544852256775
+    }
+  ],
+  "synthetic_adam_example": {
+    "gradients": [
+      0.1,
+      2.0
+    ],
+    "updates": [
+      -2.4999997094710125e-06,
+      -2.4999997094710125e-06
+    ]
+  },
+  "limitation": "Encoder drive and saved Adam state only; no complete-policy gradients or simulated walking."
+}

@@ -1,0 +1,21 @@
+{
+  "git_commit": "e99d210461d78023461646c4e2d21edc638f17d9",
+  "files": {
+    "app/full_brain.py": "bd8d51f1512ac495990d9523b546983ff119b4d0caf56ac197fa343d850e84cc",
+    "app/ppo_yumi.py": "65e8d8ceb1fd38548fab0df2e5efdab6eccbfdb78b979b31f010d0c804f1d427",
+    "app/benchmark_ppo.py": "c57ebe04e2a91df99171f76c51b9e8f153c6a0e428ca85e0ca118f6ca8d50a92",
+    "app/compare_policies.py": "e54c08d305aeb7bead5d1f8150d7d5da57e769e3e724f4d1b10a55e84638c866",
+    "app/train_full.py": "8e18630412b84993b849c41e1df44bf758284ca9c4db5dc2ea45bcae55db803d",
+    "app/gpu_body.py": "beb3f30de03c4c8bee0771220c298731b7cb8846ca7db5de4a9fde22616b996d",
+    "app/sim.py": "a9f355a4f43a355d28f62282d31451645408bb3d4aaf047537db6e292fe8af1c",
+    "app/value_diagnostics.py": "6764371254305d98270474fc01d6669b0b480f587950d3a0be50ea0a50afc077",
+    "app/value_fit_probe.py": "fe84720e5eae38c13e7a0697e9a485685ff4b34a8d8695ba52506af1aff661d1"
+  },
+  "changes": [
+    "Skip gradients for frozen edges",
+    "Record rollout/update timing",
+    "Bound updates with max_iterations",
+    "Benchmark physics collection and backward without saving policy updates"
+  ],
+  "note": "Initial microbenchmark and short32/short128 used the pre-normalizer-fix ppo_yumi.py; current hashes include the subsequent optimizer-mask correction."
+}

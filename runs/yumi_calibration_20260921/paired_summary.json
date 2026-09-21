@@ -1,0 +1,82 @@
+[
+  {
+    "checkpoint": "runs/yumi_obs50/best.pt",
+    "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+    "blocks": 3,
+    "score_mean": 0.41345757246017456,
+    "score_sd": 0.05614347873691902,
+    "successes": 13,
+    "attempts": 96,
+    "falls": 2,
+    "speed_mae": 0.3132888505657168,
+    "per_cmd_mean_speed": {
+      "0.35": 0.06433174859844396,
+      "0.5": 0.1717112744063894,
+      "0.65": 0.3268698968846972
+    }
+  },
+  {
+    "checkpoint": "runs/yumi_obs50/last.pt",
+    "checkpoint_sha256": "cbe3b3f173867f70400b1f82b31fa8ab590d1b0eac680bb1219c4e2de5c68f6b",
+    "blocks": 3,
+    "score_mean": 0.2561702181895574,
+    "score_sd": 0.10801164635914771,
+    "successes": 0,
+    "attempts": 96,
+    "falls": 41,
+    "speed_mae": 0.47137076326650157,
+    "per_cmd_mean_speed": {
+      "0.35": 0.02488503917111578,
+      "0.5": 0.041797341613070756,
+      "0.65": 0.003262908286221015
+    }
+  },
+  {
+    "checkpoint": "runs/yumi_calibration_20260921/short32/last.pt",
+    "checkpoint_sha256": "ce776006ab8c18773734adebb7814a199237b02204077a578b415690ba465b16",
+    "blocks": 3,
+    "score_mean": 0.2676459699869156,
+    "score_sd": 0.09344204145703001,
+    "successes": 0,
+    "attempts": 96,
+    "falls": 23,
+    "speed_mae": 0.4205629590336078,
+    "per_cmd_mean_speed": {
+      "0.35": 0.047979686409235,
+      "0.5": 0.048066444215223644,
+      "0.65": 0.13354775700718163
+    }
+  },
+  {
+    "checkpoint": "runs/yumi_calibration_20260921/short128/last.pt",
+    "checkpoint_sha256": "7804ce72ccdb6f5d5bb9c349de657ad780364f82dc08d2401e6c91080b571ef7",
+    "blocks": 3,
+    "score_mean": 0.32059310873349506,
+    "score_sd": 0.02055411888778327,
+    "successes": 10,
+    "attempts": 96,
+    "falls": 4,
+    "speed_mae": 0.2538867992455683,
+    "per_cmd_mean_speed": {
+      "0.35": 0.13997840246354992,
+      "0.5": 0.3043911302405776,
+      "0.65": 0.3822579407909264
+    }
+  },
+  {
+    "checkpoint": "runs/yumi_calibration_20260921/short128_normfix/last.pt",
+    "checkpoint_sha256": "ef794944f45e7b05c0907976b4bc78faaf3c2e166653eddf982dc815705b6dbd",
+    "blocks": 3,
+    "score_mean": 0.3711695472399394,
+    "score_sd": 0.042793320139394346,
+    "successes": 8,
+    "attempts": 96,
+    "falls": 10,
+    "speed_mae": 0.2898885177134313,
+    "per_cmd_mean_speed": {
+      "0.35": 0.045216233227895856,
+      "0.5": 0.19772153274353707,
+      "0.65": 0.39054137965043384
+    }
+  }
+]

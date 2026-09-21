@@ -1,0 +1,25 @@
+{
+  "captured_utc": "2026-09-21T08:01:54.219364+00:00",
+  "git_base": "4856162d3e454977dae9ddd460b8a6fa60324ac0",
+  "files": {
+    "app/full_brain.py": "bd8d51f1512ac495990d9523b546983ff119b4d0caf56ac197fa343d850e84cc",
+    "app/ppo_yumi.py": "65e8d8ceb1fd38548fab0df2e5efdab6eccbfdb78b979b31f010d0c804f1d427",
+    "app/train_full.py": "8e18630412b84993b849c41e1df44bf758284ca9c4db5dc2ea45bcae55db803d",
+    "app/benchmark_ppo.py": "c57ebe04e2a91df99171f76c51b9e8f153c6a0e428ca85e0ca118f6ca8d50a92",
+    "app/compare_policies.py": "e54c08d305aeb7bead5d1f8150d7d5da57e769e3e724f4d1b10a55e84638c866",
+    "app/value_fit_probe.py": "fe84720e5eae38c13e7a0697e9a485685ff4b34a8d8695ba52506af1aff661d1",
+    "app/test_policy_contract.py": "0d57d27b7c5a553bd9b77fbba33a05d5851cd54c5f849f579decf6c01d6c9bbb"
+  },
+  "shutdown": {
+    "command": "/usr/bin/shutdown",
+    "exit_code": 0,
+    "requested_utc_approx": "2026-09-21T07:59:30Z",
+    "platform_billing_verified": false,
+    "connection_check": {
+      "checked_utc": "2026-09-21T08:02:37.368883+00:00",
+      "ssh_exit_code": 1,
+      "result": "Connection closed; remote command could not run. Platform control-panel status was not inspected."
+    }
+  },
+  "note": "Budget includes setup, transfers, checks and idle. Exact instance power-on time and platform billing were not available."
+}

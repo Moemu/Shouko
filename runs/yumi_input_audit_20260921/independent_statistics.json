@@ -1,0 +1,51 @@
+{
+  "kind": "codex_independent_cpu_statistics",
+  "date": "2026-09-21",
+  "device": "cpu",
+  "source_files": [
+    {
+      "path": "runs/yumi_calibration_20260921/rollout.pt",
+      "sha256": "c62731c1cf2abac02a42b3764de2a0974c8796bd26a5cad748781bc4c0433a88"
+    },
+    {
+      "path": "runs/yumi_calibration_20260921/sensor_probe.json",
+      "sha256": "865a2a6b27f5f849d8e3ccadaa0b8088203e0b445cfd4ddccb5a90085613f5cf"
+    },
+    {
+      "path": "runs/yumi_input_audit_20260921/statistics.json",
+      "sha256": "22d4f7191426c2678a7e40077dae44e8cec997613b9a433f23c0281703361ec2"
+    }
+  ],
+  "rollout": {
+    "flat_samples": 4096,
+    "new_feature_names": ["vx", "vy", "height"],
+    "new_feature_mean": [0.047344788908958435, -0.004467891063541174, -0.04750235378742218],
+    "new_feature_std": [0.08117300271987915, 0.06434640288352966, 0.04135676473379135],
+    "action_rms": 1.2389429807662964,
+    "action_std": 1.2209292650222778,
+    "action_absmax": 5.512325763702393
+  },
+  "pearson_correlation": {
+    "with_reward": {
+      "vx": 0.5175562500953674,
+      "vy": 0.4375820457935333,
+      "height": 0.2872719466686249
+    },
+    "with_gae_advantage": {
+      "vx": -0.07660070806718445,
+      "vy": 0.1858244240283966,
+      "height": 0.15040630877017975
+    },
+    "with_return": {
+      "vx": 0.6131166815757751,
+      "vy": 0.6796920299530029,
+      "height": 0.13623730838394165
+    }
+  },
+  "interpretation": "CPU-only descriptive statistics from one stored rollout. These correlations and action RMS values do not establish causality or walking success.",
+  "limitations": [
+    "One rollout and one policy checkpoint.",
+    "The action RMS is for recorded actions, not a body trajectory sensitivity measure.",
+    "The sensor_probe source is an existing fixed-input probe; it is not recomputed by this CPU audit."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "captured_utc": "2026-09-21T08:40:13.810450+00:00",
+  "git_base": "40c594e0d750bb7fad9d4b4d3a310b6e5a3f2ccf",
+  "files": {
+    "app/probe_observation_learning.py": "93d69164f6e4fb4bb7fffe0b75c292c5ee2ce4a4ba5720ffc47943e8bd5f027f",
+    "app/test_observation_probe.py": "ef1f676f7825827050fa6796ce8919d9f8d085fb045045cc85a83684a166cab7",
+    "runs/yumi_input_audit_20260921/check_encoder_updates.py": "9e82ab944520bcb5807aef34b937411bda49cece469909fc3cacdd89c97cfcbf"
+  },
+  "completed": [
+    "CPU observation and critic audit",
+    "Saved encoder and Adam audit",
+    "Small CPU control tests"
+  ],
+  "pending": [
+    "Full-connectome paired one-update probe",
+    "Any new on-policy training"
+  ],
+  "full_graph_attempt": {
+    "completed": false,
+    "reason": "Stopped by local available-RAM guard below 256 MiB",
+    "partial_output": "runs/yumi_input_audit_20260921/one_update.json",
+    "log": "runs/probe_observation_learning_bounded.log"
+  },
+  "user_constraint": "Complete low-memory analysis; defer full-connectome comparison to cloud",
+  "cloud_started": false,
+  "policy_weights_saved": false
+}

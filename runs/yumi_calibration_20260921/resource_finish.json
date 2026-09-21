@@ -1,0 +1,5 @@
+{
+  "captured_utc": "2026-09-21T07:58:57.317091+00:00",
+  "gpu": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nNVIDIA GeForce RTX 4090 D, 0 MiB, 0 %, 24.10 W\n",
+  "processes": "   PID COMMAND\n     1 bash\n   968 supervisord\n   982 proxy\n   983 jupyter-lab\n   986 proxy\n   988 sshd\n   989 tensorboard\n   991 autopanel\n  1051 server\n  4770 sshd\n  4781 python\n  4784 ps\n"
+}

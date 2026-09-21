@@ -1,0 +1,36 @@
+[
+  {
+    "worlds": 32,
+    "actor_rounds": 6,
+    "samples": 24576,
+    "collection_and_update_seconds": 11.847785502672195,
+    "samples_per_second": 2074.3116926329426,
+    "kl_stopped": 6,
+    "score": 0.30583715438842773,
+    "successes": 0,
+    "attempts": 32,
+    "mean_duration": 28.70046615600586,
+    "per_cmd": {
+      "0.35": 0.03,
+      "0.5": 0.039,
+      "0.65": 0.093
+    }
+  },
+  {
+    "worlds": 128,
+    "actor_rounds": 6,
+    "samples": 98304,
+    "collection_and_update_seconds": 32.13111300393939,
+    "samples_per_second": 3059.4645130390463,
+    "kl_stopped": 6,
+    "score": 0.3490694761276245,
+    "successes": 24,
+    "attempts": 128,
+    "mean_duration": 28.76453399658203,
+    "per_cmd": {
+      "0.35": 0.186,
+      "0.5": 0.302,
+      "0.65": 0.313
+    }
+  }
+]

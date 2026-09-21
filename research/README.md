@@ -36,7 +36,9 @@
 - `HOME_REFERENCE_MISMATCH_20260916.md` — `home` 观测基准与检查点不匹配：11:41 改 `default_angles` 让此前所有检查点失效；含 A/B 证据、影响范围与待做的结构性修复。
 - [GAIT_MEASUREMENT_20260918.md](experiments/GAIT_MEASUREMENT_20260918.md) — 步态、时钟与速度传递测量。
 - [G1_CHECKPOINT_REBIND_20260918.md](experiments/G1_CHECKPOINT_REBIND_20260918.md) — G1 检查点与验收记录绑定。
-- [PPO_OBS50_20260920.md](experiments/PPO_OBS50_20260920.md) — 最新编年：50 维观测续训、最佳检查点筛选与价值预热。
+- [PPO_OBS50_20260920.md](experiments/PPO_OBS50_20260920.md) — 50 维观测续训、最佳检查点筛选与价值预热。
+- [GPU_CALIBRATION_20260921.md](experiments/GPU_CALIBRATION_20260921.md) — 最新编年：迁移 PPO 状态、冻结梯度提速、价值诊断与四组短训复测；尚无稳定提升。
+- [INPUT_LEARNING_AUDIT_20260921.md](experiments/INPUT_LEARNING_AUDIT_20260921.md) — 后续 CPU 审计：新列确实更新、共享归一化会扰动价值网；完整图固定对照待云端执行。
 
 ## avatar/ — 角色与身体
 

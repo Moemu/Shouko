@@ -1,0 +1,18 @@
+{
+  "verified_utc": "2026-09-21T07:59:17.286381+00:00",
+  "archive_sha256": "d1adef2334366649489f76f07b86e20b46dc8f7c9efeacdd29994b566268e4d8",
+  "artifacts": [
+    {
+      "checkpoint": "runs/yumi_calibration_20260921/short128_normfix/last.pt",
+      "sha256": "ef794944f45e7b05c0907976b4bc78faaf3c2e166653eddf982dc815705b6dbd",
+      "state": "runs/yumi_calibration_20260921/short128_normfix/ppo_state.pt",
+      "state_sha256": "d359bff7bf60e0b0082ae61e5de7d22648f0707c94af4d899b0b3f2131c92db8"
+    },
+    {
+      "checkpoint": "runs/yumi_calibration_20260921/short128_low_lr/last.pt",
+      "sha256": "b5677243d062aff32db0cc6380d01e4f97abd5fca81bbd38a99577a9705f62d4",
+      "state": "runs/yumi_calibration_20260921/short128_low_lr/ppo_state.pt",
+      "state_sha256": "758ec176074efb5a20d42fb0b6da293821ef48bdef6dccc069834b3c05d33187"
+    }
+  ]
+}
