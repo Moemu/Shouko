@@ -1,0 +1,30 @@
+{
+  "kind": "fixed_order_warp_csr_probe",
+  "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+  "trials": [
+    {
+      "batch": 1,
+      "repeat_max_abs": 0.0,
+      "csr_reference_max_abs": 5.960464477539063e-08,
+      "seconds_per_forward": 0.009938698261976242,
+      "peak_tensor_gib": 0.49235963821411133
+    },
+    {
+      "batch": 9,
+      "repeat_max_abs": 0.0,
+      "csr_reference_max_abs": 3.5762786865234375e-07,
+      "seconds_per_forward": 0.006387044489383697,
+      "peak_tensor_gib": 0.5022978782653809
+    },
+    {
+      "batch": 32,
+      "repeat_max_abs": 0.0,
+      "csr_reference_max_abs": 5.960464477539062e-07,
+      "seconds_per_forward": 0.006744964048266411,
+      "peak_tensor_gib": 0.5308818817138672
+    }
+  ],
+  "small_dense_check": "passed",
+  "completed": true,
+  "limitation": "Test-only inference backend. Float accumulation order differs; no weights or training changes."
+}

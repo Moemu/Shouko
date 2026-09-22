@@ -1,0 +1,24 @@
+{
+  "captured_utc": "2026-09-22T01:20:31.463551+00:00",
+  "source_final_sha256": "c6175a1205620bdbf5e51a1d3a7d99992c5d6436d40b1b783ca32ee8c0672ed9",
+  "initial_archive": "source.tgz",
+  "final_archive": "source_final.tgz",
+  "versions": {
+    "initial": "Initial seed argument and prepared one-update probe; update64_seed21.json",
+    "v2": "Added gradient group norms, active-row fractions and initial repeat RMS; update*v2*.json",
+    "final": "Added isolated parameter-group delta replay; routes*.json"
+  },
+  "files": {
+    "deployment.json": "72281f3df7b5db5c259be939cc9b7c3f7932d7c14516d7262c8c8780f329182f",
+    "reachability.json": "f91bad6c52dba0280055c9b415a019fbaa3b7869f5cd976baa52f8f2b8a3eca1",
+    "resource_finish.json": "69f9fbe6b023189d9d6e1be0a1878fb52d1bf48ae80bd49dbd923e8b1d2dd43c",
+    "routes256.json": "c0fcee8a7cbb8295d55689226042b51dc3cb5c112814f7b68b3b95bd07c6e9df",
+    "routes64.json": "bac7aa5d5b53dd8c78d1d23e336c4a28d04eded48683f688a6c554303077bbd2",
+    "summary.json": "562e2a5e359b32f3cdd6a6ededda3580aae03fd54760f324213de227e2e1659c",
+    "update256_v2.json": "df1337dd46f746b95b79b49cf3c9170c31e99cd21080828f9f318905109b0766",
+    "update64_seed21.json": "01d160cc2de317fc2c6a26dbb06b659e7d68c8aad90d237b5a749e2cf7ffe60a",
+    "update64_v2_20260921.json": "b43a2c20dcc647a64b337e8a00426d7a863232ad4258b57efe00ebf72ea4f2f6",
+    "update64_v2_20260922.json": "c980dec9d513a9925d2bf66a5d66be3eef31dfcbee677a3401f63e3f574da48b",
+    "update64_v2_20260923.json": "7b05262beaa612691e15dcf93fa397f4c13feabcd8ad1066f2a66dca6fa8c7bc"
+  }
+}

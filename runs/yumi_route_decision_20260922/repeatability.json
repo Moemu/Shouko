@@ -1,0 +1,108 @@
+{
+  "kind": "neural_and_physics_repeatability_probe",
+  "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+  "inference": [
+    {
+      "deterministic_algorithms": false,
+      "rms": 1.1049343979783013e-07,
+      "max_abs": 7.152557373046875e-07,
+      "exact_repeats": 0,
+      "repeats": 16,
+      "seconds": 0.20960110053420067
+    },
+    {
+      "deterministic_algorithms": true,
+      "rms": 1.006410930176574e-07,
+      "max_abs": 5.960464477539062e-07,
+      "exact_repeats": 0,
+      "repeats": 16,
+      "seconds": 0.10575534775853157
+    }
+  ],
+  "physics": [
+    {
+      "repeat": 0,
+      "steps": 300,
+      "seconds": 6.0,
+      "capture_qpos_max_abs": 1.5087836980819702,
+      "previous_replay_qpos_max_abs": null,
+      "first_step_capture_max_abs": 4.470348358154297e-08,
+      "final_capture_position_rms": 0.6165377187993888,
+      "sample_max_abs": [
+        {
+          "step": 1,
+          "delta": 4.470348358154297e-08
+        },
+        {
+          "step": 50,
+          "delta": 0.0051163434982299805
+        },
+        {
+          "step": 150,
+          "delta": 0.7807289361953735
+        },
+        {
+          "step": 300,
+          "delta": 1.5087836980819702
+        }
+      ]
+    },
+    {
+      "repeat": 1,
+      "steps": 300,
+      "seconds": 6.0,
+      "capture_qpos_max_abs": 1.2590875625610352,
+      "previous_replay_qpos_max_abs": 1.40145742893219,
+      "first_step_capture_max_abs": 4.470348358154297e-08,
+      "final_capture_position_rms": 0.6122030728309431,
+      "sample_max_abs": [
+        {
+          "step": 1,
+          "delta": 4.470348358154297e-08
+        },
+        {
+          "step": 50,
+          "delta": 4.3392181396484375e-05
+        },
+        {
+          "step": 150,
+          "delta": 0.0038167238235473633
+        },
+        {
+          "step": 300,
+          "delta": 1.2590875625610352
+        }
+      ]
+    },
+    {
+      "repeat": 2,
+      "steps": 300,
+      "seconds": 6.0,
+      "capture_qpos_max_abs": 1.1813108921051025,
+      "previous_replay_qpos_max_abs": 2.1075313091278076,
+      "first_step_capture_max_abs": 1.4901161193847656e-08,
+      "final_capture_position_rms": 0.6167153346759878,
+      "sample_max_abs": [
+        {
+          "step": 1,
+          "delta": 1.4901161193847656e-08
+        },
+        {
+          "step": 50,
+          "delta": 6.842613220214844e-05
+        },
+        {
+          "step": 150,
+          "delta": 0.010076671838760376
+        },
+        {
+          "step": 300,
+          "delta": 1.1813108921051025
+        }
+      ]
+    }
+  ],
+  "completed": true,
+  "elapsed_seconds": 8.135837964713573,
+  "limitation": "One 6-second fixed-action tape. Open-loop replay does not bound 30-second feedback trajectory variation."
+}

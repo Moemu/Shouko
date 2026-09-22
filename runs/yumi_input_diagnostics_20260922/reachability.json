@@ -1,0 +1,72 @@
+{
+  "kind": "structural_input_motor_reachability",
+  "graph_sha256": "72a6a9ade0117063d3b2515b12ceec3633d9f429ae43f0f8b73b2066a9e51b89",
+  "current_neural_steps": 4,
+  "history": [
+    {
+      "max_edges": 0,
+      "neural_steps_needed": 1,
+      "input_rows_reachable": 0,
+      "input_rows": 17336,
+      "fraction": 0.0
+    },
+    {
+      "max_edges": 1,
+      "neural_steps_needed": 2,
+      "input_rows_reachable": 2401,
+      "input_rows": 17336,
+      "fraction": 0.13849792339640055
+    },
+    {
+      "max_edges": 2,
+      "neural_steps_needed": 3,
+      "input_rows_reachable": 10854,
+      "input_rows": 17336,
+      "fraction": 0.6260959852330411
+    },
+    {
+      "max_edges": 3,
+      "neural_steps_needed": 4,
+      "input_rows_reachable": 14738,
+      "input_rows": 17336,
+      "fraction": 0.8501384402399631
+    },
+    {
+      "max_edges": 4,
+      "neural_steps_needed": 5,
+      "input_rows_reachable": 17069,
+      "input_rows": 17336,
+      "fraction": 0.984598523304107
+    },
+    {
+      "max_edges": 5,
+      "neural_steps_needed": 6,
+      "input_rows_reachable": 17073,
+      "input_rows": 17336,
+      "fraction": 0.9848292570373789
+    },
+    {
+      "max_edges": 6,
+      "neural_steps_needed": 7,
+      "input_rows_reachable": 17073,
+      "input_rows": 17336,
+      "fraction": 0.9848292570373789
+    },
+    {
+      "max_edges": 7,
+      "neural_steps_needed": 8,
+      "input_rows_reachable": 17073,
+      "input_rows": 17336,
+      "fraction": 0.9848292570373789
+    },
+    {
+      "max_edges": 8,
+      "neural_steps_needed": 9,
+      "input_rows_reachable": 17073,
+      "input_rows": 17336,
+      "fraction": 0.9848292570373789
+    }
+  ],
+  "explanation": "State resets to zero. First neural update injects sensory drive; four updates permit at most three edges. Residual state and repeated injection permit shorter paths.",
+  "limitation": "Structural upper bound for this zero-state unroll, not physiological reachability or proof of control quality. Nonlinear gain and readout cancellation may further reduce influence."
+}

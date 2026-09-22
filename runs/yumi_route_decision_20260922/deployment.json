@@ -1,0 +1,9 @@
+{
+  "git_base": "cf8b766707f4cb9a1bc81cfba32aee0347426b41",
+  "goal_scope": "Continue bounded diagnostics until evidence-supported route decision or reproducible breakthrough",
+  "probe_sha256": "59b248298de5f0cb1d250546b1485786a9b1f1c95ba0e057bbd30a6296c59349",
+  "recorded_utc": "2026-09-22T02:03:52.5104704Z",
+  "instance_policy": "keep_running",
+  "cloud_workspace": "diagnostics/actor-scale-ab-20260922",
+  "base_deployment": "runs/yumi_actor_scale_ab_20260922/deployment.json"
+}

@@ -1,0 +1,10 @@
+{
+  "captured_utc": "2026-09-22T01:19:37.599902+00:00",
+  "gpu": "name, memory.total [MiB], memory.used [MiB], utilization.gpu [%]\nNVIDIA GeForce RTX 4090 D, 24564 MiB, 0 MiB, 0 %\n",
+  "cpu_quota": "1500000 100000",
+  "memory_limit_bytes": 85899345920,
+  "processes": "   PID COMMAND\n     1 bash\n   716 supervisord\n   728 sshd\n   734 jupyter-lab\n   735 proxy\n   737 tensorboard\n   738 autopanel\n   739 proxy\n   841 server\n  2554 sshd\n  2565 python\n  2568 ps\n",
+  "source_sha256": "c6175a1205620bdbf5e51a1d3a7d99992c5d6436d40b1b783ca32ee8c0672ed9",
+  "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+  "instance_action": "Keep running; no shutdown command or mode change requested."
+}

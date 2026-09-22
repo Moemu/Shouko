@@ -1,0 +1,14 @@
+{
+  "archive_sha256": "967a712ddcd1ecc00c2f3ff126a49df0fe0306cb77148d2570a00000a0c32eb6",
+  "verified_files": 29,
+  "local_final_results_match": true,
+  "source_checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+  "finish_resource": {
+    "gpu": "NVIDIA GeForce RTX 4090 D",
+    "memory_used_mib": 0,
+    "gpu_utilization_percent": 0,
+    "compute_processes": [],
+    "instance_kept_running": true,
+    "observation_note": "Observed via nvidia-smi after all bounded diagnostics completed on 2026-09-22; not a billing record"
+  }
+}

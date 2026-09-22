@@ -1,0 +1,146 @@
+{
+  "kind": "input_diagnostic_summary",
+  "paired_updates": [
+    {
+      "file": "update256_v2.json",
+      "seed": 20260921,
+      "samples": 256,
+      "new_action_rms_original": 4.3399750673133815e-07,
+      "new_action_rms_scaled": 6.243461399334588e-06,
+      "initial_repeat_rms": 9.419250185976428e-08,
+      "old_path_action_rms": 0.0007108561256860244,
+      "new_to_old_action_rms_ratio": 0.008783016947781415,
+      "readout_squared_gradient_share": 0.9291786720460858,
+      "encoder_active_fraction": 0.8501384258270264,
+      "new_column_gradient_ratios": [
+        12.319326308874842,
+        15.540872538730214,
+        19.999965594475974
+      ],
+      "new_column_step_ratios": [
+        1.1215266488086817,
+        1.1377618034440962,
+        1.1533971303492367
+      ],
+      "elapsed_seconds": 5.8962812796235085
+    },
+    {
+      "file": "update64_v2_20260921.json",
+      "seed": 20260921,
+      "samples": 64,
+      "new_action_rms_original": 4.1307813961392166e-07,
+      "new_action_rms_scaled": 6.035158178820182e-06,
+      "initial_repeat_rms": 8.854924156338875e-08,
+      "old_path_action_rms": 0.0007152355275518612,
+      "new_to_old_action_rms_ratio": 0.008438001114790228,
+      "readout_squared_gradient_share": 0.9127724079713275,
+      "encoder_active_fraction": 0.8501384258270264,
+      "new_column_gradient_ratios": [
+        12.319378166863194,
+        15.540879777287689,
+        20.00002480375791
+      ],
+      "new_column_step_ratios": [
+        1.1283262490821777,
+        1.140300940252941,
+        1.1532280100220347
+      ],
+      "elapsed_seconds": 4.128362149000168
+    },
+    {
+      "file": "update64_v2_20260922.json",
+      "seed": 20260922,
+      "samples": 64,
+      "new_action_rms_original": 3.503299982647795e-07,
+      "new_action_rms_scaled": 5.116510015885475e-06,
+      "initial_repeat_rms": 8.826490142299719e-08,
+      "old_path_action_rms": 0.0007356840850485176,
+      "new_to_old_action_rms_ratio": 0.006954765122515932,
+      "readout_squared_gradient_share": 0.9049281020194723,
+      "encoder_active_fraction": 0.8501384258270264,
+      "new_column_gradient_ratios": [
+        12.319373465995884,
+        15.540841331947107,
+        20.000021872865023
+      ],
+      "new_column_step_ratios": [
+        1.1254389313427007,
+        1.1447056307674415,
+        1.157028903244792
+      ],
+      "elapsed_seconds": 4.5583378076553345
+    },
+    {
+      "file": "update64_v2_20260923.json",
+      "seed": 20260923,
+      "samples": 64,
+      "new_action_rms_original": 4.249272843129408e-07,
+      "new_action_rms_scaled": 6.6039638245895305e-06,
+      "initial_repeat_rms": 9.61044735920558e-08,
+      "old_path_action_rms": 0.0007917878671127652,
+      "new_to_old_action_rms_ratio": 0.00834057213919016,
+      "readout_squared_gradient_share": 0.9162107403240408,
+      "encoder_active_fraction": 0.8501384258270264,
+      "new_column_gradient_ratios": [
+        12.319372071743652,
+        15.540867837898952,
+        20.00002730322677
+      ],
+      "new_column_step_ratios": [
+        1.1286726230890982,
+        1.1382626923282266,
+        1.1517449249532559
+      ],
+      "elapsed_seconds": 4.074287332594395
+    }
+  ],
+  "isolated_routes": [
+    {
+      "file": "routes256.json",
+      "conditions": [
+        {
+          "condition": "original",
+          "effects": {
+            "neuron_bias": 4.225842716527081e-05,
+            "readout": 0.0005612204001030978,
+            "encoder_old": 0.00015553042576144693,
+            "encoder_new": 4.282775477010746e-07
+          }
+        },
+        {
+          "condition": "new_inputs_scaled",
+          "effects": {
+            "neuron_bias": 4.225727594053047e-05,
+            "readout": 0.0005612201977608226,
+            "encoder_old": 0.0001555344885981171,
+            "encoder_new": 6.241633176003817e-06
+          }
+        }
+      ]
+    },
+    {
+      "file": "routes64.json",
+      "conditions": [
+        {
+          "condition": "original",
+          "effects": {
+            "neuron_bias": 4.138377710192294e-05,
+            "readout": 0.0005623099605210675,
+            "encoder_old": 0.00016525761522687317,
+            "encoder_new": 3.4558805457042364e-07
+          }
+        },
+        {
+          "condition": "new_inputs_scaled",
+          "effects": {
+            "neuron_bias": 4.137755372066405e-05,
+            "readout": 0.0005623068924313006,
+            "encoder_old": 0.00016524620071099703,
+            "encoder_new": 5.102216997111764e-06
+          }
+        }
+      ]
+    }
+  ],
+  "limitation": "Repeated subsets of one old rollout, not independent trajectories or online training; RMS effects are nonlinear and do not sum as contribution percentages."
+}

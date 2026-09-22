@@ -1,0 +1,218 @@
+{
+  "kind": "paired_development_screen_summary",
+  "conditions": {
+    "source": {
+      "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+      "attempts": 96,
+      "successes": 10,
+      "falls": 5,
+      "score": 0.4121602078278859,
+      "mean_duration": 29.17652083064119,
+      "mean_speed": 0.1790190408731481,
+      "speed_mae": 0.3182731682330389,
+      "mean_lateral_m": 3.7365132241842125,
+      "mean_height": 0.8997350136439005,
+      "per_seed": [
+        {
+          "seed": 92001,
+          "score": 0.41463997960090637,
+          "successes": 4,
+          "falls": 2
+        },
+        {
+          "seed": 92002,
+          "score": 0.4587162733078003,
+          "successes": 4,
+          "falls": 1
+        },
+        {
+          "seed": 92003,
+          "score": 0.36312437057495117,
+          "successes": 2,
+          "falls": 2
+        }
+      ],
+      "tiers": {
+        "0.35": {
+          "attempts": 33,
+          "successes": 0,
+          "falls": 5,
+          "mean_speed": 0.050004707956263286,
+          "mean_lateral_m": 1.8642988365150592
+        },
+        "0.5": {
+          "attempts": 33,
+          "successes": 6,
+          "falls": 0,
+          "mean_speed": 0.17475428725733902,
+          "mean_lateral_m": 4.222766640934754
+        },
+        "0.65": {
+          "attempts": 30,
+          "successes": 4,
+          "falls": 0,
+          "mean_speed": 0.32562603605911133,
+          "mean_lateral_m": 5.261070292194685
+        }
+      }
+    },
+    "control": {
+      "checkpoint_sha256": "8c41b0b3a30b664c6867d2864ee466cec1167fb31fb0940cbd145d98483e0be0",
+      "attempts": 96,
+      "successes": 12,
+      "falls": 8,
+      "score": 0.3988861044247945,
+      "mean_duration": 28.615468345582485,
+      "mean_speed": 0.20742068230811128,
+      "speed_mae": 0.28905313639885816,
+      "mean_lateral_m": 3.9337686846847646,
+      "mean_height": 0.8993908564249674,
+      "per_seed": [
+        {
+          "seed": 92001,
+          "score": 0.386513352394104,
+          "successes": 4,
+          "falls": 6
+        },
+        {
+          "seed": 92002,
+          "score": 0.3843421936035156,
+          "successes": 5,
+          "falls": 1
+        },
+        {
+          "seed": 92003,
+          "score": 0.4258027672767639,
+          "successes": 3,
+          "falls": 1
+        }
+      ],
+      "tiers": {
+        "0.35": {
+          "attempts": 33,
+          "successes": 1,
+          "falls": 6,
+          "mean_speed": 0.041485442199645506,
+          "mean_lateral_m": 2.742902072090091
+        },
+        "0.5": {
+          "attempts": 33,
+          "successes": 6,
+          "falls": 2,
+          "mean_speed": 0.23915468219043265,
+          "mean_lateral_m": 4.298610592035182
+        },
+        "0.65": {
+          "attempts": 30,
+          "successes": 5,
+          "falls": 0,
+          "mean_speed": 0.35504204655687016,
+          "mean_lateral_m": 4.842395860453447
+        }
+      },
+      "training": {
+        "iterations": 7,
+        "actor_rounds": 6,
+        "optimizer_steps": 768,
+        "kl_stops": 0,
+        "mean_actor_kl": 0.005035862315101743,
+        "initial_value_loss": 190.68127804994583,
+        "final_value_loss": 146.1637156009674,
+        "mean_actor_round_seconds": 25.557169390221436,
+        "peak_vram_gib": 5.620399475097656,
+        "elapsed": 273.693039290607
+      }
+    },
+    "scaled": {
+      "checkpoint_sha256": "19a93a1caa57a2c68fe6d037366f265736b02bcefbd8b2d7c5a9edbd0593ae54",
+      "attempts": 96,
+      "successes": 10,
+      "falls": 5,
+      "score": 0.3291998306910197,
+      "mean_duration": 28.954225295533735,
+      "mean_speed": 0.22277270885388134,
+      "speed_mae": 0.28482607838183566,
+      "mean_lateral_m": 5.246627960780946,
+      "mean_height": 0.8991691072781881,
+      "per_seed": [
+        {
+          "seed": 92001,
+          "score": 0.3768351972103119,
+          "successes": 6,
+          "falls": 1
+        },
+        {
+          "seed": 92002,
+          "score": 0.29490897059440613,
+          "successes": 2,
+          "falls": 2
+        },
+        {
+          "seed": 92003,
+          "score": 0.31585532426834106,
+          "successes": 2,
+          "falls": 2
+        }
+      ],
+      "tiers": {
+        "0.35": {
+          "attempts": 33,
+          "successes": 0,
+          "falls": 5,
+          "mean_speed": 0.08282865912681728,
+          "mean_lateral_m": 2.9334938789181635
+        },
+        "0.5": {
+          "attempts": 33,
+          "successes": 3,
+          "falls": 0,
+          "mean_speed": 0.21064108798534356,
+          "mean_lateral_m": 7.134847274332335
+        },
+        "0.65": {
+          "attempts": 30,
+          "successes": 7,
+          "falls": 0,
+          "mean_speed": 0.39005594650904335,
+          "mean_lateral_m": 5.714034205923478
+        }
+      },
+      "training": {
+        "iterations": 7,
+        "actor_rounds": 6,
+        "optimizer_steps": 768,
+        "kl_stops": 0,
+        "mean_actor_kl": 0.005170430060540336,
+        "initial_value_loss": 191.78033423423767,
+        "final_value_loss": 97.55549609661102,
+        "mean_actor_round_seconds": 25.55765203634898,
+        "peak_vram_gib": 5.620399475097656,
+        "elapsed": 309.9911886379123
+      }
+    }
+  },
+  "comparisons": {
+    "control_minus_source": {
+      "score": -0.01327410340309143,
+      "gained_success": 10,
+      "lost_success": 8,
+      "new_falls": 6,
+      "prevented_falls": 3
+    },
+    "scaled_minus_source": {
+      "score": -0.08296037713686621,
+      "gained_success": 8,
+      "lost_success": 8,
+      "new_falls": 3,
+      "prevented_falls": 3
+    },
+    "scaled_minus_control": {
+      "score": -0.06968627373377478,
+      "gained_success": 8,
+      "lost_success": 10,
+      "new_falls": 4,
+      "prevented_falls": 7
+    }
+  },
+  "limitation": "One training seed per condition; evaluation seeds are not independent training repetitions."
+}

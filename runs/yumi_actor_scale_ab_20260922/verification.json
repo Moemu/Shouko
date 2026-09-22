@@ -1,0 +1,187 @@
+{
+  "kind": "online_ab_checkpoint_and_fixed_input_diagnostics",
+  "observations": 64,
+  "rollout_sha256": "c62731c1cf2abac02a42b3764de2a0974c8796bd26a5cad748781bc4c0433a88",
+  "source_checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+  "results": [
+    {
+      "name": "source",
+      "checkpoint": "runs/yumi_obs50/best.pt",
+      "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+      "state_sha256": "2450081b857fba0eace4c65fbc2423f93011d24a48f9cd173b8abca18c1d5555",
+      "critic_coordinates_preserved": true,
+      "critic_new_std": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "actor_new_std": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "new_encoder_rms": 0.0,
+      "repeat_action_rms": 1.2832524520422186e-07,
+      "zero_new_inputs_action_rms": 1.2596367350716694e-07,
+      "input_shifts": [
+        {
+          "column": 47,
+          "label": "vx",
+          "raw_std": 0.08117300271987915,
+          "actor_std": 1.0,
+          "normalized_min": -0.27962273359298706,
+          "normalized_max": 0.22997169196605682,
+          "clamp_fraction": 0.0,
+          "plus_one_std_action_rms": 1.218908632371242e-07,
+          "minus_one_std_action_rms": 1.2186432401539352e-07
+        },
+        {
+          "column": 48,
+          "label": "vy",
+          "raw_std": 0.06434640288352966,
+          "actor_std": 1.0,
+          "normalized_min": -0.21812257170677185,
+          "normalized_max": 0.15307176113128662,
+          "clamp_fraction": 0.0,
+          "plus_one_std_action_rms": 1.1708297005092186e-07,
+          "minus_one_std_action_rms": 1.2133101739804725e-07
+        },
+        {
+          "column": 49,
+          "label": "height",
+          "raw_std": 0.04135676473379135,
+          "actor_std": 1.0,
+          "normalized_min": -0.19321942329406738,
+          "normalized_max": 0.013236761093139648,
+          "clamp_fraction": 0.0,
+          "plus_one_std_action_rms": 1.2690197451711085e-07,
+          "minus_one_std_action_rms": 1.3333168326243043e-07
+        }
+      ]
+    },
+    {
+      "name": "control",
+      "checkpoint": "runs/yumi_actor_scale_ab_20260922/control/last.pt",
+      "checkpoint_sha256": "8c41b0b3a30b664c6867d2864ee466cec1167fb31fb0940cbd145d98483e0be0",
+      "state_sha256": "716de570dcfa7f5124a7c3bfe2d8cdee46a88c13e07f3bbe905057c3ad902158",
+      "critic_coordinates_preserved": true,
+      "critic_new_std": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "actor_new_std": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "new_encoder_rms": 8.596101489200801e-05,
+      "repeat_action_rms": 1.1485097718847062e-07,
+      "zero_new_inputs_action_rms": 1.0150492994470962e-05,
+      "input_shifts": [
+        {
+          "column": 47,
+          "label": "vx",
+          "raw_std": 0.08117300271987915,
+          "actor_std": 1.0,
+          "normalized_min": -0.27962273359298706,
+          "normalized_max": 0.22997169196605682,
+          "clamp_fraction": 0.0,
+          "plus_one_std_action_rms": 1.0480549287816777e-05,
+          "minus_one_std_action_rms": 1.047810172493226e-05
+        },
+        {
+          "column": 48,
+          "label": "vy",
+          "raw_std": 0.06434640288352966,
+          "actor_std": 1.0,
+          "normalized_min": -0.21812257170677185,
+          "normalized_max": 0.15307176113128662,
+          "clamp_fraction": 0.0,
+          "plus_one_std_action_rms": 5.693171510397335e-06,
+          "minus_one_std_action_rms": 5.693577156513753e-06
+        },
+        {
+          "column": 49,
+          "label": "height",
+          "raw_std": 0.04135676473379135,
+          "actor_std": 1.0,
+          "normalized_min": -0.19321942329406738,
+          "normalized_max": 0.013236761093139648,
+          "clamp_fraction": 0.0,
+          "plus_one_std_action_rms": 1.7422132385315108e-06,
+          "minus_one_std_action_rms": 1.7547938350491289e-06
+        }
+      ],
+      "iteration": 7,
+      "actor_rounds": 6,
+      "optimizer_steps": 768,
+      "saved_adam_steps": [
+        768.0
+      ]
+    },
+    {
+      "name": "scaled",
+      "checkpoint": "runs/yumi_actor_scale_ab_20260922/scaled/last.pt",
+      "checkpoint_sha256": "19a93a1caa57a2c68fe6d037366f265736b02bcefbd8b2d7c5a9edbd0593ae54",
+      "state_sha256": "711330612bfa56a011d230341c610eaaa4337a74d855e3422d35632a032a6061",
+      "critic_coordinates_preserved": true,
+      "critic_new_std": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "actor_new_std": [
+        0.08117300271987915,
+        0.06434640288352966,
+        0.05000000074505806
+      ],
+      "new_encoder_rms": 9.91033301956757e-05,
+      "repeat_action_rms": 1.290199557334348e-07,
+      "zero_new_inputs_action_rms": 0.00018962220515016259,
+      "input_shifts": [
+        {
+          "column": 47,
+          "label": "vx",
+          "raw_std": 0.08117300271987915,
+          "actor_std": 0.08117300271987915,
+          "normalized_min": -3.444775104522705,
+          "normalized_max": 2.8331055641174316,
+          "clamp_fraction": 0.0,
+          "plus_one_std_action_rms": 0.00018326182836354672,
+          "minus_one_std_action_rms": 0.0001832567449541596
+        },
+        {
+          "column": 48,
+          "label": "vy",
+          "raw_std": 0.06434640288352966,
+          "actor_std": 0.06434640288352966,
+          "normalized_min": -3.389817714691162,
+          "normalized_max": 2.3788704872131348,
+          "clamp_fraction": 0.0,
+          "plus_one_std_action_rms": 0.00013520336226153872,
+          "minus_one_std_action_rms": 0.00013523278422346107
+        },
+        {
+          "column": 49,
+          "label": "height",
+          "raw_std": 0.04135676473379135,
+          "actor_std": 0.05000000074505806,
+          "normalized_min": -3.8643884658813477,
+          "normalized_max": 0.26473522186279297,
+          "clamp_fraction": 0.0,
+          "plus_one_std_action_rms": 5.444802169756046e-05,
+          "minus_one_std_action_rms": 5.4467939783585254e-05
+        }
+      ],
+      "iteration": 7,
+      "actor_rounds": 6,
+      "optimizer_steps": 768,
+      "saved_adam_steps": [
+        768.0
+      ]
+    }
+  ],
+  "limitation": "Fixed source rollout input shifts are sensitivity checks, not gait evidence.",
+  "source_unchanged": true
+}

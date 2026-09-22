@@ -1,0 +1,1679 @@
+{
+  "kind": "native_development_feedback_ablation",
+  "seeds": [
+    93001,
+    93002,
+    93003,
+    93004,
+    93005,
+    93006,
+    93007,
+    93008,
+    93009
+  ],
+  "speeds": [
+    0.35,
+    0.5,
+    0.65,
+    0.35,
+    0.5,
+    0.65,
+    0.35,
+    0.5,
+    0.65
+  ],
+  "neural_backend": "fixed-order Warp CSR",
+  "physics": "native MuJoCo",
+  "physics_interface": {
+    "default_angles": [
+      -0.03,
+      0.0,
+      0.0,
+      0.08,
+      -0.05,
+      0.0,
+      -0.03,
+      0.0,
+      0.0,
+      0.08,
+      -0.05,
+      0.0
+    ],
+    "action_scale": 0.25,
+    "cmd_scale": [
+      2.0,
+      2.0,
+      0.25
+    ],
+    "ang_vel_scale": 0.25,
+    "dof_vel_scale": 0.05,
+    "control_decimation": 10.0,
+    "simulation_dt": 0.002,
+    "observation_size": 50.0,
+    "gait_period_s": 0.8,
+    "linear_velocity_scale": 0.25,
+    "height_reference": 0.962
+  },
+  "conditions": [
+    {
+      "name": "source",
+      "checkpoint": "runs/yumi_obs50/best.pt",
+      "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+      "zero_new_inputs": false,
+      "tests": [
+        {
+          "seed": 93001,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": -0.07010361640797673,
+          "lateral_m": 6.176602931017373,
+          "fallen": false,
+          "foot_strikes": [
+            127,
+            111
+          ],
+          "alternations": 203,
+          "minimum_upright": 0.9193336387648068,
+          "minimum_height": 0.8657472614999675,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93002,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.02624782768449672,
+          "lateral_m": 1.381870532786567,
+          "fallen": false,
+          "foot_strikes": [
+            137,
+            106
+          ],
+          "alternations": 206,
+          "minimum_upright": 0.9164106291347973,
+          "minimum_height": 0.8550252677442013,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93003,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5707701063002971,
+          "lateral_m": 0.3893214982721493,
+          "fallen": false,
+          "foot_strikes": [
+            148,
+            138
+          ],
+          "alternations": 258,
+          "minimum_upright": 0.9138851023655361,
+          "minimum_height": 0.8532220088891779,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        },
+        {
+          "seed": 93004,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.06643576947165447,
+          "lateral_m": 3.875649599470353,
+          "fallen": false,
+          "foot_strikes": [
+            123,
+            105
+          ],
+          "alternations": 192,
+          "minimum_upright": 0.918920872641716,
+          "minimum_height": 0.8607344750889846,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93005,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.26385326648207946,
+          "lateral_m": 5.92894546250515,
+          "fallen": false,
+          "foot_strikes": [
+            141,
+            126
+          ],
+          "alternations": 235,
+          "minimum_upright": 0.9162151140489645,
+          "minimum_height": 0.8473757308110407,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93006,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.12480996592425367,
+          "lateral_m": 6.227885284443563,
+          "fallen": false,
+          "foot_strikes": [
+            141,
+            122
+          ],
+          "alternations": 229,
+          "minimum_upright": 0.9148978678628135,
+          "minimum_height": 0.8610989181277965,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93007,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.2652963583525862,
+          "lateral_m": 3.034634893931101,
+          "fallen": false,
+          "foot_strikes": [
+            135,
+            111
+          ],
+          "alternations": 198,
+          "minimum_upright": 0.9190477304866818,
+          "minimum_height": 0.8319363657012893,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93008,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.1073127082334047,
+          "lateral_m": 3.997413229530132,
+          "fallen": false,
+          "foot_strikes": [
+            136,
+            116
+          ],
+          "alternations": 222,
+          "minimum_upright": 0.9146489858778566,
+          "minimum_height": 0.8584009456468988,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93009,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5023883012489719,
+          "lateral_m": 0.1466844150680013,
+          "fallen": false,
+          "foot_strikes": [
+            138,
+            129
+          ],
+          "alternations": 232,
+          "minimum_upright": 0.9139479074945493,
+          "minimum_height": 0.8583244306092876,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        }
+      ],
+      "score": 0.4455435880887328,
+      "successes": 2,
+      "falls": 0,
+      "lateral_m": 3.46211198300271,
+      "mean_speed": 0.20633452080997416,
+      "trajectory_sha256": "3f9cece5ce0eb0a957fed19c95824e093e1d8856d37dbc8c614e62fc9d4b366f",
+      "wall_seconds": 16.34397368133068
+    },
+    {
+      "name": "source_repeat",
+      "checkpoint": "runs/yumi_obs50/best.pt",
+      "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+      "zero_new_inputs": false,
+      "tests": [
+        {
+          "seed": 93001,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": -0.07010361640797673,
+          "lateral_m": 6.176602931017373,
+          "fallen": false,
+          "foot_strikes": [
+            127,
+            111
+          ],
+          "alternations": 203,
+          "minimum_upright": 0.9193336387648068,
+          "minimum_height": 0.8657472614999675,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93002,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.02624782768449672,
+          "lateral_m": 1.381870532786567,
+          "fallen": false,
+          "foot_strikes": [
+            137,
+            106
+          ],
+          "alternations": 206,
+          "minimum_upright": 0.9164106291347973,
+          "minimum_height": 0.8550252677442013,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93003,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5707701063002971,
+          "lateral_m": 0.3893214982721493,
+          "fallen": false,
+          "foot_strikes": [
+            148,
+            138
+          ],
+          "alternations": 258,
+          "minimum_upright": 0.9138851023655361,
+          "minimum_height": 0.8532220088891779,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        },
+        {
+          "seed": 93004,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.06643576947165447,
+          "lateral_m": 3.875649599470353,
+          "fallen": false,
+          "foot_strikes": [
+            123,
+            105
+          ],
+          "alternations": 192,
+          "minimum_upright": 0.918920872641716,
+          "minimum_height": 0.8607344750889846,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93005,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.26385326648207946,
+          "lateral_m": 5.92894546250515,
+          "fallen": false,
+          "foot_strikes": [
+            141,
+            126
+          ],
+          "alternations": 235,
+          "minimum_upright": 0.9162151140489645,
+          "minimum_height": 0.8473757308110407,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93006,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.12480996592425367,
+          "lateral_m": 6.227885284443563,
+          "fallen": false,
+          "foot_strikes": [
+            141,
+            122
+          ],
+          "alternations": 229,
+          "minimum_upright": 0.9148978678628135,
+          "minimum_height": 0.8610989181277965,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93007,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.2652963583525862,
+          "lateral_m": 3.034634893931101,
+          "fallen": false,
+          "foot_strikes": [
+            135,
+            111
+          ],
+          "alternations": 198,
+          "minimum_upright": 0.9190477304866818,
+          "minimum_height": 0.8319363657012893,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93008,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.1073127082334047,
+          "lateral_m": 3.997413229530132,
+          "fallen": false,
+          "foot_strikes": [
+            136,
+            116
+          ],
+          "alternations": 222,
+          "minimum_upright": 0.9146489858778566,
+          "minimum_height": 0.8584009456468988,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93009,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5023883012489719,
+          "lateral_m": 0.1466844150680013,
+          "fallen": false,
+          "foot_strikes": [
+            138,
+            129
+          ],
+          "alternations": 232,
+          "minimum_upright": 0.9139479074945493,
+          "minimum_height": 0.8583244306092876,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        }
+      ],
+      "score": 0.4455435880887328,
+      "successes": 2,
+      "falls": 0,
+      "lateral_m": 3.46211198300271,
+      "mean_speed": 0.20633452080997416,
+      "trajectory_sha256": "3f9cece5ce0eb0a957fed19c95824e093e1d8856d37dbc8c614e62fc9d4b366f",
+      "wall_seconds": 15.71359147131443
+    },
+    {
+      "name": "source_zero",
+      "checkpoint": "runs/yumi_obs50/best.pt",
+      "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+      "zero_new_inputs": true,
+      "tests": [
+        {
+          "seed": 93001,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": -0.07010361640797673,
+          "lateral_m": 6.176602931017373,
+          "fallen": false,
+          "foot_strikes": [
+            127,
+            111
+          ],
+          "alternations": 203,
+          "minimum_upright": 0.9193336387648068,
+          "minimum_height": 0.8657472614999675,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93002,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.02624782768449672,
+          "lateral_m": 1.381870532786567,
+          "fallen": false,
+          "foot_strikes": [
+            137,
+            106
+          ],
+          "alternations": 206,
+          "minimum_upright": 0.9164106291347973,
+          "minimum_height": 0.8550252677442013,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93003,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5707701063002971,
+          "lateral_m": 0.3893214982721493,
+          "fallen": false,
+          "foot_strikes": [
+            148,
+            138
+          ],
+          "alternations": 258,
+          "minimum_upright": 0.9138851023655361,
+          "minimum_height": 0.8532220088891779,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        },
+        {
+          "seed": 93004,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.06643576947165447,
+          "lateral_m": 3.875649599470353,
+          "fallen": false,
+          "foot_strikes": [
+            123,
+            105
+          ],
+          "alternations": 192,
+          "minimum_upright": 0.918920872641716,
+          "minimum_height": 0.8607344750889846,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93005,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.26385326648207946,
+          "lateral_m": 5.92894546250515,
+          "fallen": false,
+          "foot_strikes": [
+            141,
+            126
+          ],
+          "alternations": 235,
+          "minimum_upright": 0.9162151140489645,
+          "minimum_height": 0.8473757308110407,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93006,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.12480996592425367,
+          "lateral_m": 6.227885284443563,
+          "fallen": false,
+          "foot_strikes": [
+            141,
+            122
+          ],
+          "alternations": 229,
+          "minimum_upright": 0.9148978678628135,
+          "minimum_height": 0.8610989181277965,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93007,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.2652963583525862,
+          "lateral_m": 3.034634893931101,
+          "fallen": false,
+          "foot_strikes": [
+            135,
+            111
+          ],
+          "alternations": 198,
+          "minimum_upright": 0.9190477304866818,
+          "minimum_height": 0.8319363657012893,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93008,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.1073127082334047,
+          "lateral_m": 3.997413229530132,
+          "fallen": false,
+          "foot_strikes": [
+            136,
+            116
+          ],
+          "alternations": 222,
+          "minimum_upright": 0.9146489858778566,
+          "minimum_height": 0.8584009456468988,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93009,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5023883012489719,
+          "lateral_m": 0.1466844150680013,
+          "fallen": false,
+          "foot_strikes": [
+            138,
+            129
+          ],
+          "alternations": 232,
+          "minimum_upright": 0.9139479074945493,
+          "minimum_height": 0.8583244306092876,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        }
+      ],
+      "score": 0.4455435880887328,
+      "successes": 2,
+      "falls": 0,
+      "lateral_m": 3.46211198300271,
+      "mean_speed": 0.20633452080997416,
+      "trajectory_sha256": "3f9cece5ce0eb0a957fed19c95824e093e1d8856d37dbc8c614e62fc9d4b366f",
+      "wall_seconds": 15.698951933532953
+    },
+    {
+      "name": "control",
+      "checkpoint": "runs/yumi_actor_scale_ab_20260922/control/last.pt",
+      "checkpoint_sha256": "8c41b0b3a30b664c6867d2864ee466cec1167fb31fb0940cbd145d98483e0be0",
+      "zero_new_inputs": false,
+      "tests": [
+        {
+          "seed": 93001,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.029563410274496285,
+          "lateral_m": 6.416469524648083,
+          "fallen": false,
+          "foot_strikes": [
+            122,
+            111
+          ],
+          "alternations": 202,
+          "minimum_upright": 0.9195993009420129,
+          "minimum_height": 0.8487686086379503,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93002,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.4725935296276431,
+          "lateral_m": 1.294001150992272,
+          "fallen": false,
+          "foot_strikes": [
+            141,
+            125
+          ],
+          "alternations": 226,
+          "minimum_upright": 0.9169671199387086,
+          "minimum_height": 0.8392069022204584,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        },
+        {
+          "seed": 93003,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5549093163208244,
+          "lateral_m": 1.3130356523983149,
+          "fallen": false,
+          "foot_strikes": [
+            145,
+            136
+          ],
+          "alternations": 253,
+          "minimum_upright": 0.9139186376847432,
+          "minimum_height": 0.8382669094398596,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        },
+        {
+          "seed": 93004,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.007052618586314055,
+          "lateral_m": 3.7552778977812333,
+          "fallen": false,
+          "foot_strikes": [
+            123,
+            100
+          ],
+          "alternations": 186,
+          "minimum_upright": 0.9202565948047821,
+          "minimum_height": 0.8670463640503027,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93005,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.0348617683272203,
+          "lateral_m": 2.740371027957954,
+          "fallen": false,
+          "foot_strikes": [
+            143,
+            117
+          ],
+          "alternations": 224,
+          "minimum_upright": 0.9169109550792565,
+          "minimum_height": 0.8619854061121988,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93006,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.253764068839643,
+          "lateral_m": 7.576378616817966,
+          "fallen": false,
+          "foot_strikes": [
+            143,
+            133
+          ],
+          "alternations": 247,
+          "minimum_upright": 0.9147360046054656,
+          "minimum_height": 0.8577106032727968,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93007,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.026653905923189197,
+          "lateral_m": 0.17447830749698034,
+          "fallen": false,
+          "foot_strikes": [
+            116,
+            90
+          ],
+          "alternations": 162,
+          "minimum_upright": 0.9194504265702921,
+          "minimum_height": 0.8586607611189125,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93008,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": -0.04791450117344065,
+          "lateral_m": 4.2196121916506515,
+          "fallen": false,
+          "foot_strikes": [
+            137,
+            110
+          ],
+          "alternations": 209,
+          "minimum_upright": 0.915095428627068,
+          "minimum_height": 0.866203405667698,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93009,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.08491090021328483,
+          "lateral_m": 8.730857682062853,
+          "fallen": false,
+          "foot_strikes": [
+            140,
+            127
+          ],
+          "alternations": 234,
+          "minimum_upright": 0.9140573114473187,
+          "minimum_height": 0.8616857553504773,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        }
+      ],
+      "score": 0.3863523189999985,
+      "successes": 2,
+      "falls": 0,
+      "lateral_m": 4.024498005756256,
+      "mean_speed": 0.1573772241043527,
+      "trajectory_sha256": "bd3fa42e40baa3181651dca08aba6b93de8bf21a88943f83dd513496abcf6887",
+      "wall_seconds": 15.708608854562044
+    },
+    {
+      "name": "control_zero",
+      "checkpoint": "runs/yumi_actor_scale_ab_20260922/control/last.pt",
+      "checkpoint_sha256": "8c41b0b3a30b664c6867d2864ee466cec1167fb31fb0940cbd145d98483e0be0",
+      "zero_new_inputs": true,
+      "tests": [
+        {
+          "seed": 93001,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.004434765156814978,
+          "lateral_m": 0.3620948051095145,
+          "fallen": false,
+          "foot_strikes": [
+            126,
+            102
+          ],
+          "alternations": 190,
+          "minimum_upright": 0.9195997587877969,
+          "minimum_height": 0.8694663707013531,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93002,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.46174446952887405,
+          "lateral_m": 1.5099497528459884,
+          "fallen": false,
+          "foot_strikes": [
+            139,
+            119
+          ],
+          "alternations": 220,
+          "minimum_upright": 0.9169676613339621,
+          "minimum_height": 0.8394921878256596,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        },
+        {
+          "seed": 93003,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.40987552492018736,
+          "lateral_m": 4.35182902333745,
+          "fallen": false,
+          "foot_strikes": [
+            146,
+            135
+          ],
+          "alternations": 250,
+          "minimum_upright": 0.9139192173550788,
+          "minimum_height": 0.8320631895871494,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93004,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.018514232216429605,
+          "lateral_m": 6.729475129879527,
+          "fallen": false,
+          "foot_strikes": [
+            114,
+            109
+          ],
+          "alternations": 185,
+          "minimum_upright": 0.9202570785572322,
+          "minimum_height": 0.8549488034426209,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93005,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.04020581083174461,
+          "lateral_m": 3.0031755599599985,
+          "fallen": false,
+          "foot_strikes": [
+            138,
+            108
+          ],
+          "alternations": 204,
+          "minimum_upright": 0.9169114863949828,
+          "minimum_height": 0.8620638787341798,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93006,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.49307754600849035,
+          "lateral_m": 3.33151513710086,
+          "fallen": false,
+          "foot_strikes": [
+            141,
+            133
+          ],
+          "alternations": 244,
+          "minimum_upright": 0.9147366249891211,
+          "minimum_height": 0.858364862695986,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93007,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": -0.009329601331025408,
+          "lateral_m": 5.325442561733225,
+          "fallen": false,
+          "foot_strikes": [
+            127,
+            108
+          ],
+          "alternations": 200,
+          "minimum_upright": 0.91945089478809,
+          "minimum_height": 0.8605255359152969,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93008,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.22462258601541343,
+          "lateral_m": 8.05881997807775,
+          "fallen": false,
+          "foot_strikes": [
+            139,
+            129
+          ],
+          "alternations": 226,
+          "minimum_upright": 0.9150959818233522,
+          "minimum_height": 0.8557100927088593,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93009,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.18994297844300884,
+          "lateral_m": 8.152082512287068,
+          "fallen": false,
+          "foot_strikes": [
+            141,
+            131
+          ],
+          "alternations": 232,
+          "minimum_upright": 0.9140579100729254,
+          "minimum_height": 0.860496574800433,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        }
+      ],
+      "score": 0.38892364936555307,
+      "successes": 1,
+      "falls": 0,
+      "lateral_m": 4.536042717814598,
+      "mean_speed": 0.20367647908777087,
+      "trajectory_sha256": "7844e255a4005a094ad68f0428ccedd44b8035b1c335638f86ead3da6a87a33f",
+      "wall_seconds": 15.685803730040789
+    },
+    {
+      "name": "scaled",
+      "checkpoint": "runs/yumi_actor_scale_ab_20260922/scaled/last.pt",
+      "checkpoint_sha256": "19a93a1caa57a2c68fe6d037366f265736b02bcefbd8b2d7c5a9edbd0593ae54",
+      "zero_new_inputs": false,
+      "tests": [
+        {
+          "seed": 93001,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.041628748355533284,
+          "lateral_m": 5.398235507006361,
+          "fallen": false,
+          "foot_strikes": [
+            136,
+            119
+          ],
+          "alternations": 222,
+          "minimum_upright": 0.9194911296557191,
+          "minimum_height": 0.849107656123005,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93002,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.48514634654096656,
+          "lateral_m": 4.3140818926469375,
+          "fallen": false,
+          "foot_strikes": [
+            136,
+            138
+          ],
+          "alternations": 242,
+          "minimum_upright": 0.9165365814746429,
+          "minimum_height": 0.8506328156535671,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93003,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": -0.04789154909721161,
+          "lateral_m": 16.698222338745257,
+          "fallen": false,
+          "foot_strikes": [
+            146,
+            140
+          ],
+          "alternations": 257,
+          "minimum_upright": 0.9139104359702337,
+          "minimum_height": 0.8512760275688244,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93004,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": -0.0030143741151262703,
+          "lateral_m": 1.3674950480123946,
+          "fallen": false,
+          "foot_strikes": [
+            132,
+            97
+          ],
+          "alternations": 189,
+          "minimum_upright": 0.9195655187243832,
+          "minimum_height": 0.8700309848614246,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93005,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5212577968547885,
+          "lateral_m": 3.1000287291698774,
+          "fallen": false,
+          "foot_strikes": [
+            142,
+            132
+          ],
+          "alternations": 243,
+          "minimum_upright": 0.9159693634874386,
+          "minimum_height": 0.8486539944699927,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93006,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5213064112478744,
+          "lateral_m": 0.5116147035267175,
+          "fallen": false,
+          "foot_strikes": [
+            152,
+            141
+          ],
+          "alternations": 265,
+          "minimum_upright": 0.9143500761611618,
+          "minimum_height": 0.8391989225909073,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        },
+        {
+          "seed": 93007,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.050663241824867,
+          "lateral_m": 0.30680320974307523,
+          "fallen": false,
+          "foot_strikes": [
+            120,
+            98
+          ],
+          "alternations": 173,
+          "minimum_upright": 0.9195356719834127,
+          "minimum_height": 0.8626336323397843,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93008,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": -0.05160705997897496,
+          "lateral_m": 3.899778335232143,
+          "fallen": false,
+          "foot_strikes": [
+            134,
+            116
+          ],
+          "alternations": 209,
+          "minimum_upright": 0.9140818946928957,
+          "minimum_height": 0.8605049401233883,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93009,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.12132882790659011,
+          "lateral_m": 8.608080232143223,
+          "fallen": false,
+          "foot_strikes": [
+            146,
+            138
+          ],
+          "alternations": 248,
+          "minimum_upright": 0.9140845682262186,
+          "minimum_height": 0.8666912863862268,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        }
+      ],
+      "score": 0.37160812556659917,
+      "successes": 1,
+      "falls": 0,
+      "lateral_m": 4.9115933329139985,
+      "mean_speed": 0.1820909321710341,
+      "trajectory_sha256": "3c57c0ee033aebefd85521a47554057e470e494b8f1494f0c205cffa056e7e36",
+      "wall_seconds": 15.692189615219831
+    },
+    {
+      "name": "scaled_zero",
+      "checkpoint": "runs/yumi_actor_scale_ab_20260922/scaled/last.pt",
+      "checkpoint_sha256": "19a93a1caa57a2c68fe6d037366f265736b02bcefbd8b2d7c5a9edbd0593ae54",
+      "zero_new_inputs": true,
+      "tests": [
+        {
+          "seed": 93001,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.10757203738389237,
+          "lateral_m": 4.661101473912231,
+          "fallen": false,
+          "foot_strikes": [
+            135,
+            117
+          ],
+          "alternations": 218,
+          "minimum_upright": 0.919485264588406,
+          "minimum_height": 0.8530771285468922,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93002,
+          "target_speed": 0.5,
+          "seconds": 17.48000000000119,
+          "mean_speed": 0.4999688677425154,
+          "lateral_m": 4.877427894432337,
+          "fallen": true,
+          "foot_strikes": [
+            79,
+            80
+          ],
+          "alternations": 129,
+          "minimum_upright": 0.5458648932900989,
+          "minimum_height": 0.5405771080935614,
+          "criteria": {
+            "survived": false,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": false,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93003,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.48115029913991386,
+          "lateral_m": 8.152928569042325,
+          "fallen": false,
+          "foot_strikes": [
+            147,
+            138
+          ],
+          "alternations": 260,
+          "minimum_upright": 0.9139080981910819,
+          "minimum_height": 0.8345351327541972,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93004,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.04096661754250096,
+          "lateral_m": 0.17476865897167881,
+          "fallen": false,
+          "foot_strikes": [
+            129,
+            93
+          ],
+          "alternations": 178,
+          "minimum_upright": 0.9195625298350194,
+          "minimum_height": 0.8676707471506957,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93005,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.26962224362538395,
+          "lateral_m": 11.428432928741518,
+          "fallen": false,
+          "foot_strikes": [
+            149,
+            142
+          ],
+          "alternations": 254,
+          "minimum_upright": 0.9159648141409416,
+          "minimum_height": 0.8349587885622161,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93006,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.4254958577628812,
+          "lateral_m": 0.013864100968777967,
+          "fallen": false,
+          "foot_strikes": [
+            147,
+            124
+          ],
+          "alternations": 241,
+          "minimum_upright": 0.9143467726934158,
+          "minimum_height": 0.8626566632499705,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93007,
+          "target_speed": 0.35,
+          "seconds": 29.99999999999425,
+          "mean_speed": -0.0336952590057257,
+          "lateral_m": 1.8303026327570875,
+          "fallen": false,
+          "foot_strikes": [
+            133,
+            114
+          ],
+          "alternations": 220,
+          "minimum_upright": 0.9195304268438618,
+          "minimum_height": 0.8669106324753418,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": false
+        },
+        {
+          "seed": 93008,
+          "target_speed": 0.5,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.32482051270364043,
+          "lateral_m": 10.033101053405103,
+          "fallen": false,
+          "foot_strikes": [
+            135,
+            123
+          ],
+          "alternations": 227,
+          "minimum_upright": 0.9140789363980961,
+          "minimum_height": 0.8596452479138227,
+          "criteria": {
+            "survived": true,
+            "speed": false,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": false
+          },
+          "success": false
+        },
+        {
+          "seed": 93009,
+          "target_speed": 0.65,
+          "seconds": 29.99999999999425,
+          "mean_speed": 0.5556961541341741,
+          "lateral_m": 0.7451753898060637,
+          "fallen": false,
+          "foot_strikes": [
+            150,
+            137
+          ],
+          "alternations": 253,
+          "minimum_upright": 0.9140820566115913,
+          "minimum_height": 0.857719781263615,
+          "criteria": {
+            "survived": true,
+            "speed": true,
+            "feet": true,
+            "alternation": true,
+            "upright": true,
+            "direction": true
+          },
+          "success": true
+        }
+      ],
+      "score": 0.43404840068079537,
+      "successes": 1,
+      "falls": 1,
+      "lateral_m": 4.657455855781903,
+      "mean_speed": 0.29684414789213076,
+      "trajectory_sha256": "26961b248f92b3effb561aa1ce8df194a73e609a5cf7799344e5ab6fb42e3a4c",
+      "wall_seconds": 15.470350224524736
+    }
+  ],
+  "completed": true,
+  "limitation": "Development diagnostic using unchanged checkpoints and a different accumulation order; not final held-out acceptance.",
+  "source_repeat_and_null_intervention_exact": true
+}

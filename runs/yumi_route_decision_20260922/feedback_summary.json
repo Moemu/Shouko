@@ -1,0 +1,789 @@
+{
+  "kind": "feedback_ablation_against_repeat_variation",
+  "conditions": {
+    "scaled": {
+      "per_seed": [
+        {
+          "seed": 92001,
+          "metrics": {
+            "score": {
+              "intact_mean": 0.28396227955818176,
+              "zero_new": 0.39409542083740234,
+              "zero_minus_intact": 0.11013314127922058,
+              "intact_repeat_abs_difference": 0.033076345920562744,
+              "zero_within_intact_range": false
+            },
+            "mean_speed": {
+              "intact_mean": 0.2214711233973503,
+              "zero_new": 0.2536625564098358,
+              "zero_minus_intact": 0.032191433012485504,
+              "intact_repeat_abs_difference": 0.002740040421485901,
+              "zero_within_intact_range": false
+            },
+            "mean_duration": {
+              "intact_mean": 28.584531784057617,
+              "zero_new": 28.8760986328125,
+              "zero_minus_intact": 0.2915668487548828,
+              "intact_repeat_abs_difference": 0.5093841552734375,
+              "zero_within_intact_range": false
+            },
+            "successes": {
+              "intact_mean": 2.5,
+              "zero_new": 4,
+              "zero_minus_intact": 1.5,
+              "intact_repeat_abs_difference": 5,
+              "zero_within_intact_range": true
+            },
+            "falls": {
+              "intact_mean": 2.5,
+              "zero_new": 2,
+              "zero_minus_intact": -0.5,
+              "intact_repeat_abs_difference": 1,
+              "zero_within_intact_range": true
+            },
+            "lateral_m": {
+              "intact_mean": 5.832199844357092,
+              "zero_new": 4.746043200138956,
+              "zero_minus_intact": -1.0861566442181356,
+              "intact_repeat_abs_difference": 0.5671210741857067,
+              "zero_within_intact_range": false
+            }
+          },
+          "modes": {
+            "intact_2": {
+              "score": 0.2674241065979004,
+              "mean_speed": 0.22010110318660736,
+              "mean_duration": 28.839223861694336,
+              "successes": 5,
+              "falls": 2,
+              "lateral_m": 6.115760381449945
+            },
+            "zero_new": {
+              "score": 0.39409542083740234,
+              "mean_speed": 0.2536625564098358,
+              "mean_duration": 28.8760986328125,
+              "successes": 4,
+              "falls": 2,
+              "lateral_m": 4.746043200138956
+            },
+            "intact_1": {
+              "score": 0.30050045251846313,
+              "mean_speed": 0.22284114360809326,
+              "mean_duration": 28.3298397064209,
+              "successes": 0,
+              "falls": 3,
+              "lateral_m": 5.548639307264239
+            }
+          }
+        },
+        {
+          "seed": 92002,
+          "metrics": {
+            "score": {
+              "intact_mean": 0.3677678108215332,
+              "zero_new": 0.39215123653411865,
+              "zero_minus_intact": 0.02438342571258545,
+              "intact_repeat_abs_difference": 0.031085968017578125,
+              "zero_within_intact_range": false
+            },
+            "mean_speed": {
+              "intact_mean": 0.203804612159729,
+              "zero_new": 0.18200288712978363,
+              "zero_minus_intact": -0.021801725029945374,
+              "intact_repeat_abs_difference": 0.04391664266586304,
+              "zero_within_intact_range": true
+            },
+            "mean_duration": {
+              "intact_mean": 29.0970401763916,
+              "zero_new": 29.28235626220703,
+              "zero_minus_intact": 0.1853160858154297,
+              "intact_repeat_abs_difference": 0.18687820434570312,
+              "zero_within_intact_range": false
+            },
+            "successes": {
+              "intact_mean": 3,
+              "zero_new": 3,
+              "zero_minus_intact": 0,
+              "intact_repeat_abs_difference": 2,
+              "zero_within_intact_range": true
+            },
+            "falls": {
+              "intact_mean": 2.5,
+              "zero_new": 1,
+              "zero_minus_intact": -1.5,
+              "intact_repeat_abs_difference": 1,
+              "zero_within_intact_range": false
+            },
+            "lateral_m": {
+              "intact_mean": 4.730224925500806,
+              "zero_new": 3.942686478665564,
+              "zero_minus_intact": -0.7875384468352422,
+              "intact_repeat_abs_difference": 0.01893346442375332,
+              "zero_within_intact_range": false
+            }
+          },
+          "modes": {
+            "intact_1": {
+              "score": 0.35222482681274414,
+              "mean_speed": 0.18184629082679749,
+              "mean_duration": 29.190479278564453,
+              "successes": 4,
+              "falls": 2,
+              "lateral_m": 4.739691657712683
+            },
+            "zero_new": {
+              "score": 0.39215123653411865,
+              "mean_speed": 0.18200288712978363,
+              "mean_duration": 29.28235626220703,
+              "successes": 3,
+              "falls": 1,
+              "lateral_m": 3.942686478665564
+            },
+            "intact_2": {
+              "score": 0.38331079483032227,
+              "mean_speed": 0.22576293349266052,
+              "mean_duration": 29.00360107421875,
+              "successes": 2,
+              "falls": 3,
+              "lateral_m": 4.72075819328893
+            }
+          }
+        },
+        {
+          "seed": 92003,
+          "metrics": {
+            "score": {
+              "intact_mean": 0.4061468541622162,
+              "zero_new": 0.33967292308807373,
+              "zero_minus_intact": -0.06647393107414246,
+              "intact_repeat_abs_difference": 0.10585004091262817,
+              "zero_within_intact_range": false
+            },
+            "mean_speed": {
+              "intact_mean": 0.24726126343011856,
+              "zero_new": 0.2301408350467682,
+              "zero_minus_intact": -0.017120428383350372,
+              "intact_repeat_abs_difference": 0.03345124423503876,
+              "zero_within_intact_range": false
+            },
+            "mean_duration": {
+              "intact_mean": 29.157042503356934,
+              "zero_new": 28.476713180541992,
+              "zero_minus_intact": -0.6803293228149414,
+              "intact_repeat_abs_difference": 0.04062461853027344,
+              "zero_within_intact_range": false
+            },
+            "successes": {
+              "intact_mean": 6.5,
+              "zero_new": 4,
+              "zero_minus_intact": -2.5,
+              "intact_repeat_abs_difference": 5,
+              "zero_within_intact_range": true
+            },
+            "falls": {
+              "intact_mean": 1.5,
+              "zero_new": 4,
+              "zero_minus_intact": 2.5,
+              "intact_repeat_abs_difference": 1,
+              "zero_within_intact_range": false
+            },
+            "lateral_m": {
+              "intact_mean": 4.496021520229988,
+              "zero_new": 4.980249405838549,
+              "zero_minus_intact": 0.48422788560856134,
+              "intact_repeat_abs_difference": 1.2628112386446446,
+              "zero_within_intact_range": true
+            }
+          },
+          "modes": {
+            "intact_1": {
+              "score": 0.3532218337059021,
+              "mean_speed": 0.23053564131259918,
+              "mean_duration": 29.136730194091797,
+              "successes": 4,
+              "falls": 2,
+              "lateral_m": 5.12742713955231
+            },
+            "intact_2": {
+              "score": 0.4590718746185303,
+              "mean_speed": 0.26398688554763794,
+              "mean_duration": 29.17735481262207,
+              "successes": 9,
+              "falls": 1,
+              "lateral_m": 3.8646159009076655
+            },
+            "zero_new": {
+              "score": 0.33967292308807373,
+              "mean_speed": 0.2301408350467682,
+              "mean_duration": 28.476713180541992,
+              "successes": 4,
+              "falls": 4,
+              "lateral_m": 4.980249405838549
+            }
+          }
+        }
+      ],
+      "mean_metrics": {
+        "score": {
+          "intact": 0.35262564818064374,
+          "zero_new": 0.3753065268198649,
+          "zero_minus_intact": 0.02268087863922119,
+          "intact_repeat_abs_difference": 0.05667078495025635
+        },
+        "mean_speed": {
+          "intact": 0.2241789996623993,
+          "zero_new": 0.22193542619546255,
+          "zero_minus_intact": -0.002243573466936747,
+          "intact_repeat_abs_difference": 0.0267026424407959
+        },
+        "mean_duration": {
+          "intact": 28.94620482126872,
+          "zero_new": 28.878389358520508,
+          "zero_minus_intact": -0.06781546274820964,
+          "intact_repeat_abs_difference": 0.24562899271647134
+        },
+        "successes": {
+          "intact": 4.0,
+          "zero_new": 3.6666666666666665,
+          "zero_minus_intact": -0.3333333333333333,
+          "intact_repeat_abs_difference": 4
+        },
+        "falls": {
+          "intact": 2.1666666666666665,
+          "zero_new": 2.3333333333333335,
+          "zero_minus_intact": 0.16666666666666666,
+          "intact_repeat_abs_difference": 1
+        },
+        "lateral_m": {
+          "intact": 5.019482096695962,
+          "zero_new": 4.55632636154769,
+          "zero_minus_intact": -0.4631557351482722,
+          "intact_repeat_abs_difference": 0.6162885924180349
+        }
+      }
+    },
+    "control": {
+      "per_seed": [
+        {
+          "seed": 92001,
+          "metrics": {
+            "score": {
+              "intact_mean": 0.3025374710559845,
+              "zero_new": 0.347384512424469,
+              "zero_minus_intact": 0.0448470413684845,
+              "intact_repeat_abs_difference": 0.053147852420806885,
+              "zero_within_intact_range": false
+            },
+            "mean_speed": {
+              "intact_mean": 0.16686347126960754,
+              "zero_new": 0.14550280570983887,
+              "zero_minus_intact": -0.021360665559768677,
+              "intact_repeat_abs_difference": 0.07765164971351624,
+              "zero_within_intact_range": true
+            },
+            "mean_duration": {
+              "intact_mean": 27.546698570251465,
+              "zero_new": 29.0423526763916,
+              "zero_minus_intact": 1.4956541061401367,
+              "intact_repeat_abs_difference": 0.019998550415039062,
+              "zero_within_intact_range": false
+            },
+            "successes": {
+              "intact_mean": 2,
+              "zero_new": 1,
+              "zero_minus_intact": -1,
+              "intact_repeat_abs_difference": 0,
+              "zero_within_intact_range": false
+            },
+            "falls": {
+              "intact_mean": 3.5,
+              "zero_new": 2,
+              "zero_minus_intact": -1.5,
+              "intact_repeat_abs_difference": 1,
+              "zero_within_intact_range": false
+            },
+            "lateral_m": {
+              "intact_mean": 4.4896830546204,
+              "zero_new": 4.057932290015742,
+              "zero_minus_intact": -0.4317507646046579,
+              "intact_repeat_abs_difference": 0.09363000793382525,
+              "zero_within_intact_range": false
+            }
+          },
+          "modes": {
+            "intact_1": {
+              "score": 0.27596354484558105,
+              "mean_speed": 0.12803764641284943,
+              "mean_duration": 27.556697845458984,
+              "successes": 2,
+              "falls": 3,
+              "lateral_m": 4.442868050653487
+            },
+            "intact_2": {
+              "score": 0.32911139726638794,
+              "mean_speed": 0.20568929612636566,
+              "mean_duration": 27.536699295043945,
+              "successes": 2,
+              "falls": 4,
+              "lateral_m": 4.536498058587313
+            },
+            "zero_new": {
+              "score": 0.347384512424469,
+              "mean_speed": 0.14550280570983887,
+              "mean_duration": 29.0423526763916,
+              "successes": 1,
+              "falls": 2,
+              "lateral_m": 4.057932290015742
+            }
+          }
+        },
+        {
+          "seed": 92002,
+          "metrics": {
+            "score": {
+              "intact_mean": 0.4143622815608978,
+              "zero_new": 0.45922422409057617,
+              "zero_minus_intact": 0.044861942529678345,
+              "intact_repeat_abs_difference": 0.01838129758834839,
+              "zero_within_intact_range": false
+            },
+            "mean_speed": {
+              "intact_mean": 0.1933898851275444,
+              "zero_new": 0.2346659004688263,
+              "zero_minus_intact": 0.04127601534128189,
+              "intact_repeat_abs_difference": 0.011486664414405823,
+              "zero_within_intact_range": false
+            },
+            "mean_duration": {
+              "intact_mean": 29.879868507385254,
+              "zero_new": 29.773616790771484,
+              "zero_minus_intact": -0.10625171661376953,
+              "intact_repeat_abs_difference": 0.2412548065185547,
+              "zero_within_intact_range": true
+            },
+            "successes": {
+              "intact_mean": 2.5,
+              "zero_new": 4,
+              "zero_minus_intact": 1.5,
+              "intact_repeat_abs_difference": 3,
+              "zero_within_intact_range": true
+            },
+            "falls": {
+              "intact_mean": 1,
+              "zero_new": 1,
+              "zero_minus_intact": 0,
+              "intact_repeat_abs_difference": 2,
+              "zero_within_intact_range": true
+            },
+            "lateral_m": {
+              "intact_mean": 4.1484708112548105,
+              "zero_new": 4.025656482728664,
+              "zero_minus_intact": -0.12281432852614671,
+              "intact_repeat_abs_difference": 0.22730049781966954,
+              "zero_within_intact_range": false
+            }
+          },
+          "modes": {
+            "intact_2": {
+              "score": 0.40517163276672363,
+              "mean_speed": 0.1876465529203415,
+              "mean_duration": 29.759241104125977,
+              "successes": 4,
+              "falls": 2,
+              "lateral_m": 4.034820562344976
+            },
+            "intact_1": {
+              "score": 0.423552930355072,
+              "mean_speed": 0.19913321733474731,
+              "mean_duration": 30.00049591064453,
+              "successes": 1,
+              "falls": 0,
+              "lateral_m": 4.262121060164645
+            },
+            "zero_new": {
+              "score": 0.45922422409057617,
+              "mean_speed": 0.2346659004688263,
+              "mean_duration": 29.773616790771484,
+              "successes": 4,
+              "falls": 1,
+              "lateral_m": 4.025656482728664
+            }
+          }
+        },
+        {
+          "seed": 92003,
+          "metrics": {
+            "score": {
+              "intact_mean": 0.33529728651046753,
+              "zero_new": 0.3367059528827667,
+              "zero_minus_intact": 0.0014086663722991943,
+              "intact_repeat_abs_difference": 0.06381654739379883,
+              "zero_within_intact_range": true
+            },
+            "mean_speed": {
+              "intact_mean": 0.14315427839756012,
+              "zero_new": 0.13528475165367126,
+              "zero_minus_intact": -0.007869526743888855,
+              "intact_repeat_abs_difference": 0.07048970460891724,
+              "zero_within_intact_range": true
+            },
+            "mean_duration": {
+              "intact_mean": 29.177980422973633,
+              "zero_new": 29.179229736328125,
+              "zero_minus_intact": 0.0012493133544921875,
+              "intact_repeat_abs_difference": 0.0,
+              "zero_within_intact_range": false
+            },
+            "successes": {
+              "intact_mean": 1,
+              "zero_new": 2,
+              "zero_minus_intact": 1,
+              "intact_repeat_abs_difference": 0,
+              "zero_within_intact_range": false
+            },
+            "falls": {
+              "intact_mean": 1,
+              "zero_new": 1,
+              "zero_minus_intact": 0,
+              "intact_repeat_abs_difference": 0,
+              "zero_within_intact_range": true
+            },
+            "lateral_m": {
+              "intact_mean": 4.41351175121963,
+              "zero_new": 4.091701901750639,
+              "zero_minus_intact": -0.32180984946899116,
+              "intact_repeat_abs_difference": 0.008495315909385681,
+              "zero_within_intact_range": false
+            }
+          },
+          "modes": {
+            "zero_new": {
+              "score": 0.3367059528827667,
+              "mean_speed": 0.13528475165367126,
+              "mean_duration": 29.179229736328125,
+              "successes": 2,
+              "falls": 1,
+              "lateral_m": 4.091701901750639
+            },
+            "intact_2": {
+              "score": 0.36720556020736694,
+              "mean_speed": 0.17839913070201874,
+              "mean_duration": 29.177980422973633,
+              "successes": 1,
+              "falls": 1,
+              "lateral_m": 4.417759409174323
+            },
+            "intact_1": {
+              "score": 0.3033890128135681,
+              "mean_speed": 0.1079094260931015,
+              "mean_duration": 29.177980422973633,
+              "successes": 1,
+              "falls": 1,
+              "lateral_m": 4.409264093264937
+            }
+          }
+        }
+      ],
+      "mean_metrics": {
+        "score": {
+          "intact": 0.35073234637578327,
+          "zero_new": 0.3811048964659373,
+          "zero_minus_intact": 0.03037255009015401,
+          "intact_repeat_abs_difference": 0.04511523246765137
+        },
+        "mean_speed": {
+          "intact": 0.16780254493157068,
+          "zero_new": 0.17181781927744547,
+          "zero_minus_intact": 0.004015274345874786,
+          "intact_repeat_abs_difference": 0.053209339578946434
+        },
+        "mean_duration": {
+          "intact": 28.86818250020345,
+          "zero_new": 29.331733067830402,
+          "zero_minus_intact": 0.4635505676269531,
+          "intact_repeat_abs_difference": 0.08708445231119792
+        },
+        "successes": {
+          "intact": 1.8333333333333333,
+          "zero_new": 2.3333333333333335,
+          "zero_minus_intact": 0.5,
+          "intact_repeat_abs_difference": 1
+        },
+        "falls": {
+          "intact": 1.8333333333333333,
+          "zero_new": 1.3333333333333333,
+          "zero_minus_intact": -0.5,
+          "intact_repeat_abs_difference": 1
+        },
+        "lateral_m": {
+          "intact": 4.350555205698281,
+          "zero_new": 4.058430224831682,
+          "zero_minus_intact": -0.2921249808665986,
+          "intact_repeat_abs_difference": 0.10980860722096016
+        }
+      }
+    },
+    "source": {
+      "per_seed": [
+        {
+          "seed": 92001,
+          "metrics": {
+            "score": {
+              "intact_mean": 0.40893925726413727,
+              "zero_new": 0.36240729689598083,
+              "zero_minus_intact": -0.04653196036815643,
+              "intact_repeat_abs_difference": 0.056085675954818726,
+              "zero_within_intact_range": false
+            },
+            "mean_speed": {
+              "intact_mean": 0.2040984332561493,
+              "zero_new": 0.1808367669582367,
+              "zero_minus_intact": -0.023261666297912598,
+              "intact_repeat_abs_difference": 0.008455157279968262,
+              "zero_within_intact_range": false
+            },
+            "mean_duration": {
+              "intact_mean": 28.35983943939209,
+              "zero_new": 28.392963409423828,
+              "zero_minus_intact": 0.03312397003173828,
+              "intact_repeat_abs_difference": 0.0012493133544921875,
+              "zero_within_intact_range": false
+            },
+            "successes": {
+              "intact_mean": 3.5,
+              "zero_new": 2,
+              "zero_minus_intact": -1.5,
+              "intact_repeat_abs_difference": 1,
+              "zero_within_intact_range": false
+            },
+            "falls": {
+              "intact_mean": 2,
+              "zero_new": 2,
+              "zero_minus_intact": 0,
+              "intact_repeat_abs_difference": 0,
+              "zero_within_intact_range": true
+            },
+            "lateral_m": {
+              "intact_mean": 3.734695833409205,
+              "zero_new": 4.132669860497117,
+              "zero_minus_intact": 0.39797402708791196,
+              "intact_repeat_abs_difference": 0.6662331563420594,
+              "zero_within_intact_range": false
+            }
+          },
+          "modes": {
+            "zero_new": {
+              "score": 0.36240729689598083,
+              "mean_speed": 0.1808367669582367,
+              "mean_duration": 28.392963409423828,
+              "successes": 2,
+              "falls": 2,
+              "lateral_m": 4.132669860497117
+            },
+            "intact_1": {
+              "score": 0.3808964192867279,
+              "mean_speed": 0.19987085461616516,
+              "mean_duration": 28.359214782714844,
+              "successes": 4,
+              "falls": 2,
+              "lateral_m": 4.067812411580235
+            },
+            "intact_2": {
+              "score": 0.43698209524154663,
+              "mean_speed": 0.20832601189613342,
+              "mean_duration": 28.360464096069336,
+              "successes": 3,
+              "falls": 2,
+              "lateral_m": 3.4015792552381754
+            }
+          }
+        },
+        {
+          "seed": 92002,
+          "metrics": {
+            "score": {
+              "intact_mean": 0.3570461869239807,
+              "zero_new": 0.45599284768104553,
+              "zero_minus_intact": 0.09894666075706482,
+              "intact_repeat_abs_difference": 0.057372450828552246,
+              "zero_within_intact_range": false
+            },
+            "mean_speed": {
+              "intact_mean": 0.16740164160728455,
+              "zero_new": 0.24455493688583374,
+              "zero_minus_intact": 0.0771532952785492,
+              "intact_repeat_abs_difference": 0.010830312967300415,
+              "zero_within_intact_range": false
+            },
+            "mean_duration": {
+              "intact_mean": 29.43360710144043,
+              "zero_new": 30.00049591064453,
+              "zero_minus_intact": 0.5668888092041016,
+              "intact_repeat_abs_difference": 0.18750381469726562,
+              "zero_within_intact_range": false
+            },
+            "successes": {
+              "intact_mean": 2,
+              "zero_new": 4,
+              "zero_minus_intact": 2,
+              "intact_repeat_abs_difference": 0,
+              "zero_within_intact_range": false
+            },
+            "falls": {
+              "intact_mean": 1,
+              "zero_new": 0,
+              "zero_minus_intact": -1,
+              "intact_repeat_abs_difference": 0,
+              "zero_within_intact_range": false
+            },
+            "lateral_m": {
+              "intact_mean": 4.5129238601075485,
+              "zero_new": 4.297835699748248,
+              "zero_minus_intact": -0.21508816035930067,
+              "intact_repeat_abs_difference": 0.7406517250929028,
+              "zero_within_intact_range": true
+            }
+          },
+          "modes": {
+            "zero_new": {
+              "score": 0.45599284768104553,
+              "mean_speed": 0.24455493688583374,
+              "mean_duration": 30.00049591064453,
+              "successes": 4,
+              "falls": 0,
+              "lateral_m": 4.297835699748248
+            },
+            "intact_1": {
+              "score": 0.38573241233825684,
+              "mean_speed": 0.17281679809093475,
+              "mean_duration": 29.339855194091797,
+              "successes": 2,
+              "falls": 1,
+              "lateral_m": 4.142597997561097
+            },
+            "intact_2": {
+              "score": 0.3283599615097046,
+              "mean_speed": 0.16198648512363434,
+              "mean_duration": 29.527359008789062,
+              "successes": 2,
+              "falls": 1,
+              "lateral_m": 4.883249722654
+            }
+          }
+        },
+        {
+          "seed": 92003,
+          "metrics": {
+            "score": {
+              "intact_mean": 0.4241812080144882,
+              "zero_new": 0.39005982875823975,
+              "zero_minus_intact": -0.034121379256248474,
+              "intact_repeat_abs_difference": 0.050295621156692505,
+              "zero_within_intact_range": false
+            },
+            "mean_speed": {
+              "intact_mean": 0.17098210006952286,
+              "zero_new": 0.18448995053768158,
+              "zero_minus_intact": 0.013507850468158722,
+              "intact_repeat_abs_difference": 0.01264946162700653,
+              "zero_within_intact_range": false
+            },
+            "mean_duration": {
+              "intact_mean": 29.977683067321777,
+              "zero_new": 29.578611373901367,
+              "zero_minus_intact": -0.39907169342041016,
+              "intact_repeat_abs_difference": 0.04562568664550781,
+              "zero_within_intact_range": false
+            },
+            "successes": {
+              "intact_mean": 2.5,
+              "zero_new": 3,
+              "zero_minus_intact": 0.5,
+              "intact_repeat_abs_difference": 3,
+              "zero_within_intact_range": true
+            },
+            "falls": {
+              "intact_mean": 0.5,
+              "zero_new": 2,
+              "zero_minus_intact": 1.5,
+              "intact_repeat_abs_difference": 1,
+              "zero_within_intact_range": false
+            },
+            "lateral_m": {
+              "intact_mean": 3.866542024537921,
+              "zero_new": 4.350028780288994,
+              "zero_minus_intact": 0.48348675575107336,
+              "intact_repeat_abs_difference": 1.1515054553747177,
+              "zero_within_intact_range": true
+            }
+          },
+          "modes": {
+            "intact_1": {
+              "score": 0.39903339743614197,
+              "mean_speed": 0.17730683088302612,
+              "mean_duration": 30.00049591064453,
+              "successes": 1,
+              "falls": 0,
+              "lateral_m": 4.44229475222528
+            },
+            "zero_new": {
+              "score": 0.39005982875823975,
+              "mean_speed": 0.18448995053768158,
+              "mean_duration": 29.578611373901367,
+              "successes": 3,
+              "falls": 2,
+              "lateral_m": 4.350028780288994
+            },
+            "intact_2": {
+              "score": 0.4493290185928345,
+              "mean_speed": 0.1646573692560196,
+              "mean_duration": 29.954870223999023,
+              "successes": 4,
+              "falls": 1,
+              "lateral_m": 3.290789296850562
+            }
+          }
+        }
+      ],
+      "mean_metrics": {
+        "score": {
+          "intact": 0.3967222174008687,
+          "zero_new": 0.40281999111175537,
+          "zero_minus_intact": 0.006097773710886638,
+          "intact_repeat_abs_difference": 0.05458458264668783
+        },
+        "mean_speed": {
+          "intact": 0.1808273916443189,
+          "zero_new": 0.20329388479391733,
+          "zero_minus_intact": 0.02246649314959844,
+          "intact_repeat_abs_difference": 0.01064497729142507
+        },
+        "mean_duration": {
+          "intact": 29.257043202718098,
+          "zero_new": 29.324023564656574,
+          "zero_minus_intact": 0.06698036193847656,
+          "intact_repeat_abs_difference": 0.0781262715657552
+        },
+        "successes": {
+          "intact": 2.6666666666666665,
+          "zero_new": 3,
+          "zero_minus_intact": 0.3333333333333333,
+          "intact_repeat_abs_difference": 1.3333333333333333
+        },
+        "falls": {
+          "intact": 1.1666666666666667,
+          "zero_new": 1.3333333333333333,
+          "zero_minus_intact": 0.16666666666666666,
+          "intact_repeat_abs_difference": 0.3333333333333333
+        },
+        "lateral_m": {
+          "intact": 4.038053906018225,
+          "zero_new": 4.260178113511453,
+          "zero_minus_intact": 0.22212420749322823,
+          "intact_repeat_abs_difference": 0.8527967789365599
+        }
+      }
+    }
+  },
+  "limitation": "Three development seeds with two intact repeats each. Descriptive ranges, not confidence intervals."
+}
