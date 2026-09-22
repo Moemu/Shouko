@@ -88,7 +88,7 @@
       "sha256": "cb415333073492a3e76e16a9e606edb07b99715dd983f93f8232d18c4bb0af1b"
     }
   ],
-  "storage": "References and hashes only. Optional local objects: .cache/references/objects/<sha256>, relative to repository root. Cache presence is not guaranteed.",
+  "storage": "References and hashes only. Retrieve any source from its url and compare against the collected sha256.",
   "update_policy": "Baseline evidence collected on 2026-09-21. Preserve these records; record changed sources in dated review deltas, without copying unchanged inventories or source bodies.",
   "license_status": "Coverage of these exact deployment bytes is unverified. Repository MIT must not be assumed to cover them. No source bodies are distributed here."
 }

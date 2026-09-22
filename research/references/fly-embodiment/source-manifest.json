@@ -1476,8 +1476,8 @@
       "retrieval": "ok"
     }
   ],
-  "snapshot_note": "MIT project-authored text only. Appended .txt keeps upstream code as reference material. Original bytes retained; dependencies and binary assets are not bundled.",
-  "storage": "References and hashes only. Optional local objects: .cache/references/objects/<sha256>, relative to repository root. Cache presence is not guaranteed.",
+  "snapshot_note": "Text and code files from the pinned commits listed under 'files'. Dependencies, media and binary assets are not included; no upstream source bodies are distributed with this repository.",
+  "storage": "References and hashes only. Retrieve any file from its raw_url and verify against sha256.",
   "update_policy": "Baseline evidence collected on 2026-09-21. Preserve these records; record changed sources in dated review deltas, without copying unchanged inventories or source bodies.",
   "license_evidence": {
     "satorunet/hae": {

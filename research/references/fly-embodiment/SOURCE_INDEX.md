@@ -1,8 +1,14 @@
 # 固定版本源码索引
 
-采集日期：2026-09-21。这里只保存引用，不分发原始源码。阅读范围见 `review_status`；索引不等于完整审计。
+采集日期：2026-09-21。本页只保存引用，不分发原始源码，索引不等于完整审计。
 
-哈希与原始地址：[Git 清单](source-manifest.json)、[在线清单](live-source-manifest.json)。许可、可选缓存与更新步骤见 [采集说明](COLLECTION.md)。
+逐文件 SHA-256、字节数与原始字节地址见 [Git 清单](source-manifest.json) 与 [在线清单](live-source-manifest.json)；取回与校验步骤见 [来源、许可与取回](COLLECTION.md)。清单中的 `raw_url` 按相同的提交与路径指向 `raw.githubusercontent.com`，可直接下载核对。
+
+阅读状态一列的含义：
+
+- **定点阅读**：读过与结论直接相关的代码段，未执行。
+- **仅下载索引**：只登记路径与哈希，未逐行阅读。
+- **作者说明阅读**：作为作者陈述阅读（FAQ、README、媒体清单），不当作实现证据。
 
 ## Git 固定版本
 
@@ -117,14 +123,14 @@
 | `satorunet/hae/soroban/tools/og-card.py` | [Git](https://github.com/satorunet/hae/blob/d4551c26cab1c029b2628dbfaca563fbd2e7bc3d/soroban/tools/og-card.py) | 仅下载索引 |
 | `satorunet/hae/soroban/write.mjs` | [Git](https://github.com/satorunet/hae/blob/d4551c26cab1c029b2628dbfaca563fbd2e7bc3d/soroban/write.mjs) | 仅下载索引 |
 | `satorunet/hae/soroban/yomu.mjs` | [Git](https://github.com/satorunet/hae/blob/d4551c26cab1c029b2628dbfaca563fbd2e7bc3d/soroban/yomu.mjs) | 仅下载索引 |
-| `heavyrain39/ffrep/README.md` | [Git](https://github.com/heavyrain39/ffrep/blob/8d123cea9214f5e98b3e4fb5476b2b15e7a58eaa/README.md) | 仅下载索引 |
-| `heavyrain39/ffrep/assets/media/sources.json` | [Git](https://github.com/heavyrain39/ffrep/blob/8d123cea9214f5e98b3e4fb5476b2b15e7a58eaa/assets/media/sources.json) | 仅下载索引 |
-| `heavyrain39/ffrep/content/en.json` | [Git](https://github.com/heavyrain39/ffrep/blob/8d123cea9214f5e98b3e4fb5476b2b15e7a58eaa/content/en.json) | 仅下载索引 |
-| `heavyrain39/ffrep/content/ko.json` | [Git](https://github.com/heavyrain39/ffrep/blob/8d123cea9214f5e98b3e4fb5476b2b15e7a58eaa/content/ko.json) | 仅下载索引 |
+| `heavyrain39/ffrep/README.md` | [Git](https://github.com/heavyrain39/ffrep/blob/8d123cea9214f5e98b3e4fb5476b2b15e7a58eaa/README.md) | 作者说明阅读 |
+| `heavyrain39/ffrep/assets/media/sources.json` | [Git](https://github.com/heavyrain39/ffrep/blob/8d123cea9214f5e98b3e4fb5476b2b15e7a58eaa/assets/media/sources.json) | 作者说明阅读 |
+| `heavyrain39/ffrep/content/en.json` | [Git](https://github.com/heavyrain39/ffrep/blob/8d123cea9214f5e98b3e4fb5476b2b15e7a58eaa/content/en.json) | 作者说明阅读 |
+| `heavyrain39/ffrep/content/ko.json` | [Git](https://github.com/heavyrain39/ffrep/blob/8d123cea9214f5e98b3e4fb5476b2b15e7a58eaa/content/ko.json) | 作者说明阅读 |
 
 ## 在线部署
 
-以下链接指向可变内容，不保证仍能取回采集日的字节。历史 SHA-256 见在线清单；不能据此推定许可或完整发行版本。
+以下链接指向可变内容：采集日的字节哈希见在线清单；后续访问与采集日不同是上游更新的正常结果，引用时以「采集日期 + 哈希」标识版本，新版本在 [reviews/](reviews/) 中记录。在线内容的许可覆盖未核实。
 
 | 来源 | 采集时状态 |
 |---|---|

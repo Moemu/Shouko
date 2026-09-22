@@ -48,7 +48,7 @@
 
 ## references/ — 外部项目与研究资料
 
-- [果蝇具身项目参考（2026-09-21）](references/fly-embodiment/README.md) — satorunet / hae 与 yakshawan / FFREP：进展、控制与学习实现、源码索引、固定版本引用、本地缓存说明和复现边界。
+- [果蝇具身项目参考（2026-09-21）](references/fly-embodiment/README.md) — satorunet / hae 与 yakshawan / FFREP：进展、控制与学习实现、源码索引、固定版本引用、公开取回与校验方法和复现边界。
 
 ## provenance/ — 溯源数据
 
