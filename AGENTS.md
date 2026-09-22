@@ -52,6 +52,6 @@
 
 - 训练/评估逻辑：`research/REPORT.md`（方法与边界）、`research/guides/LOCAL.md`、`guides/CLOUD.md`。
 - 身体与角色：`research/avatar/YUMI.md`、`YUMI_BODY.md`（VRM 许可约束见 `THIRD_PARTY.md`，署名不可去除）。
-- 当前实验状态：`research/experiments/GPU_CALIBRATION_20260921.md`（最新编年：PPO 状态迁移、冻结梯度提速与四组短训复测，尚无稳定提升）；前序见 `PPO_OBS50_20260920.md`。
-- 新观测后续：`research/experiments/INPUT_LEARNING_AUDIT_20260921.md`（CPU 审计完成；用户要求完整连接组对照留待云端，尚未开始新一轮在线训练）。
+- 当前实验状态：`research/experiments/ROUTE_DECISION_20260922.md`（持续目标已形成最终路线决策：保留连接组与Yumi，下一阶段朝向恢复课程及原生多指标验收；诊断已完成，未取得行走突破，实例保持开机）。
+- 前序诊断：`research/experiments/ACTOR_SCALE_AB_20260922.md`、`GPU_CALIBRATION_20260921.md`、`INPUT_LEARNING_AUDIT_20260921.md`、`INPUT_SCALE_CLOUD_20260922.md`；方向讨论见 `research/proposals/2026-09-22/`。
 - 双语说明：`README.md` / `README.zh.md` 改动需保持一致。

@@ -17,6 +17,8 @@
 
 ## proposals/ — 提案与综合讨论
 
+本轮交接：[2026-09-22 进展汇总](experiments/ROUND_SUMMARY_20260922.md)，包含已完成代码、实测结果、验证及尚未执行的下一阶段。
+
 - [提案索引](proposals/README.md) — 按 `YYYY-MM-DD/模型或Agent名-提案概要.md` 归档，保留各方原始观点。
 - [2026-09-16](proposals/README.md#2026-09-16) — GLM5.3-Flash、DeepSeek-v4.1-Flash、Kimi 的步态与观测提案。
 - [2026-09-20](proposals/README.md#2026-09-20) — Cline 的评估与价值网络提案。
@@ -37,8 +39,11 @@
 - [GAIT_MEASUREMENT_20260918.md](experiments/GAIT_MEASUREMENT_20260918.md) — 步态、时钟与速度传递测量。
 - [G1_CHECKPOINT_REBIND_20260918.md](experiments/G1_CHECKPOINT_REBIND_20260918.md) — G1 检查点与验收记录绑定。
 - [PPO_OBS50_20260920.md](experiments/PPO_OBS50_20260920.md) — 50 维观测续训、最佳检查点筛选与价值预热。
-- [GPU_CALIBRATION_20260921.md](experiments/GPU_CALIBRATION_20260921.md) — 最新编年：迁移 PPO 状态、冻结梯度提速、价值诊断与四组短训复测；尚无稳定提升。
+- [GPU_CALIBRATION_20260921.md](experiments/GPU_CALIBRATION_20260921.md) — 迁移 PPO 状态、冻结梯度提速、价值诊断与四组短训复测；尚无稳定提升。
 - [INPUT_LEARNING_AUDIT_20260921.md](experiments/INPUT_LEARNING_AUDIT_20260921.md) — 后续 CPU 审计：新列确实更新、共享归一化会扰动价值网；完整图固定对照待云端执行。
+- [INPUT_SCALE_CLOUD_20260922.md](experiments/INPUT_SCALE_CLOUD_20260922.md) — 云端单步配对与分组回放完成，新输入有梯度但动作影响仍小。
+- [ACTOR_SCALE_AB_20260922.md](experiments/ACTOR_SCALE_AB_20260922.md) — 隔离 critic 统计量后的在线尺度 A/B；新输入敏感度增强，配对行走未改善，未晋升权重。
+- [ROUTE_DECISION_20260922.md](experiments/ROUTE_DECISION_20260922.md) — 最新编年：诊断已完成；最终决策保留连接组与 Yumi，下一阶段优先朝向恢复课程及原生多指标验收。尚无行走突破，实例保持开机。
 
 ## avatar/ — 角色与身体
 
