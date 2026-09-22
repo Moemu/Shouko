@@ -16,6 +16,7 @@ from .full_brain import ConnectomePolicy, checkpoint_configuration
 from .ppo_yumi import Value, freeze_policy_core
 from .train_full import file_sha256, restore_optimizer, validated_checkpoint_state
 from .value_diagnostics import diagnose, regression_metrics
+from .value_observation import ValueObservationStats
 
 
 def rms(tensor):
@@ -62,7 +63,7 @@ def main(args):
         raise ValueError('Invalid sample, microbatch or time limit')
     started = time.perf_counter()
     torch.set_num_threads(2)
-    torch.manual_seed(20260921)
+    torch.manual_seed(args.seed)
     available = psutil.virtual_memory().available
     # Checkpoint tensors stay memory-mapped; full-graph work uses small GPU chunks.
     minimum_ram = (256 if args.statistics_only else 768) * 1024**2
@@ -86,6 +87,7 @@ def main(args):
     if weights['encoder.weight'].shape[1] != 50 or torch.count_nonzero(weights['encoder.weight'][:, 47:]):
         raise ValueError('Probe requires the unchanged 50-input zero-column baseline')
     state = validated_checkpoint_state(args.checkpoint, args.state, 'cpu')
+    value_stats = ValueObservationStats.restore(state, weights['obs_mean'], weights['obs_std'])
     observation = batch['observations'].reshape(-1, 50)
     old_scale = weights['obs_std']
     new_scale = old_scale.clone()
@@ -97,7 +99,8 @@ def main(args):
                   device='cpu' if args.statistics_only else args.device,
                   available_ram_gib=available / 2**30,
                   source_optimizer_slots=len(state['optimizer']['state']),
-                  learning_rate=args.lr, entropy_coefficient=0.001, original_scales=old_scale.tolist(),
+                  seed=args.seed, learning_rate=args.lr, entropy_coefficient=0.001,
+                  original_scales=old_scale.tolist(),
                   candidate_scales=new_scale.tolist(), conditions=[],
                   observation_statistics=[dict(column=i, mean=float(observation[:, i].mean()),
                                                raw_std=float(observation[:, i].std()),
@@ -105,7 +108,7 @@ def main(args):
                                                clamp_fraction=float((x[:, i].abs() > 10).float().mean()))
                                           for i in range(50)],
                   critic=critic_probe(state, observation, batch['returns'].reshape(-1),
-                                      weights['obs_mean'], old_scale, new_scale),
+                                      value_stats.mean, value_stats.std, new_scale),
                   limitation='One stored rollout and one offline update; no on-policy continuation, walking or causal success claim. Scaling uses this diagnostic batch, not held-out data.')
 
     def save():
@@ -178,6 +181,10 @@ def main(args):
             entropy = distribution.entropy().sum(-1)
             (-(objective + 0.001 * entropy).sum() / len(obs)).backward()
         encoder_gradient = policy.encoder.weight.grad.detach().clone()
+        gradient_norms = {
+            name: float(torch.stack([p.grad.detach().square().sum() for p in group['params']]).sum().sqrt())
+            for name, group in zip(('neuron_bias', 'readout', 'encoder', 'log_std'), optimizer.param_groups)
+        }
         parameters = [p for group in optimizer.param_groups for p in group['params']]
         total_norm = torch.nn.utils.clip_grad_norm_(parameters, 5.0, foreach=False)
         if not torch.isfinite(total_norm):
@@ -188,8 +195,11 @@ def main(args):
         updated = predict()
         delta = policy.encoder.weight.detach().cpu() - weights['encoder.weight']
         row = dict(condition=label, initial_action_max_abs_error=float((initial-reference).abs().max()),
+                   initial_action_rms_error=rms(initial-reference),
                    unclipped_gradient_norm=float(total_norm), clip_multiplier=min(1., 5./(float(total_norm)+1e-6)),
+                   gradient_norm_by_group=gradient_norms,
                    encoder_gradient_rms_by_column=encoder_gradient.double().square().mean(0).sqrt().cpu().tolist(),
+                   encoder_nonzero_gradient_fraction_by_column=(encoder_gradient != 0).float().mean(0).cpu().tolist(),
                    encoder_update_rms_by_column=delta.double().square().mean(0).sqrt().tolist(),
                    action_rms_change=rms(updated-reference),
                    mean_kl_fixed_std=float(((updated-reference).square()/(2*reference_std.square())).sum(-1).mean()))
@@ -201,6 +211,26 @@ def main(args):
         row['old_path_action_rms_change'] = rms(without_new-reference)
         with torch.no_grad():
             policy.encoder.weight[:, 47:] = new_columns
+        updated_parameters = {name: p.detach().clone() for name, p in policy.named_parameters()
+                              if p.requires_grad}
+        route_effects = {}
+        for route in ('neuron_bias', 'readout', 'encoder_old', 'encoder_new'):
+            with torch.no_grad():
+                for name, parameter in policy.named_parameters():
+                    if name in updated_parameters:
+                        parameter.copy_(weights[name])
+                        if name == route or name.startswith(route + '.'):
+                            parameter.copy_(updated_parameters[name])
+                if route.startswith('encoder_'):
+                    columns = slice(0, 47) if route == 'encoder_old' else slice(47, 50)
+                    policy.encoder.weight[:, columns] = updated_parameters['encoder.weight'][:, columns]
+            route_effects[route] = rms(predict() - reference)
+        with torch.no_grad():
+            for name, parameter in policy.named_parameters():
+                if name in updated_parameters:
+                    parameter.copy_(updated_parameters[name])
+        row['isolated_step_action_rms'] = route_effects
+        row['route_effect_note'] = 'Apply one parameter group delta at a time to the initial actor. Nonlinear effects need not add up.'
         report['conditions'].append(row)
         save()
         print(json.dumps({key: value for key, value in row.items() if not isinstance(value, list)}), flush=True)
@@ -223,5 +253,6 @@ if __name__ == '__main__':
     parser.add_argument('--samples', type=int, default=64)
     parser.add_argument('--microbatch', type=int, default=16)
     parser.add_argument('--lr', type=float, default=5e-6)
+    parser.add_argument('--seed', type=int, default=20260921)
     parser.add_argument('--max-seconds', type=float, default=180)
     main(parser.parse_args())

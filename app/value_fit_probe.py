@@ -10,6 +10,7 @@ import torch
 from .ppo_yumi import Value
 from .train_full import file_sha256, validated_checkpoint_state
 from .value_diagnostics import diagnose, regression_metrics
+from .value_observation import ValueObservationStats
 
 
 def main(args):
@@ -25,8 +26,9 @@ def main(args):
         raise ValueError('Rollout and checkpoint hashes differ')
     state = validated_checkpoint_state(args.checkpoint, args.state, 'cpu')
     checkpoint = torch.load(args.checkpoint, map_location='cpu', weights_only=True, mmap=True)
-    mean, scale = (checkpoint['state_dict'][key] for key in ('obs_mean', 'obs_std'))
-    observation = (batch['observations'] - mean) / scale
+    stats = ValueObservationStats.restore(state, checkpoint['state_dict']['obs_mean'],
+                                         checkpoint['state_dict']['obs_std'])
+    observation = stats.normalize(batch['observations'])
     steps, worlds, size = observation.shape
     if worlds < 2:
         raise ValueError('At least two worlds are needed for a held-out group')

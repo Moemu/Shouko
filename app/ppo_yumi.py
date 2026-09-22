@@ -24,6 +24,7 @@ from .full_brain import ConnectomePolicy, ROOT, checkpoint_configuration
 from .gpu_body import GPUHumanoid
 from .sim import observation_interface
 from .value_diagnostics import gae_targets, save_rollout
+from .value_observation import ValueObservationStats, set_new_actor_scales
 from . import train_full
 
 RUNS = ROOT / 'runs/yumi'
@@ -173,6 +174,7 @@ def train(args):
     parameter_names = {id(p): n for n, p in policy.named_parameters()}
     parameter_names[id(log_std)] = 'log_std'
     optimizer_names = [[parameter_names[id(p)] for p in group['params']] for group in optimizer.param_groups]
+    state = None
     if args.resume_state:
         # Cross-launch optimizer warm start, not live environment/RNG continuation.
         checkpoint = Path(args.resume)
@@ -188,6 +190,15 @@ def train(args):
             raise ValueError('Incompatible PPO value optimizer state')
         print(json.dumps(dict(resumed_ppo_state=str(state_path), policy_optimizer=opt_loaded,
                               optimizer_state_skipped=None if opt_loaded else 'incompatible parameter groups')), flush=True)
+    value_stats = ValueObservationStats.restore(state, policy.obs_mean, policy.obs_std)
+    if args.actor_new_input_std is not None:
+        set_new_actor_scales(policy, args.actor_new_input_std)
+    status['observation_normalization'] = dict(
+        actor_mean=policy.obs_mean.tolist(), actor_std=policy.obs_std.tolist(),
+        value_mean=value_stats.mean.tolist(), value_std=value_stats.std.tolist(),
+        value_source='ppo_state' if state is not None and 'value_observation_stats' in state
+                     else 'source_checkpoint_before_actor_scale_change')
+    print(json.dumps(dict(observation_normalization=status['observation_normalization'])), flush=True)
     if args.std_override > 0:
         # Fine-tuning a converged gait: the saved exploration noise (std 0.4)
         # is far too large — every iteration churns the policy (clipfrac ~0.3)
@@ -218,7 +229,8 @@ def train(args):
         train_full.atomic_model_save(policy, RUNS/f'{name}.pt', extra,
                                     dict(value=value.state_dict(), log_std=log_std.detach().cpu(),
                                          optimizer=optimizer.state_dict(), optimizer_names=optimizer_names,
-                                         value_optimizer=value_opt.state_dict()), state_path,
+                                         value_optimizer=value_opt.state_dict(),
+                                         value_observation_stats=value_stats.state_dict()), state_path,
                                     physics=env.interface)
 
     if not control.safe_point(write_status):
@@ -306,7 +318,7 @@ def train(args):
                 std = log_std.exp().clamp(0.05, 1.5)
                 dist = torch.distributions.Normal(mean, std)
                 action = dist.sample()
-                val = value((obs - policy.obs_mean) / policy.obs_std)
+                val = value(value_stats.normalize(obs))
                 prev_action = env.actions.clone()
                 fallen = env.step(action)
                 vx, vy = env.qvel[:, 0], env.qvel[:, 1]
@@ -359,7 +371,7 @@ def train(args):
                     env.reset(fallen, randomize=True)
                     reset_extras(fallen)
         with torch.no_grad():
-            next_val = value((env.observation() - policy.obs_mean) / policy.obs_std)
+            next_val = value(value_stats.normalize(env.observation()))
         rewards = torch.stack(rew_buf)          # T x W
         values = torch.stack(val_buf + [next_val])
         dones = torch.stack(done_buf)
@@ -415,7 +427,7 @@ def train(args):
                     policy_update_samples += len(mb)
                     pi_loss_total += float(pi_loss)
                     kl_total += float(approx_kl); clipfrac_total += float(clipfrac)
-                v = value((obs_b[mb] - policy.obs_mean) / policy.obs_std)
+                v = value(value_stats.normalize(obs_b[mb]))
                 v_loss = (v - ret_b[mb]).square().mean()
                 value_opt.zero_grad(set_to_none=True)
                 v_loss.backward()
@@ -551,6 +563,8 @@ if __name__ == '__main__':
     parser.add_argument('--max-seconds', type=float, default=270)
     parser.add_argument('--max-iterations', type=int, default=None,
                         help='optional update-count budget, in addition to the time budget')
+    parser.add_argument('--actor-new-input-std', type=float, nargs=3, default=None,
+                        help='set actor vx/vy/height scales on zero-initialized columns; retain critic coordinates')
     parser.add_argument('--seed', type=int, default=2026)
     parser.add_argument('--resume', default=None,
                         help='checkpoint to warm start from (default <runs-dir>/best.pt)')
