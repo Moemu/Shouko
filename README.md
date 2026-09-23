@@ -6,6 +6,16 @@
 
 Her full name is ショウジョウバエ. A public male *Drosophila* connectome dataset is her brain; the girl is the VRM character [Yumi](research/avatar/YUMI.md). Everything runs in a MuJoCo physics simulation.
 
+## Motivation and inspirations
+
+When the fruit fly connectome was released, many interesting projects appeared around it. The two that surprised me most came from X users [@yakshawan](https://x.com/yakshawan) and @satorunet, who each put the fly brain into a 3D body: [FFREP](https://heavyrain39.github.io/ffrep/) trains MaleCNS to drive the SHOKI quadruped and the YUMEKA humanoid, and [hae](https://hae.satoru.net/) ([source](https://github.com/satorunet/hae)) runs a FlyWire connectome as a spiking simulation in the browser. That is where Shouko started — I wanted to build one of these myself.
+
+Shouko differs from both in what is open: the training method, the weights and the records are public, and everything can be reproduced locally. It also differs in scope, and you should know this up front — unlike their full-limb implementations, Shouko currently controls only the lower limbs, with the upper body as one fixed mass, and achieves controlled stable flat-ground walking under speed and heading commands (no goal points). The result is less fun to watch than the two above, but full limbs are the next stage. Our pinned-version survey of both projects lives in [research/references/fly-embodiment/](research/references/fly-embodiment/README.md).
+
+I am not an expert on fly simulation — my background is some NLP studied years ago — so this project doubles as a multi-agent collaboration experiment: several independent frontier models (GPT 6 Astra, Kimi K3, Qwen 3.8 Max and others) run in parallel with harnesses to discuss proposals and training, GPT 6 Astra acts as the main coordinator for concrete training and goal setting, and training runs on an AutoDL RTX 4090D instance.
+
+A browser-based cloud preview service is in preparation: before long you will be able to watch her walk in your own browser. Community reproduction is welcome — see [Running Locally](#running-locally) and [Reproducing the Training](#reproducing-the-training) — and future directions (full limbs, complex terrain, running, dopamine-based goal rewards, and possibly a small language model) are listed under [Future work](#future-work). Feedback and suggestions are very welcome.
+
 ## Status preview
 
 **Current milestone: Yumi lower-limb walking on flat ground.** The policy controls 12 hip, knee and ankle joints, six per leg. The upper body is fixed to the pelvis in the physics model. Visible arm swing is display animation; the policy does not control the arms or use them for balance.
