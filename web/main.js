@@ -121,25 +121,25 @@ function showStageOverlay(message) { if (!message) { stageOverlay.hidden = true;
 function setBadge(key) { setHTML($('liveBadge'), `<i></i><span data-i18n="${key}">${t(key)}</span>`); }
 
 /** Only the WebGL context can fail here; the rest of the scene graph is plain JS. */
-function makeRenderer(maxPixelRatio) {
+function makeRenderer(pixelRatio) {
   try {
     const created = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    created.setPixelRatio(Math.min(devicePixelRatio, maxPixelRatio));
+    created.setPixelRatio(pixelRatio);
     return created;
   } catch (error) { console.error(error); return null; }
 }
 const viewport = $('viewport');
-const renderer = makeRenderer(1.6);
+const renderer = makeRenderer(2);
 if (renderer) {
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.18;
+  renderer.toneMappingExposure = 1.05;
   viewport.appendChild(renderer.domElement);
 }
 const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2('#edf2f8', 0.05);
+scene.fog = new THREE.FogExp2('#edf2f8', 0.025);
 const camera = new THREE.PerspectiveCamera(33, 1, 0.05, 200);
 const controls = renderer ? new OrbitControls(camera, renderer.domElement) : null;
 if (controls) {
@@ -297,7 +297,7 @@ function updateBody(dt) {
   }
 }
 const brainHost = $('brainViewport');
-const brainRenderer = makeRenderer(1.5);
+const brainRenderer = makeRenderer(Math.min(devicePixelRatio, 1.5));
 if (brainRenderer) brainHost.appendChild(brainRenderer.domElement);
 const brainScene = new THREE.Scene(), brainCamera = new THREE.PerspectiveCamera(37, 1, 0.1, 100);
 brainScene.background = new THREE.Color('#050811');
