@@ -1,0 +1,94 @@
+{
+  "captured_on": "2026-09-23",
+  "source_commit": "e549d2b10ab3d894b4f1d42d10cbb676924f37f1",
+  "frontend_source_sha256": "1431cdd8ac3743d65c98f79f0257c17b308df029d4f089dea9126de3abb3f431",
+  "method": "Actual studio frames during walking, paused to capture model and neural activity at the same simulation time. A temporary copy of the built page hides overlay controls; crops contain only rendered pixels. No generated or repainted content.",
+  "neural_display": {
+    "mode": "strength",
+    "sample_count": 2048,
+    "network_neurons": 166700,
+    "scale": [
+      -1,
+      1
+    ],
+    "negative": "blue",
+    "positive": "orange",
+    "near_zero": "gray",
+    "spikes": false
+  },
+  "rendering": {
+    "model_css_pixel_ratio": 2,
+    "tone_mapping_exposure": 1.05,
+    "fog_density": 0.025
+  },
+  "captures": [
+    {
+      "robot": "g1",
+      "checkpoint": "ffcf9a9799ae54332cb5c07ec56d79145ba7e1b557100c78ef082e878713271b",
+      "time": 8.279999999999434,
+      "target_speed": 0.5,
+      "target_yaw": 0.0,
+      "velocity": [
+        0.46443949855431244,
+        -0.14682157191951126,
+        0.048524417059137404
+      ],
+      "upright": 0.9969089617653104,
+      "contacts": [
+        true,
+        false
+      ],
+      "fallen": false,
+      "avatar_sha256": "12c2b97e95e700783a6a550dc0eee2d7880aeedccef9ae67bc4c5a2f0f2631a2",
+      "activity_rms": 0.06926840541957509,
+      "files": {
+        "model": {
+          "path": "assets/preview-g1-model.png",
+          "width": 440,
+          "height": 540,
+          "sha256": "8a230d6aed7d94367a7305f0e2bbbccdd1ecfb5e5c1453ccd0383892cabfe6ed"
+        },
+        "neural": {
+          "path": "assets/preview-g1-neural.png",
+          "width": 400,
+          "height": 400,
+          "sha256": "4136ee1ced8c1ff6b85218b2d25ee63661db982774f4061e039185b75e72013e"
+        }
+      }
+    },
+    {
+      "robot": "yumi",
+      "checkpoint": "f1a200718ebfec845cbf9c02ba743e937ea94c747fba53e7b12dfd12f8d3e1f9",
+      "time": 8.259999999999428,
+      "target_speed": 0.5,
+      "target_yaw": 0.0,
+      "velocity": [
+        0.5296038197026445,
+        -0.021490796130546542,
+        -0.07620288711686253
+      ],
+      "upright": 0.9593443913480992,
+      "contacts": [
+        false,
+        true
+      ],
+      "fallen": false,
+      "avatar_sha256": "3f1eaf5767567c784948bd9faae7ab60e8f7c4bff3b58ff19dac2ddbaad588db",
+      "activity_rms": 0.09560487994639877,
+      "files": {
+        "model": {
+          "path": "assets/preview-yumi-model.png",
+          "width": 440,
+          "height": 540,
+          "sha256": "e5b198ecd586b5f526d2bec97ac40c30fadee300d71c0081ddfe0f0d3640963d"
+        },
+        "neural": {
+          "path": "assets/preview-yumi-neural.png",
+          "width": 400,
+          "height": 400,
+          "sha256": "9b1eb7447452206d86577dfbaf08545732299cdc24441d55b309ae2c8ce2b168"
+        }
+      }
+    }
+  ]
+}

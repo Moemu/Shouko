@@ -10,9 +10,14 @@ Her full name is ショウジョウバエ. A public male *Drosophila* connectome
 
 **Current milestone: Yumi lower-limb walking on flat ground.** The policy controls 12 hip, knee and ankle joints, six per leg. The upper body is fixed to the pelvis in the physics model. Visible arm swing is display animation; the policy does not control the arms or use them for balance.
 
-| G1 lower-limb walking (earlier stage; pixiv sample avatar) | Yumi lower-limb walking (current stage) |
-|---|---|
-| ![G1 lower-limb walking preview](assets/preview-g1.png) | ![Yumi lower-limb walking preview; arm motion is display animation](assets/preview-yumi.png) |
+| Body / stage | Model during walking | Neural activity at the same instant |
+|---|---|---|
+| **G1 · earlier stage**<br>`ffcf9a97` · 8.28 s | <img src="assets/preview-g1-model.png" alt="G1 walking at 0.5 m/s, rendered with the pixiv sample avatar" width="300"> | <img src="assets/preview-g1-neural.png" alt="G1 connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
+| **Yumi · current v0.2.0**<br>`f1a20071` · 8.26 s | <img src="assets/preview-yumi-model.png" alt="Current v0.2.0 Yumi model during a left-foot swing" width="300"> | <img src="assets/preview-yumi-neural.png" alt="Current Yumi connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
+
+Each pair freezes one real walking frame at a commanded 0.50 m/s and 0° heading; model and neural images share the same simulation time. Neural views show **2,048 sampled somata out of 166,700 neurons**, using signed model activity at a fixed ±1 scale (blue: negative; orange: positive). These are not biological spikes or new acceptance tests. [Capture details and hashes](assets/preview-metadata.json).
+
+The G1 image uses the later `ffcf9a97` checkpoint ([6/9 held-out record](research/experiments/G1_CHECKPOINT_REBIND_20260918.md)); the historical 9/9 result below belongs to `f1d5147c`. Yumi shows the current release primary model. G1 avatar: © 2022 pixiv Inc. Yumi: concept 松酒, artist 7Apoi, model 星晨水影工作室, publisher 墨海徽. [Asset attribution](THIRD_PARTY.md).
 
 | Stage | Scope and status | Preview / acceptance evidence |
 |---|---|---|
