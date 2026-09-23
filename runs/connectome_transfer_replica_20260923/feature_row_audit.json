@@ -1,0 +1,60 @@
+{
+  "fixed_source_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+  "fixed_teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+  "verified": [
+    {
+      "candidate": "ridge1e4",
+      "checkpoint_sha256": "f1a200718ebfec845cbf9c02ba743e937ea94c747fba53e7b12dfd12f8d3e1f9",
+      "all_non_readout_tensors_equal_fixed_source_and_reference": true,
+      "groups": [
+        {
+          "group": "train",
+          "rows": 121293,
+          "ordered_tensor_sha256": {
+            "observations": "29d5e69ff01dbe394203bf35d0a2c9232ec1ff47d4a8517a6569c5bec3ff2fa2",
+            "targets": "505306194bbf8c09e9f68ef8e9acf8f716231d46c0c7f7664ca3fb84724aeede",
+            "episode_ids": "00fd99db015955584f9dccf7cc96bb0fb12a0c88c436e5c5a891f9de532b1a09"
+          },
+          "regenerated_features_bitwise_equal": true
+        },
+        {
+          "group": "validation",
+          "rows": 16200,
+          "ordered_tensor_sha256": {
+            "observations": "9e8ece1372d91b3d7494e1edc2037f734948398f92b27047719381b0b588a237",
+            "targets": "528e72f5216bd4effbee5480ae4429fa4348d5b7568c1820f062f18af70233b5",
+            "episode_ids": "886b486a4c212650cd3361a27829fb9d5d4e6316bc36ae0074389d34e96e5aec"
+          },
+          "regenerated_features_bitwise_equal": true
+        }
+      ]
+    },
+    {
+      "candidate": "replica",
+      "checkpoint_sha256": "c7d45a9554a6ba3573d7ddc42deddd032ff0343ccb9cb9bb436dcebcf0cd2e34",
+      "all_non_readout_tensors_equal_fixed_source_and_reference": true,
+      "groups": [
+        {
+          "group": "train",
+          "rows": 125131,
+          "ordered_tensor_sha256": {
+            "observations": "f1dd6de3165331fc261720707bc37045fc7186cc696024eca77854aef709811a",
+            "targets": "bd65bc188612c1bd430cd24e13d852d1ad45586750b8eec1f89e88d70276879b",
+            "episode_ids": "0ff005af1e286ba561991f5ce683fc20aebb2909b3a1cc2e5eed7bb4b902a383"
+          },
+          "regenerated_features_bitwise_equal": true
+        },
+        {
+          "group": "validation",
+          "rows": 16200,
+          "ordered_tensor_sha256": {
+            "observations": "39b8edd1c29a5d58228036c1883e4a66b24e2510207cdb3975cc3c5a30ec64f3",
+            "targets": "4de915a1220f3793b8911cc90ebaedb89791dbf8c50dca6c7b0714682589a6cf",
+            "episode_ids": "211cd50570f61fbb5a71d523ca51e45db7ae9b18d5d2d42b06a01dec8a9eeada"
+          },
+          "regenerated_features_bitwise_equal": true
+        }
+      ]
+    }
+  ]
+}

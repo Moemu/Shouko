@@ -1,0 +1,5 @@
+# Preserve exact bytes used by checkpoint-bound evaluations and release manifests.
+app/** -text
+research/releases/** -text
+runs/**/*.json -text
+runs/**/*.py -text

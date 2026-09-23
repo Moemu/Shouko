@@ -1,0 +1,679 @@
+{
+  "evidence": [
+    {
+      "source": "runs\\connectome_transfer_20260923\\readout_native.json",
+      "sha256": "4710c90156ef21d0f0d0791553e20476743e679c2b4d0e16a297ed8df93bf65e",
+      "conditions": [
+        {
+          "checkpoint_sha256": "8960673013b495b316c6c012ee3faeb3abae356eef3eda73b2b6258ed5c9b94c",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 0,
+          "falls": 27,
+          "criteria_passes": {
+            "survived": 0,
+            "speed": 26,
+            "feet": 0,
+            "alternation": 0,
+            "upright": 23,
+            "direction": 27
+          },
+          "lateral_m": 0.6255323348542935,
+          "maximum_lateral_mean": 0.6362493053348751,
+          "mean_abs_yaw": 0.10761364425255636,
+          "mean_height": 0.9412389613934368,
+          "speed_mae": 0.07448252307963853,
+          "qualifying_swings_per_second": 1.0153777425594501,
+          "strict": 0,
+          "mean_seconds": 3.6540740740738933,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.04410419803390323,
+          "by_speed": {
+            "0.35": {
+              "episodes": 9,
+              "strict": 0,
+              "falls": 9
+            },
+            "0.5": {
+              "episodes": 9,
+              "strict": 0,
+              "falls": 9
+            },
+            "0.65": {
+              "episodes": 9,
+              "strict": 0,
+              "falls": 9
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\dagger1_native.json",
+      "sha256": "f26ce686adf007cc41de2670d10f33b58c785d9325e138a09e16e3fc5b90033b",
+      "conditions": [
+        {
+          "checkpoint_sha256": "c1d98a5e11092d79ebcc6e0fff65f9b86fc629ead5831b8cc39d386a4fab39ff",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 2,
+          "falls": 25,
+          "criteria_passes": {
+            "survived": 2,
+            "speed": 15,
+            "feet": 14,
+            "alternation": 10,
+            "upright": 6,
+            "direction": 27
+          },
+          "lateral_m": 1.5145339187685025,
+          "maximum_lateral_mean": 1.6341097427361144,
+          "mean_abs_yaw": 0.06881666950946286,
+          "mean_height": 0.9577818503418909,
+          "speed_mae": 0.13031575468185366,
+          "qualifying_swings_per_second": 1.2156562795812589,
+          "strict": 2,
+          "mean_seconds": 14.368148148147009,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.10005963881567444,
+          "by_speed": {
+            "0.35": {
+              "episodes": 9,
+              "strict": 1,
+              "falls": 8
+            },
+            "0.5": {
+              "episodes": 9,
+              "strict": 1,
+              "falls": 8
+            },
+            "0.65": {
+              "episodes": 9,
+              "strict": 0,
+              "falls": 9
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\dagger2_native.json",
+      "sha256": "fc270162fb9b550eeb7ff2695f5c0d126f5128fdd7d2f1a8d04a2e515005be21",
+      "conditions": [
+        {
+          "checkpoint_sha256": "5866341db37556a99b28c501a8e7e9b153f5f54fb532d25d152ce384287f9529",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 9,
+          "falls": 11,
+          "criteria_passes": {
+            "survived": 16,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 17,
+            "direction": 18
+          },
+          "lateral_m": 2.2258331500788255,
+          "maximum_lateral_mean": 2.2258331500788255,
+          "mean_abs_yaw": 0.03716410720078749,
+          "mean_height": 0.9622355698949756,
+          "speed_mae": 0.053054201889361954,
+          "qualifying_swings_per_second": 1.2262590264452,
+          "strict": 9,
+          "mean_seconds": 23.627407407404334,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.16124831415015872,
+          "by_speed": {
+            "0.35": {
+              "episodes": 9,
+              "strict": 0,
+              "falls": 2
+            },
+            "0.5": {
+              "episodes": 9,
+              "strict": 8,
+              "falls": 1
+            },
+            "0.65": {
+              "episodes": 9,
+              "strict": 1,
+              "falls": 8
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\dagger3_native.json",
+      "sha256": "c0a1c5e055a785aa9b8796b93a48f476b66185701451e9aeb80ea1e81e5afe83",
+      "conditions": [
+        {
+          "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 27,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 27
+          },
+          "lateral_m": 1.010729642723673,
+          "maximum_lateral_mean": 1.0107633971279937,
+          "mean_abs_yaw": 0.028782734735037167,
+          "mean_height": 0.9676912600552957,
+          "speed_mae": 0.03075190582371965,
+          "qualifying_swings_per_second": 1.25,
+          "strict": 27,
+          "mean_seconds": 29.99999999999425,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.08075236239646709,
+          "by_speed": {
+            "0.35": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.5": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\replica3_native.json",
+      "sha256": "aaea6a69765263ef376ae4e9f9c971cc3c9465116aa3e0738a78f9276c2e17ba",
+      "conditions": [
+        {
+          "checkpoint_sha256": "57a4c03e6365105dc604001849f07e3a75323b59a5b9eb9b2822ee94a587d0fe",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 27,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 27
+          },
+          "lateral_m": 0.8921936277798861,
+          "maximum_lateral_mean": 0.8922078605200222,
+          "mean_abs_yaw": 0.02775400046583289,
+          "mean_height": 0.9665478556085417,
+          "speed_mae": 0.025509240821749168,
+          "qualifying_swings_per_second": 1.25,
+          "strict": 27,
+          "mean_seconds": 29.99999999999425,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.06609840353848616,
+          "by_speed": {
+            "0.35": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.5": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\student_holdout.json",
+      "sha256": "84c8ddaab896e3513b6017a4c888484be517e7176aa5283e9f0e2f52df7c550c",
+      "conditions": [
+        {
+          "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 27,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 27
+          },
+          "lateral_m": 1.001532732572652,
+          "maximum_lateral_mean": 1.0015475124247848,
+          "mean_abs_yaw": 0.028760069405299966,
+          "mean_height": 0.9676831275390829,
+          "speed_mae": 0.030696534686844797,
+          "qualifying_swings_per_second": 1.25,
+          "strict": 27,
+          "mean_seconds": 29.99999999999425,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.07988179657494772,
+          "by_speed": {
+            "0.35": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.5": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\student_yaw_holdout.json",
+      "sha256": "e08400b86662910960c44672d05cc5937060a1a7fe520a0222bcc259c18a9be7",
+      "conditions": [
+        {
+          "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+          "mode": "normal",
+          "episodes": 18,
+          "successes": 18,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 18,
+            "speed": 18,
+            "feet": 18,
+            "alternation": 18,
+            "upright": 18,
+            "direction": 18
+          },
+          "lateral_m": 0.9437344675589289,
+          "maximum_lateral_mean": 0.9437351093312155,
+          "mean_abs_yaw": 0.029167815600916167,
+          "mean_height": 0.9675417093884859,
+          "speed_mae": 0.02740155771042004,
+          "qualifying_swings_per_second": 1.25,
+          "strict": 18,
+          "mean_seconds": 29.99999999999425,
+          "yaw_recovered": 15,
+          "yaw_attempts": 18,
+          "mean_lateral_fraction_of_command_distance": 0.07609828559964255,
+          "by_speed": {
+            "0.35": {
+              "episodes": 6,
+              "strict": 6,
+              "falls": 0
+            },
+            "0.5": {
+              "episodes": 6,
+              "strict": 6,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 6,
+              "strict": 6,
+              "falls": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\student_long_holdout.json",
+      "sha256": "96a5f3c93f63548957140d4bf5d9b3da875853613b9c52ab344156774d6acd3d",
+      "conditions": [
+        {
+          "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+          "mode": "normal",
+          "episodes": 9,
+          "successes": 9,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 9,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 9,
+            "direction": 9
+          },
+          "lateral_m": 4.460022893238411,
+          "maximum_lateral_mean": 4.460022893238411,
+          "mean_abs_yaw": 0.028831469149151467,
+          "mean_height": 0.9678994723516673,
+          "speed_mae": 0.036542279851350376,
+          "qualifying_swings_per_second": 1.25,
+          "strict": 9,
+          "mean_seconds": 119.99999999990173,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.09017398074532451,
+          "by_speed": {
+            "0.35": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            },
+            "0.5": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\student_push_holdout.json",
+      "sha256": "be3490a49d338c0a220b49f39f9352887d7720ba3476c85f0c6e99aad38b5bcc",
+      "conditions": [
+        {
+          "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+          "mode": "normal",
+          "episodes": 9,
+          "successes": 7,
+          "falls": 2,
+          "criteria_passes": {
+            "survived": 7,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 7,
+            "direction": 8
+          },
+          "lateral_m": 0.9167616810435464,
+          "maximum_lateral_mean": 1.1232150724526118,
+          "mean_abs_yaw": 0.03813073714789841,
+          "mean_height": 0.9647621443205728,
+          "speed_mae": 0.035041289375746444,
+          "qualifying_swings_per_second": 1.2409946021057132,
+          "strict": 7,
+          "mean_seconds": 26.544444444440305,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.07644608013373394,
+          "by_speed": {
+            "0.35": {
+              "episodes": 3,
+              "strict": 1,
+              "falls": 2
+            },
+            "0.5": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\student_lesion.json",
+      "sha256": "f51a010409f0846ac163b6eaced0e4b9392814441724d118cea8dfc1942d20f8",
+      "conditions": [
+        {
+          "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+          "mode": "normal",
+          "episodes": 9,
+          "successes": 9,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 9,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 9,
+            "direction": 9
+          },
+          "lateral_m": 1.0341746794354685,
+          "maximum_lateral_mean": 1.0341948234366867,
+          "mean_abs_yaw": 0.028813927553105308,
+          "mean_height": 0.9677325291232547,
+          "speed_mae": 0.030584198174545028,
+          "qualifying_swings_per_second": 1.25,
+          "strict": 9,
+          "mean_seconds": 29.99999999999425,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.08299053647363143,
+          "by_speed": {
+            "0.35": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            },
+            "0.5": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            }
+          }
+        },
+        {
+          "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+          "mode": "repeat",
+          "episodes": 9,
+          "successes": 9,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 9,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 9,
+            "direction": 9
+          },
+          "lateral_m": 1.0341746794354685,
+          "maximum_lateral_mean": 1.0341948234366867,
+          "mean_abs_yaw": 0.028813927553105308,
+          "mean_height": 0.9677325291232547,
+          "speed_mae": 0.030584198174545028,
+          "qualifying_swings_per_second": 1.25,
+          "strict": 9,
+          "mean_seconds": 29.99999999999425,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.08299053647363143,
+          "by_speed": {
+            "0.35": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            },
+            "0.5": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 3,
+              "strict": 3,
+              "falls": 0
+            }
+          }
+        },
+        {
+          "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+          "mode": "lesion",
+          "episodes": 9,
+          "successes": 0,
+          "falls": 9,
+          "criteria_passes": {
+            "survived": 0,
+            "speed": 0,
+            "feet": 0,
+            "alternation": 0,
+            "upright": 0,
+            "direction": 9
+          },
+          "lateral_m": 0.0691106356123356,
+          "maximum_lateral_mean": 0.0691106356123356,
+          "mean_abs_yaw": 0.08446154086346608,
+          "mean_height": 0.9912845103010509,
+          "speed_mae": 0.36448051090834255,
+          "qualifying_swings_per_second": 0.0,
+          "strict": 0,
+          "mean_seconds": 0.40222222222222254,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.0048304281678195875,
+          "by_speed": {
+            "0.35": {
+              "episodes": 3,
+              "strict": 0,
+              "falls": 3
+            },
+            "0.5": {
+              "episodes": 3,
+              "strict": 0,
+              "falls": 3
+            },
+            "0.65": {
+              "episodes": 3,
+              "strict": 0,
+              "falls": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\student_native_csr.json",
+      "sha256": "8e6308458e98b2f3f1628e9359c21fa01a96134fed8900fe0d5c5afc1818c932",
+      "conditions": [
+        {
+          "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 27,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 27
+          },
+          "lateral_m": 1.0105740267467556,
+          "maximum_lateral_mean": 1.0106078927599187,
+          "mean_abs_yaw": 0.028783674663285592,
+          "mean_height": 0.9676915962074909,
+          "speed_mae": 0.030749064580584285,
+          "qualifying_swings_per_second": 1.25,
+          "strict": 27,
+          "mean_seconds": 29.99999999999425,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.0807402779307036,
+          "by_speed": {
+            "0.35": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.5": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "source": "runs\\connectome_transfer_20260923\\clipped_readout_native.json",
+      "sha256": "7e975766803aef8f430c3cfcc7d15ce6d245a79b287b3204f90d0d26acc231ac",
+      "conditions": [
+        {
+          "checkpoint_sha256": "4c872ded8f9f745a588156d884c1df1660d44a2d85d442d29cbdbde9162b0981",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 27,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 27
+          },
+          "lateral_m": 1.008873695446802,
+          "maximum_lateral_mean": 1.0088953891426735,
+          "mean_abs_yaw": 0.02878452446377866,
+          "mean_height": 0.9676896854809575,
+          "speed_mae": 0.03078671521729644,
+          "qualifying_swings_per_second": 1.25,
+          "strict": 27,
+          "mean_seconds": 29.99999999999425,
+          "yaw_recovered": 0,
+          "yaw_attempts": 0,
+          "mean_lateral_fraction_of_command_distance": 0.08065634213283222,
+          "by_speed": {
+            "0.35": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.5": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            },
+            "0.65": {
+              "episodes": 9,
+              "strict": 9,
+              "falls": 0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "limitation": "Explicit phase remains. Episode cohorts are not independent training seeds. Strict gait is an engineering screen, not naturalness or topology superiority."
+}

@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('g1','yumi')][string]$Body = 'g1',
+    [ValidateSet('g1','yumi')][string]$Body = 'yumi',
     [ValidateSet('cuda','cpu')][string]$Device = 'cuda',
     [ValidateRange(1,65535)][int]$Port = 8740
 )

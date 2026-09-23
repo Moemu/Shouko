@@ -1,0 +1,24 @@
+{
+  "verified": [
+    {
+      "fit": "runs/connectome_transfer_ridge_20260923/replica/fit.json",
+      "checkpoint_sha256": "c7d45a9554a6ba3573d7ddc42deddd032ff0343ccb9cb9bb436dcebcf0cd2e34",
+      "reproduction_max_errors": {
+        "baseline": 0.0,
+        "candidate": 0.0
+      },
+      "all_non_readout_tensors_bitwise_equal": true,
+      "data_and_feature_hashes_verified": true
+    },
+    {
+      "fit": "runs/connectome_transfer_ridge_20260923/ridge1e4/fit.json",
+      "checkpoint_sha256": "f1a200718ebfec845cbf9c02ba743e937ea94c747fba53e7b12dfd12f8d3e1f9",
+      "reproduction_max_errors": {
+        "baseline": 0.0,
+        "candidate": 0.0
+      },
+      "all_non_readout_tensors_bitwise_equal": true,
+      "data_and_feature_hashes_verified": true
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "data": [
+    {
+      "file": "runs/connectome_transfer_20260923/dagger1.pt",
+      "sha256": "2398e87fc80eb7e32831bf191b7cd5801a6e366703d007acb14b199e278f81a8",
+      "samples": 5306,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": "8960673013b495b316c6c012ee3faeb3abae356eef3eda73b2b6258ed5c9b94c",
+      "beta": 0.0,
+      "teacher_raw_clip_fraction": 6.282196409301832e-05,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0007538635400123894,
+        0.0
+      ],
+      "teacher_max_absolute": 8.52102279663086,
+      "teacher_raw_executed_mse": 6.478178420366021e-06
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/dagger2.pt",
+      "sha256": "c819821851acddefb61593e63e3e0f58756ea9f0adb8857ca6fd29bf3ef2c785",
+      "samples": 13017,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": "c1d98a5e11092d79ebcc6e0fff65f9b86fc629ead5831b8cc39d386a4fab39ff",
+      "beta": 0.0,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 6.301360130310059,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/dagger3.pt",
+      "sha256": "252b3ccbf3e620c958a771d17f927baf2f65ed70c3635a73c8ae2435928fe4f3",
+      "samples": 16190,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": "5866341db37556a99b28c501a8e7e9b153f5f54fb532d25d152ce384287f9529",
+      "beta": 0.0,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 6.7023210525512695,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/train.pt",
+      "sha256": "56ec05050e1c0b1748668fb31290f894d00b8e1d0a7aa6fe25e58a696da89998",
+      "samples": 16200,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": null,
+      "beta": 1,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 3.7828919887542725,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/validation.pt",
+      "sha256": "cc619568a3e1cd86d311d49e5574e739a941e9be1e936654ec5d5c3383a65f7a",
+      "samples": 16200,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": null,
+      "beta": 1,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 3.810328722000122,
+      "teacher_raw_executed_mse": 0.0
+    }
+  ],
+  "weights": [
+    {
+      "file": "runs/connectome_transfer_20260923/dagger1/last.pt",
+      "sha256": "c1d98a5e11092d79ebcc6e0fff65f9b86fc629ead5831b8cc39d386a4fab39ff",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/dagger2/last.pt",
+      "sha256": "5866341db37556a99b28c501a8e7e9b153f5f54fb532d25d152ce384287f9529",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/dagger3/last.pt",
+      "sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/readout/last.pt",
+      "sha256": "8960673013b495b316c6c012ee3faeb3abae356eef3eda73b2b6258ed5c9b94c",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    }
+  ],
+  "device": "cpu",
+  "note": "Labels are raw teacher actions. Zero clip fraction establishes equality to executed targets on these recorded states."
+}

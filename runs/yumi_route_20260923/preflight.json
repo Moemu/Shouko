@@ -1,0 +1,10 @@
+{
+  "recorded_utc": "2026-09-23T01:25:01.540682+00:00",
+  "source": "SSH read-only preflight tool output",
+  "gpu": "NVIDIA GeForce RTX 4090 D",
+  "total_memory_mib": 24564,
+  "initial_used_memory_mib": 0,
+  "initial_gpu_utilization_percent": 0,
+  "instance_policy": "keep_running",
+  "source_checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475"
+}

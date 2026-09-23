@@ -1,0 +1,82 @@
+{
+  "completed": true,
+  "jobs": [
+    {
+      "name": "collect_train",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "collect",
+        "--teacher",
+        "runs/teacher/last.pt",
+        "--seed-base",
+        "101001",
+        "--output",
+        "runs/connectome_transfer_20260923/train.pt"
+      ],
+      "returncode": 0,
+      "wall_seconds": 10.039107616990805
+    },
+    {
+      "name": "collect_validation",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "collect",
+        "--teacher",
+        "runs/teacher/last.pt",
+        "--seed-base",
+        "102001",
+        "--output",
+        "runs/connectome_transfer_20260923/validation.pt"
+      ],
+      "returncode": 0,
+      "wall_seconds": 9.73951406404376
+    },
+    {
+      "name": "readout",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "fit",
+        "--source",
+        "runs/source/best.pt",
+        "--train",
+        "runs/connectome_transfer_20260923/train.pt",
+        "--validation",
+        "runs/connectome_transfer_20260923/validation.pt",
+        "--mode",
+        "readout",
+        "--output",
+        "runs/connectome_transfer_20260923/readout"
+      ],
+      "returncode": 0,
+      "wall_seconds": 17.360230941325426
+    },
+    {
+      "name": "readout_native",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_20260923/readout/last.pt",
+        "--seed-base",
+        "103001",
+        "--output",
+        "runs/connectome_transfer_20260923/readout_native.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 12.746568158268929
+    }
+  ],
+  "started_utc": "2026-09-23T05:21:24.053077+00:00",
+  "finished_utc": "2026-09-23T05:22:14.029709+00:00"
+}

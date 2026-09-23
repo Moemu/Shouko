@@ -117,7 +117,7 @@ def check_timeout():
 async def check_boot():
     async with s.lifespan(s.app):
         meta = s.meta()
-        assert meta['training_enabled'] == (s.training_unavailable_reason('g1') is None)
+        assert meta['training_enabled'] == (s.training_unavailable_reason(s.studio.robot) is None)
         assert meta['body_switch'] is True and 'execution_location' not in meta
         from fastapi import HTTPException
         try:

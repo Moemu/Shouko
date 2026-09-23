@@ -1,0 +1,594 @@
+{
+  "completed": true,
+  "jobs": [
+    {
+      "name": "push1_collect",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "collect",
+        "--teacher",
+        "runs/teacher/last.pt",
+        "--student",
+        "runs/prior/dagger3/last.pt",
+        "--beta",
+        "0",
+        "--push",
+        "--seconds",
+        "30",
+        "--seed-base",
+        "214101",
+        "--output",
+        "runs/connectome_transfer_push_20260923/push1.pt"
+      ],
+      "returncode": 0,
+      "wall_seconds": 49.979352444410324
+    },
+    {
+      "name": "push1_fit",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "fit",
+        "--source",
+        "runs/prior/dagger3/last.pt",
+        "--train",
+        "runs/prior/train.pt",
+        "runs/prior/dagger1.pt",
+        "runs/prior/dagger2.pt",
+        "runs/prior/dagger3.pt",
+        "runs/connectome_transfer_push_20260923/push1.pt",
+        "--validation",
+        "runs/prior/validation.pt",
+        "--mode",
+        "readout",
+        "--output",
+        "runs/connectome_transfer_push_20260923/push1"
+      ],
+      "returncode": 0,
+      "wall_seconds": 31.688148893415928
+    },
+    {
+      "name": "push1_native",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push1/last.pt",
+        "--seed-base",
+        "103001",
+        "--output",
+        "runs/connectome_transfer_push_20260923/push1_native.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 52.06419971957803
+    },
+    {
+      "name": "push1_push",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push1/last.pt",
+        "--seed-base",
+        "114001",
+        "--push",
+        "--cohorts",
+        "1",
+        "--output",
+        "runs/connectome_transfer_push_20260923/push1_push.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 20.856132250279188
+    },
+    {
+      "name": "push2_collect",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "collect",
+        "--teacher",
+        "runs/teacher/last.pt",
+        "--student",
+        "runs/connectome_transfer_push_20260923/push1/last.pt",
+        "--beta",
+        "0",
+        "--push",
+        "--seconds",
+        "30",
+        "--seed-base",
+        "214201",
+        "--output",
+        "runs/connectome_transfer_push_20260923/push2.pt"
+      ],
+      "returncode": 0,
+      "wall_seconds": 51.57445799559355
+    },
+    {
+      "name": "push2_fit",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "fit",
+        "--source",
+        "runs/connectome_transfer_push_20260923/push1/last.pt",
+        "--train",
+        "runs/prior/train.pt",
+        "runs/prior/dagger1.pt",
+        "runs/prior/dagger2.pt",
+        "runs/prior/dagger3.pt",
+        "runs/connectome_transfer_push_20260923/push1.pt",
+        "runs/connectome_transfer_push_20260923/push2.pt",
+        "--validation",
+        "runs/prior/validation.pt",
+        "--mode",
+        "readout",
+        "--output",
+        "runs/connectome_transfer_push_20260923/push2"
+      ],
+      "returncode": 0,
+      "wall_seconds": 38.204075794667006
+    },
+    {
+      "name": "push2_native",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push2/last.pt",
+        "--seed-base",
+        "103001",
+        "--output",
+        "runs/connectome_transfer_push_20260923/push2_native.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 53.6924664825201
+    },
+    {
+      "name": "push2_push",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push2/last.pt",
+        "--seed-base",
+        "114001",
+        "--push",
+        "--cohorts",
+        "1",
+        "--output",
+        "runs/connectome_transfer_push_20260923/push2_push.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 22.01481220498681
+    },
+    {
+      "name": "replica_push1_collect",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "collect",
+        "--teacher",
+        "runs/teacher/last.pt",
+        "--student",
+        "runs/prior/replica3/last.pt",
+        "--beta",
+        "0",
+        "--push",
+        "--seconds",
+        "30",
+        "--seed-base",
+        "224101",
+        "--output",
+        "runs/connectome_transfer_push_20260923/replica_push1.pt"
+      ],
+      "returncode": 0,
+      "wall_seconds": 52.678026005625725
+    },
+    {
+      "name": "replica_push1_fit",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "fit",
+        "--source",
+        "runs/prior/replica3/last.pt",
+        "--train",
+        "runs/prior/replica_train.pt",
+        "runs/prior/replica1.pt",
+        "runs/prior/replica2.pt",
+        "runs/prior/replica3.pt",
+        "runs/connectome_transfer_push_20260923/replica_push1.pt",
+        "--validation",
+        "runs/prior/replica_validation.pt",
+        "--mode",
+        "readout",
+        "--output",
+        "runs/connectome_transfer_push_20260923/replica_push1"
+      ],
+      "returncode": 0,
+      "wall_seconds": 32.785183649510145
+    },
+    {
+      "name": "replica_push2_collect",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "collect",
+        "--teacher",
+        "runs/teacher/last.pt",
+        "--student",
+        "runs/connectome_transfer_push_20260923/replica_push1/last.pt",
+        "--beta",
+        "0",
+        "--push",
+        "--seconds",
+        "30",
+        "--seed-base",
+        "224201",
+        "--output",
+        "runs/connectome_transfer_push_20260923/replica_push2.pt"
+      ],
+      "returncode": 0,
+      "wall_seconds": 48.32583334296942
+    },
+    {
+      "name": "replica_push2_fit",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "fit",
+        "--source",
+        "runs/connectome_transfer_push_20260923/replica_push1/last.pt",
+        "--train",
+        "runs/prior/replica_train.pt",
+        "runs/prior/replica1.pt",
+        "runs/prior/replica2.pt",
+        "runs/prior/replica3.pt",
+        "runs/connectome_transfer_push_20260923/replica_push1.pt",
+        "runs/connectome_transfer_push_20260923/replica_push2.pt",
+        "--validation",
+        "runs/prior/replica_validation.pt",
+        "--mode",
+        "readout",
+        "--output",
+        "runs/connectome_transfer_push_20260923/replica_push2"
+      ],
+      "returncode": 0,
+      "wall_seconds": 37.45839224010706
+    },
+    {
+      "name": "replica_native",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/replica_push2/last.pt",
+        "--seed-base",
+        "203001",
+        "--output",
+        "runs/connectome_transfer_push_20260923/replica_native.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 52.87951095402241
+    },
+    {
+      "name": "replica_push",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/replica_push2/last.pt",
+        "--seed-base",
+        "214001",
+        "--push",
+        "--cohorts",
+        "1",
+        "--output",
+        "runs/connectome_transfer_push_20260923/replica_push.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 21.618287071585655
+    },
+    {
+      "name": "holdout",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push2/last.pt",
+        "--seed-base",
+        "120001",
+        "--output",
+        "runs/connectome_transfer_push_20260923/holdout.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 52.35131378099322
+    },
+    {
+      "name": "yaw_holdout",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push2/last.pt",
+        "--seed-base",
+        "121001",
+        "--cohorts",
+        "1",
+        "--yaws",
+        "-.2",
+        ".2",
+        "--output",
+        "runs/connectome_transfer_push_20260923/yaw_holdout.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 36.45657630637288
+    },
+    {
+      "name": "long_holdout",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push2/last.pt",
+        "--seed-base",
+        "122001",
+        "--cohorts",
+        "1",
+        "--seconds",
+        "120",
+        "--output",
+        "runs/connectome_transfer_push_20260923/long_holdout.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 67.67765922471881
+    },
+    {
+      "name": "push_holdout",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push2/last.pt",
+        "--seed-base",
+        "123001",
+        "--cohorts",
+        "1",
+        "--push",
+        "--output",
+        "runs/connectome_transfer_push_20260923/push_holdout.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 21.06175995990634
+    },
+    {
+      "name": "lesion",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push2/last.pt",
+        "--seed-base",
+        "103001",
+        "--cohorts",
+        "1",
+        "--lesion",
+        "--repeat",
+        "--output",
+        "runs/connectome_transfer_push_20260923/lesion.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 36.703051175922155
+    },
+    {
+      "name": "native_csr",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_push_20260923/push2/last.pt",
+        "--seed-base",
+        "103001",
+        "--sparse-backend",
+        "native",
+        "--output",
+        "runs/connectome_transfer_push_20260923/native_csr.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 49.43607981130481
+    }
+  ],
+  "primary": [
+    {
+      "round": 1,
+      "normal": {
+        "strict": 27,
+        "falls": 0,
+        "summary": {
+          "episodes": 27,
+          "successes": 27,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 27
+          },
+          "lateral_m": 1.1634247245905573,
+          "maximum_lateral_mean": 1.1634247245905573,
+          "mean_abs_yaw": 0.028576962450373927,
+          "mean_height": 0.9675266931912971,
+          "speed_mae": 0.025774058331885442,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "push": {
+        "strict": 7,
+        "falls": 2,
+        "summary": {
+          "episodes": 9,
+          "successes": 7,
+          "falls": 2,
+          "criteria_passes": {
+            "survived": 7,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 8,
+            "direction": 7
+          },
+          "lateral_m": 0.9056852858749865,
+          "maximum_lateral_mean": 0.9997741723589518,
+          "mean_abs_yaw": 0.03537696661167231,
+          "mean_height": 0.9654454822583252,
+          "speed_mae": 0.02478804295902605,
+          "qualifying_swings_per_second": 1.2415690014167515
+        }
+      }
+    },
+    {
+      "round": 2,
+      "normal": {
+        "strict": 25,
+        "falls": 0,
+        "summary": {
+          "episodes": 27,
+          "successes": 25,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 25
+          },
+          "lateral_m": 1.2408818214551454,
+          "maximum_lateral_mean": 1.2408818214551454,
+          "mean_abs_yaw": 0.02859764081131692,
+          "mean_height": 0.9677122089515628,
+          "speed_mae": 0.025732185023462886,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "push": {
+        "strict": 9,
+        "falls": 0,
+        "summary": {
+          "episodes": 9,
+          "successes": 9,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 9,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 9,
+            "direction": 9
+          },
+          "lateral_m": 0.5771919058433015,
+          "maximum_lateral_mean": 0.5776111106800597,
+          "mean_abs_yaw": 0.027223113748874508,
+          "mean_height": 0.9664373774024302,
+          "speed_mae": 0.019588242454106657,
+          "qualifying_swings_per_second": 1.25
+        }
+      }
+    }
+  ],
+  "replication": {
+    "normal": {
+      "strict": 27,
+      "falls": 0,
+      "summary": {
+        "episodes": 27,
+        "successes": 27,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 27,
+          "speed": 27,
+          "feet": 27,
+          "alternation": 27,
+          "upright": 27,
+          "direction": 27
+        },
+        "lateral_m": 1.1787131838087332,
+        "maximum_lateral_mean": 1.1787131838087332,
+        "mean_abs_yaw": 0.028746305961975503,
+        "mean_height": 0.9677620925990008,
+        "speed_mae": 0.023844179203065016,
+        "qualifying_swings_per_second": 1.25
+      }
+    },
+    "push": {
+      "strict": 8,
+      "falls": 1,
+      "summary": {
+        "episodes": 9,
+        "successes": 8,
+        "falls": 1,
+        "criteria_passes": {
+          "survived": 8,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 8,
+          "direction": 9
+        },
+        "lateral_m": 0.5425889540312764,
+        "maximum_lateral_mean": 0.5617242029866162,
+        "mean_abs_yaw": 0.034098592287489855,
+        "mean_height": 0.9666731003669433,
+        "speed_mae": 0.02472243548315707,
+        "qualifying_swings_per_second": 1.245240567670474
+      }
+    }
+  },
+  "started_utc": "2026-09-23T05:40:06.013895+00:00",
+  "candidate": "runs/connectome_transfer_push_20260923/push2/last.pt",
+  "candidate_round": 2,
+  "finished_utc": "2026-09-23T05:54:35.583901+00:00"
+}

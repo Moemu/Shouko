@@ -1,0 +1,16 @@
+{
+  "mlp_seed2026/training.json": "6eaedef2e8bfb86490f7c2dcb93b480284213c951ca08f31c3fbe9e84fd348ea",
+  "mlp_seed2026/best.pt": "dfa6b3535e78a6095e951e6fbb2a5dbdfa7ab2ed41c40f19a3e61808bdb6759f",
+  "mlp_seed2026/ppo_state_best.pt": "425843c467162b3954d938dca1643a7a6adfb1ddfdfd413430ccfad38a7ba715",
+  "mlp_seed2026/replay.json": "fd17f4f6696a6228c3c914ae2313f82da202189ee74d815edb938688dde0337b",
+  "mlp_seed2026/evaluation.json": "7246b693b60c88326875e17160219b40271841c345d83c5a25fa92f82374d9a2",
+  "mlp_seed2026/last.pt": "995d74c4a60d7a9eb4610d9338b96b4d30d11868743790474c2ae7a32073926b",
+  "mlp_seed2026/ppo_state.pt": "2fb2a7c4a8cb24b1eaf4ead01b0de5ec00302c77a915c5c882360006f73d1d38",
+  "control_seed2026/training.json": "b4a56ab68cc41c1aa161e1c02f65c2af9d92fc2d7c974593ae7356f1aaa6c663",
+  "control_seed2026/best.pt": "eda84b93f86295d866a7543ce55e1f26c7f2361e5040b733f9afe04ac1d07558",
+  "control_seed2026/ppo_state_best.pt": "398f9a3061c01664e8d02355ff190ab5236ef54bad347c139d4fe6c147f54be8",
+  "control_seed2026/replay.json": "2161b971fdde25557d48ff4954814eb8470631dd23112161aaa08bb544de8b3e",
+  "control_seed2026/evaluation.json": "7260c890a3adc3ca7f039c5a25043c8debc8d0da913c78f9bde4b2384877af9e",
+  "control_seed2026/last.pt": "796d1c3e3205be1eb37e08a0b5f6f4b311d878eba8c0e75855792a4e7c98ffc7",
+  "control_seed2026/ppo_state.pt": "bb15b832310723c7aa1f8dbd7168d84014bf8b3047b009d2d26bdbf9a1ff0139"
+}

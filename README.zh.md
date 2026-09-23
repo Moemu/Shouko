@@ -16,7 +16,7 @@
 
 | 阶段 | 范围与状态 | 预览 / 验收依据 |
 |---|---|---|
-| **当前：下肢行走** | Yumi 平地行走；已验收检查点 `a7a4281f` | 上方预览与下方成绩 |
+| **当前：下肢行走（v0.2.0）** | 完整连接组读出迁移 `f1a20071`，四组严格留出通过；精确朝向与横漂仍待解决 | 上方预览与下方成绩 |
 | 下一阶段（预留） | 范围与验收标准待确定 | 待补充 |
 | 后续阶段（预留） | 阶段确定后填写 | 待补充 |
 
@@ -33,13 +33,13 @@
 |---|---|---|---|
 | 子图原型 | 8,192 神经元 | G1 代理 + 冻结步态策略 | 已验收 |
 | 云端全图 | 完整连接组 | G1 代理 | 已验收 |
-| **当前主线** | 完整连接组 | **Yumi 下肢** | 平地行走已验收，本地可实时预览 |
+| **当前主线** | 完整连接组 | **Yumi 下肢** | v0.2.0 完整连接组读出迁移通过文档规定的步态验收，本地可实时预览 |
 
-### 下肢行走成绩
+### 历史下肢行走成绩
 
 以下结果仅对应表中列出的行走检查点，不构成上肢控制、跑步或自然人体步态的验收。
 
-| | 全图 G1 身体 | Yumi 下肢行走 |
+| | 全图 G1 身体 | Yumi 深蹲世系 `a7a4281f` |
 |---|---|---|
 | 9 个新初态 × 30 秒 | 9/9 | 9/9 |
 | 120 秒持续行走 | 55.40 m | 65.55 m（横漂 0.13 m） |
@@ -48,6 +48,35 @@
 | 记录 / 检查点 | `runs/local/heldout.json`，`f1d5147c` | `runs/local/heldout_yumi.json`，`a7a4281f` |
 
 断开脑内连接、保留身体和输出层，角色约 1 秒跌倒——行走依赖这份接线。G1 与 Yumi 的身体参数不同，权重不通用。
+
+### v0.2.0 发行模型（`f1a20071`）
+
+默认模型冻结已训练的完整连接组核心，只拟合 9,792 个读出参数。Yumi MLP 教师负责训练数据标注；运行时仅由连接组控制。显式相位输入仍保留。
+
+| 严格留出组 | 主模型 | 独立数据分支 |
+|---|---:|---:|
+| 常规初态，30 秒 | 27/27 | 27/27 |
+| 初始偏航 ±0.2 rad | 18/18 | 18/18 |
+| 持续行走，120 秒 | 9/9 | 9/9 |
+| 指定侧向脉冲 | 9/9 | 9/9 |
+
+全部组零跌倒。严格验收要求每只脚每秒至少一次合格摆动。两个模型的原生 CSR 复核也均为 27/27。独立分支额外使用一轮 DAgger，不是等预算复现。
+
+当前判据允许一定横漂：主模型 120 秒平均横漂 **5.47 m**，精确朝向恢复 **9/18**。通过不代表精确直线行走、自然步态、自主 CPG 或连接组拓扑优势。上方旧成绩使用不同判据，不是配对比较。详见[模型卡](research/releases/v0.2.0/MODEL_CARD.md)和[训练记录](research/experiments/CONNECTOME_TRANSFER_20260923.md)。
+
+### 历史直立源模型（`458fc465`）
+
+之前未发布的 v0.2.0 计划使用直立姿态 obs50 世系（`458fc465`）：骨盆约 0.90 m 直立（深蹲世系约 0.83 m），50 维观测，物理接口内嵌在检查点内。其留出验收记录（与上表同种子、同判据）：
+
+| 留出检查 | 结果 |
+|---|---|
+| 9 个新初态 × 30 秒（六判据全过） | 0/9 严格成功；8/9 存活，交替步态保持 |
+| 120 秒持续行走 | 存活，前进 10.99 m，横漂 15.43 m |
+| 侧向轻推恢复 | 3/3 不倒 |
+| 断开脑内连接 | 3/3 跌倒（约 1 秒） |
+| 记录 / 检查点 | `runs/yumi/evaluations/95111ceac1b4434696896fedbeb9c7bb/heldout.json`，`458fc465` |
+
+本阶段成立的部分：直立姿态、存活、交替节律、轻推恢复与连接组依赖性，以及校准后的原生评估基线。不成立的部分：定向速度/朝向跟踪——这是当时路线的开放目标（见[路线决策记录](research/experiments/ROUTE_DECISION_20260922.md)）。上方深蹲世系的 9/9 记录仍然有效，并绑定其自身检查点。
 
 ### 尚未进行
 
@@ -88,6 +117,8 @@
 
 ### 训练方式
 
+v0.2.0 的最终阶段使用学生状态 DAgger、脉冲扰动数据和岭回归拟合读出。核心相对直立源模型保持冻结。下文介绍早期 G1 和 Yumi PPO 世系。
+
 先用现成的 G1 行走策略当教师示范动作，反向传播训练整条控制路径；再让学生自己走，把学生走歪时遇到的状态交给教师标注正确动作，迭代训练（**DAgger**）。教师只参与训练，评估与预览都直接由连接组策略控制关节。
 
 换身体要重新训练：G1 是宇树的人形机器人模型，Yumi 是按 VRM 角色实测骨架重建的 12 关节身体（髋高 0.97231 m、整体约 1.55 m、质量 38 kg 为 Dempster 比例假设）。两者关节顺序、轴向、零位一致，脑网络接口不用改；身高、质量、力矩上限和跌倒阈值不同，G1 检查点直接放到 Yumi 身上约 1.6–1.8 秒跌倒，连 G1 教师直接驱动也只能撑约 1.7 秒。Yumi 阶段用 **PPO** 从 G1 检查点做强化学习微调：奖励 = 速度跟踪 + 直立 + 朝向 + 存活 + 双足交替 − 动作惩罚 − 跌倒终止，lr 1e-4、target_kl 0.015、32 worlds × 128 steps，本地约 37 秒/迭代，云端 4090D 约 9 秒/迭代。
@@ -101,18 +132,18 @@
 - 成本：¥0.414 是训练进程耗时乘小时报价，实际账单按有卡模式的**开机总时长**计算（¥1.88/小时），GPU 空闲照扣，无卡模式另计。本地推理不会关闭云实例。
 
 ## 本地运行
-需要已备好的 GPU 环境和权重（`.venv-gpu\Scripts\python.exe` 与 `runs/cloud/best.pt` 或 `runs/yumi/best.pt`），准备方式见[本地使用、资源与复现说明](research/guides/LOCAL.md)。
+全新检出请按 [v0.2.0 工作室安装说明](research/releases/v0.2.0/STUDIO.md)下载公开权重和图数据、校验哈希并安装默认模型。已有环境可直接运行：
 
 ```powershell
 cd D:\Project\Neuromechfly
-.\start.ps1 -Body g1   # 或 -Body yumi；只有 CPU 用 -Device cpu
+.\start.ps1            # 默认 Yumi + CUDA
 ```
 
 打开 [实验室](http://127.0.0.1:8740)。页面上的 VRM 角色实时行走，动作由本机算出来。
 
 两栏是同一个实时工作室：左侧展示下肢行走与步态指标，摆臂属于显示动画；右侧是 166,700 神经元连接组中 2,048 个采样胞体的活动率。
 
-- 默认 G1 身体 + CUDA。页面顶栏可直接在 G1 / Yumi 之间热切换（训练运行中会拒绝切换）。
+- 默认 Yumi 身体 + CUDA。页面顶栏可直接在 G1 / Yumi 之间热切换（训练运行中会拒绝切换）。
 - 停止用 `.\stop.ps1`，启动日志在 `runs/cloud/server-error.log`（或 `runs/yumi/server-error.log`）。
 - RTX 4070 Laptop 8 GB 单次决策中位数 10.04 ms，Yumi 页面实测 1.00× 实时；系统负载高时降到 0.7–1.0×。
 
@@ -131,7 +162,9 @@ cd D:\Project\Neuromechfly
 
 ### 检查点世系说明
 
-`runs/yumi/best.pt` 现为 9/9 验收通过的检查点（`a7a4281f`，与记录的评测数据一致）。后续直立 home 世系（`666134f2`）完整保留在 `runs/yumi/best_tall.pt`，但它按另一套 `default_angles` 基准训练，与当前 `yumi.yaml` 不兼容。经过与处置见 [home 基准不一致记录](research/experiments/HOME_REFERENCE_MISMATCH_20260916.md)。
+`runs/yumi/best.pt` 现为 v0.2.0 主模型 `f1a20071`。源模型 `458fc465` 保留在 `runs/yumi/upright-source.pt`，也随发行包作为 `models/upright-source.pt` 提供。安装脚本在切换前将旧默认权重、训练记录和优化器状态归档到 `runs/yumi/archive/`。
+
+旧深蹲模型 `a7a4281f` 仍可从公开 v0.1.0 Release 获取，历史成绩继续绑定原模型。新端点没有匹配的 PPO 优化器状态。页面仅在权重哈希、Yumi 身体和物理接口均匹配时展示发行评估。
 
 ## 复现训练过程
 ### 从干净环境开始（子图原型）
@@ -172,21 +205,16 @@ cd /root/autodl-tmp/neuromechfly
 ### Yumi 身体的验收
 
 ```powershell
-.venv-gpu\Scripts\python.exe -m app.evaluate_full --robot yumi --checkpoint runs/yumi/best.pt --output runs/local/heldout_yumi.json
+.venv-gpu\Scripts\python.exe -m app.evaluate_locomotion --checkpoints runs/yumi/best.pt --seed-base 140001 --output runs/local/v020_normal.json
 ```
 
 Yumi 的骨架实测尺寸、物理身体建模与画面一致性校验见 [Yumi 身体适配记录](research/avatar/YUMI_BODY.md)，训练调参记录在 `research/experiments/`。
 
 ### 发布产物与校验
 
-训练权重（`runs/cloud/best.pt`、`runs/yumi/best.pt`）体积超出仓库范围，待远程仓库建立后经发布渠道（Release）提供。每个可发布产物——权重、优化器状态、评测记录、VRM 哈希——连同完整 SHA-256 收录于 [research/provenance/release.json](research/provenance/release.json)。重新生成或校验：
+下载 [v0.2.0](https://github.com/Moemu/Shouko/releases/tag/v0.2.0)：`shouko-v0.2.0.tgz`、`manifest.json` 和 `SHA256SUMS.txt`。包内提供四类权重、完整图、评估证据、最小运行源码和署名。清单把实际运行文件绑定到发行提交。Yumi VRM 和旧 PPO 状态不随包发布。
 
-```powershell
-python research/provenance/release_manifest.py generate   # 重新计算全部哈希
-python research/provenance/release_manifest.py validate   # 校验文件与清单一致
-```
-
-下载的发布文件使用前可用同一清单校验；页面评测面板只服务与当前加载检查点哈希绑定的记录。
+浏览器安装见 [STUDIO.md](research/releases/v0.2.0/STUDIO.md)，无界面校验见 [REPRODUCE.md](research/releases/v0.2.0/REPRODUCE.md)。旧 `research/provenance/release.json` 是早期本地产物清单，不是 v0.2.0 清单。
 
 ### 主要文件
 
@@ -195,7 +223,7 @@ python research/provenance/release_manifest.py validate   # 校验文件与清�
 - `app/yumi_skeleton.py`、`app/yumi_description/`：从 VRM 解析骨架，生成 Yumi 物理身体。
 - `app/sim.py`：MuJoCo 物理与 G1 / Yumi 身体切换。
 - `app/train_full.py`、`app/ppo_yumi.py`：DAgger 训练与 Yumi 的 PPO 微调。
-- `app/cloud_server.py`、`app/server.py`：实时事件流、训练控制与预览。
+- `app/studio_server.py`：主线工作室服务、训练控制与哈希绑定的评估展示。
 - `web/`：Three.js / VRM 可视化和中文实验界面。
 - `research/REPORT.md`：论文调研、方法、结果、算力与未完成范围。
 

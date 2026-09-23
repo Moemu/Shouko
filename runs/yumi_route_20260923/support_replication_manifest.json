@@ -1,0 +1,22 @@
+{
+  "support_replicate_seed2027/training.json": "e346e7f627ab10eb4f4ae77f29864179b9c5e7e8babaa66b3abdcf9c65433e18",
+  "support_replicate_seed2027/best.pt": "ec682ec49d5b0bbb2e8237756b207646a2093ed51f0f20e900a845b8b4e2bad8",
+  "support_replicate_seed2027/ppo_state_best.pt": "05e84602aafdff5ed61b00dfcdd996f2692e33a255597d847c40edb16c06f511",
+  "support_replicate_seed2027/replay.json": "b50a9ef606562ad25ae2b4a13e355399c6459c8af0359f0d7608e6bdb0511fc5",
+  "support_replicate_seed2027/evaluation.json": "c83109e00fdfd003dde60aab407814b76567f17ae129bbc4fbb1be98271dfd43",
+  "support_replicate_seed2027/last.pt": "1b42d6a98e7283c06619de466cd1b36986c6892c33989c47da5f7604f37ca2c0",
+  "support_replicate_seed2027/ppo_state.pt": "f23d7cca1ff9556bb0965b78db7bb23d8a4f3b06d0f873618af9366cf216a872",
+  "support_replicate2027_extend1024/training.json": "163e074540ee2cdb2a62160819c4a3a97330fad0c50b6747de4c5ce3e474bb21",
+  "support_replicate2027_extend1024/best.pt": "84729bffa99e968628e24cb102b602ae74187376e913ddae259d8a71e8498a77",
+  "support_replicate2027_extend1024/ppo_state_best.pt": "e4884e1c822e71eb28cbb7b2584827124123c4c378710583cb7b43efcf809056",
+  "support_replicate2027_extend1024/replay.json": "71a24bafc154ada46657631a37b0e1fddd91dff75d2c72de8a4bdfdba3c46265",
+  "support_replicate2027_extend1024/evaluation.json": "0ac3eef137de5622130c55b2431401def66e1f7201464ec0279e315511e9f9f2",
+  "support_replicate2027_extend1024/last.pt": "ce2a8b9063f706597d0332c04825aa3550d35096342d5a17803ba71f13e857d7",
+  "support_replicate2027_extend1024/ppo_state.pt": "8a05f8f39c6a7e9942e0ca64adf51156f2b4995790127f884883ab4fbd73990b",
+  "support_replication_execution.json": "b7790e21a0592e858c6b5382a0b3afea0ed62b964906118cb282e80cb7599438",
+  "support_replicate2027_native.json": "8949d67335b8694dfa8ed9bcaf064ce5bf7fcab35326b7c8b76e57d0c68418fa",
+  "run_support_replication.py": "bc176b0dba0a039b0015303b9b433b77de97bf6c17a5d69e8f4ab8a954096e56",
+  "support_replicate_seed2027.log": "fce8d4109cb65e2f76c8d753fa3ca0ec21a582a3ffc2a030a1ce3f5dd0ebe688",
+  "support_replicate2027_extend1024.log": "f98d3486562903ddc3e23c11446d88b79501a7de6b82c7bec494ae2480eb4b03",
+  "support_replicate2027_native.log": "cc8e2db2f244c90d54d8ab742cf3bbc0e334b494e2a229cba8355293fa16114d"
+}

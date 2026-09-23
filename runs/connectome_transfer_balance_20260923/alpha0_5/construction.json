@@ -1,0 +1,7 @@
+{
+  "method": "readout parameter interpolation",
+  "alpha": 0.5,
+  "left_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+  "right_sha256": "27ee61e31d6930f3c3de7a05794836e0bec08276c5ed05741637694eb46748d8",
+  "checkpoint_sha256": "e155ca21df7d8031c433d774961d5fcd7f96601e4de5df7af681a2e8878347f8"
+}

@@ -25,6 +25,9 @@ from .gpu_body import GPUHumanoid
 from .sim import observation_interface
 from .value_diagnostics import gae_targets, save_rollout
 from .value_observation import ValueObservationStats, set_new_actor_scales
+from .mlp_policy import MLPPolicy
+from .recovery_curriculum import RecoveryCurriculum, bootstrap_timeouts
+from .gait_reward import SoleClearanceReward
 from . import train_full
 
 RUNS = ROOT / 'runs/yumi'
@@ -104,6 +107,10 @@ def train(args):
         raise ValueError('Maximum iterations must be positive')
     if args.value_abort_vloss > 0 and args.value_warmup < 6:
         raise ValueError('The value gate requires at least six warmup iterations')
+    if args.policy == 'mlp' and (args.freeze_brain or args.actor_new_input_std is not None):
+        raise ValueError('Connectome-specific optimizer/scales cannot be used for an MLP')
+    if args.episode_seconds < 0 or not args.initial_yaws or not all(np.isfinite(args.initial_yaws)):
+        raise ValueError('Invalid recovery curriculum')
     if args.runs_dir:
         # Keep experimental checkpoints and evidence separate from the accepted lineage.
         RUNS = ROOT / args.runs_dir
@@ -115,7 +122,7 @@ def train(args):
     control = train_full.TrainingControl(args.max_seconds)
     history = []
     status = dict(phase='initializing', robot='yumi',
-                  method='full-connectome PPO fine-tune on the Yumi body (no teacher)',
+                  method=f'{args.policy} PPO on the Yumi body (no teacher)',
                   elapsed=0, history=history, seed=args.seed, pid=os.getpid())
 
     active_phase = 'initializing'
@@ -140,15 +147,20 @@ def train(args):
     observation_size = configuration['observation_size']
     env = GPUHumanoid(args.worlds, robot='yumi', interface=interface,
                       observation_size=observation_size)
-    policy = ConnectomePolicy(neural_steps=args.neural_steps, observation_size=observation_size)
+    gait_reward = SoleClearanceReward(env, args.gait_reward) if args.gait_reward != 'none' else None
+    policy = (MLPPolicy(observation_size=observation_size) if args.policy == 'mlp' else
+              ConnectomePolicy(neural_steps=args.neural_steps, observation_size=observation_size))
     resumed = policy.load(args.resume, interface=env.interface)
     value = Value(policy.encoder.in_features).to(device)
     log_std = nn.Parameter(torch.full((12,), np.log(args.std0), device=device))
 
-    if args.freeze_brain:
+    if args.policy == 'mlp':
+        optimizer = torch.optim.Adam([dict(params=list(policy.parameters()), lr=args.lr),
+                                      dict(params=[log_std], lr=args.lr*0.1)], foreach=False)
+    elif args.freeze_brain:
         # Freeze the synaptic edges and normalization parameters.
         # Train neuron_bias (166k operating-point thresholds) + readout +
-        # encoder (~210k params total). Readout-only (40k) was under-capacity
+        # encoder (~1.04M policy parameters at 50 observations). Readout-only was under-capacity
         # for the new straight-leg gait (ppo12 plateaued at score 0.2-0.3);
         # full-network updates destroy the recurrent attractor within 10-15
         # iterations (ppo9/ppo10/ppo13). This is the stable middle ground.
@@ -191,6 +203,8 @@ def train(args):
         print(json.dumps(dict(resumed_ppo_state=str(state_path), policy_optimizer=opt_loaded,
                               optimizer_state_skipped=None if opt_loaded else 'incompatible parameter groups')), flush=True)
     value_stats = ValueObservationStats.restore(state, policy.obs_mean, policy.obs_std)
+    status['policy_kind'] = args.policy
+    status['configuration'] = vars(args)
     if args.actor_new_input_std is not None:
         set_new_actor_scales(policy, args.actor_new_input_std)
     status['observation_normalization'] = dict(
@@ -220,7 +234,8 @@ def train(args):
 
     def save_checkpoint(name, evaluation=None, updates=0, final=False, combined_bar=None):
         state_path = RUNS/('ppo_state_best.pt' if name == 'best' else 'ppo_state.pt')
-        extra = dict(evaluation=evaluation, updates=updates, ppo=True, final=final)
+        extra = dict(evaluation=evaluation, updates=updates, ppo=True, final=final,
+                     gait_reward=args.gait_reward)
         if combined_bar is not None:
             # Honest selection bar: the mean the candidate was accepted under,
             # so a later launch recomputes the same threshold instead of a
@@ -287,6 +302,8 @@ def train(args):
     env.reset(mask, randomize=True)
     env.command.zero_()
     env.command[:, 0] = torch.linspace(0.15, 0.75, env.worlds, device=device)
+    curriculum = RecoveryCurriculum(env, args.initial_yaws, args.episode_seconds)
+    curriculum.apply(mask)
     # Turn command follows the same yaw feedback used in evaluation/acceptance.
     # Gait shaping: track which ankle is lowest; reward alternation.
     prev_low = torch.zeros(env.worlds, dtype=torch.long, device=device)
@@ -308,6 +325,9 @@ def train(args):
         obs_buf, act_buf, logp_buf, rew_buf, val_buf, done_buf = [], [], [], [], [], []
         knee_sum = torch.zeros((), device=device)
         height_sum = torch.zeros((), device=device)
+        reward_sum = torch.zeros((), device=device)
+        term_sums = torch.zeros(10, device=device)
+        gait_component_sums = torch.zeros(3, device=device)
         pose_count = 0
         policy.eval()
         with torch.no_grad():
@@ -364,13 +384,36 @@ def train(args):
                           + walk_gate * (args.posture_w * height_ramp
                                          - args.knee_w * knee_tax))
                 reward = torch.where(fallen, reward - 1.0, reward)
+                gait_bonus = gait_reward() if gait_reward is not None else torch.zeros_like(reward)
+                if gait_reward is not None:
+                    gait_component_sums += gait_reward.components.mean(dim=0)
+                reward += gait_bonus
+                reward_sum += reward.mean()
+                term_sums += torch.stack([
+                    (1.5*torch.exp(-4*(vx-env.command[:, 0]).square())).mean(),
+                    (0.6*torch.exp(-6*vy.square())).mean(),
+                    (0.8*torch.exp(-3*yaw.square())).mean(),
+                    (0.3*upright.clamp(0, 1)+0.1).mean(),
+                    (0.4*switched.float()).mean(),
+                    (-0.002*action.square().mean(dim=1)).mean(),
+                    (-0.01*(action-prev_action).square().mean(dim=1)).mean(),
+                    (walk_gate*(args.posture_w*height_ramp-args.knee_w*knee_tax)).mean(),
+                    -fallen.float().mean(), gait_bonus.mean()])
                 knee_sum += knee.mean(); height_sum += height.mean(); pose_count += 1
                 obs_buf.append(obs); act_buf.append(action); logp_buf.append(dist.log_prob(action).sum(-1))
-                rew_buf.append(reward); val_buf.append(val); done_buf.append(fallen.float())
-                if bool(fallen.any()):
-                    env.reset(fallen, randomize=True)
-                    reset_extras(fallen)
+                truncated = curriculum.truncated(fallen)
+                if bool(truncated.any()):
+                    env.command[:, 2] = (-quad_yaw(env.qpos)*1.4).clamp(-0.2, 0.2)
+                    final_value = value(value_stats.normalize(env.observation()))
+                    reward = bootstrap_timeouts(reward, final_value, truncated, args.gamma)
+                reset_mask = fallen | truncated
+                rew_buf.append(reward); val_buf.append(val); done_buf.append(reset_mask.float())
+                if bool(reset_mask.any()):
+                    env.reset(reset_mask, randomize=True)
+                    curriculum.apply(reset_mask)
+                    reset_extras(reset_mask)
         with torch.no_grad():
+            env.command[:, 2] = (-quad_yaw(env.qpos)*1.4).clamp(-0.2, 0.2)
             next_val = value(value_stats.normalize(env.observation()))
         rewards = torch.stack(rew_buf)          # T x W
         values = torch.stack(val_buf + [next_val])
@@ -443,7 +486,13 @@ def train(args):
         frac = min(control.active_elapsed() / args.max_seconds, 1.0)
         for group, base in zip(optimizer.param_groups, base_lrs):
             group['lr'] = base * (1 - (1 - args.lr_final_frac) * frac)
-        row = dict(iteration=iteration, reward=float(rewards.mean()), pi_loss=pi_loss_total/count,
+        row = dict(iteration=iteration, reward=float(reward_sum)/args.steps,
+                   gait_components=dict(zip(['clearance', 'support_timing', 'support_motion'],
+                                            (gait_component_sums/args.steps).cpu().tolist())),
+                   reward_terms=dict(zip(['forward', 'lateral', 'heading', 'upright_alive',
+                                          'switch', 'action', 'action_change', 'posture', 'fall', 'gait'],
+                                         (term_sums/args.steps).cpu().tolist())),
+                   pi_loss=pi_loss_total/count,
                    v_loss=v_loss_total/count, std=float(log_std.exp().mean()),
                    approx_kl=kl_total/max(count, 1), clipfrac=clipfrac_total/max(count, 1),
                    lr=optimizer.param_groups[0]['lr'], kl_stop=stop_early, value_warmup=policy_frozen,
@@ -460,7 +509,8 @@ def train(args):
                    env_steps=env_steps)
         history.append(row)
         print(json.dumps(row), flush=True)
-        write_status('training', iteration=iteration, peak_vram_gib=torch.cuda.max_memory_allocated()/2**30)
+        write_status('training', iteration=iteration, peak_vram_gib=torch.cuda.max_memory_allocated()/2**30,
+                     recovery=curriculum.summary())
 
         if args.value_abort_vloss > 0 and policy_frozen and not value_gate_open:
             losses = [h['v_loss'] for h in history]
@@ -512,6 +562,7 @@ def train(args):
             env.reset(torch.ones(env.worlds, dtype=torch.bool, device=device), randomize=True)
             env.command.zero_()
             env.command[:, 0] = torch.linspace(0.15, 0.75, env.worlds, device=device)
+            curriculum.apply(torch.ones(env.worlds, dtype=torch.bool, device=device))
             reset_extras(torch.ones(env.worlds, dtype=torch.bool, device=device))
     save_checkpoint('last', status.get('evaluation'), updates=iteration, final=True)
     write_status('stopped' if control.finish_requested else 'budget_finished', iteration=iteration, env_steps=env_steps,
@@ -524,6 +575,12 @@ def train(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--worlds', type=int, default=32)
+    parser.add_argument('--policy', choices=['connectome', 'mlp'], default='connectome')
+    parser.add_argument('--gait-reward', choices=['none', 'phase_clearance', 'phase_support'], default='none',
+                        help='Optional alternating minimum-sole clearance reward experiment')
+    parser.add_argument('--initial-yaws', type=float, nargs='+', default=[0.0])
+    parser.add_argument('--episode-seconds', type=float, default=0,
+                        help='Recovery episode time limit; zero preserves the continuing task')
     parser.add_argument('--steps', type=int, default=128)
     parser.add_argument('--minibatch', type=int, default=128)
     parser.add_argument('--epochs', type=int, default=2)

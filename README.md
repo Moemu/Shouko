@@ -16,7 +16,7 @@ Her full name is ショウジョウバエ. A public male *Drosophila* connectome
 
 | Stage | Scope and status | Preview / acceptance evidence |
 |---|---|---|
-| **Current: lower-limb walking** | Yumi flat-ground walking; accepted checkpoint `a7a4281f` | Preview above; results below |
+| **Current: lower-limb walking (v0.2.0)** | Full-connectome readout transfer `f1a20071`; four strict held-out groups passed; precise heading and lateral drift remain open | Preview above; results below |
 | Next stage — reserved | Scope and acceptance criteria to be confirmed | Pending |
 | Later stage — reserved | Fill in after the stage is confirmed | Pending |
 
@@ -33,13 +33,13 @@ The data is [MaleCNS v1.0](https://male-cns.janelia.org/): **166,700 neurons and
 |---|---|---|---|
 | Subgraph prototype | 8,192 neurons | G1 proxy + frozen gait policy | Accepted |
 | Cloud full connectome | Full connectome | G1 proxy | Accepted |
-| **Current mainline** | Full connectome | **Yumi lower limbs** | Flat-ground walking accepted; real-time local preview |
+| **Current mainline** | Full connectome | **Yumi lower limbs** | v0.2.0 full-connectome readout transfer accepted under the documented gait screen; real-time local preview |
 
-### Lower-limb walking results
+### Historical lower-limb walking results
 
 These results apply to the listed walking checkpoints. They do not validate upper-limb control, running or natural human gait.
 
-| | Full-graph G1 body | Yumi lower-limb walking |
+| | Full-graph G1 body | Yumi squat lineage `a7a4281f` |
 |---|---|---|
 | 9 fresh initial states × 30 s | 9/9 | 9/9 |
 | 120 s continuous walk | 55.40 m | 65.55 m (0.13 m lateral drift) |
@@ -48,6 +48,35 @@ These results apply to the listed walking checkpoints. They do not validate uppe
 | Record / checkpoint | `runs/local/heldout.json`, `f1d5147c` | `runs/local/heldout_yumi.json`, `a7a4281f` |
 
 Sever the brain connections, keep the body and output layer intact, and the character falls in about a second: walking depends on this wiring. G1 and Yumi have different body parameters, so weights do not transfer between them.
+
+### v0.2.0 release model (`f1a20071`)
+
+The default model freezes the previously trained full-connectome core and fits only 9,792 readout parameters. A Yumi MLP teacher labels training data; runtime control uses the connectome alone. Explicit phase input remains.
+
+| Strict held-out group | Primary | Independent-data branch |
+|---|---:|---:|
+| Normal starts, 30 s | 27/27 | 27/27 |
+| Initial yaw ±0.2 rad | 18/18 | 18/18 |
+| Continuous walk, 120 s | 9/9 | 9/9 |
+| Specified lateral impulse | 9/9 | 9/9 |
+
+All groups had zero falls. Strict acceptance includes at least one qualifying swing per foot per second. Native CSR checks also passed 27/27 for each model. The independent branch needed an extra DAgger round; it is not equal-budget replication.
+
+The screen permits some drift: primary mean lateral drift at 120 s is **5.47 m**, and precise yaw recovery is **9/18**. Passing does not establish precise straight-line walking, natural gait, autonomous CPG or topology superiority. Older results above use different criteria and are not matched comparisons. See the [model card](research/releases/v0.2.0/MODEL_CARD.md) and [training record](research/experiments/CONNECTOME_TRANSFER_20260923.md).
+
+### Historical upright source (`458fc465`)
+
+The previous unpublished v0.2.0 plan used the upright-posture obs50 lineage (`458fc465`): pelvis ~0.90 m upright (vs ~0.83 m in the squat lineage), 50-dim observations, physics interface embedded in the checkpoint. Its held-out record (same seeds and criteria as above):
+
+| Held-out check | Result |
+|---|---|
+| 9 fresh initial states × 30 s (full six criteria) | 0/9 strict success; 8/9 survived with the alternating gait held |
+| 120 s continuous walk | survived, 10.99 m forward, 15.43 m lateral drift |
+| Lateral push recovery | 3/3 no fall |
+| Brain connections severed | 3/3 fall (≈1 s) |
+| Record / checkpoint | `runs/yumi/evaluations/95111ceac1b4434696896fedbeb9c7bb/heldout.json`, `458fc465` |
+
+What this stage establishes: upright posture, survival, alternating rhythm, push recovery and connectome dependence, plus the calibrated native evaluation baseline. What it does not: directed speed/heading tracking — the open target at that stage ([route decision record](research/experiments/ROUTE_DECISION_20260922.md)). The squat lineage's 9/9 record above remains valid and bound to its own checkpoint.
 
 ### Not attempted yet
 
@@ -88,6 +117,8 @@ Neuron biases, sensory encoding, connection gains and motor output train togethe
 
 ### How it trains
 
+For v0.2.0, the final stage uses student-state DAgger, impulse data and ridge readout fitting. The core stays frozen relative to the upright source. The paragraphs below describe the earlier G1 and Yumi PPO lineage.
+
 An existing G1 walking policy acts as the teacher, demonstrating actions that backprop trains the whole control path. The student then walks on its own, and the states it stumbles into go back to the teacher for correct action labels, iterating (**DAgger**). The teacher takes part in training only; evaluation and preview drive the joints straight from the connectome policy.
 
 A new body means retraining. G1 is Unitree's humanoid robot model; Yumi is a 12-joint body rebuilt from the VRM character's measured skeleton (hip height 0.97231 m, roughly 1.55 m overall, 38 kg assumed from Dempster segment ratios). Joint order, axes and zero positions match, so the network interface is unchanged; height, mass, torque limits and fall thresholds differ, and a G1 checkpoint on the Yumi body falls in about 1.6–1.8 s. Even the G1 teacher driving Yumi directly lasts only about 1.7 s. The Yumi stage uses **PPO** to fine-tune from the G1 checkpoint: reward = speed tracking + upright + heading + survival + alternating foot contact − action penalties − fall termination, lr 1e-4, target_kl 0.015, 32 worlds × 128 steps, about 37 s per iteration locally and 9 s per iteration on a cloud 4090D.
@@ -101,18 +132,18 @@ The first cloud acceptance run was bottlenecked by heading hold (3.7–12.2 m la
 - Cost: ¥0.414 is process time multiplied by the hourly rate. The actual bill runs on total powered-on hours in GPU mode (¥1.88/hour), idle time included, with the no-GPU mode billed separately. Local inference does not shut down the cloud instance.
 
 ## Running Locally
-You need a prepared GPU environment and checkpoint (`.venv-gpu\Scripts\python.exe` and `runs/cloud/best.pt` or `runs/yumi/best.pt`). See the [local usage, resources and reproduction guide](research/guides/LOCAL.md) for how to prepare them.
+For a clean checkout, use the [v0.2.0 studio installation guide](research/releases/v0.2.0/STUDIO.md). It downloads the public weights and graph, verifies checksums and installs the default model. Existing prepared environments can use:
 
 ```powershell
 cd D:\Project\Neuromechfly
-.\start.ps1 -Body g1   # or -Body yumi, -Device cpu on a CPU-only machine
+.\start.ps1            # defaults to Yumi + CUDA
 ```
 
 Open the [studio](http://127.0.0.1:8740). The VRM character on the page walks in real time, with every action computed on your machine.
 
 Both panels are the same live studio: the left pane displays lower-limb walking and gait stats. Arm motion is display animation. The right pane shows 2,048 sampled neuron activity rates of the 166,700-neuron connectome.
 
-- Defaults to the G1 body and CUDA. The page's top bar switches between G1 and Yumi live; training must not be running.
+- Defaults to the Yumi body and CUDA. The page's top bar switches between G1 and Yumi live; training must not be running.
 - `.\stop.ps1` stops it. The startup log is `runs/cloud/server-error.log` (or `runs/yumi/server-error.log`).
 - On an RTX 4070 Laptop 8 GB the median decision is 10.04 ms and the Yumi page measured 1.00× real time; heavy system load drops it to 0.7–1.0×.
 
@@ -131,7 +162,9 @@ On the cloud side, `./cloud.ps1 Status` reports state, `./cloud.ps1 Train -Secon
 
 ### Checkpoint lineage note
 
-`runs/yumi/best.pt` is the 9/9-accepted checkpoint (`a7a4281f`, matching the recorded evaluation). The later `home`-upright lineage (`666134f2`) is preserved as `runs/yumi/best_tall.pt` but was trained against a different `default_angles` baseline and is not usable with the current `yumi.yaml`. Background and disposition in the [home reference mismatch record](research/experiments/HOME_REFERENCE_MISMATCH_20260916.md).
+`runs/yumi/best.pt` is the v0.2.0 primary model `f1a20071`. Its ancestor `458fc465` is retained as `runs/yumi/upright-source.pt` and `models/upright-source.pt` in the release package. The installer archives the previous default, training records and optimizer states under `runs/yumi/archive/` before switching.
+
+The older squat model `a7a4281f` remains available in the public v0.1.0 Release. Its historical results remain bound to that model. The new endpoint has no matching PPO optimizer state. The page serves release evidence only when checkpoint hash, Yumi body and physics interface match.
 
 ## Reproducing the Training
 ### From a clean environment (subgraph prototype)
@@ -172,21 +205,15 @@ Run acceptance after the training process exits. The acceptance script neither t
 ### Yumi body acceptance
 
 ```powershell
-.venv-gpu\Scripts\python.exe -m app.evaluate_full --robot yumi --checkpoint runs/yumi/best.pt --output runs/local/heldout_yumi.json
+.venv-gpu\Scripts\python.exe -m app.evaluate_locomotion --checkpoints runs/yumi/best.pt --seed-base 140001 --output runs/local/v020_normal.json
 ```
 
 Measured Yumi skeleton dimensions, physics body construction and the numerical screen-consistency check are in the [Yumi body adaptation record](research/avatar/YUMI_BODY.md); training and tuning notes live in `research/experiments/`.
 
 ### Publishing and verifying artifacts
+Download [v0.2.0](https://github.com/Moemu/Shouko/releases/tag/v0.2.0): `shouko-v0.2.0.tgz`, `manifest.json` and `SHA256SUMS.txt`. The package includes four model roles, full graph, evaluation evidence, minimal runtime and attribution. The manifest binds exact runtime files to the tagged source commit. Yumi VRM and old PPO states are excluded.
 
-Trained weights (`runs/cloud/best.pt`, `runs/yumi/best.pt`) are too large for the repository and are published via the release channel once the remote repository exists. Every publishable artifact — weights, optimizer states, evaluation records, VRM hashes — is listed with its full SHA-256 in [research/provenance/release.json](research/provenance/release.json). Regenerate or verify it with:
-
-```powershell
-python research/provenance/release_manifest.py generate   # recompute all hashes
-python research/provenance/release_manifest.py validate   # check files against the manifest
-```
-
-Downloaded release files can be checked against the same manifest before use; the page's evaluation panel only serves records bound to the loaded checkpoint's hash.
+Follow [STUDIO.md](research/releases/v0.2.0/STUDIO.md) for the browser or [REPRODUCE.md](research/releases/v0.2.0/REPRODUCE.md) for headless verification. The old `research/provenance/release.json` describes an earlier local inventory, not the v0.2.0 manifest.
 
 ### Key files
 

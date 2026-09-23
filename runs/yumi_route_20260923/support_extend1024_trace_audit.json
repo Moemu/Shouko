@@ -1,0 +1,407 @@
+{
+  "trace": "runs\\yumi_route_20260923\\support_extend1024_trace.npz",
+  "trace_sha256": "40a120f5869675ba82333716d7028321cb69ca99d9c2478155b225959bbfb422",
+  "checkpoint_sha256": "bcd0481508d91e21925a29b9d19ba0c29b0553afb74a2a072846cca81fda97ba",
+  "device": "cpu",
+  "seed": 93002,
+  "command": 0.5,
+  "duration": 29.99999999999425,
+  "support_window": "From 2 seconds to trace end",
+  "support_fractions": {
+    "flight": 0.0,
+    "single": 0.875089221984297,
+    "double": 0.12491077801570306
+  },
+  "pelvis_height_range": [
+    0.9590580851227795,
+    0.9805188701235544
+  ],
+  "feet": [
+    {
+      "complete_bouts": [
+        {
+          "start_seconds": 0.04000000000000002,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.058133148757888144
+        },
+        {
+          "start_seconds": 0.8400000000000006,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.057639984727143594
+        },
+        {
+          "start_seconds": 1.6200000000000012,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.05976496971030155
+        },
+        {
+          "start_seconds": 2.439999999999953,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.059479361307589705
+        },
+        {
+          "start_seconds": 3.2399999999998648,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05946470203373932
+        },
+        {
+          "start_seconds": 4.039999999999777,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.059463841624078785
+        },
+        {
+          "start_seconds": 4.839999999999689,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943546092347161
+        },
+        {
+          "start_seconds": 5.639999999999601,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.059436548536886104
+        },
+        {
+          "start_seconds": 6.439999999999513,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943663265964424
+        },
+        {
+          "start_seconds": 7.239999999999425,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.059436430646538314
+        },
+        {
+          "start_seconds": 8.039999999999354,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943634048580191
+        },
+        {
+          "start_seconds": 8.839999999999621,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.059436297058468694
+        },
+        {
+          "start_seconds": 9.639999999999889,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943626451505376
+        },
+        {
+          "start_seconds": 10.440000000000156,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943624214793155
+        },
+        {
+          "start_seconds": 11.240000000000423,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943622401055031
+        },
+        {
+          "start_seconds": 12.04000000000069,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943621120925894
+        },
+        {
+          "start_seconds": 12.840000000000957,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943620169369639
+        },
+        {
+          "start_seconds": 13.640000000001224,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943620014812965
+        },
+        {
+          "start_seconds": 14.440000000001492,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943619588569699
+        },
+        {
+          "start_seconds": 15.240000000001759,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943619167483371
+        },
+        {
+          "start_seconds": 16.04000000000199,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.059436192412637555
+        },
+        {
+          "start_seconds": 16.840000000001545,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618747116856
+        },
+        {
+          "start_seconds": 17.640000000001102,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618924575934
+        },
+        {
+          "start_seconds": 18.44000000000066,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618540720446
+        },
+        {
+          "start_seconds": 19.240000000000215,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.059436188299599534
+        },
+        {
+          "start_seconds": 20.03999999999977,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618679298097
+        },
+        {
+          "start_seconds": 20.83999999999933,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618474498719
+        },
+        {
+          "start_seconds": 21.639999999998885,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618610111665
+        },
+        {
+          "start_seconds": 22.43999999999844,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.0594361853190269
+        },
+        {
+          "start_seconds": 23.239999999998,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618819314376
+        },
+        {
+          "start_seconds": 24.039999999997555,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618649538412
+        },
+        {
+          "start_seconds": 24.83999999999711,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618652256837
+        },
+        {
+          "start_seconds": 25.639999999996668,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.0594361856405494
+        },
+        {
+          "start_seconds": 26.439999999996225,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.059436187194980984
+        },
+        {
+          "start_seconds": 27.23999999999578,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618553907736
+        },
+        {
+          "start_seconds": 28.039999999995338,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618290692795
+        },
+        {
+          "start_seconds": 28.839999999994895,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.05943618631549614
+        },
+        {
+          "start_seconds": 29.63999999999445,
+          "seconds": 0.34,
+          "peak_minimum_sole_clearance": 0.059436184819694725
+        }
+      ],
+      "qualifying": 38
+    },
+    {
+      "complete_bouts": [
+        {
+          "start_seconds": 0.4200000000000003,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06120135899574871
+        },
+        {
+          "start_seconds": 1.2200000000000009,
+          "seconds": 0.38,
+          "peak_minimum_sole_clearance": 0.06130805067640927
+        },
+        {
+          "start_seconds": 2.019999999999999,
+          "seconds": 0.38,
+          "peak_minimum_sole_clearance": 0.06035854742917356
+        },
+        {
+          "start_seconds": 2.839999999999909,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060193695119040484
+        },
+        {
+          "start_seconds": 3.6399999999998207,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060224502327872444
+        },
+        {
+          "start_seconds": 4.439999999999733,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060235065297343536
+        },
+        {
+          "start_seconds": 5.239999999999645,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06023789967351651
+        },
+        {
+          "start_seconds": 6.039999999999557,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024116802733288
+        },
+        {
+          "start_seconds": 6.839999999999469,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024145881050195
+        },
+        {
+          "start_seconds": 7.639999999999381,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060241616941693575
+        },
+        {
+          "start_seconds": 8.439999999999488,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024179435209704
+        },
+        {
+          "start_seconds": 9.239999999999755,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024192564136862
+        },
+        {
+          "start_seconds": 10.040000000000022,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024200645886756
+        },
+        {
+          "start_seconds": 10.84000000000029,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242064999874535
+        },
+        {
+          "start_seconds": 11.640000000000557,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024210612350037
+        },
+        {
+          "start_seconds": 12.440000000000824,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242135085114785
+        },
+        {
+          "start_seconds": 13.240000000001091,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024215476696098
+        },
+        {
+          "start_seconds": 14.040000000001358,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242164911650194
+        },
+        {
+          "start_seconds": 14.840000000001625,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024217362410065
+        },
+        {
+          "start_seconds": 15.640000000001892,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242179413804296
+        },
+        {
+          "start_seconds": 16.440000000001767,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242185949856884
+        },
+        {
+          "start_seconds": 17.240000000001324,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024218959522248
+        },
+        {
+          "start_seconds": 18.04000000000088,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.0602421914884591
+        },
+        {
+          "start_seconds": 18.840000000000437,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024219342026373
+        },
+        {
+          "start_seconds": 19.639999999999993,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242196469637334
+        },
+        {
+          "start_seconds": 20.43999999999955,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242196634458796
+        },
+        {
+          "start_seconds": 21.239999999999107,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024219918667719
+        },
+        {
+          "start_seconds": 22.039999999998663,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024219794075466
+        },
+        {
+          "start_seconds": 22.83999999999822,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242199084521005
+        },
+        {
+          "start_seconds": 23.639999999997777,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024219829073462
+        },
+        {
+          "start_seconds": 24.439999999997333,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242197524839745
+        },
+        {
+          "start_seconds": 25.23999999999689,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024219812942833
+        },
+        {
+          "start_seconds": 26.039999999996446,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024219698659428
+        },
+        {
+          "start_seconds": 26.839999999996003,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024219743989003
+        },
+        {
+          "start_seconds": 27.63999999999556,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.060242198653132385
+        },
+        {
+          "start_seconds": 28.439999999995116,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024219845932182
+        },
+        {
+          "start_seconds": 29.239999999994673,
+          "seconds": 0.36,
+          "peak_minimum_sole_clearance": 0.06024219872353682
+        }
+      ],
+      "qualifying": 37
+    }
+  ],
+  "limitation": "One supplemental CPU replay; no population or natural-gait claim."
+}

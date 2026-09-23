@@ -33,6 +33,7 @@ from pydantic import BaseModel, Field
 from .full_brain import ConnectomePolicy, ROOT, checkpoint_configuration
 from .sim import Body
 from .evaluate_full import interface_digest
+from .release_evidence import matches_checkpoint
 
 DEVICE = os.environ.get('FLYBODY_DEVICE', 'cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -378,7 +379,7 @@ def watch_training(process, seconds, robot, run_id):
 @asynccontextmanager
 async def lifespan(app):
     global studio
-    studio = Studio(os.environ.get('FLYBODY_BODY', 'g1'))
+    studio = Studio(os.environ.get('FLYBODY_BODY', 'yumi'))
     try:
         yield
     finally:
@@ -616,6 +617,9 @@ def evaluation():
     recorded 2026-09-15 acceptance). The training-time screening evaluation.json
     is never passed off as independent acceptance."""
     robot = studio.robot
+    release = read_json(runs_for(robot)/'release_evaluation.json')
+    if matches_checkpoint(release, studio.checkpoint_hash, robot, studio.body.interface):
+        return JSONResponse(release)
     candidates = [runs_for(robot)/f'heldout{"_" + robot if robot != "g1" else ""}.json']
     if robot == 'g1':
         candidates.append(ROOT/'runs/local/heldout.json')

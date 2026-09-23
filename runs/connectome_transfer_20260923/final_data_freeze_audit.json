@@ -1,0 +1,349 @@
+{
+  "data": [
+    {
+      "file": "runs/connectome_transfer_20260923/dagger1.pt",
+      "sha256": "2398e87fc80eb7e32831bf191b7cd5801a6e366703d007acb14b199e278f81a8",
+      "samples": 5306,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": "8960673013b495b316c6c012ee3faeb3abae356eef3eda73b2b6258ed5c9b94c",
+      "beta": 0.0,
+      "teacher_raw_clip_fraction": 6.282196409301832e-05,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0007538635400123894,
+        0.0
+      ],
+      "teacher_max_absolute": 8.52102279663086,
+      "teacher_raw_executed_mse": 6.478178420366021e-06
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/dagger2.pt",
+      "sha256": "c819821851acddefb61593e63e3e0f58756ea9f0adb8857ca6fd29bf3ef2c785",
+      "samples": 13017,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": "c1d98a5e11092d79ebcc6e0fff65f9b86fc629ead5831b8cc39d386a4fab39ff",
+      "beta": 0.0,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 6.301360130310059,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/dagger3.pt",
+      "sha256": "252b3ccbf3e620c958a771d17f927baf2f65ed70c3635a73c8ae2435928fe4f3",
+      "samples": 16190,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": "5866341db37556a99b28c501a8e7e9b153f5f54fb532d25d152ce384287f9529",
+      "beta": 0.0,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 6.7023210525512695,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/replica1.pt",
+      "sha256": "c5bcea87144770b6a6b25a896f0f249ad1c62199e320de5c81f0735440e87ee0",
+      "samples": 4906,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": "46699a34fe69aabb5cacbc2d4dff5d33fa7452143fe0930b54394ad5e820d189",
+      "beta": 0.0,
+      "teacher_raw_clip_fraction": 6.794401269871742e-05,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.000815328152384609,
+        0.0
+      ],
+      "teacher_max_absolute": 8.446708679199219,
+      "teacher_raw_executed_mse": 6.101292001403635e-06
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/replica2.pt",
+      "sha256": "39b7812821a3b87c3ea49932c7917495af912a0b517d9295b0fcc558ab86cc0a",
+      "samples": 14890,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": "7f8f3bda4548edda65be0f8e21cfede2d809fdf5ef1817741e77a6e25b63ea94",
+      "beta": 0.0,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 4.6911702156066895,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/replica3.pt",
+      "sha256": "b505904c0ccbeec93af147ec0c37c2b2f44fe17a48093f91d14979c338771e05",
+      "samples": 16200,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": "d38a79efdd62ef6229854527a99066b32079d76903d0c62563f9307535fca2dd",
+      "beta": 0.0,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 3.808638095855713,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/replica_train.pt",
+      "sha256": "04d349486573379d0aefd19c8aedd93069f69712921b3536ad05b0053f5b3da0",
+      "samples": 16200,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": null,
+      "beta": 1,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 3.8226985931396484,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/replica_validation.pt",
+      "sha256": "7d789ed81d6c07f7574feca68c59857d14de469aebdbe659062f289bc29963db",
+      "samples": 16200,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": null,
+      "beta": 1,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 3.8059983253479004,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/train.pt",
+      "sha256": "56ec05050e1c0b1748668fb31290f894d00b8e1d0a7aa6fe25e58a696da89998",
+      "samples": 16200,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": null,
+      "beta": 1,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 3.7828919887542725,
+      "teacher_raw_executed_mse": 0.0
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/validation.pt",
+      "sha256": "cc619568a3e1cd86d311d49e5574e739a941e9be1e936654ec5d5c3383a65f7a",
+      "samples": 16200,
+      "episodes": 27,
+      "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+      "student_sha256": null,
+      "beta": 1,
+      "teacher_raw_clip_fraction": 0.0,
+      "teacher_per_joint_clip_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "teacher_max_absolute": 3.810328722000122,
+      "teacher_raw_executed_mse": 0.0
+    }
+  ],
+  "weights": [
+    {
+      "file": "runs/connectome_transfer_20260923/clipped_readout/last.pt",
+      "sha256": "4c872ded8f9f745a588156d884c1df1660d44a2d85d442d29cbdbde9162b0981",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/dagger1/last.pt",
+      "sha256": "c1d98a5e11092d79ebcc6e0fff65f9b86fc629ead5831b8cc39d386a4fab39ff",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/dagger2/last.pt",
+      "sha256": "5866341db37556a99b28c501a8e7e9b153f5f54fb532d25d152ce384287f9529",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/dagger3/last.pt",
+      "sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/readout/last.pt",
+      "sha256": "8960673013b495b316c6c012ee3faeb3abae356eef3eda73b2b6258ed5c9b94c",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/replica0/last.pt",
+      "sha256": "46699a34fe69aabb5cacbc2d4dff5d33fa7452143fe0930b54394ad5e820d189",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/replica1/last.pt",
+      "sha256": "7f8f3bda4548edda65be0f8e21cfede2d809fdf5ef1817741e77a6e25b63ea94",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/replica2/last.pt",
+      "sha256": "d38a79efdd62ef6229854527a99066b32079d76903d0c62563f9307535fca2dd",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    },
+    {
+      "file": "runs/connectome_transfer_20260923/replica3/last.pt",
+      "sha256": "57a4c03e6365105dc604001849f07e3a75323b59a5b9eb9b2822ee94a587d0fe",
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "all_other_tensors_bitwise_equal": true
+    }
+  ],
+  "device": "cpu",
+  "note": "Labels are raw teacher actions. Zero clip fraction establishes equality to executed targets on these recorded states."
+}

@@ -1,0 +1,106 @@
+{
+  "candidates": [
+    {
+      "checkpoint": "runs\\connectome_transfer_ridge_20260923\\ridge1e4\\last.pt",
+      "checkpoint_sha256": "f1a200718ebfec845cbf9c02ba743e937ea94c747fba53e7b12dfd12f8d3e1f9",
+      "groups": [
+        {
+          "file": "runs\\connectome_transfer_ridge_20260923\\holdout.json",
+          "sha256": "0e60ab1ffd83d859991f99fe4daa1233617eb577b8a8e27e47574f7518542b89",
+          "strict": 27,
+          "count": 27,
+          "falls": 0,
+          "precise_yaw_recovered": 7,
+          "speed_mae": 0.02290362923772566,
+          "lateral_m": 1.1759279641324571,
+          "qualifying_swings_per_second": 1.25
+        },
+        {
+          "file": "runs\\connectome_transfer_ridge_20260923\\yaw_holdout.json",
+          "sha256": "dbc9fb4e0d3d15b237380bb8ebe67f53cb6a9172635cd0ad96bedaf5967c1837",
+          "strict": 18,
+          "count": 18,
+          "falls": 0,
+          "precise_yaw_recovered": 9,
+          "speed_mae": 0.015478220042862555,
+          "lateral_m": 1.1475746403167921,
+          "qualifying_swings_per_second": 1.25
+        },
+        {
+          "file": "runs\\connectome_transfer_ridge_20260923\\long_holdout.json",
+          "sha256": "90cbc582758a64519c0e90321ef1504efeb98481182b4d4248b3ac1bd3650dbe",
+          "strict": 9,
+          "count": 9,
+          "falls": 0,
+          "precise_yaw_recovered": 1,
+          "speed_mae": 0.026955244363523603,
+          "lateral_m": 5.473451080000877,
+          "qualifying_swings_per_second": 1.25
+        },
+        {
+          "file": "runs\\connectome_transfer_ridge_20260923\\push_holdout.json",
+          "sha256": "d91febc85381c7ac97de92d61398ec1baa647adc836f6f0a8c591488b2a77712",
+          "strict": 9,
+          "count": 9,
+          "falls": 0,
+          "precise_yaw_recovered": 9,
+          "speed_mae": 0.02128897518527652,
+          "lateral_m": 0.2772174637785119,
+          "qualifying_swings_per_second": 1.25
+        }
+      ]
+    },
+    {
+      "checkpoint": "runs\\connectome_transfer_replica_20260923\\extra1\\last.pt",
+      "checkpoint_sha256": "8841868cf1cbbbd01be19585bc18e751c11901b3e806556705d124bb207616cf",
+      "groups": [
+        {
+          "file": "runs\\connectome_transfer_replica_20260923\\holdout.json",
+          "sha256": "eeb252b02f121926d9f41f9f36c62e1c58a6b78611293c6067cf3bfae7fb6f1d",
+          "strict": 27,
+          "count": 27,
+          "falls": 0,
+          "precise_yaw_recovered": 0,
+          "speed_mae": 0.02425214691584734,
+          "lateral_m": 1.105265876759118,
+          "qualifying_swings_per_second": 1.25
+        },
+        {
+          "file": "runs\\connectome_transfer_replica_20260923\\yaw_holdout.json",
+          "sha256": "4160211763ce4a6fd42bf96589783520b27259783823aa4c69e7fcabcbaf39d9",
+          "strict": 18,
+          "count": 18,
+          "falls": 0,
+          "precise_yaw_recovered": 6,
+          "speed_mae": 0.021905603857704056,
+          "lateral_m": 1.05051173866877,
+          "qualifying_swings_per_second": 1.25
+        },
+        {
+          "file": "runs\\connectome_transfer_replica_20260923\\long_holdout.json",
+          "sha256": "2c7323a0da209a86970edbf00ffa849623c4a7c7d2803451f8524e6b7bd2c7f8",
+          "strict": 9,
+          "count": 9,
+          "falls": 0,
+          "precise_yaw_recovered": 1,
+          "speed_mae": 0.02805744420848865,
+          "lateral_m": 4.896458622123971,
+          "qualifying_swings_per_second": 1.25
+        },
+        {
+          "file": "runs\\connectome_transfer_replica_20260923\\push_holdout.json",
+          "sha256": "aa792c7ce154b95572b49445bbefaf07ddbb8f6d72ef18c28adc807fcc6fb703",
+          "strict": 9,
+          "count": 9,
+          "falls": 0,
+          "precise_yaw_recovered": 9,
+          "speed_mae": 0.024377746072154722,
+          "lateral_m": 0.3833947211068398,
+          "qualifying_swings_per_second": 1.25
+        }
+      ]
+    }
+  ],
+  "limitation": "Independent data with one extra round, not equal-budget replication.",
+  "all_final_gates_passed": true
+}

@@ -1,3 +1,5 @@
+> v0.2.0 公开权重的全新安装与默认预览见 [工作室安装说明](../releases/v0.2.0/STUDIO.md)。下文保留早期原型环境的背景。
+
 # 完整连接组 · 本地推理验证
 
 本机加载云端训练的同一检查点，执行完整 166,700 神经元、25,582,938 条连接的神经计算与 MuJoCo 物理。没有加载教师策略。训练曲线读取云端备份；本地验证写入 `runs/local`。
@@ -39,7 +41,7 @@ Yumi 页面开启后，读取真实仿真时间与墙钟时间：19.70 秒墙钟
 
 ```powershell
 cd D:\Project\Neuromechfly
-.\start.ps1                # 默认 G1 身体 + CUDA；-Device cpu 为慢速 CPU 推理
+.\start.ps1                # 默认 Yumi 身体 + CUDA；-Device cpu 为慢速 CPU 推理
 ```
 
 访问 [本机工作室](http://127.0.0.1:8740)。它不依赖 SSH 或 AutoDL。服务需要已训练的检查点（`runs/cloud/best.pt` 或 `runs/yumi/best.pt`），页面顶栏可切换 G1 / Yumi。云端全图预览经 SSH 隧道使用 8742（`./cloud.ps1 Preview`），与本机服务相互独立。

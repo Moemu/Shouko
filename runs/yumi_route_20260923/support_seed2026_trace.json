@@ -1,0 +1,10 @@
+{
+  "checkpoint": "runs/yumi_route_20260923/support_seed2026/last.pt",
+  "sha256": "57ea1db182b225c93022e64f7b27bc8f66a48cf530adbe79c0acd3c35d3e0fe6",
+  "device": "cpu",
+  "seed": 93002,
+  "command": 0.5,
+  "seconds": 29.99999999999425,
+  "fallen": false,
+  "note": "Supplemental visual replay; CUDA batch=9 native evaluation remains the acceptance path."
+}

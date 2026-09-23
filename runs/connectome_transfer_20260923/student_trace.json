@@ -1,0 +1,20 @@
+{
+  "checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+  "trace_sha256": "e8b6cfbdc14e11e16452cd8065118d44b69caa21f6f3ca198c70f772e538f7fc",
+  "seed": 103002,
+  "command": 0.5,
+  "seconds": 29.99999999999425,
+  "teacher_used": false,
+  "sparse_backend": "ordered",
+  "batch": 9,
+  "support_after_2s": {
+    "flight": 0.0,
+    "single": 0.9028571428571428,
+    "double": 0.09714285714285714
+  },
+  "height_range": [
+    0.9541844368024657,
+    0.9770198654709286
+  ],
+  "limitation": "Representative development trace, not a new independent acceptance cohort or naturalness validation."
+}

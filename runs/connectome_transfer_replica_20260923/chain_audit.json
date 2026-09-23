@@ -1,0 +1,21 @@
+{
+  "verified": [
+    {
+      "fit": "runs/connectome_transfer_replica_20260923/extra1/fit.json",
+      "checkpoint_sha256": "8841868cf1cbbbd01be19585bc18e751c11901b3e806556705d124bb207616cf",
+      "source_checkpoint_sha256": "c7d45a9554a6ba3573d7ddc42deddd032ff0343ccb9cb9bb436dcebcf0cd2e34",
+      "samples": 32635,
+      "student_sampling_chain_verified": true,
+      "data_hashes_verified": true,
+      "train_validation_disjoint": true,
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "teacher_clip_fraction": 0.0,
+      "raw_executed_target_mse": 0.0
+    }
+  ],
+  "source_frozen_except_readout": true,
+  "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1"
+}

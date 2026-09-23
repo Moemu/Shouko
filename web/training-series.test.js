@@ -83,6 +83,10 @@ for (const path of ['runs/training.json', 'runs/cloud/training.json', 'runs/yumi
   const history = realHistory(path);
   if (!history) continue;
   const { series, kind, axis } = trainingSeries(history);
+  if (history.length === 0) {
+    assert.equal(series.length, 0, 'A released ridge checkpoint must not inherit a PPO curve');
+    continue;
+  }
   assert.ok(series.length > 0, `${path} produced no plottable points`);
   for (const [x, y] of series) {
     assert.ok(Number.isFinite(x) && Number.isFinite(y), `${path} produced a non-finite point`);

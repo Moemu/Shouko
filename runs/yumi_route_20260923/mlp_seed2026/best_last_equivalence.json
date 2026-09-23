@@ -1,0 +1,5 @@
+{
+  "equal_state_dict": true,
+  "best_updates": 400,
+  "last_updates": 400
+}

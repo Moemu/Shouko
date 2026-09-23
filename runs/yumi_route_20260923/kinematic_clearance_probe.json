@@ -1,0 +1,55 @@
+{
+  "kind": "static_forward_kinematics_only",
+  "pelvis_height": 0.955,
+  "rows": [
+    {
+      "left_knee": 0,
+      "hip_and_ankle": 0.0,
+      "sole_min_z": [
+        -0.017920000000000068,
+        -0.017188948906633632
+      ]
+    },
+    {
+      "left_knee": 0.2,
+      "hip_and_ankle": -0.1,
+      "sole_min_z": [
+        -0.013743881839207404,
+        -0.017188948906633632
+      ]
+    },
+    {
+      "left_knee": 0.4,
+      "hip_and_ankle": -0.2,
+      "sole_min_z": [
+        -0.0012572537490508004,
+        -0.017188948906633632
+      ]
+    },
+    {
+      "left_knee": 0.6,
+      "hip_and_ankle": -0.3,
+      "sole_min_z": [
+        0.019415122010123458,
+        -0.017188948906633632
+      ]
+    },
+    {
+      "left_knee": 0.8,
+      "hip_and_ankle": -0.4,
+      "sole_min_z": [
+        0.048066693893108144,
+        -0.017188948906633632
+      ]
+    },
+    {
+      "left_knee": 1.0,
+      "hip_and_ankle": -0.5,
+      "sole_min_z": [
+        0.08441118486459959,
+        -0.017188948906633632
+      ]
+    }
+  ],
+  "note": "Reachability check only; no dynamic balance or learning claim."
+}

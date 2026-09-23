@@ -202,7 +202,13 @@ async function loadAvatar(body) {
   setText(document.querySelector('.avatar-name'), '—');
   let gltf;
   try {
-    if (!body.avatar_url || body.avatar_pending) throw new Error('Avatar asset missing');
+    if (!body.avatar_url || body.avatar_pending) {
+      setText($('modelLoading'), t('stage.noAvatar'));
+      setText(document.querySelector('.avatar-name'), body.name || body.robot);
+      setText($('avatarCredit'), body.credit || '');
+      setMode(true);
+      return;
+    }
     const response = await fetch(body.avatar_url, { cache: 'no-cache' });
     if (!response.ok) throw new Error(`Avatar HTTP ${response.status}`);
     const bytes = await response.arrayBuffer();
@@ -663,16 +669,19 @@ function renderEvaluation() {
     `<div><b>${escapeHTML(data.successes ?? '--')} / ${escapeHTML(data.attempts ?? '--')}</b><span>${t('results.summary.walk')}${data.complete === false ? t('results.summary.inProgress') : ''}</span></div>`
     + `<div><b>${escapeHTML(data.robot || '--')}</b><span>${t('eval.robot')}</span></div>`
     + `<div><b title="${escapeHTML(data.checkpoint_sha256 || '')}">${escapeHTML((data.checkpoint_sha256 || '').slice(0, 10) || '--')}</b><span>${t('eval.checkpoint')}</span></div>`);
-  setKey($('resultsIntro'), data.kind === 'held_out_native_mujoco' ? 'results.pFull' : meta?.mode === 'full_connectome' ? 'results.pFullScreening' : 'results.p');
-  setKey($('resultsCriteria'), data.kind === 'held_out_native_mujoco' ? 'results.microFull' : meta?.mode === 'full_connectome' ? 'results.microFullScreening' : 'results.micro');
+  const strictGait = data.kind === 'held_out_locomotion';
+  setKey($('resultsIntro'), strictGait ? 'results.pGait' : data.kind === 'held_out_native_mujoco' ? 'results.pFull' : meta?.mode === 'full_connectome' ? 'results.pFullScreening' : 'results.p');
+  if (strictGait) setText($('resultsCriteria'), t('results.microGait', { lateral: number(data.long_lateral_m, 2), recovered: data.yaw_recovered, total: data.yaw_tests?.length || 0 }));
+  else setKey($('resultsCriteria'), data.kind === 'held_out_native_mujoco' ? 'results.microFull' : meta?.mode === 'full_connectome' ? 'results.microFullScreening' : 'results.micro');
   const groups = [
     { key: 'walk', rows: tests, expect: 'pass' },
+    { key: 'yaw', rows: data.yaw_tests || [], expect: 'pass' },
     { key: 'long', rows: longWalks, expect: 'pass' },
     { key: 'push', rows: perturbations, expect: 'pass' },
     { key: 'disconnected', rows: disconnected, expect: 'fall' },
     { key: 'rewired', rows: rewired, expect: 'fall' },
   ].filter(g => g.rows.length);
-  const failed = ['survived', 'speed', 'both_feet', 'alternation', 'upright', 'direction'];
+  const failed = ['survived', 'speed', 'both_feet', 'alternation', 'upright', 'direction', ...(strictGait ? ['swing'] : [])];
   setHTML($('evaluationRows'), groups.map(g => {
     const rows = g.rows.map(r => {
       const reason = r.criteria ? failed.filter(k => !r.criteria[k]).map(k => t(`results.fail.${k}`)).join(' / ') : t('results.noTarget');
@@ -686,7 +695,7 @@ function renderEvaluation() {
         + `<td>${number(r.minimum_upright, 2)}</td><td>${number(r.inference_ms_median, 2)} / ${number(r.inference_ms_p95, 2)} ms</td>`
         + `<td class="${cls}">${r.success ? t('results.pass') : r.fallen ? (g.expect === 'fall' ? t('results.expect.fall') : t('results.fallen')) : reason}</td></tr>`;
     }).join('');
-    return `<tr class="group-row"><td colspan="11">${t(`results.group.${g.key}`)}</td></tr>${rows}`;
+    return `<tr class="group-row"><td colspan="11">${t(`results.group.${g.key}`)} · ${g.rows.filter(r => g.expect === 'fall' ? r.fallen : r.success).length} / ${g.rows.length}</td></tr>${rows}`;
   }).join(''));
   if (!groups.length) setHTML($('evaluationRows'), `<tr><td colspan="11">${t('results.pending')}</td></tr>`);
 }

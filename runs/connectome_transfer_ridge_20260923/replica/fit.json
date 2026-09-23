@@ -1,0 +1,50 @@
+{
+  "completed": true,
+  "ridge": 0.0001,
+  "reference": "runs/connectome_transfer_push_20260923/replica_push2",
+  "reference_fit_sha256": "f48b0690539ec4e3b36897171a9bd1feea8ad1463ef6a935d01a3992a577f7ce",
+  "refit_source_sha256": "ff7d3b905ec2afd2d916350e387d9d340f1ac16071b30548c3544586286bf03f",
+  "baseline_cache_reproduction_max_error": 0.0,
+  "feature_cache_sha256": "a5650ff87ceaccf1f955917cb5a169b1d7ae42ea52432e126e4d7cc99c8b148b",
+  "data_sha256": {
+    "runs/prior/replica_train.pt": "04d349486573379d0aefd19c8aedd93069f69712921b3536ad05b0053f5b3da0",
+    "runs/prior/replica1.pt": "c5bcea87144770b6a6b25a896f0f249ad1c62199e320de5c81f0735440e87ee0",
+    "runs/prior/replica2.pt": "39b7812821a3b87c3ea49932c7917495af912a0b517d9295b0fcc558ab86cc0a",
+    "runs/prior/replica3.pt": "b505904c0ccbeec93af147ec0c37c2b2f44fe17a48093f91d14979c338771e05",
+    "runs/connectome_transfer_push_20260923/replica_push1.pt": "6b01224ff2b6d9922262867dbf585c811b3750c477cf7a7a744084606e57ebf2",
+    "runs/connectome_transfer_push_20260923/replica_push2.pt": "a02ebfe8e1c28138642c48ba2b42bf68be36aeabfdbafb56148519ebf4dc49e6",
+    "runs/prior/replica_validation.pt": "7d789ed81d6c07f7574feca68c59857d14de469aebdbe659062f289bc29963db"
+  },
+  "checkpoint_sha256": "c7d45a9554a6ba3573d7ddc42deddd032ff0343ccb9cb9bb436dcebcf0cd2e34",
+  "eigenvalue_quantiles": [
+    2.4657408553572167e-13,
+    1.3538437537110883e-05,
+    8.0224895567063e-05,
+    0.0019372851294226982,
+    0.16493743919640186,
+    16.243350364501676,
+    293.98422143337905
+  ],
+  "eigenvalues_above_ridge": 718,
+  "readout_weight_norm": 80.320556640625,
+  "training": {
+    "mse": 0.002874342946469809,
+    "executed_mse": 0.002873772893158822,
+    "per_command": {
+      "0.35": 0.004077039696896633,
+      "0.5": 0.0020396693555302338,
+      "0.65": 0.0027624310895344967
+    }
+  },
+  "validation": {
+    "mse": 0.0005660995808712634,
+    "executed_mse": 0.0005660995808712634,
+    "per_command": {
+      "0.35": 0.0004894146530379985,
+      "0.5": 0.00039604692955167803,
+      "0.65": 0.0008128371600241138
+    }
+  },
+  "wall_seconds": 3.2042134068906307,
+  "method": "No new observations, labels, graph features, normalization or physics."
+}

@@ -26,7 +26,7 @@
 
 1. **隐私红线**：任何入库文件不得出现真实 SSH 主机/端口、用户名路径（`C:\Users\...`）、聊天记录路径等个人信息。云端目标只存在 `runs/cloud/target.json`（已 ignore）。写实验记录时用占位符（如 `root@<AutoDL 主机>`）。
 2. **大文件不入库**：`*.pt`/`*.npz`/`*.tgz`/`*.log`/`*.pid`/`*.jsonl`、`data/`、`web/public/*.vrm` 均被 ignore，勿改 .gitignore 放行。
-3. **i18n 双字典同步**：文案改动必须同时改 `web/i18n.js` 的 zh/en 两字典（当前 444 键，`npm test` 校验奇偶与占位符），页面用 `data-i18n` / `data-i18n-attr` 标记。
+3. **i18n 双字典同步**：文案改动必须同时改 `web/i18n.js` 的 zh/en 两字典（当前 450 键，`npm test` 校验奇偶与占位符），页面用 `data-i18n` / `data-i18n-attr` 标记。
 4. **实验数据不虚构**：报告与实验记录中的数字必须来自 `runs/` 实测文件，引用注明出处；推断要标注为推断。
 5. **实验编年史不可篡改**：`research/experiments/` 是按时间序的历史记录，只允许追加或隐私脱敏，不改写历史结论。
 6. **平台**：Windows + PowerShell（.ps1）+ Git Bash；Python 文件一律 UTF-8；控制台输出乱码多为 GBK 显示问题，勿误判为文件损坏。
@@ -46,12 +46,14 @@
 
 ## 待决事项
 
-- 仓库许可证已定为 MIT（2026-09-18 落地 LICENSE）；发布渠道（tag/Release 上传权重）待远程仓库建立后进行。
+- 仓库许可证已定为 MIT；远程已有 v0.1.0 Release。v0.2.0 尚未打标签或发行，建议由连接组读出迁移主候选承接，旧直立权重保留为来源基线。发布准备见 `research/releases/v0.2.0/DECISION.md`；版本安排待用户定稿。
 
 ## 动敏感区域前先读
 
 - 训练/评估逻辑：`research/REPORT.md`（方法与边界）、`research/guides/LOCAL.md`、`guides/CLOUD.md`。
 - 身体与角色：`research/avatar/YUMI.md`、`YUMI_BODY.md`（VRM 许可约束见 `THIRD_PARTY.md`，署名不可去除）。
-- 当前实验状态：`research/experiments/ROUTE_DECISION_20260922.md`（持续目标已形成最终路线决策：保留连接组与Yumi，下一阶段朝向恢复课程及原生多指标验收；诊断已完成，未取得行走突破，实例保持开机）。
+- 当前实验状态：`research/experiments/CONNECTOME_TRANSFER_20260923.md`（完整连接组冻结核心、只训练读出，主候选及独立数据额外收敛分支均通过四组严格留出；同日程复现曾失败，精确朝向与横漂仍待解决。显式相位保留，不代表自主CPG或拓扑优势。下一阶段建议见 `research/proposals/2026-09-23/Codex-连接组读出迁移与下一阶段路线.md`，由用户定稿；实例保持开机）。
+- 前序身体/任务对照：`research/experiments/ROUTE_EXECUTION_20260923.md`（普通MLP迈步、等预算旧奖励对照与四组留出，作为连接组迁移教师的来源）。
+- 前序路线：`research/experiments/ROUTE_DECISION_20260922.md`；保留历史结论，当前证据以2026-09-23实验编年为准。
 - 前序诊断：`research/experiments/ACTOR_SCALE_AB_20260922.md`、`GPU_CALIBRATION_20260921.md`、`INPUT_LEARNING_AUDIT_20260921.md`、`INPUT_SCALE_CLOUD_20260922.md`；方向讨论见 `research/proposals/2026-09-22/`。
 - 双语说明：`README.md` / `README.zh.md` 改动需保持一致。

@@ -1,0 +1,70 @@
+{
+  "strict_gait_definition": "Old six criteria AND both feet >=1 qualifying swing/s; each qualifying swing >=0.12s airborne and >=0.025m clearance.",
+  "limitation": "Engineering screen, not validated human naturalness; cohorts are not independent training seeds.",
+  "evidence": [
+    {
+      "source": "runs/yumi_route_20260923/support_replicate2027_native.json",
+      "sha256": "8949d67335b8694dfa8ed9bcaf064ce5bf7fcab35326b7c8b76e57d0c68418fa",
+      "seconds": 30,
+      "seed_base": 93001,
+      "yaws": [
+        0.0
+      ],
+      "conditions": [
+        {
+          "checkpoint": "runs/yumi_route_20260923/support_replicate2027_extend1024/last.pt",
+          "checkpoint_sha256": "ce2a8b9063f706597d0332c04825aa3550d35096342d5a17803ba71f13e857d7",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 18,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 18
+          },
+          "lateral_m": 3.079725617052777,
+          "maximum_lateral_mean": 3.079725617052777,
+          "mean_abs_yaw": 0.04712511449730005,
+          "mean_height": 0.9627163809920359,
+          "speed_mae": 0.08315180338925786,
+          "qualifying_swings_per_second": 1.25,
+          "strict_gait_successes": 18,
+          "per_command": {
+            "0.35": {
+              "episodes": 9,
+              "successes": 0,
+              "mean_speed": 0.4464824636699016,
+              "speed_mae": 0.09648246366990161,
+              "mean_height": 0.9653346471711276
+            },
+            "0.5": {
+              "episodes": 9,
+              "successes": 9,
+              "mean_speed": 0.5803082382448335,
+              "speed_mae": 0.08030823824483346,
+              "mean_height": 0.9635282395634676
+            },
+            "0.65": {
+              "episodes": 9,
+              "successes": 9,
+              "mean_speed": 0.7226647082530385,
+              "speed_mae": 0.07266470825303847,
+              "mean_height": 0.9592862562415124
+            }
+          },
+          "recovered": 0,
+          "nonzero_yaw_episodes": 0,
+          "recovery_seconds_median": null,
+          "survivors_qualifying_swings_per_second": 1.25,
+          "swing_seconds_median": 0.36,
+          "swing_clearance_median": 0.05908414786683883,
+          "support_foot_center_speed": 0.03907973466465166
+        }
+      ]
+    }
+  ]
+}

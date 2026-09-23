@@ -1,0 +1,274 @@
+{
+  "completed": true,
+  "jobs": [
+    {
+      "name": "dagger1_collect",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "collect",
+        "--teacher",
+        "runs/teacher/last.pt",
+        "--student",
+        "runs/connectome_transfer_20260923/readout/last.pt",
+        "--beta",
+        "0",
+        "--seed-base",
+        "104101",
+        "--output",
+        "runs/connectome_transfer_20260923/dagger1.pt"
+      ],
+      "returncode": 0,
+      "wall_seconds": 13.494092784821987
+    },
+    {
+      "name": "dagger1_fit",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "fit",
+        "--source",
+        "runs/connectome_transfer_20260923/readout/last.pt",
+        "--train",
+        "runs/connectome_transfer_20260923/train.pt",
+        "runs/connectome_transfer_20260923/dagger1.pt",
+        "--validation",
+        "runs/connectome_transfer_20260923/validation.pt",
+        "--mode",
+        "readout",
+        "--output",
+        "runs/connectome_transfer_20260923/dagger1"
+      ],
+      "returncode": 0,
+      "wall_seconds": 18.11307715624571
+    },
+    {
+      "name": "dagger1_native",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_20260923/dagger1/last.pt",
+        "--seed-base",
+        "103001",
+        "--output",
+        "runs/connectome_transfer_20260923/dagger1_native.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 42.120813734829426
+    },
+    {
+      "name": "dagger2_collect",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "collect",
+        "--teacher",
+        "runs/teacher/last.pt",
+        "--student",
+        "runs/connectome_transfer_20260923/dagger1/last.pt",
+        "--beta",
+        "0",
+        "--seed-base",
+        "104201",
+        "--output",
+        "runs/connectome_transfer_20260923/dagger2.pt"
+      ],
+      "returncode": 0,
+      "wall_seconds": 22.162477184087038
+    },
+    {
+      "name": "dagger2_fit",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "fit",
+        "--source",
+        "runs/connectome_transfer_20260923/dagger1/last.pt",
+        "--train",
+        "runs/connectome_transfer_20260923/train.pt",
+        "runs/connectome_transfer_20260923/dagger1.pt",
+        "runs/connectome_transfer_20260923/dagger2.pt",
+        "--validation",
+        "runs/connectome_transfer_20260923/validation.pt",
+        "--mode",
+        "readout",
+        "--output",
+        "runs/connectome_transfer_20260923/dagger2"
+      ],
+      "returncode": 0,
+      "wall_seconds": 20.754463247954845
+    },
+    {
+      "name": "dagger2_native",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_20260923/dagger2/last.pt",
+        "--seed-base",
+        "103001",
+        "--output",
+        "runs/connectome_transfer_20260923/dagger2_native.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 49.126884046941996
+    },
+    {
+      "name": "dagger3_collect",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "collect",
+        "--teacher",
+        "runs/teacher/last.pt",
+        "--student",
+        "runs/connectome_transfer_20260923/dagger2/last.pt",
+        "--beta",
+        "0",
+        "--seed-base",
+        "104301",
+        "--output",
+        "runs/connectome_transfer_20260923/dagger3.pt"
+      ],
+      "returncode": 0,
+      "wall_seconds": 23.268749680370092
+    },
+    {
+      "name": "dagger3_fit",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.imitate_yumi",
+        "fit",
+        "--source",
+        "runs/connectome_transfer_20260923/dagger2/last.pt",
+        "--train",
+        "runs/connectome_transfer_20260923/train.pt",
+        "runs/connectome_transfer_20260923/dagger1.pt",
+        "runs/connectome_transfer_20260923/dagger2.pt",
+        "runs/connectome_transfer_20260923/dagger3.pt",
+        "--validation",
+        "runs/connectome_transfer_20260923/validation.pt",
+        "--mode",
+        "readout",
+        "--output",
+        "runs/connectome_transfer_20260923/dagger3"
+      ],
+      "returncode": 0,
+      "wall_seconds": 23.622749999165535
+    },
+    {
+      "name": "dagger3_native",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_20260923/dagger3/last.pt",
+        "--seed-base",
+        "103001",
+        "--output",
+        "runs/connectome_transfer_20260923/dagger3_native.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 55.45659488067031
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "strict": 2,
+      "falls": 25,
+      "mean_seconds": 14.368148148147009,
+      "summary": {
+        "episodes": 27,
+        "successes": 2,
+        "falls": 25,
+        "criteria_passes": {
+          "survived": 2,
+          "speed": 15,
+          "feet": 14,
+          "alternation": 10,
+          "upright": 6,
+          "direction": 27
+        },
+        "lateral_m": 1.5145339187685025,
+        "maximum_lateral_mean": 1.6341097427361144,
+        "mean_abs_yaw": 0.06881666950946286,
+        "mean_height": 0.9577818503418909,
+        "speed_mae": 0.13031575468185366,
+        "qualifying_swings_per_second": 1.2156562795812589
+      }
+    },
+    {
+      "round": 2,
+      "strict": 9,
+      "falls": 11,
+      "mean_seconds": 23.627407407404334,
+      "summary": {
+        "episodes": 27,
+        "successes": 9,
+        "falls": 11,
+        "criteria_passes": {
+          "survived": 16,
+          "speed": 27,
+          "feet": 27,
+          "alternation": 27,
+          "upright": 17,
+          "direction": 18
+        },
+        "lateral_m": 2.2258331500788255,
+        "maximum_lateral_mean": 2.2258331500788255,
+        "mean_abs_yaw": 0.03716410720078749,
+        "mean_height": 0.9622355698949756,
+        "speed_mae": 0.053054201889361954,
+        "qualifying_swings_per_second": 1.2262590264452
+      }
+    },
+    {
+      "round": 3,
+      "strict": 27,
+      "falls": 0,
+      "mean_seconds": 29.99999999999425,
+      "summary": {
+        "episodes": 27,
+        "successes": 27,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 27,
+          "speed": 27,
+          "feet": 27,
+          "alternation": 27,
+          "upright": 27,
+          "direction": 27
+        },
+        "lateral_m": 1.010729642723673,
+        "maximum_lateral_mean": 1.0107633971279937,
+        "mean_abs_yaw": 0.028782734735037167,
+        "mean_height": 0.9676912600552957,
+        "speed_mae": 0.03075190582371965,
+        "qualifying_swings_per_second": 1.25
+      }
+    }
+  ],
+  "started_utc": "2026-09-23T05:23:29.737499+00:00",
+  "development_candidate": "runs/connectome_transfer_20260923/dagger3/last.pt",
+  "finished_utc": "2026-09-23T05:27:57.882496+00:00"
+}

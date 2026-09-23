@@ -1,0 +1,10 @@
+{
+  "checkpoint": "runs/yumi_route_20260923/mlp_seed2026_best.pt",
+  "sha256": "dfa6b3535e78a6095e951e6fbb2a5dbdfa7ab2ed41c40f19a3e61808bdb6759f",
+  "device": "cpu",
+  "seed": 93002,
+  "command": 0.5,
+  "seconds": 29.99999999999425,
+  "fallen": false,
+  "note": "Supplemental visual replay; CUDA batch=9 native evaluation remains the acceptance path."
+}

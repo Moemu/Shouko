@@ -1,0 +1,78 @@
+{
+  "pelvis_height": 0.955,
+  "rows": [
+    {
+      "target_clearance": 0.0,
+      "joint_positions": [
+        -0.20743429385856868,
+        0.0,
+        0.0,
+        0.41486858771713736,
+        -0.20743429385856868,
+        0.0,
+        -0.20743429385856868,
+        0.0,
+        0.0,
+        0.41486858771713736,
+        -0.20743429385856868,
+        0.0
+      ],
+      "sole_min_z": [
+        6.190187251675638e-14,
+        6.190187251675638e-14
+      ],
+      "within_joint_limits": true,
+      "max_abs_action": 1.3394743580211068,
+      "within_action_limit": true
+    },
+    {
+      "target_clearance": 0.025,
+      "joint_positions": [
+        -0.32183884719033806,
+        0.0,
+        0.0,
+        0.6436776943806761,
+        -0.32183884719033806,
+        0.0,
+        -0.20743429385856868,
+        0.0,
+        0.0,
+        0.41486858771713736,
+        -0.20743429385856868,
+        0.0
+      ],
+      "sole_min_z": [
+        0.02500000000009598,
+        6.190187251675638e-14
+      ],
+      "within_joint_limits": true,
+      "max_abs_action": 2.254710784675262,
+      "within_action_limit": true
+    },
+    {
+      "target_clearance": 0.06,
+      "joint_positions": [
+        -0.4352009577314675,
+        0.0,
+        0.0,
+        0.870401915462935,
+        -0.4352009577314675,
+        0.0,
+        -0.20743429385856868,
+        0.0,
+        0.0,
+        0.41486858771713736,
+        -0.20743429385856868,
+        0.0
+      ],
+      "sole_min_z": [
+        0.0599999999998154,
+        6.190187251675638e-14
+      ],
+      "within_joint_limits": true,
+      "max_abs_action": 3.1616076690042973,
+      "within_action_limit": true
+    }
+  ],
+  "limitation": "Static forward kinematics, right sole at floor. No claim of dynamic balance, torque feasibility or learned control."
+}

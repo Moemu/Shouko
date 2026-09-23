@@ -1,0 +1,288 @@
+{
+  "strict_gait_definition": "Old six criteria AND both feet >=1 qualifying swing/s; each qualifying swing >=0.12s airborne and >=0.025m clearance.",
+  "limitation": "Engineering screen, not validated human naturalness; cohorts are not independent training seeds.",
+  "evidence": [
+    {
+      "source": "runs/yumi_route_20260923/baseline_native.json",
+      "sha256": "81f042dc55a34682a442f385908e1ac7fe8335759fe9d4de795f8c4227ce421f",
+      "seconds": 30,
+      "seed_base": 93001,
+      "yaws": [
+        0.0
+      ],
+      "conditions": [
+        {
+          "checkpoint": "runs/yumi_obs50/best.pt",
+          "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 2,
+          "falls": 2,
+          "criteria_passes": {
+            "survived": 25,
+            "speed": 3,
+            "feet": 26,
+            "alternation": 26,
+            "upright": 25,
+            "direction": 11
+          },
+          "lateral_m": 3.9383809927586357,
+          "maximum_lateral_mean": 4.416191326319185,
+          "mean_abs_yaw": 1.1559024008932675,
+          "mean_height": 0.8997253089597076,
+          "speed_mae": 0.37016350936169223,
+          "qualifying_swings_per_second": 0.02755499860763019,
+          "strict_gait_successes": 0,
+          "per_command": {
+            "0.35": {
+              "episodes": 9,
+              "successes": 0,
+              "mean_speed": 0.03787091178161612,
+              "speed_mae": 0.31212908821838387,
+              "mean_height": 0.9004473445063172
+            },
+            "0.5": {
+              "episodes": 9,
+              "successes": 0,
+              "mean_speed": 0.10126828250646694,
+              "speed_mae": 0.3987317174935331,
+              "mean_height": 0.900551195759179
+            },
+            "0.65": {
+              "episodes": 9,
+              "successes": 2,
+              "mean_speed": 0.25037027762684005,
+              "speed_mae": 0.39962972237315997,
+              "mean_height": 0.8981773866136269
+            }
+          },
+          "recovered": 0,
+          "nonzero_yaw_episodes": 0,
+          "recovery_seconds_median": null,
+          "swing_seconds_median": 0.06,
+          "swing_clearance_median": 0.006755948294741153,
+          "support_foot_center_speed": 0.12477131758318633
+        },
+        {
+          "checkpoint": "runs/yumi_obs50/best.pt",
+          "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+          "mode": "repeat",
+          "episodes": 27,
+          "successes": 2,
+          "falls": 2,
+          "criteria_passes": {
+            "survived": 25,
+            "speed": 3,
+            "feet": 26,
+            "alternation": 26,
+            "upright": 25,
+            "direction": 11
+          },
+          "lateral_m": 3.9383809927586357,
+          "maximum_lateral_mean": 4.416191326319185,
+          "mean_abs_yaw": 1.1559024008932675,
+          "mean_height": 0.8997253089597076,
+          "speed_mae": 0.37016350936169223,
+          "qualifying_swings_per_second": 0.02755499860763019,
+          "strict_gait_successes": 0,
+          "per_command": {
+            "0.35": {
+              "episodes": 9,
+              "successes": 0,
+              "mean_speed": 0.03787091178161612,
+              "speed_mae": 0.31212908821838387,
+              "mean_height": 0.9004473445063172
+            },
+            "0.5": {
+              "episodes": 9,
+              "successes": 0,
+              "mean_speed": 0.10126828250646694,
+              "speed_mae": 0.3987317174935331,
+              "mean_height": 0.900551195759179
+            },
+            "0.65": {
+              "episodes": 9,
+              "successes": 2,
+              "mean_speed": 0.25037027762684005,
+              "speed_mae": 0.39962972237315997,
+              "mean_height": 0.8981773866136269
+            }
+          },
+          "recovered": 0,
+          "nonzero_yaw_episodes": 0,
+          "recovery_seconds_median": null,
+          "swing_seconds_median": 0.06,
+          "swing_clearance_median": 0.006755948294741153,
+          "support_foot_center_speed": 0.12477131758318633
+        },
+        {
+          "checkpoint": "runs/yumi_obs50/best.pt",
+          "checkpoint_sha256": "458fc465a6fb802a338c218fc4be414fc9153376c5d2f76f116518e6cc5aa475",
+          "mode": "zero_new",
+          "episodes": 27,
+          "successes": 2,
+          "falls": 2,
+          "criteria_passes": {
+            "survived": 25,
+            "speed": 3,
+            "feet": 26,
+            "alternation": 26,
+            "upright": 25,
+            "direction": 11
+          },
+          "lateral_m": 3.9383809927586357,
+          "maximum_lateral_mean": 4.416191326319185,
+          "mean_abs_yaw": 1.1559024008932675,
+          "mean_height": 0.8997253089597076,
+          "speed_mae": 0.37016350936169223,
+          "qualifying_swings_per_second": 0.02755499860763019,
+          "strict_gait_successes": 0,
+          "per_command": {
+            "0.35": {
+              "episodes": 9,
+              "successes": 0,
+              "mean_speed": 0.03787091178161612,
+              "speed_mae": 0.31212908821838387,
+              "mean_height": 0.9004473445063172
+            },
+            "0.5": {
+              "episodes": 9,
+              "successes": 0,
+              "mean_speed": 0.10126828250646694,
+              "speed_mae": 0.3987317174935331,
+              "mean_height": 0.900551195759179
+            },
+            "0.65": {
+              "episodes": 9,
+              "successes": 2,
+              "mean_speed": 0.25037027762684005,
+              "speed_mae": 0.39962972237315997,
+              "mean_height": 0.8981773866136269
+            }
+          },
+          "recovered": 0,
+          "nonzero_yaw_episodes": 0,
+          "recovery_seconds_median": null,
+          "swing_seconds_median": 0.06,
+          "swing_clearance_median": 0.006755948294741153,
+          "support_foot_center_speed": 0.12477131758318633
+        }
+      ]
+    },
+    {
+      "source": "runs/yumi_route_20260923/mlp_seed2026_native.json",
+      "sha256": "6267744f9fb970ced48cbd4fcfa8618ae4dbec9a809a04f4d040b2fefcfb0011",
+      "seconds": 30,
+      "seed_base": 93001,
+      "yaws": [
+        0.0
+      ],
+      "conditions": [
+        {
+          "checkpoint": "runs/yumi_route_20260923/mlp_seed2026/best.pt",
+          "checkpoint_sha256": "dfa6b3535e78a6095e951e6fbb2a5dbdfa7ab2ed41c40f19a3e61808bdb6759f",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 27,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 27
+          },
+          "lateral_m": 1.5220921145602648,
+          "maximum_lateral_mean": 1.5220921145602648,
+          "mean_abs_yaw": 0.030621916494920246,
+          "mean_height": 0.9552564282136986,
+          "speed_mae": 0.040400591529013534,
+          "qualifying_swings_per_second": 0.0,
+          "strict_gait_successes": 0,
+          "per_command": {
+            "0.35": {
+              "episodes": 9,
+              "successes": 9,
+              "mean_speed": 0.44672018164853866,
+              "speed_mae": 0.09672018164853871,
+              "mean_height": 0.9640166654252149
+            },
+            "0.5": {
+              "episodes": 9,
+              "successes": 9,
+              "mean_speed": 0.49993207558504343,
+              "speed_mae": 0.0007165110634183569,
+              "mean_height": 0.9564533203416574
+            },
+            "0.65": {
+              "episodes": 9,
+              "successes": 9,
+              "mean_speed": 0.6262349181249165,
+              "speed_mae": 0.02376508187508355,
+              "mean_height": 0.9452992988742238
+            }
+          },
+          "recovered": 0,
+          "nonzero_yaw_episodes": 0,
+          "recovery_seconds_median": null,
+          "swing_seconds_median": 0.02,
+          "swing_clearance_median": 0.0016175794820963638,
+          "support_foot_center_speed": 0.2524391960521296
+        },
+        {
+          "checkpoint": "runs/yumi_route_20260923/mlp_seed2026/last.pt",
+          "checkpoint_sha256": "995d74c4a60d7a9eb4610d9338b96b4d30d11868743790474c2ae7a32073926b",
+          "mode": "normal",
+          "episodes": 27,
+          "successes": 27,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 27
+          },
+          "lateral_m": 1.5220921145602648,
+          "maximum_lateral_mean": 1.5220921145602648,
+          "mean_abs_yaw": 0.030621916494920246,
+          "mean_height": 0.9552564282136986,
+          "speed_mae": 0.040400591529013534,
+          "qualifying_swings_per_second": 0.0,
+          "strict_gait_successes": 0,
+          "per_command": {
+            "0.35": {
+              "episodes": 9,
+              "successes": 9,
+              "mean_speed": 0.44672018164853866,
+              "speed_mae": 0.09672018164853871,
+              "mean_height": 0.9640166654252149
+            },
+            "0.5": {
+              "episodes": 9,
+              "successes": 9,
+              "mean_speed": 0.49993207558504343,
+              "speed_mae": 0.0007165110634183569,
+              "mean_height": 0.9564533203416574
+            },
+            "0.65": {
+              "episodes": 9,
+              "successes": 9,
+              "mean_speed": 0.6262349181249165,
+              "speed_mae": 0.02376508187508355,
+              "mean_height": 0.9452992988742238
+            }
+          },
+          "recovered": 0,
+          "nonzero_yaw_episodes": 0,
+          "recovery_seconds_median": null,
+          "swing_seconds_median": 0.02,
+          "swing_clearance_median": 0.0016175794820963638,
+          "support_foot_center_speed": 0.2524391960521296
+        }
+      ]
+    }
+  ]
+}

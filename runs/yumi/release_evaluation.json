@@ -1,0 +1,4531 @@
+{
+  "kind": "held_out_locomotion",
+  "robot": "yumi",
+  "complete": true,
+  "checkpoint_sha256": "f1a200718ebfec845cbf9c02ba743e937ea94c747fba53e7b12dfd12f8d3e1f9",
+  "protocol": "strict_gait_v1",
+  "sources": [
+    {
+      "file": "holdout.json",
+      "sha256": "0e60ab1ffd83d859991f99fe4daa1233617eb577b8a8e27e47574f7518542b89",
+      "sparse_backend": "ordered"
+    },
+    {
+      "file": "yaw_holdout.json",
+      "sha256": "dbc9fb4e0d3d15b237380bb8ebe67f53cb6a9172635cd0ad96bedaf5967c1837",
+      "sparse_backend": "ordered"
+    },
+    {
+      "file": "long_holdout.json",
+      "sha256": "90cbc582758a64519c0e90321ef1504efeb98481182b4d4248b3ac1bd3650dbe",
+      "sparse_backend": "ordered"
+    },
+    {
+      "file": "push_holdout.json",
+      "sha256": "d91febc85381c7ac97de92d61398ec1baa647adc836f6f0a8c591488b2a77712",
+      "sparse_backend": "ordered"
+    },
+    {
+      "file": "lesion.json",
+      "sha256": "c0c0dee7d80dc1d9cff775f5e25b9c7db2227914a3b71c610cc9817fe9931907",
+      "sparse_backend": "ordered"
+    }
+  ],
+  "tests": [
+    {
+      "seed": 140001,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.3669138900737214,
+      "lateral_m": 1.831393759350367,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9350223303203336,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276350753716588,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03634456831476252,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.059504247884232496,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04015706666570174,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.027267949508720194,
+        "final_yaw": 0.0587992527733431,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 1.831393759350367,
+        "mean_abs_lateral_m": 0.7949866053562259,
+        "mean_height": 0.9700689006634214,
+        "mean_knees": [
+          0.43257272607846614,
+          0.253759923588523
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140002,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5264372029804515,
+      "lateral_m": 0.8603509303545411,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9315756465270972,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344171500094371,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04205415865212022,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845158269129712,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04002143611905007,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.029058422884102177,
+        "final_yaw": 0.07277889905588765,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.8603509303545411,
+        "mean_abs_lateral_m": 0.35986754932021003,
+        "mean_height": 0.9684204059446183,
+        "mean_knees": [
+          0.43816298792838027,
+          0.2731775679081386
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.5546666666666666
+      ]
+    },
+    {
+      "seed": 140003,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6737723331253765,
+      "lateral_m": 0.971291533513823,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9269741445027349,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281076259294871,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04774853327380323,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058203067169212266,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.0373497501386103,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.02939481969519178,
+        "final_yaw": 0.07868511437244896,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.971291533513823,
+        "mean_abs_lateral_m": 0.43708061313886915,
+        "mean_height": 0.9644764032264939,
+        "mean_knees": [
+          0.4606421925498955,
+          0.3105488007461732
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5546666666666666
+      ]
+    },
+    {
+      "seed": 140004,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.367081664977256,
+      "lateral_m": 1.6627216478395213,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9331559428281224,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276380572223879,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.036306966486689345,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.059504313353347875,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03975600917035375,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.02713123919877909,
+        "final_yaw": 0.0587998470048725,
+        "recovery_seconds": 0.84,
+        "maximum_lateral_m": 1.6627216478395213,
+        "mean_abs_lateral_m": 0.6680122506783673,
+        "mean_height": 0.9700340611015497,
+        "mean_knees": [
+          0.43324700678119626,
+          0.2539194725586133
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140005,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5256225162156901,
+      "lateral_m": 0.8575959863149075,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9309658574878386,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344177172489024,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04204052480923931,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845187651009547,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.039968618977550115,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.029001288310744628,
+        "final_yaw": 0.07277861525685887,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.8575959863149075,
+        "mean_abs_lateral_m": 0.35789798555985236,
+        "mean_height": 0.9684193905383557,
+        "mean_knees": [
+          0.43814401735528397,
+          0.2733353225818549
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.5546666666666666
+      ]
+    },
+    {
+      "seed": 140006,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6766585573770861,
+      "lateral_m": 0.9856426508029917,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9304747491970105,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281081650809214,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04828809962529148,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05820299136969779,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03775881014497708,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.029496268042435044,
+        "final_yaw": 0.0786744295811205,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.9856426508029917,
+        "mean_abs_lateral_m": 0.44738224427068995,
+        "mean_height": 0.9644505742462924,
+        "mean_knees": [
+          0.4606464934248131,
+          0.31031882593101123
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140007,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.3669604176003241,
+      "lateral_m": 1.7731951321513564,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9345410499684799,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276366751120034,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.0362928518294605,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.0595048137626966,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04014113344466029,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.027242069740088956,
+        "final_yaw": 0.05880051741863567,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 1.7731951321513564,
+        "mean_abs_lateral_m": 0.7464630878320339,
+        "mean_height": 0.9700690956627853,
+        "mean_knees": [
+          0.4327068600017699,
+          0.25366055181855796
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140008,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5269005001272845,
+      "lateral_m": 0.900341416861161,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.932204329374648,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344174989349798,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04199817058073506,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845336481788209,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.040886944870572525,
+            "contact_fraction": 0.556
+          }
+        ],
+        "mean_abs_yaw": 0.02916738521083027,
+        "final_yaw": 0.07277866896196349,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.900341416861161,
+        "mean_abs_lateral_m": 0.3900801678431829,
+        "mean_height": 0.9684273962140499,
+        "mean_knees": [
+          0.43787148630883904,
+          0.27311024421228575
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.556
+      ]
+    },
+    {
+      "seed": 140009,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6744230571391049,
+      "lateral_m": 0.9217088162952708,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9267117293146738,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281053578329057,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04795736317325317,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05820309778592104,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03746949533439979,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.02938969765940152,
+        "final_yaw": 0.07867808399054892,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.9217088162952708,
+        "mean_abs_lateral_m": 0.3991883085068422,
+        "mean_height": 0.9644276350354851,
+        "mean_knees": [
+          0.46117178960728206,
+          0.31101729311745985
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140011,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.36694636236004635,
+      "lateral_m": 1.6326326761740348,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9319006447304412,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276376732719835,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03637436141464175,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950428591602402,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.0397831235749458,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.02714379499380066,
+        "final_yaw": 0.058800031984934206,
+        "recovery_seconds": 0.84,
+        "maximum_lateral_m": 1.6326326761740348,
+        "mean_abs_lateral_m": 0.6488203578278219,
+        "mean_height": 0.9700368120710734,
+        "mean_knees": [
+          0.43331968200439824,
+          0.2538638011284032
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140012,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5267415084657654,
+      "lateral_m": 0.9100303559481828,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9320938943200552,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344175027940131,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04203284056589993,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845337298625995,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04055351901757256,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.029166981033552104,
+        "final_yaw": 0.07277902141618166,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.9100303559481828,
+        "mean_abs_lateral_m": 0.39849594943125977,
+        "mean_height": 0.9684350885615537,
+        "mean_knees": [
+          0.43769231960403676,
+          0.27303986505659295
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140013,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6745714605117975,
+      "lateral_m": 0.9491291269044473,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9267904554457755,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.0628106938435733,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04849347655356752,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05820335450160509,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.0370950523156215,
+            "contact_fraction": 0.554
+          }
+        ],
+        "mean_abs_yaw": 0.029469703734372844,
+        "final_yaw": 0.07868005633087706,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.9491291269044473,
+        "mean_abs_lateral_m": 0.4184196633673698,
+        "mean_height": 0.9644916141383173,
+        "mean_knees": [
+          0.4604418995948157,
+          0.31031316775879486
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.554
+      ]
+    },
+    {
+      "seed": 140014,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.36667577095449694,
+      "lateral_m": 1.7248789267603357,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9343011657186182,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.0627635852556801,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03628412997450439,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950425334777718,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03980121031319908,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.027187573026667508,
+        "final_yaw": 0.05879920194415377,
+        "recovery_seconds": 0.84,
+        "maximum_lateral_m": 1.7248789267603357,
+        "mean_abs_lateral_m": 0.7124156143475184,
+        "mean_height": 0.9700505335500751,
+        "mean_knees": [
+          0.43303422420761173,
+          0.25389953009201
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5546666666666666
+      ]
+    },
+    {
+      "seed": 140015,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5266804156443757,
+      "lateral_m": 0.876307494983752,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9315754260828395,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344171304174989,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04202487225423958,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.0584525629267799,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04012689941709591,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.0291169281071044,
+        "final_yaw": 0.07277891066848255,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.876307494983752,
+        "mean_abs_lateral_m": 0.37134422942428325,
+        "mean_height": 0.9684291757221782,
+        "mean_knees": [
+          0.43791169854240414,
+          0.27307604295733545
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.5546666666666666
+      ]
+    },
+    {
+      "seed": 140016,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6763359017781629,
+      "lateral_m": 0.9304098474817423,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9300720515074952,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281079938929805,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.048597938769904,
+            "contact_fraction": 0.5453333333333333
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058203122267540895,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.037010686874218185,
+            "contact_fraction": 0.554
+          }
+        ],
+        "mean_abs_yaw": 0.029455267359858057,
+        "final_yaw": 0.07868485523700831,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.9304098474817423,
+        "mean_abs_lateral_m": 0.4026149690962959,
+        "mean_height": 0.9644666163354617,
+        "mean_knees": [
+          0.4606723552438873,
+          0.31037062685958067
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5453333333333333,
+        0.554
+      ]
+    },
+    {
+      "seed": 140017,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.36732212442906903,
+      "lateral_m": 1.5737124873931068,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9313258799205464,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276378289304337,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03620875484732598,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950431507169671,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03919702761425776,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.027119331038253206,
+        "final_yaw": 0.05879994319343985,
+        "recovery_seconds": 0.84,
+        "maximum_lateral_m": 1.5737124873931068,
+        "mean_abs_lateral_m": 0.6138854249134512,
+        "mean_height": 0.9699987663611819,
+        "mean_knees": [
+          0.4338767018064946,
+          0.25407765110673186
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5546666666666666
+      ]
+    },
+    {
+      "seed": 140018,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5267904866341412,
+      "lateral_m": 0.8764840101704182,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9325229652019631,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344173761773483,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.042188012759971305,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845200305613597,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.039402979436222216,
+            "contact_fraction": 0.5533333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.02909244426749695,
+        "final_yaw": 0.07277886001834599,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.8764840101704182,
+        "mean_abs_lateral_m": 0.3717027724055711,
+        "mean_height": 0.9684237320807532,
+        "mean_knees": [
+          0.43810775450619427,
+          0.2730932699202409
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.5533333333333333
+      ]
+    },
+    {
+      "seed": 140019,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6755549424689233,
+      "lateral_m": 0.9742248982806759,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9279000812694989,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281076992688461,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04860634420967922,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05820320519028016,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.037659229596178165,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.029572448416213065,
+        "final_yaw": 0.0786801548058139,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.9742248982806759,
+        "mean_abs_lateral_m": 0.43769051784459057,
+        "mean_height": 0.9644934331219746,
+        "mean_knees": [
+          0.4601842856231493,
+          0.3101259591187872
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140021,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.36683654407699773,
+      "lateral_m": 1.6950655073585341,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9340972383092143,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276373503189253,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03623156616606389,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950428621070871,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03971232110215004,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.02717517093948055,
+        "final_yaw": 0.058799264716764915,
+        "recovery_seconds": 0.84,
+        "maximum_lateral_m": 1.6950655073585341,
+        "mean_abs_lateral_m": 0.6916281552130783,
+        "mean_height": 0.9700409993435466,
+        "mean_knees": [
+          0.4332241841452785,
+          0.2539181038166517
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5546666666666666
+      ]
+    },
+    {
+      "seed": 140022,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5263914683983921,
+      "lateral_m": 0.8770898645132456,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9314318496189178,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344173089052242,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.041966006062521155,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845334469483803,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04044480557465438,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.029104940688446542,
+        "final_yaw": 0.07277922355372032,
+        "recovery_seconds": 0.28,
+        "maximum_lateral_m": 0.8770898645132456,
+        "mean_abs_lateral_m": 0.371753757598177,
+        "mean_height": 0.9684306644267655,
+        "mean_knees": [
+          0.43788751315693536,
+          0.27313203299548466
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140023,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6755186329665027,
+      "lateral_m": 0.9038960680813549,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.928512430301756,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281074746376476,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04786465276430788,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05820315797699338,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.037179866008639734,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.0293815295437156,
+        "final_yaw": 0.0786847949430066,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.9038960680813549,
+        "mean_abs_lateral_m": 0.3848586216860508,
+        "mean_height": 0.9644347398134726,
+        "mean_knees": [
+          0.4612130241855942,
+          0.3108231845175812
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.5546666666666666
+      ]
+    },
+    {
+      "seed": 140024,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.36688770651982233,
+      "lateral_m": 1.719242003176108,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9343996265509993,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276359559739643,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03627077080900736,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950424521243764,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.039949112288484766,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.027198785885804933,
+        "final_yaw": 0.058799026078375276,
+        "recovery_seconds": 0.84,
+        "maximum_lateral_m": 1.719242003176108,
+        "mean_abs_lateral_m": 0.7086607302902036,
+        "mean_height": 0.9700453942706034,
+        "mean_knees": [
+          0.4331532479933212,
+          0.25386071226810947
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140025,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5269615537814342,
+      "lateral_m": 0.8620807891044482,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9332370917382442,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344176262652627,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.042145692323914484,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058452214401650875,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03942624658919222,
+            "contact_fraction": 0.5533333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.029078879294191992,
+        "final_yaw": 0.072778630942978,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.8620807891044482,
+        "mean_abs_lateral_m": 0.36106460437853116,
+        "mean_height": 0.9684249694059518,
+        "mean_knees": [
+          0.43808884575540247,
+          0.2731004383659796
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.5533333333333333
+      ]
+    },
+    {
+      "seed": 140026,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6738124746360247,
+      "lateral_m": 0.9309527084344549,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9260184825532696,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281060334299485,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04792636858237973,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05820304000410283,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.037553618031886546,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.029331465611976068,
+        "final_yaw": 0.07867469346540706,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.9309527084344549,
+        "mean_abs_lateral_m": 0.4062849356874694,
+        "mean_height": 0.9644388486375319,
+        "mean_knees": [
+          0.4611172391802183,
+          0.31094152271165765
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140027,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.36682327424296995,
+      "lateral_m": 1.7469380692809076,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.93463150017976,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276343062422579,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.0362761939889358,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950425015024136,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.039968793895162266,
+            "contact_fraction": 0.5553333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.02721348322944261,
+        "final_yaw": 0.05879910283069584,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 1.7469380692809076,
+        "mean_abs_lateral_m": 0.7288690382872892,
+        "mean_height": 0.9700487988132036,
+        "mean_knees": [
+          0.4330415978003537,
+          0.253880588827989
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5553333333333333
+      ]
+    },
+    {
+      "seed": 140028,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5265167420214824,
+      "lateral_m": 0.8555012096725424,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9320642911404597,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344172293246952,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04216017368726411,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845200831996682,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.039699170785965354,
+            "contact_fraction": 0.554
+          }
+        ],
+        "mean_abs_yaw": 0.029044618329777633,
+        "final_yaw": 0.07277884095324678,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.8555012096725424,
+        "mean_abs_lateral_m": 0.35652006114511203,
+        "mean_height": 0.9684149915898027,
+        "mean_knees": [
+          0.43831046101169424,
+          0.27321145752225057
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.554
+      ]
+    },
+    {
+      "seed": 140029,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6762604799118933,
+      "lateral_m": 0.947237114374116,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9296277997958802,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281076261021983,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04809044930267498,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05820301022586,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03668285710392007,
+            "contact_fraction": 0.5533333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.029471255840887414,
+        "final_yaw": 0.07867446612810346,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.947237114374116,
+        "mean_abs_lateral_m": 0.4156744781000694,
+        "mean_height": 0.9644638611692122,
+        "mean_knees": [
+          0.4605714588061014,
+          0.31034458908384294
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.5533333333333333
+      ]
+    }
+  ],
+  "yaw_tests": [
+    {
+      "seed": 141001,
+      "initial_yaw": -0.2,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.3684782078932683,
+      "lateral_m": 1.8059229091748177,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9348025506330853,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.0627637514104272,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03632662283466246,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950435254000477,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.039447673720841174,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.028101107552056373,
+        "final_yaw": 0.05879990665211002,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 1.8059229091748177,
+        "mean_abs_lateral_m": 0.7724624346326251,
+        "mean_height": 0.9699733531611223,
+        "mean_knees": [
+          0.43328125782821675,
+          0.2541695135749485
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5546666666666666
+      ],
+      "condition": "yaw -0.20 rad"
+    },
+    {
+      "seed": 141002,
+      "initial_yaw": -0.2,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5273516522339222,
+      "lateral_m": 0.8236302653751834,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9283713006916487,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344177099446935,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04206004860903815,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058455122500423416,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04037603988535624,
+            "contact_fraction": 0.556
+          }
+        ],
+        "mean_abs_yaw": 0.029789397273297862,
+        "final_yaw": 0.07277888803687788,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.8236302653751834,
+        "mean_abs_lateral_m": 0.3381845060630433,
+        "mean_height": 0.9682387491298329,
+        "mean_knees": [
+          0.44039847815025696,
+          0.27439352649641174
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.556
+      ],
+      "condition": "yaw -0.20 rad"
+    },
+    {
+      "seed": 141003,
+      "initial_yaw": -0.2,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.657991265486687,
+      "lateral_m": 1.087705744472982,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9214070652492097,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06237066468230778,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.053839662234692255,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.34,
+            "swing_clearance_median": 0.059328319557866625,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04673983211818545,
+            "contact_fraction": 0.5753333333333334
+          }
+        ],
+        "mean_abs_yaw": 0.028154554078628963,
+        "final_yaw": 0.08102137786963608,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 1.087705744472982,
+        "mean_abs_lateral_m": 0.4536908588344667,
+        "mean_height": 0.9622980314302534,
+        "mean_knees": [
+          0.484621931903828,
+          0.3305859028864349
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5753333333333334
+      ],
+      "condition": "yaw -0.20 rad"
+    },
+    {
+      "seed": 141004,
+      "initial_yaw": -0.2,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.3681423325067061,
+      "lateral_m": 1.7134874008320709,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9332580408997633,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276373632070137,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03620065753479758,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950432846694841,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.039223766700523306,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.02812652471586241,
+        "final_yaw": 0.05879922718698975,
+        "recovery_seconds": 1.6600000000000001,
+        "maximum_lateral_m": 1.7134874008320709,
+        "mean_abs_lateral_m": 0.7037473285222366,
+        "mean_height": 0.9699459506420611,
+        "mean_knees": [
+          0.43389823062407945,
+          0.2543133258820839
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5546666666666666
+      ],
+      "condition": "yaw -0.20 rad"
+    },
+    {
+      "seed": 141005,
+      "initial_yaw": -0.2,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5273769094434634,
+      "lateral_m": 0.8130533222853336,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.928022705980458,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344166156825276,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.0419880648032214,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845423596432888,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04026413724732837,
+            "contact_fraction": 0.556
+          }
+        ],
+        "mean_abs_yaw": 0.029755825723986364,
+        "final_yaw": 0.07277945094405824,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.8130533222853336,
+        "mean_abs_lateral_m": 0.3335157187385275,
+        "mean_height": 0.9681933071816273,
+        "mean_knees": [
+          0.4409213440990027,
+          0.2747525219757334
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.556
+      ],
+      "condition": "yaw -0.20 rad"
+    },
+    {
+      "seed": 141006,
+      "initial_yaw": -0.2,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6608087965571706,
+      "lateral_m": 1.0691490200550426,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9220386234780336,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06241194120880103,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.0530602207233423,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.34,
+            "swing_clearance_median": 0.05927352057613638,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.045556944959620024,
+            "contact_fraction": 0.5726666666666667
+          }
+        ],
+        "mean_abs_yaw": 0.02839394292981121,
+        "final_yaw": 0.07956587787847848,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 1.0691490200550426,
+        "mean_abs_lateral_m": 0.4475076021943726,
+        "mean_height": 0.9625781152600663,
+        "mean_knees": [
+          0.48132488426840436,
+          0.3280113366505275
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5726666666666667
+      ],
+      "condition": "yaw -0.20 rad"
+    },
+    {
+      "seed": 141007,
+      "initial_yaw": -0.2,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.3681932481216187,
+      "lateral_m": 1.8446685202051645,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9348517600173323,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276373880367127,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.036319170190507816,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.059504308581842004,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03913596221839439,
+            "contact_fraction": 0.554
+          }
+        ],
+        "mean_abs_yaw": 0.02812738093565806,
+        "final_yaw": 0.0587990862313658,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 1.8446685202051645,
+        "mean_abs_lateral_m": 0.8056144023625147,
+        "mean_height": 0.9699689572990889,
+        "mean_knees": [
+          0.4332080554889213,
+          0.2542995308664021
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.554
+      ],
+      "condition": "yaw -0.20 rad"
+    },
+    {
+      "seed": 141008,
+      "initial_yaw": -0.2,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.527618784306335,
+      "lateral_m": 0.8124259081783812,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9284293390035883,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344174537708437,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04200979821959172,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058452813787269235,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04025212968152279,
+            "contact_fraction": 0.556
+          }
+        ],
+        "mean_abs_yaw": 0.02975845021251623,
+        "final_yaw": 0.07277904114944411,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.8124259081783812,
+        "mean_abs_lateral_m": 0.3324269264646227,
+        "mean_height": 0.9681943524210065,
+        "mean_knees": [
+          0.44090738504090715,
+          0.2747343215240805
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.556
+      ],
+      "condition": "yaw -0.20 rad"
+    },
+    {
+      "seed": 141009,
+      "initial_yaw": -0.2,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6543060766852292,
+      "lateral_m": 0.6912548292331784,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9214852882209921,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.38,
+            "swing_clearance_median": 0.062004949062318356,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04649801858183374,
+            "contact_fraction": 0.5273333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05904839673938978,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04175147019413738,
+            "contact_fraction": 0.5626666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.02578682816032096,
+        "final_yaw": 0.05799789933341124,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.693042749665792,
+        "mean_abs_lateral_m": 0.2970008169431357,
+        "mean_height": 0.9598764074035104,
+        "mean_knees": [
+          0.5041150876436732,
+          0.3510394892730838
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5273333333333333,
+        0.5626666666666666
+      ],
+      "condition": "yaw -0.20 rad"
+    },
+    {
+      "seed": 141001,
+      "initial_yaw": 0.2,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.3638264682173239,
+      "lateral_m": 1.721345575767586,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9327637739106598,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276335605118419,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03682631920131711,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.059504263843790046,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04045603491973008,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.027581196883863367,
+        "final_yaw": 0.05879919501744664,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 1.721345575767586,
+        "mean_abs_lateral_m": 0.7101814027405058,
+        "mean_height": 0.970214020552411,
+        "mean_knees": [
+          0.4314768653453275,
+          0.2524956690218683
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5546666666666666
+      ],
+      "condition": "yaw +0.20 rad"
+    },
+    {
+      "seed": 141002,
+      "initial_yaw": 0.2,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5195774634916729,
+      "lateral_m": 0.7742928689244533,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.930274259132567,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344173180758704,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.0431224548325631,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058453241230488846,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04070023755514605,
+            "contact_fraction": 0.5533333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.029091528163321972,
+        "final_yaw": 0.07277890278442885,
+        "recovery_seconds": 0.52,
+        "maximum_lateral_m": 0.7742928689244533,
+        "mean_abs_lateral_m": 0.3147734274637977,
+        "mean_height": 0.9684039348228656,
+        "mean_knees": [
+          0.4389060359038607,
+          0.2742601720642581
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.5533333333333333
+      ],
+      "condition": "yaw +0.20 rad"
+    },
+    {
+      "seed": 141003,
+      "initial_yaw": 0.2,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6468327186523739,
+      "lateral_m": 0.6710101636733051,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9254941517502198,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.38,
+            "swing_clearance_median": 0.062015626022944706,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04799495217773528,
+            "contact_fraction": 0.5293333333333333
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05905569597744515,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.041225185513299234,
+            "contact_fraction": 0.5593333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.02501183843370049,
+        "final_yaw": 0.0573021716835304,
+        "recovery_seconds": 0.54,
+        "maximum_lateral_m": 0.6726337974378456,
+        "mean_abs_lateral_m": 0.2853225211347491,
+        "mean_height": 0.9602013018928507,
+        "mean_knees": [
+          0.5015909112081713,
+          0.3497111325223422
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5293333333333333,
+        0.5593333333333333
+      ],
+      "condition": "yaw +0.20 rad"
+    },
+    {
+      "seed": 141004,
+      "initial_yaw": 0.2,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.36372015159011545,
+      "lateral_m": 1.6861655489874918,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9318340622439896,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276352886543136,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03685277034059341,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950428635450442,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.040744466414921784,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.02755265835416452,
+        "final_yaw": 0.058799828562619005,
+        "recovery_seconds": 1.6600000000000001,
+        "maximum_lateral_m": 1.6861655489874918,
+        "mean_abs_lateral_m": 0.684419636553817,
+        "mean_height": 0.9702173521260653,
+        "mean_knees": [
+          0.4314965203822631,
+          0.25237525506381203
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5546666666666666
+      ],
+      "condition": "yaw +0.20 rad"
+    },
+    {
+      "seed": 141005,
+      "initial_yaw": 0.2,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5204295811074887,
+      "lateral_m": 0.7482005456507982,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9301058283852905,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344173804803044,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04307611375585279,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058453051883083265,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.04047246891217793,
+            "contact_fraction": 0.554
+          }
+        ],
+        "mean_abs_yaw": 0.028979168265871484,
+        "final_yaw": 0.07277878139832968,
+        "recovery_seconds": 0.52,
+        "maximum_lateral_m": 0.7482005456507982,
+        "mean_abs_lateral_m": 0.30283048540963203,
+        "mean_height": 0.9683188665434472,
+        "mean_knees": [
+          0.43990525301220545,
+          0.27473672979671493
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.554
+      ],
+      "condition": "yaw +0.20 rad"
+    },
+    {
+      "seed": 141006,
+      "initial_yaw": 0.2,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6630899390490201,
+      "lateral_m": 0.9321451710553208,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9251600071972026,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281028674636938,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04990896513596153,
+            "contact_fraction": 0.5453333333333333
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05820322639686344,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.038402408503259176,
+            "contact_fraction": 0.5533333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.0292141401474477,
+        "final_yaw": 0.07867828738623671,
+        "recovery_seconds": 0.54,
+        "maximum_lateral_m": 0.9321451710553208,
+        "mean_abs_lateral_m": 0.41294635143931124,
+        "mean_height": 0.9643866460842091,
+        "mean_knees": [
+          0.46263679581056505,
+          0.3129530747969022
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5453333333333333,
+        0.5533333333333333
+      ],
+      "condition": "yaw +0.20 rad"
+    },
+    {
+      "seed": 141007,
+      "initial_yaw": 0.2,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.3634554662195433,
+      "lateral_m": 1.7292165901074796,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9330412357567475,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276363495870217,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03718587764300481,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950425780187755,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.040568127914342916,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.027624789364273723,
+        "final_yaw": 0.05879927094502881,
+        "recovery_seconds": 1.6600000000000001,
+        "maximum_lateral_m": 1.7292165901074796,
+        "mean_abs_lateral_m": 0.7151347527024532,
+        "mean_height": 0.9702069460673911,
+        "mean_knees": [
+          0.4314532378705365,
+          0.2525915153105015
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.5546666666666666
+      ],
+      "condition": "yaw +0.20 rad"
+    },
+    {
+      "seed": 141008,
+      "initial_yaw": 0.2,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5207882859917832,
+      "lateral_m": 0.7454076614106627,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9304554071073798,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344178478537353,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.0430422166369919,
+            "contact_fraction": 0.544
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845358334578648,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.040921164737421814,
+            "contact_fraction": 0.554
+          }
+        ],
+        "mean_abs_yaw": 0.028979246916825976,
+        "final_yaw": 0.07277907303943745,
+        "recovery_seconds": 1.6600000000000001,
+        "maximum_lateral_m": 0.7454076614106627,
+        "mean_abs_lateral_m": 0.3015012840947023,
+        "mean_height": 0.9683082038341417,
+        "mean_knees": [
+          0.440056270486885,
+          0.2747285647916999
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.544,
+        0.554
+      ],
+      "condition": "yaw +0.20 rad"
+    },
+    {
+      "seed": 141009,
+      "initial_yaw": 0.2,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6502860505225518,
+      "lateral_m": 0.9872614803130043,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9250554508696691,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.062342815897750835,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.05504873840571701,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.34,
+            "swing_clearance_median": 0.05935532314792173,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.0469193872465918,
+            "contact_fraction": 0.5726666666666667
+          }
+        ],
+        "mean_abs_yaw": 0.02710020345412418,
+        "final_yaw": 0.07568219337360194,
+        "recovery_seconds": 0.54,
+        "maximum_lateral_m": 0.9872614803130043,
+        "mean_abs_lateral_m": 0.39746994930727897,
+        "mean_height": 0.9623378658863486,
+        "mean_knees": [
+          0.4848355521233822,
+          0.33173770302009786
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.5726666666666667
+      ],
+      "condition": "yaw +0.20 rad"
+    }
+  ],
+  "long_walks": [
+    {
+      "seed": 142001,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 119.99999999990173,
+      "mean_speed": 0.3674856610463028,
+      "lateral_m": 8.215176328835689,
+      "fallen": false,
+      "foot_strikes": [
+        151,
+        151
+      ],
+      "alternations": 301,
+      "minimum_upright": 0.9351166747695696,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276376188667708,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.036648573512309955,
+            "contact_fraction": 0.5498333333333333
+          },
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05950426504571529,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.04049720713533632,
+            "contact_fraction": 0.5496666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.027238581977852665,
+        "final_yaw": -0.07760473219270726,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 8.215176328835689,
+        "mean_abs_lateral_m": 3.9622456994272817,
+        "mean_height": 0.9701138797895269,
+        "mean_knees": [
+          0.4302061492370114,
+          0.2575771430806112
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5498333333333333,
+        0.5496666666666666
+      ]
+    },
+    {
+      "seed": 142002,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 119.99999999990173,
+      "mean_speed": 0.5302762475140131,
+      "lateral_m": 4.047582386032477,
+      "fallen": false,
+      "foot_strikes": [
+        151,
+        152
+      ],
+      "alternations": 301,
+      "minimum_upright": 0.9315519526838651,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344176753910345,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.04230581738512698,
+            "contact_fraction": 0.55
+          },
+          {
+            "complete_swings": 151,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058451150918198615,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.04101759018127454,
+            "contact_fraction": 0.5495
+          }
+        ],
+        "mean_abs_yaw": 0.029010820586068197,
+        "final_yaw": -0.08502188747160785,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 4.047582386032477,
+        "mean_abs_lateral_m": 1.9335725323903967,
+        "mean_height": 0.9685074808444738,
+        "mean_knees": [
+          0.4358709649952688,
+          0.276446860994137
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.55,
+        0.5495
+      ]
+    },
+    {
+      "seed": 142003,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 119.99999999990173,
+      "mean_speed": 0.6829245457722759,
+      "lateral_m": 4.208018060911937,
+      "fallen": false,
+      "foot_strikes": [
+        151,
+        152
+      ],
+      "alternations": 301,
+      "minimum_upright": 0.9279217169999125,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281077844697087,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.04821261822841357,
+            "contact_fraction": 0.5501666666666667
+          },
+          {
+            "complete_swings": 151,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058203165816271545,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.037683903915711525,
+            "contact_fraction": 0.5496666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.029193760403769572,
+        "final_yaw": -0.08488664580501351,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 4.208018060911937,
+        "mean_abs_lateral_m": 2.0215667141842215,
+        "mean_height": 0.9644912973803794,
+        "mean_knees": [
+          0.4593545097039671,
+          0.3138569706972357
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5501666666666667,
+        0.5496666666666666
+      ]
+    },
+    {
+      "seed": 142004,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 119.99999999990173,
+      "mean_speed": 0.3675417343489998,
+      "lateral_m": 8.177056421374012,
+      "fallen": false,
+      "foot_strikes": [
+        151,
+        151
+      ],
+      "alternations": 301,
+      "minimum_upright": 0.9344788772734145,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276375990582357,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.03670233145928823,
+            "contact_fraction": 0.55
+          },
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.059504266008112795,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.04043588658417092,
+            "contact_fraction": 0.5495
+          }
+        ],
+        "mean_abs_yaw": 0.027233507822712263,
+        "final_yaw": -0.07760445134554708,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 8.177056421374012,
+        "mean_abs_lateral_m": 3.9259334623676003,
+        "mean_height": 0.9701125566033415,
+        "mean_knees": [
+          0.4302732705976112,
+          0.2575507617014825
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.55,
+        0.5495
+      ]
+    },
+    {
+      "seed": 142005,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 119.99999999990173,
+      "mean_speed": 0.5304190739591804,
+      "lateral_m": 4.053023522750811,
+      "fallen": false,
+      "foot_strikes": [
+        151,
+        152
+      ],
+      "alternations": 301,
+      "minimum_upright": 0.9336491919184688,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344177103933767,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.0423305605144956,
+            "contact_fraction": 0.5501666666666667
+          },
+          {
+            "complete_swings": 151,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05845114283160469,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.041054475380057756,
+            "contact_fraction": 0.5495
+          }
+        ],
+        "mean_abs_yaw": 0.029008390408494438,
+        "final_yaw": -0.0850220164789731,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 4.053023522750811,
+        "mean_abs_lateral_m": 1.9386664234582571,
+        "mean_height": 0.9685055439437692,
+        "mean_knees": [
+          0.43590442746525726,
+          0.2764462388985044
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5501666666666667,
+        0.5495
+      ]
+    },
+    {
+      "seed": 142006,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 119.99999999990173,
+      "mean_speed": 0.6829932813728178,
+      "lateral_m": 4.2066278000694775,
+      "fallen": false,
+      "foot_strikes": [
+        151,
+        152
+      ],
+      "alternations": 301,
+      "minimum_upright": 0.9280877961402443,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281078759500765,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.048359585767596254,
+            "contact_fraction": 0.5501666666666667
+          },
+          {
+            "complete_swings": 151,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058203169058487915,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.037632596013303904,
+            "contact_fraction": 0.5495
+          }
+        ],
+        "mean_abs_yaw": 0.02921591772704478,
+        "final_yaw": -0.08488960134344153,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 4.2066278000694775,
+        "mean_abs_lateral_m": 2.019930607482868,
+        "mean_height": 0.964499277170271,
+        "mean_knees": [
+          0.4592364960865026,
+          0.31376881268444995
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5501666666666667,
+        0.5495
+      ]
+    },
+    {
+      "seed": 142007,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 119.99999999990173,
+      "mean_speed": 0.36762675402594525,
+      "lateral_m": 8.00656537039682,
+      "fallen": false,
+      "foot_strikes": [
+        151,
+        151
+      ],
+      "alternations": 301,
+      "minimum_upright": 0.933516103064369,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06276375129326381,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.03662852297105849,
+            "contact_fraction": 0.5498333333333333
+          },
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.059504262643446076,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.04048019861836688,
+            "contact_fraction": 0.5498333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.027204572818292888,
+        "final_yaw": -0.07760446983644077,
+        "recovery_seconds": 0.84,
+        "maximum_lateral_m": 8.00656537039682,
+        "mean_abs_lateral_m": 3.7684775796732803,
+        "mean_height": 0.9701045816635833,
+        "mean_knees": [
+          0.4304215605420339,
+          0.2575990920665852
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5498333333333333,
+        0.5498333333333333
+      ]
+    },
+    {
+      "seed": 142008,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 119.99999999990173,
+      "mean_speed": 0.5304418590909402,
+      "lateral_m": 4.081861760992854,
+      "fallen": false,
+      "foot_strikes": [
+        151,
+        152
+      ],
+      "alternations": 301,
+      "minimum_upright": 0.9324556616200437,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06344176342832396,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.04230539654146135,
+            "contact_fraction": 0.55
+          },
+          {
+            "complete_swings": 151,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058451147958574,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.04122606816684348,
+            "contact_fraction": 0.5498333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.02903425732296298,
+        "final_yaw": -0.0850218652785307,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 4.081861760992854,
+        "mean_abs_lateral_m": 1.965855574282814,
+        "mean_height": 0.968507720332342,
+        "mean_knees": [
+          0.43582457432341765,
+          0.2764362590160398
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.55,
+        0.5498333333333333
+      ]
+    },
+    {
+      "seed": 142009,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 119.99999999990173,
+      "mean_speed": 0.6828880421412371,
+      "lateral_m": 4.265148068643814,
+      "fallen": false,
+      "foot_strikes": [
+        151,
+        152
+      ],
+      "alternations": 301,
+      "minimum_upright": 0.9274719795539241,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 150,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06281077821232489,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.04837936169415148,
+            "contact_fraction": 0.5501666666666667
+          },
+          {
+            "complete_swings": 151,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05820316963574192,
+            "qualifying_swings": 150,
+            "qualifying_swings_per_second": 1.25,
+            "support_foot_center_speed": 0.03780209852329199,
+            "contact_fraction": 0.5498333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.02922732138349814,
+        "final_yaw": -0.08488498901500423,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 4.265148068643814,
+        "mean_abs_lateral_m": 2.0753574197072404,
+        "mean_height": 0.9645031489297029,
+        "mean_knees": [
+          0.45914343023694854,
+          0.31372290418426296
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5501666666666667,
+        0.5498333333333333
+      ]
+    }
+  ],
+  "perturbations": [
+    {
+      "seed": 143001,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.3704361726570675,
+      "lateral_m": 0.027310335897103192,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9110124045099883,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06272538503277948,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03932674464009952,
+            "contact_fraction": 0.546
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05951778469922977,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03790255345754829,
+            "contact_fraction": 0.5493333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.027433739557834968,
+        "final_yaw": 0.05878956175738889,
+        "recovery_seconds": 0.8200000000000001,
+        "maximum_lateral_m": 0.814443838386015,
+        "mean_abs_lateral_m": 0.34150958126106024,
+        "mean_height": 0.9697404496846675,
+        "mean_knees": [
+          0.43612655283384816,
+          0.2535695330750454
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.546,
+        0.5493333333333333
+      ]
+    },
+    {
+      "seed": 143002,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5288963096163911,
+      "lateral_m": 0.2870951158685256,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9336393186752281,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06342310497349703,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.042554184138355204,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05846059834602022,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03746741144311263,
+            "contact_fraction": 0.5513333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.028350224673829427,
+        "final_yaw": 0.07266436880396483,
+        "recovery_seconds": 10.46,
+        "maximum_lateral_m": 0.29085014789142855,
+        "mean_abs_lateral_m": 0.12444670556338751,
+        "mean_height": 0.9679677886720107,
+        "mean_knees": [
+          0.4434416675367661,
+          0.27664986629601585
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.5513333333333333
+      ]
+    },
+    {
+      "seed": 143003,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6636886697574484,
+      "lateral_m": 0.3965936586958191,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9277549759194277,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06205056971337067,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04759339584319374,
+            "contact_fraction": 0.534
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05893125265061324,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03951940548462667,
+            "contact_fraction": 0.5566666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.026613736206662922,
+        "final_yaw": 0.0572985450871089,
+        "recovery_seconds": 10.44,
+        "maximum_lateral_m": 0.3982216210725036,
+        "mean_abs_lateral_m": 0.13946356783527264,
+        "mean_height": 0.9616506932167825,
+        "mean_knees": [
+          0.4869023097311908,
+          0.335655676878343
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.534,
+        0.5566666666666666
+      ]
+    },
+    {
+      "seed": 143004,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.3733465287797497,
+      "lateral_m": 0.06906592892629816,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9142286630057295,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06268868596655477,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.039588945286660536,
+            "contact_fraction": 0.5453333333333333
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.059515781971187266,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03799485496948004,
+            "contact_fraction": 0.55
+          }
+        ],
+        "mean_abs_yaw": 0.02725194898779783,
+        "final_yaw": 0.05889687565157667,
+        "recovery_seconds": 10.56,
+        "maximum_lateral_m": 0.8788919047180018,
+        "mean_abs_lateral_m": 0.386292989933799,
+        "mean_height": 0.9696756943574388,
+        "mean_knees": [
+          0.43638361093524886,
+          0.25341968682587623
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5453333333333333,
+        0.55
+      ]
+    },
+    {
+      "seed": 143005,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.53024444869225,
+      "lateral_m": 0.34677791978748734,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.933972657778279,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06342667898004593,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.042427470021789336,
+            "contact_fraction": 0.5446666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05846694296772459,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03834819972095837,
+            "contact_fraction": 0.5533333333333333
+          }
+        ],
+        "mean_abs_yaw": 0.028460457180537684,
+        "final_yaw": 0.0726639981935739,
+        "recovery_seconds": 10.46,
+        "maximum_lateral_m": 0.34677791978748734,
+        "mean_abs_lateral_m": 0.12691571158195256,
+        "mean_height": 0.9679335477413051,
+        "mean_knees": [
+          0.4435223250471006,
+          0.27674934275960067
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5446666666666666,
+        0.5533333333333333
+      ]
+    },
+    {
+      "seed": 143006,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6641432864993558,
+      "lateral_m": 0.3474740991350208,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.929285597531117,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06205542992768329,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.0475165382797569,
+            "contact_fraction": 0.5346666666666666
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.058930490728536,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.039154068157944956,
+            "contact_fraction": 0.556
+          }
+        ],
+        "mean_abs_yaw": 0.0265041144767908,
+        "final_yaw": 0.05729863460532876,
+        "recovery_seconds": 10.44,
+        "maximum_lateral_m": 0.3491021525031723,
+        "mean_abs_lateral_m": 0.11991388254855345,
+        "mean_height": 0.9616235781338978,
+        "mean_knees": [
+          0.487428012078628,
+          0.33594989260301655
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5346666666666666,
+        0.556
+      ]
+    },
+    {
+      "seed": 143007,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.36784025832440276,
+      "lateral_m": 0.2556274231756821,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        38
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9121167499673937,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06271668344360738,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.03961653345974095,
+            "contact_fraction": 0.546
+          },
+          {
+            "complete_swings": 37,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05951693552281118,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03900617054356205,
+            "contact_fraction": 0.55
+          }
+        ],
+        "mean_abs_yaw": 0.027462938263358546,
+        "final_yaw": 0.05878466010107453,
+        "recovery_seconds": 10.540000000000001,
+        "maximum_lateral_m": 0.6167444650692598,
+        "mean_abs_lateral_m": 0.2531885059352238,
+        "mean_height": 0.969791821450645,
+        "mean_knees": [
+          0.43612410579088035,
+          0.2531237205512346
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.546,
+        0.55
+      ]
+    },
+    {
+      "seed": 143008,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.5289664675876861,
+      "lateral_m": 0.3348510596109187,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9318208940458728,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06342113493201154,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.042229075989573844,
+            "contact_fraction": 0.5433333333333333
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05846240479609175,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.0386893150750754,
+            "contact_fraction": 0.5546666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.028529881588786908,
+        "final_yaw": 0.07266358869711097,
+        "recovery_seconds": 10.46,
+        "maximum_lateral_m": 0.3348510596109187,
+        "mean_abs_lateral_m": 0.1255252978492749,
+        "mean_height": 0.9679644137115218,
+        "mean_knees": [
+          0.4431549205485906,
+          0.27660250853005847
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5433333333333333,
+        0.5546666666666666
+      ]
+    },
+    {
+      "seed": 143009,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 29.99999999999425,
+      "mean_speed": 0.6640386347531373,
+      "lateral_m": 0.43016163290975246,
+      "fallen": false,
+      "foot_strikes": [
+        39,
+        39
+      ],
+      "alternations": 76,
+      "minimum_upright": 0.9286117790226474,
+      "criteria": {
+        "survived": true,
+        "speed": true,
+        "alternation": true,
+        "upright": true,
+        "direction": true,
+        "both_feet": true,
+        "swing": true
+      },
+      "success": true,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.06205102960800372,
+            "qualifying_swings": 38,
+            "qualifying_swings_per_second": 1.2666666666666666,
+            "support_foot_center_speed": 0.04719589226735164,
+            "contact_fraction": 0.5333333333333333
+          },
+          {
+            "complete_swings": 38,
+            "swing_seconds_median": 0.36,
+            "swing_clearance_median": 0.05893123283746486,
+            "qualifying_swings": 37,
+            "qualifying_swings_per_second": 1.2333333333333334,
+            "support_foot_center_speed": 0.03953403001378557,
+            "contact_fraction": 0.5566666666666666
+          }
+        ],
+        "mean_abs_yaw": 0.026639315396161125,
+        "final_yaw": 0.057298779540315245,
+        "recovery_seconds": 10.44,
+        "maximum_lateral_m": 0.4317896456289308,
+        "mean_abs_lateral_m": 0.15862427942829901,
+        "mean_height": 0.9616308921612683,
+        "mean_knees": [
+          0.486976207711777,
+          0.33568122456329175
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.5333333333333333,
+        0.5566666666666666
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "seed": 103001,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 0.22000000000000017,
+      "mean_speed": 0.48964577282746746,
+      "lateral_m": 0.036378872079677244,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "minimum_upright": 0.4274695744981247,
+      "criteria": {
+        "survived": false,
+        "speed": true,
+        "alternation": false,
+        "upright": false,
+        "direction": true,
+        "both_feet": false,
+        "swing": false
+      },
+      "success": false,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.9515824351801607,
+            "contact_fraction": 0.18181818181818182
+          },
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.1691344012176045,
+            "contact_fraction": 0.36363636363636365
+          }
+        ],
+        "mean_abs_yaw": 0.06985121291562614,
+        "final_yaw": 0.014315595818305181,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.036378872079677244,
+        "mean_abs_lateral_m": 0.014703651847976777,
+        "mean_height": 0.9882068351909847,
+        "mean_knees": [
+          0.3330692736742491,
+          0.08048732129949678
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.18181818181818182,
+        0.36363636363636365
+      ]
+    },
+    {
+      "seed": 103002,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 0.22000000000000017,
+      "mean_speed": 0.4719127296025976,
+      "lateral_m": 0.03932785275166194,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "minimum_upright": 0.42498506641196565,
+      "criteria": {
+        "survived": false,
+        "speed": true,
+        "alternation": false,
+        "upright": false,
+        "direction": true,
+        "both_feet": false,
+        "swing": false
+      },
+      "success": false,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.952727169949681,
+            "contact_fraction": 0.18181818181818182
+          },
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.16844569847110832,
+            "contact_fraction": 0.36363636363636365
+          }
+        ],
+        "mean_abs_yaw": 0.07174262489546851,
+        "final_yaw": 0.01962350683176836,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.03932785275166194,
+        "mean_abs_lateral_m": 0.014471987464131204,
+        "mean_height": 0.9883144791560489,
+        "mean_knees": [
+          0.3328906531216832,
+          0.08024996363594036
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.18181818181818182,
+        0.36363636363636365
+      ]
+    },
+    {
+      "seed": 103003,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 0.22000000000000017,
+      "mean_speed": 0.5130962244449934,
+      "lateral_m": 0.04437502509890898,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "minimum_upright": 0.43464414560020237,
+      "criteria": {
+        "survived": false,
+        "speed": true,
+        "alternation": false,
+        "upright": false,
+        "direction": true,
+        "both_feet": false,
+        "swing": false
+      },
+      "success": false,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.9587167891613029,
+            "contact_fraction": 0.18181818181818182
+          },
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.16943771003329244,
+            "contact_fraction": 0.36363636363636365
+          }
+        ],
+        "mean_abs_yaw": 0.07434498609103889,
+        "final_yaw": 0.03312984124191172,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.04437502509890898,
+        "mean_abs_lateral_m": 0.014474459475713852,
+        "mean_height": 0.9878154920728118,
+        "mean_knees": [
+          0.3334164572225878,
+          0.08096438473183418
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.18181818181818182,
+        0.36363636363636365
+      ]
+    },
+    {
+      "seed": 103004,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 0.22000000000000017,
+      "mean_speed": 0.4835495624319578,
+      "lateral_m": 0.042807079129825724,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "minimum_upright": 0.4294147442866729,
+      "criteria": {
+        "survived": false,
+        "speed": true,
+        "alternation": false,
+        "upright": false,
+        "direction": true,
+        "both_feet": false,
+        "swing": false
+      },
+      "success": false,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.956044851384302,
+            "contact_fraction": 0.18181818181818182
+          },
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.16857789919314956,
+            "contact_fraction": 0.36363636363636365
+          }
+        ],
+        "mean_abs_yaw": 0.0741267877608323,
+        "final_yaw": 0.03191590332773244,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.042807079129825724,
+        "mean_abs_lateral_m": 0.01433754378711224,
+        "mean_height": 0.987937475003013,
+        "mean_knees": [
+          0.33295870989558246,
+          0.08052549340878308
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.18181818181818182,
+        0.36363636363636365
+      ]
+    },
+    {
+      "seed": 103005,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 0.22000000000000017,
+      "mean_speed": 0.5021549982676801,
+      "lateral_m": 0.036239078028258244,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "minimum_upright": 0.42954829480043144,
+      "criteria": {
+        "survived": false,
+        "speed": true,
+        "alternation": false,
+        "upright": false,
+        "direction": true,
+        "both_feet": false,
+        "swing": false
+      },
+      "success": false,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.9521439425783772,
+            "contact_fraction": 0.18181818181818182
+          },
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.16951993153574144,
+            "contact_fraction": 0.36363636363636365
+          }
+        ],
+        "mean_abs_yaw": 0.06953676233559822,
+        "final_yaw": 0.01364402573502371,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.036239078028258244,
+        "mean_abs_lateral_m": 0.014730313397567174,
+        "mean_height": 0.9881478395358944,
+        "mean_knees": [
+          0.33324356693106866,
+          0.08066977916639298
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.18181818181818182,
+        0.36363636363636365
+      ]
+    },
+    {
+      "seed": 103006,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 0.22000000000000017,
+      "mean_speed": 0.49186944724527626,
+      "lateral_m": 0.040417919036133516,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "minimum_upright": 0.4304247403722028,
+      "criteria": {
+        "survived": false,
+        "speed": false,
+        "alternation": false,
+        "upright": false,
+        "direction": true,
+        "both_feet": false,
+        "swing": false
+      },
+      "success": false,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.9547970045009606,
+            "contact_fraction": 0.18181818181818182
+          },
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.16894973017505036,
+            "contact_fraction": 0.36363636363636365
+          }
+        ],
+        "mean_abs_yaw": 0.07270280286679658,
+        "final_yaw": 0.027772316083455137,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.040417919036133516,
+        "mean_abs_lateral_m": 0.014306593238477338,
+        "mean_height": 0.9878788079714643,
+        "mean_knees": [
+          0.3330189423771413,
+          0.08062949382805863
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.18181818181818182,
+        0.36363636363636365
+      ]
+    },
+    {
+      "seed": 103007,
+      "initial_yaw": 0.0,
+      "target_speed": 0.35,
+      "seconds": 0.22000000000000017,
+      "mean_speed": 0.4906629360340066,
+      "lateral_m": 0.03526276490796363,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "minimum_upright": 0.42744937169077546,
+      "criteria": {
+        "survived": false,
+        "speed": true,
+        "alternation": false,
+        "upright": false,
+        "direction": true,
+        "both_feet": false,
+        "swing": false
+      },
+      "success": false,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.950853358793958,
+            "contact_fraction": 0.18181818181818182
+          },
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.16923090405470087,
+            "contact_fraction": 0.36363636363636365
+          }
+        ],
+        "mean_abs_yaw": 0.06924225031018784,
+        "final_yaw": 0.012507824200335657,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.03526276490796363,
+        "mean_abs_lateral_m": 0.014784030821010968,
+        "mean_height": 0.9881914092029536,
+        "mean_knees": [
+          0.33305675376675503,
+          0.08049377819225985
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.18181818181818182,
+        0.36363636363636365
+      ]
+    },
+    {
+      "seed": 103008,
+      "initial_yaw": 0.0,
+      "target_speed": 0.5,
+      "seconds": 0.22000000000000017,
+      "mean_speed": 0.47452849216493825,
+      "lateral_m": 0.03925623062269955,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "minimum_upright": 0.4254134139600847,
+      "criteria": {
+        "survived": false,
+        "speed": true,
+        "alternation": false,
+        "upright": false,
+        "direction": true,
+        "both_feet": false,
+        "swing": false
+      },
+      "success": false,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.9528124437343167,
+            "contact_fraction": 0.18181818181818182
+          },
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.16852651053285628,
+            "contact_fraction": 0.36363636363636365
+          }
+        ],
+        "mean_abs_yaw": 0.07165228834714438,
+        "final_yaw": 0.019406073630935532,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.03925623062269955,
+        "mean_abs_lateral_m": 0.014480516948197053,
+        "mean_height": 0.9883021071456035,
+        "mean_knees": [
+          0.3329260808504056,
+          0.0802875460938203
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.18181818181818182,
+        0.36363636363636365
+      ]
+    },
+    {
+      "seed": 103009,
+      "initial_yaw": 0.0,
+      "target_speed": 0.65,
+      "seconds": 0.22000000000000017,
+      "mean_speed": 0.49596306111032096,
+      "lateral_m": 0.04242932439992434,
+      "fallen": true,
+      "foot_strikes": [
+        1,
+        1
+      ],
+      "alternations": 1,
+      "minimum_upright": 0.43144262143632317,
+      "criteria": {
+        "survived": false,
+        "speed": false,
+        "alternation": false,
+        "upright": false,
+        "direction": true,
+        "both_feet": false,
+        "swing": false
+      },
+      "success": false,
+      "gait": {
+        "feet": [
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.9564326479870844,
+            "contact_fraction": 0.18181818181818182
+          },
+          {
+            "complete_swings": 0,
+            "swing_seconds_median": null,
+            "swing_clearance_median": null,
+            "qualifying_swings": 0,
+            "qualifying_swings_per_second": 0.0,
+            "support_foot_center_speed": 0.1689790395786059,
+            "contact_fraction": 0.36363636363636365
+          }
+        ],
+        "mean_abs_yaw": 0.07367271934061324,
+        "final_yaw": 0.030783147569916697,
+        "recovery_seconds": null,
+        "maximum_lateral_m": 0.04242932439992434,
+        "mean_abs_lateral_m": 0.014325550227761353,
+        "mean_height": 0.9878777578514847,
+        "mean_knees": [
+          0.3331261244223693,
+          0.080702470249586
+        ],
+        "note": "Qualifying swing screen: >=0.12 s airborne and >=0.025 m minimum-sole clearance; support speed uses sole-geometry centers, not exact contact-point slip. No natural-gait claim."
+      },
+      "contact_fraction": [
+        0.18181818181818182,
+        0.36363636363636365
+      ]
+    }
+  ],
+  "successes": 63,
+  "attempts": 63,
+  "physics_interface_sha256": "9ab78ede40c18864f5724bb914b65542a90a12714ec5f884fd6ad657e56d3d70",
+  "long_lateral_m": 5.473451080000877,
+  "yaw_recovered": 9
+}

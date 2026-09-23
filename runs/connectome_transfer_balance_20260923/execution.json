@@ -1,0 +1,402 @@
+{
+  "completed": true,
+  "jobs": [
+    {
+      "name": "alpha0_5_normal",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_balance_20260923/alpha0_5/last.pt",
+        "--seed-base",
+        "103001",
+        "--output",
+        "runs/connectome_transfer_balance_20260923/alpha0_5_normal.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 52.54812267795205
+    },
+    {
+      "name": "alpha0_5_push",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_balance_20260923/alpha0_5/last.pt",
+        "--seed-base",
+        "114001",
+        "--push",
+        "--cohorts",
+        "1",
+        "--output",
+        "runs/connectome_transfer_balance_20260923/alpha0_5_push.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 20.963746938854456
+    },
+    {
+      "name": "alpha0_5_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_balance_20260923/alpha0_5/last.pt",
+        "--seed-base",
+        "115001",
+        "--seconds",
+        "120",
+        "--cohorts",
+        "1",
+        "--output",
+        "runs/connectome_transfer_balance_20260923/alpha0_5_long.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 67.1696179099381
+    },
+    {
+      "name": "alpha0_25_normal",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_balance_20260923/alpha0_25/last.pt",
+        "--seed-base",
+        "103001",
+        "--output",
+        "runs/connectome_transfer_balance_20260923/alpha0_25_normal.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 51.98653066158295
+    },
+    {
+      "name": "alpha0_25_push",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_balance_20260923/alpha0_25/last.pt",
+        "--seed-base",
+        "114001",
+        "--push",
+        "--cohorts",
+        "1",
+        "--output",
+        "runs/connectome_transfer_balance_20260923/alpha0_25_push.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 20.665005929768085
+    },
+    {
+      "name": "alpha0_25_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_balance_20260923/alpha0_25/last.pt",
+        "--seed-base",
+        "115001",
+        "--seconds",
+        "120",
+        "--cohorts",
+        "1",
+        "--output",
+        "runs/connectome_transfer_balance_20260923/alpha0_25_long.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 68.26208810135722
+    },
+    {
+      "name": "alpha0_75_normal",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_balance_20260923/alpha0_75/last.pt",
+        "--seed-base",
+        "103001",
+        "--output",
+        "runs/connectome_transfer_balance_20260923/alpha0_75_normal.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 51.88803043961525
+    },
+    {
+      "name": "alpha0_75_push",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_balance_20260923/alpha0_75/last.pt",
+        "--seed-base",
+        "114001",
+        "--push",
+        "--cohorts",
+        "1",
+        "--output",
+        "runs/connectome_transfer_balance_20260923/alpha0_75_push.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 20.96695686876774
+    },
+    {
+      "name": "alpha0_75_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/connectome-transfer-push-20260923/.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_locomotion",
+        "--checkpoints",
+        "runs/connectome_transfer_balance_20260923/alpha0_75/last.pt",
+        "--seed-base",
+        "115001",
+        "--seconds",
+        "120",
+        "--cohorts",
+        "1",
+        "--output",
+        "runs/connectome_transfer_balance_20260923/alpha0_75_long.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 67.46291867643595
+    }
+  ],
+  "development": [
+    {
+      "alpha": 0.5,
+      "normal": {
+        "strict": 25,
+        "falls": 0,
+        "summary": {
+          "episodes": 27,
+          "successes": 25,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 25
+          },
+          "lateral_m": 1.1685350401075365,
+          "maximum_lateral_mean": 1.1685350401075365,
+          "mean_abs_yaw": 0.028750986975690323,
+          "mean_height": 0.9676945931560679,
+          "speed_mae": 0.02793344689879519,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "push": {
+        "strict": 9,
+        "falls": 0,
+        "summary": {
+          "episodes": 9,
+          "successes": 9,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 9,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 9,
+            "direction": 9
+          },
+          "lateral_m": 0.3113879654964849,
+          "maximum_lateral_mean": 0.544529831683805,
+          "mean_abs_yaw": 0.028187913612513507,
+          "mean_height": 0.9667709534688225,
+          "speed_mae": 0.03049104480574347,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "long": {
+        "strict": 6,
+        "falls": 0,
+        "summary": {
+          "episodes": 9,
+          "successes": 6,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 9,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 9,
+            "direction": 6
+          },
+          "lateral_m": 5.318779661581127,
+          "maximum_lateral_mean": 5.318779661581127,
+          "mean_abs_yaw": 0.028686373500488933,
+          "mean_height": 0.9678154596833723,
+          "speed_mae": 0.0322091559228708,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "passed": false
+    },
+    {
+      "alpha": 0.25,
+      "normal": {
+        "strict": 27,
+        "falls": 0,
+        "summary": {
+          "episodes": 27,
+          "successes": 27,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 27
+          },
+          "lateral_m": 1.0770257291325562,
+          "maximum_lateral_mean": 1.0770257291325562,
+          "mean_abs_yaw": 0.028760773122629542,
+          "mean_height": 0.9677200642978905,
+          "speed_mae": 0.030378190385115713,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "push": {
+        "strict": 7,
+        "falls": 2,
+        "summary": {
+          "episodes": 9,
+          "successes": 7,
+          "falls": 2,
+          "criteria_passes": {
+            "survived": 7,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 7,
+            "direction": 9
+          },
+          "lateral_m": 0.5379475793946619,
+          "maximum_lateral_mean": 0.6956528831578223,
+          "mean_abs_yaw": 0.030519657725251823,
+          "mean_height": 0.9650660310830111,
+          "speed_mae": 0.03835818936510348,
+          "qualifying_swings_per_second": 1.2424512049152934
+        }
+      },
+      "long": {
+        "strict": 6,
+        "falls": 0,
+        "summary": {
+          "episodes": 9,
+          "successes": 6,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 9,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 9,
+            "direction": 6
+          },
+          "lateral_m": 4.901929107852944,
+          "maximum_lateral_mean": 4.901929107852944,
+          "mean_abs_yaw": 0.028698853416473023,
+          "mean_height": 0.967856566343505,
+          "speed_mae": 0.035018999837819004,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "passed": false
+    },
+    {
+      "alpha": 0.75,
+      "normal": {
+        "strict": 24,
+        "falls": 0,
+        "summary": {
+          "episodes": 27,
+          "successes": 24,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 27,
+            "speed": 27,
+            "feet": 27,
+            "alternation": 27,
+            "upright": 27,
+            "direction": 24
+          },
+          "lateral_m": 1.2236864256403643,
+          "maximum_lateral_mean": 1.2236864256403643,
+          "mean_abs_yaw": 0.02866867590349616,
+          "mean_height": 0.9676994127671116,
+          "speed_mae": 0.027078276684640048,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "push": {
+        "strict": 9,
+        "falls": 0,
+        "summary": {
+          "episodes": 9,
+          "successes": 9,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 9,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 9,
+            "direction": 9
+          },
+          "lateral_m": 0.4407967650934678,
+          "maximum_lateral_mean": 0.5465638842366198,
+          "mean_abs_yaw": 0.027244334765702188,
+          "mean_height": 0.9663525934309871,
+          "speed_mae": 0.022582389360588966,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "long": {
+        "strict": 6,
+        "falls": 0,
+        "summary": {
+          "episodes": 9,
+          "successes": 6,
+          "falls": 0,
+          "criteria_passes": {
+            "survived": 9,
+            "speed": 9,
+            "feet": 9,
+            "alternation": 9,
+            "upright": 9,
+            "direction": 6
+          },
+          "lateral_m": 5.725532454556109,
+          "maximum_lateral_mean": 5.725532454556109,
+          "mean_abs_yaw": 0.028596897375177226,
+          "mean_height": 0.9677962223794813,
+          "speed_mae": 0.03158760059740527,
+          "qualifying_swings_per_second": 1.25
+        }
+      },
+      "passed": false
+    }
+  ],
+  "started_utc": "2026-09-23T05:54:57.085108+00:00",
+  "finished_utc": "2026-09-23T06:02:14.986534+00:00"
+}

@@ -1,0 +1,60 @@
+{
+  "stages": [
+    {
+      "old": "mlp_seed2026",
+      "phase_support": "support_seed2026",
+      "configuration_differences": {
+        "gait_reward": [
+          null,
+          "phase_support"
+        ],
+        "runs_dir": [
+          "runs/yumi_route_20260923/mlp_seed2026",
+          "runs/yumi_route_20260923/support_seed2026"
+        ]
+      },
+      "normalization_equal": true,
+      "iterations": 400,
+      "training_transitions": 13107200,
+      "training_json_sha256": [
+        "6eaedef2e8bfb86490f7c2dcb93b480284213c951ca08f31c3fbe9e84fd348ea",
+        "48144dad65a792e8a62107d12180e744a364da96c9a6d074c5ae99549d8caf2e"
+      ]
+    },
+    {
+      "old": "old_reward_extend1024",
+      "phase_support": "support_extend1024",
+      "configuration_differences": {
+        "resume": [
+          "../route-20260923/runs/yumi_route_20260923/mlp_seed2026/last.pt",
+          "runs/yumi_route_20260923/support_seed2026/last.pt"
+        ],
+        "gait_reward": [
+          "none",
+          "phase_support"
+        ],
+        "runs_dir": [
+          "runs/yumi_route_20260923/old_reward_extend1024",
+          "runs/yumi_route_20260923/support_extend1024"
+        ]
+      },
+      "normalization_equal": true,
+      "iterations": 400,
+      "training_transitions": 52428800,
+      "training_json_sha256": [
+        "af7ab8862e7357c1b7a554e0d7cb3a1cde5254d89bd3149df1d305a66def6e89",
+        "624e22aab3cfdd8f666c08559c58146a537ba7486fbce63336e6b1f6fe147c4d"
+      ]
+    }
+  ],
+  "limitations": [
+    "Different reward produces different sampled trajectories and Adam state.",
+    "Ordinary CUDA training is not promised bitwise deterministic."
+  ],
+  "unchanged_implementations": {
+    "mlp_policy.py": true,
+    "recovery_curriculum.py": true,
+    "gpu_body.py": true
+  },
+  "total_transitions_each": 65536000
+}

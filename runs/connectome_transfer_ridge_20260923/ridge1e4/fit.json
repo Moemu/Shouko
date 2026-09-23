@@ -1,0 +1,48 @@
+{
+  "completed": true,
+  "ridge": 0.0001,
+  "reference": "runs/connectome_transfer_push_20260923/push2",
+  "reference_fit_sha256": "c5cbe30582f3a000a665cd19f6222a37b3235c8ac42b1fd7ea6eedc16e3fb962",
+  "feature_cache_sha256": "fc4c7a8c3899106fcfcb1e9745a19ce56afcc339c77abd775c1c889b3a9c912f",
+  "data_sha256": {
+    "runs/prior/train.pt": "56ec05050e1c0b1748668fb31290f894d00b8e1d0a7aa6fe25e58a696da89998",
+    "runs/prior/dagger1.pt": "2398e87fc80eb7e32831bf191b7cd5801a6e366703d007acb14b199e278f81a8",
+    "runs/prior/dagger2.pt": "c819821851acddefb61593e63e3e0f58756ea9f0adb8857ca6fd29bf3ef2c785",
+    "runs/prior/dagger3.pt": "252b3ccbf3e620c958a771d17f927baf2f65ed70c3635a73c8ae2435928fe4f3",
+    "runs/connectome_transfer_push_20260923/push1.pt": "1c526c0a9646c7edd426d9511dba83e47c9df3875c9eb3e8c7c518b2063017e3",
+    "runs/connectome_transfer_push_20260923/push2.pt": "76c073a4e700b6bf18500631ee9200bda8cd0414e55309509269a59bdc25305a",
+    "runs/prior/validation.pt": "cc619568a3e1cd86d311d49e5574e739a941e9be1e936654ec5d5c3383a65f7a"
+  },
+  "checkpoint_sha256": "f1a200718ebfec845cbf9c02ba743e937ea94c747fba53e7b12dfd12f8d3e1f9",
+  "eigenvalue_quantiles": [
+    2.4715481776644183e-13,
+    3.5092914708618645e-05,
+    0.00020292576441761266,
+    0.0039359321373162726,
+    0.23027636064087117,
+    16.866140738559643,
+    281.71918241491016
+  ],
+  "eigenvalues_above_ridge": 776,
+  "readout_weight_norm": 88.87859344482422,
+  "training": {
+    "mse": 0.006906640989097955,
+    "executed_mse": 0.006905246841966487,
+    "per_command": {
+      "0.35": 0.009167349883868147,
+      "0.5": 0.005098387404647373,
+      "0.65": 0.0069372418671317364
+    }
+  },
+  "validation": {
+    "mse": 0.0008917024755873573,
+    "executed_mse": 0.0008917024755873573,
+    "per_command": {
+      "0.35": 0.0007787343979729831,
+      "0.5": 0.000663504063769331,
+      "0.65": 0.0012328689650197573
+    }
+  },
+  "wall_seconds": 2.671992551535368,
+  "method": "No new observations, labels, graph features, normalization or physics."
+}

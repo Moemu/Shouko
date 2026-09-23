@@ -1,0 +1,66 @@
+{
+  "verified": [
+    {
+      "fit": "runs/connectome_transfer_push_20260923/push1/fit.json",
+      "checkpoint_sha256": "c4c2ff840e754c618a693b8d7974d86516172ee1f7448ea0fa62ea12f1a90644",
+      "source_checkpoint_sha256": "d69567c552f0e74ae8c46dedfb897ca7e7fd4fc40c35f6b90f1b723b5095b916",
+      "samples": 34268,
+      "student_sampling_chain_verified": true,
+      "data_hashes_verified": true,
+      "train_validation_disjoint": true,
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "teacher_clip_fraction": 0.0,
+      "raw_executed_target_mse": 0.0
+    },
+    {
+      "fit": "runs/connectome_transfer_push_20260923/push2/fit.json",
+      "checkpoint_sha256": "27ee61e31d6930f3c3de7a05794836e0bec08276c5ed05741637694eb46748d8",
+      "source_checkpoint_sha256": "c4c2ff840e754c618a693b8d7974d86516172ee1f7448ea0fa62ea12f1a90644",
+      "samples": 36312,
+      "student_sampling_chain_verified": true,
+      "data_hashes_verified": true,
+      "train_validation_disjoint": true,
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "teacher_clip_fraction": 0.0,
+      "raw_executed_target_mse": 0.0
+    },
+    {
+      "fit": "runs/connectome_transfer_push_20260923/replica_push1/fit.json",
+      "checkpoint_sha256": "14fd8887a8d092cb53bc4f1f4610bc47c9be1e054b22c8251985aee5f2c6f6ed",
+      "source_checkpoint_sha256": "57a4c03e6365105dc604001849f07e3a75323b59a5b9eb9b2822ee94a587d0fe",
+      "samples": 40500,
+      "student_sampling_chain_verified": true,
+      "data_hashes_verified": true,
+      "train_validation_disjoint": true,
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "teacher_clip_fraction": 0.0,
+      "raw_executed_target_mse": 0.0
+    },
+    {
+      "fit": "runs/connectome_transfer_push_20260923/replica_push2/fit.json",
+      "checkpoint_sha256": "ed08f54ed3a34454fdc8de99647fe5b0959801dd8def0d17ce9a8a0db40b3100",
+      "source_checkpoint_sha256": "14fd8887a8d092cb53bc4f1f4610bc47c9be1e054b22c8251985aee5f2c6f6ed",
+      "samples": 32435,
+      "student_sampling_chain_verified": true,
+      "data_hashes_verified": true,
+      "train_validation_disjoint": true,
+      "changed_keys": [
+        "readout.weight",
+        "readout.bias"
+      ],
+      "teacher_clip_fraction": 0.0,
+      "raw_executed_target_mse": 0.0
+    }
+  ],
+  "source_frozen_except_readout": true,
+  "teacher_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1"
+}

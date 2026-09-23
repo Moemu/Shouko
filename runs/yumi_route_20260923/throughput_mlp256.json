@@ -1,0 +1,21 @@
+{
+  "worlds": 256,
+  "collection": [
+    {
+      "seconds": 0.6786300167441368,
+      "samples_per_second": 48285.51521668763
+    },
+    {
+      "seconds": 0.6844428144395351,
+      "samples_per_second": 47875.438690714436
+    },
+    {
+      "seconds": 0.6892030797898769,
+      "samples_per_second": 47544.767225924545
+    }
+  ],
+  "mean_samples_per_second": 47901.9070444422,
+  "checkpoint_sha256": "57ea1db182b225c93022e64f7b27bc8f66a48cf530adbe79c0acd3c35d3e0fe6",
+  "limitation": "Collection only; excludes reward/critic/optimizer. No weights are updated.",
+  "memory_used_gib": 0.53143310546875
+}
