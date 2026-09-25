@@ -81,11 +81,18 @@ class ServePreviewTest(unittest.TestCase):
             self.assertNotIn(b'neuromechfly', body)
 
     @unittest.skipUnless(PACKAGE_META.is_file(), 'run the exporter first')
-    def test_manifest_is_not_cached(self):
+    def test_fixed_names_revalidate_while_hashed_ones_do_not(self):
+        """The package carries both kinds of name. Fixed names keep their name while
+        their content changes on re-export, so caching them hard would pair a fresh
+        manifest and fresh tensors with a stale physics interface."""
         status, headers, _ = self.fetch('/artifacts/preview/meta.json')
         self.assertEqual(status, 200)
-        self.assertEqual(headers['Cache-Control'], 'no-cache')
         self.assertEqual(headers['Content-Type'], 'application/json; charset=utf-8')
+        for name in ('meta.json', 'body_config.json', 'scene.xml', 'yumi.xml'):
+            _, headers, _ = self.fetch('/artifacts/preview/' + name)
+            self.assertEqual(headers['Cache-Control'], 'no-cache', f'{name} must revalidate')
+        _, headers, _ = self.fetch('/artifacts/preview/' + self.package_files()['ptr']['path'])
+        self.assertEqual(headers['Cache-Control'], 'public, max-age=31536000, immutable')
 
     @unittest.skipUnless(PACKAGE_META.is_file(), 'run the exporter first')
     def test_wasm_and_binary_types(self):

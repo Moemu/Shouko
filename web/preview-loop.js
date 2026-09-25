@@ -3,7 +3,10 @@
 // (speed/yaw/push/lesion/reset) and automatic slow-motion when inference plus
 // physics exceed the real-time budget. Mirrors the app/studio_server.py loop.
 
-const CONTROL_MS = 20;
+// Fallback only. The real control period comes from the checkpoint's own interface
+// (simulation_dt x control_decimation) so that a re-export with a different
+// decimation cannot silently desync the browser loop from the server's semantics.
+const DEFAULT_CONTROL_MS = 20;
 const YAW_GAIN = 1.4;
 const YAW_CLAMP = 0.2;
 
@@ -13,6 +16,9 @@ export class PreviewLoop {
   constructor({brain, body, initialQvel, speed = 0.5, yaw = 0}) {
     this.brain = brain;
     this.body = body;
+    // Take the control period from the body contract rather than a second copy of it.
+    const contract = body && body.cfg;
+    this.controlMs = contract ? contract.simulation_dt * contract.control_decimation * 1000 : DEFAULT_CONTROL_MS;
     this.initialQvel = initialQvel;
     this.speed = speed;
     this.yaw = yaw;
@@ -97,9 +103,9 @@ export class PreviewLoop {
         }
       }
       const wall = performance.now() - t0;
-      this.rtf = this.running ? CONTROL_MS / Math.max(wall, CONTROL_MS) : 0;
+      this.rtf = this.running ? this.controlMs / Math.max(wall, this.controlMs) : 0;
       this._emit();
-      const wait = CONTROL_MS - (performance.now() - t0);
+      const wait = this.controlMs - (performance.now() - t0);
       // Over budget: yield a fixed slice so rendering and input stay responsive
       // instead of saturating the main thread with back-to-back ticks.
       await new Promise((resolve) => setTimeout(resolve, wait < 0 ? 6 : Math.max(0, wait)));

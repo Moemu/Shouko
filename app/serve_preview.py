@@ -47,8 +47,15 @@ MIME = {'.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
 RANGE = re.compile(r'^bytes=(\d*)-(\d*)$')
 
 
+# These carry a stable name but their content changes when the package is
+# re-exported, so they must revalidate. Only content-addressed files can be cached
+# hard: caching body_config.json for a year would pair a fresh manifest and fresh
+# tensors with a stale physics interface.
+FIXED_NAMES = {'meta.json', 'body_config.json', 'scene.xml', 'yumi.xml'}
+
+
 def cache_control(relative, in_package):
-    if in_package and relative == 'meta.json':
+    if in_package and Path(relative).name in FIXED_NAMES:
         return 'no-cache'
     if in_package or relative.startswith('assets/'):
         return 'public, max-age=31536000, immutable'

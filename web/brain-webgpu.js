@@ -130,6 +130,12 @@ export async function checkSupport() {
   if (adapter.limits.maxStorageBuffersPerShaderStage < 6) {
     return {supported: false, reason: 'storage_buffer_limit', limit: adapter.limits.maxStorageBuffersPerShaderStage};
   }
+  // The SpMV dispatch saturates this dimension exactly, so a device reporting less
+  // would reject it; refuse early with a readable reason instead of failing inside
+  // pipeline creation.
+  if (adapter.limits.maxComputeWorkgroupsPerDimension < STRIDE) {
+    return {supported: false, reason: 'workgroup_limit', limit: adapter.limits.maxComputeWorkgroupsPerDimension};
+  }
   return {
     supported: true,
     requiredLimits: {
@@ -143,6 +149,9 @@ export async function checkSupport() {
 export class ConnectomeBrain {
   static async load(baseUrl, {progress, concurrency = 4, support} = {}) {
     const report = (stage, done, total) => progress && progress(stage, done, total);
+    // Every package path resolves against this base, so it must end in a slash.
+    // A deployer who omits it would otherwise silently resolve one directory up.
+    if (!baseUrl.pathname.endsWith('/')) baseUrl = new URL(baseUrl.pathname + '/', baseUrl);
     report('meta');
     const meta = await (await fetch(new URL('meta.json', baseUrl))).json();
     const keys = Object.keys(meta.files);

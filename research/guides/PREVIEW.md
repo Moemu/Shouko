@@ -41,7 +41,7 @@ npm test                                        # 包契约、证据绑定、页
 | 三个 chunk + CSS + 报告 | 0.9 MiB | 构建输出 |
 | **合计** | **235 MiB** | 首次访问；权重包本身 22 个文件共 210.0 MiB |
 
-包内 21 个文件**内容寻址**（如 `values.350ad897.bin`），因此可以长缓存；`meta.json` 是固定名的清单，不缓存。回访者第二次进入只取 `meta.json` 与 HTML，其余全部命中缓存。
+包内 18 个文件**内容寻址**（另外 4 个是固定名：meta.json / body_config.json / scene.xml / yumi.xml，它们换检查点后内容会变而名字不变，必须重新验证——见附录）（如 `values.350ad897.bin`），因此可以长缓存；`meta.json` 是固定名的清单，不缓存。回访者第二次进入只取 `meta.json` 与 HTML，其余全部命中缓存。
 
 **这是首次访问的量。** 传输压缩后的实际大小未实测（见 §5）。
 
@@ -52,7 +52,7 @@ npm test                                        # 包契约、证据绑定、页
 ```
 <root>/index.html        ← 由 dist/preview.html 发布而来（见下）
 <root>/assets/  favicon.png  yumi.vrm
-<root>/artifacts/preview/<meta.json + 21 个内容寻址文件>
+<root>/artifacts/preview/<18 个内容寻址文件 + 4 个固定名文件>
 ```
 
 两点必须说明：
@@ -277,7 +277,7 @@ PY
 
 - **首次访问约 235 MiB**，跨境链路上这是体验的主要成本；回访由长缓存归零。
 - **权重包按未压缩传输。** CF 对 `.bin` 不压缩（§5），而唯一能拿到压缩的灰云直连又会暴露源站，因此访客要下完整的约 195 MiB。这是**有意接受的取舍**，不是遗漏。
-- **主机的磁盘余量是硬约束。** 实测部署机根分区 30G 用了 **88%，仅余 3.6G**。站点约 26 MiB + 权重包 210 MiB 之后余量本就不多，因此：**不要保留多份修订**（每份 210 MiB），§5 的预压缩额外磁盘（约 120–255 MiB）也要按实际余量决定是否做。
+- **主机的磁盘余量是硬约束。** 实测部署机根分区 30G 用了 **88%，仅余约 4 GiB**。站点约 26 MiB + 权重包 210 MiB 之后余量本就不多，因此：**不要保留多份修订**（每份 210 MiB），预压缩那 95.2 MiB 已按 §5 的决定回收。
 - **算力在访客机器上**：「服务端无 GPU」不等于「不需要 GPU」。WebGPU 推理在 RTX 4070 Laptop 上实测均值 7.54 ms / p99 14.7 ms（来源 `bench_webgpu/`，2026-09-23 提案引用）；核显设备会落到页面自带的「慢放 ×N」。手机上既有下载量也有显存问题，建议直接提示。
 - **Safari 的 WebGPU 支持情况未核实**，上线前应查当前版本。
 - **fp16 量化已推迟**：不是精度不够（实测往返 maxAbs 4.77e-4），而是同一个 `checkpoint_sha256` 不能同时标签两份不同字节的包。改走未来的模型/版本切换器，每个变体自带身份与等价性证据。
@@ -309,7 +309,7 @@ PY
 
 ```yaml
 # compose.yaml 中 caddy 服务的挂载。注意挂的是**目录**而不是单个文件——
-# 原因见下方"两个坑"第 2 条，本机就是踩过之后才改成这样的。
+# 原因见下方"三个坑"第 2 条，本机就是踩过之后才改成这样的。
     volumes:
       - ./caddy:/etc/caddy:ro              # 目录里放 Caddyfile
       - ./preview:/srv/preview:ro          # 站点根，推送目标就是它
@@ -322,18 +322,17 @@ PY
 <预览子域> {
     root * /srv/preview
 
-    # 小文本实时压；大文件走预压缩产物（见 §5）
+    # 小文本实时压。大文件不做传输压缩（§5 的决定），所以不启用 precompressed。
     encode zstd gzip
-    file_server {
-        precompressed zstd gzip
-    }
+    file_server
 
-    # 内容寻址：改名即失效，可以长缓存。
-    # 用 not 把清单排除在外，这样两条规则不重叠，不依赖指令求值顺序。
-    @manifest path /artifacts/preview/meta.json
-    header @manifest Cache-Control "no-cache"
+    # 内容寻址的文件改名即失效，可以长缓存；固定名的四个（meta.json /
+    # body_config.json / scene.xml / yumi.xml）内容会变而名字不变，必须重新验证，
+    # 否则换检查点后会出现「新清单 + 新张量 + 旧物理接口」。两条规则不重叠，不依赖顺序。
+    @fixed path /artifacts/preview/meta.json /artifacts/preview/body_config.json /artifacts/preview/scene.xml /artifacts/preview/yumi.xml
+    header @fixed Cache-Control "no-cache"
     @immutable {
-        not path /artifacts/preview/meta.json
+        not path /artifacts/preview/meta.json /artifacts/preview/body_config.json /artifacts/preview/scene.xml /artifacts/preview/yumi.xml
         path /assets/* /artifacts/preview/*
     }
     header @immutable Cache-Control "public, max-age=31536000, immutable"
@@ -366,7 +365,7 @@ docker compose exec caddy wget -qO- http://127.0.0.1:2019/config/ | grep -o '<�
 
 之后换检查点、换权重包、改页面都只往 `/srv/preview` 对应的宿主目录写文件，**不需要重启或重载任何容器**：`file_server` 每次从磁盘读。
 
-### 改这个文件时的两个坑（都真实踩到过）
+### 改这个文件时的三个坑（都真实踩到过）
 
 1. **`--address 127.0.0.1:2019` 不能省。** `caddy reload` 默认连 `localhost:2019`，而容器内 `localhost` 会先解析到 `::1`，Caddy 的管理端点只监听 `127.0.0.1` → 连接被拒。此时 reload 仍会打印"adapted config to JSON"然后失败，**极易误判为成功**。
 2. **不要挂单个文件，要挂目录。** 挂 `./Caddyfile:/etc/caddy/Caddyfile` 时 Docker 钉住的是**当时那个 inode**；若文件之后被"写临时文件再改名"的方式替换（某些编辑器和 `cp`/`mv` 的写法），容器里看到的仍是旧 inode 的旧内容，**表现为宿主文件明明改了、`reload` 也返回 0，但配置没生效**。本机实测遇到过宿主 inode `569801` 与容器内 `567954` 不一致、reload 返回 0 却加载旧内容的状况。
@@ -383,7 +382,7 @@ docker compose exec caddy wget -qO- http://127.0.0.1:2019/config/ | grep -o '<�
 
 1. **两条 `header` 不要写成互相重叠的路径。** 重叠时哪条生效取决于版本与求值顺序，是个隐蔽的坑；上面用 `@immutable` 里的 `not path ...` 把清单排除掉，规则互不重叠，就不依赖顺序了。
 2. `file_server` 没有 nginx 的 `index` 覆盖选项，所以 §3 用「把 `preview.html` 发布成 `index.html`」来满足 `/`，而不是依赖 `try_files`（后者需要 Caddy ≥ 2.8）。
-3. `precompressed` 与 `not` 形式的 matcher 需要较新的 Caddy 2.x；部署前用 `caddy version` 与上面的 `caddy validate` 各自确认一次。
+3. `not` 形式的 matcher 需要较新的 Caddy 2.x（若将来按 §5 启用压缩，还要 `precompressed`）；部署前用 `caddy version` 与 `caddy validate` 各自确认一次。注意 `caddy validate` **不接受** `--address`，而 `caddy reload` 需要它。
 4. **加载后实测一次响应头**，确认压缩与缓存真的按预期生效：
 
 ```bash
@@ -392,7 +391,14 @@ curl -sI --compressed https://<预览子域>/artifacts/preview/values.350ad897.b
 curl -sI https://<预览子域>/artifacts/preview/meta.json | grep -i cache-control
 ```
 
-第一条应看到 `content-encoding: zstd`（或 `gzip`）与 `vary: Accept-Encoding`；第二条应看到预压缩的编码；第三条应是 `no-cache`。**若第一条没有 `vary`，先别接 CDN。**
+第一条应看到 `content-encoding: gzip`（或 `zstd`，取决于 Caddy 的 `encode`）与 `vary: Accept-Encoding`；**第二条是 `.bin`，按 §5 的决定应看到 `cache-control: immutable` 且没有 `content-encoding`**；第三条应是 `no-cache`。**若第一条没有 `vary`，先别接 CDN。**
+再补一条现在最要紧的检查（换检查点后会直接咬人）：
+
+```bash
+for f in meta.json body_config.json scene.xml yumi.xml; do
+  curl -sI "https://<预览子域>/artifacts/preview/$f" | grep -i 'cache-control'
+done      # 四个固定名都必须是 no-cache
+```
 
 ## 来源
 

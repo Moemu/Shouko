@@ -24,6 +24,9 @@ function toast(message) { $('toast').textContent = message; $('toast').classList
 // can point the page at the published copy without rebuilding it.
 const setting = (name, fallback) => document.querySelector(`meta[name="${name}"]`)?.content || fallback;
 const PACKAGE = new URL(setting('preview-package', '/artifacts/preview/'), document.baseURI);
+// Trailing slash matters: the package paths and the meta tag are resolved against
+// this, so a deployer who omits it would silently look one directory up.
+if (!PACKAGE.pathname.endsWith('/')) PACKAGE.pathname += '/';
 const VRM_URL = setting('preview-vrm', '/yumi.vrm');
 
 applyStatic();
@@ -48,7 +51,12 @@ let activeView = 'studio', packageMeta = null, evidenceRequested = false;
 function loadEvidence() {
   if (!packageMeta || evidenceRequested) return;
   evidenceRequested = true;
-  fetch(new URL(packageMeta.evaluation.path, PACKAGE)).then((response) => response.json()).then((record) => {
+  fetch(new URL(packageMeta.evaluation.path, PACKAGE)).then((response) => {
+    // The package declares this file, so a missing one means a broken deploy — say
+    // so rather than letting JSON parsing fail on an error page.
+    if (!response.ok) throw new Error(`evidence unavailable (${response.status})`);
+    return response.json();
+  }).then((record) => {
     if (record.checkpoint_sha256 !== packageMeta.checkpoint_sha256) {
       evaluationView.setEvaluationState('failed', t('results.mismatch'));
       return;

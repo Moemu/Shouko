@@ -30,6 +30,8 @@ artifacts/
 
 # 基准测试的二进制夹具与第三方构建产物：脚本与结果入库，二进制不入库
 bench_webgpu/fixtures/
+# 由 shot_probe.mjs 生成的可再生输出，不是测量结果本身
+bench_webgpu/preview_fixed.png
 bench_mujoco/public/mujoco.js
 bench_mujoco/public/mujoco.wasm
 

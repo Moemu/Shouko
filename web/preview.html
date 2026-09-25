@@ -46,7 +46,9 @@
           <div class="panel-head stage-head"><div><span class="dot mint"></span><strong data-i18n="stage.title">身体实验场</strong><span class="quiet" data-i18n="stage.sub">BODY SIMULATION</span></div></div>
           <div id="viewport"><div class="loading" id="modelLoading"><span class="loader"></span><span data-i18n="stage.loading">载入 3D 角色…</span></div><div class="stage-overlay" id="stageOverlay" hidden></div></div>
           <div class="stage-label"><span class="pill" id="liveBadge"><i></i><span data-i18n="stage.live">实时物理仿真</span></span><span class="pill slow" id="slowBadge" hidden><span id="slowLabel"></span></span></div>
-          <div class="stage-info"><div class="avatar-name">Hikari <span>ひかり</span></div><p id="stageMeta" data-i18n="stage.meta">VRM 角色 · G1 物理代理 · 12 主动关节</p><p id="avatarCredit" title="VRM 许可要求的角色署名" data-i18n-attr="title:stage.credit.hint">pixiv Inc.</p></div>
+          <!-- 静态文案必须是 Yumi：首访要下载约 235 MiB，在那之前用户看到的就是这一段，
+               之前写成 Hikari 与 pixiv 署名，要等 boot 完成后才被覆盖。 -->
+          <div class="stage-info"><div class="avatar-name">Yumi <span>ゆみ</span></div><p id="stageMeta" data-i18n="stage.meta">VRM 角色 · Yumi 物理身体 · 12 主动关节</p><p id="avatarCredit" title="VRM 许可要求的角色署名" data-i18n-attr="title:stage.credit.hint">原设：松酒 · 画师：7Apoi · 模型：星晨水影工作室 · 发布：墨海徽</p></div>
           <div class="scene-tools"><button id="cameraReset" title="重置镜头" data-i18n-attr="title:scene.reset,aria-label:scene.reset" aria-label="重置镜头">⌾</button><button id="pushButton" title="侧向轻推，测试恢复" data-i18n-attr="title:scene.push,aria-label:scene.push" aria-label="侧向轻推，测试恢复">↝</button></div>
           <div class="stage-footer"><span id="rtf">— ×</span><span id="actualHeading">—</span><span data-i18n="stage.drag">拖动旋转 · 滚轮缩放</span></div>
         </section>
