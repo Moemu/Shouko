@@ -181,6 +181,7 @@ const zh = {
   'results.json': '下载原始评估 JSON',
   'results.pending': '评估尚未完成',
   'results.failed': '评估数据读取失败，请稍后重试。',
+  'results.mismatch': '本页携带的评估数据不属于当前检查点，已拒绝显示。',
   'results.summary.walk': '独立行走测试通过',
   'results.summary.hold': '每个回合持续行走',
   'results.summary.elapsed': '训练与评估总耗时',
@@ -379,6 +380,19 @@ const zh = {
   'footer.bCloud': '云端计算 · 本机渲染 · 实测数据',
   'footer.checkpoint': 'CHECKPOINT',
   'footer.checkpointTitle': '检查点 {hash} · 已训练 {updates} 次更新',
+
+  'preview.title': '浏览器端演示',
+  'preview.connecting': '正在载入大脑与身体',
+  'preview.connected': '本地实时推理 · 无服务端参与',
+  'preview.loading.weights': '载入推理权重…',
+  'preview.loading.brain': '初始化 WebGPU 大脑…',
+  'preview.loading.body': '初始化物理身体…',
+  'preview.error.webgpu': '此浏览器不支持 WebGPU，请使用新版 Chrome 或 Edge。',
+  'preview.error.insecure': '当前页面未通过 HTTPS 提供，权重哈希无法校验（浏览器限制），演示仍可运行。',
+  'preview.brain.note': '仅显示有实测坐标的神经元',
+  'preview.slow': '慢放 ×{rate}',
+  'preview.disclaimer': '本页在浏览器本地运行大脑推理与物理仿真，用于交互演示；数值精度以服务端独立评估为准，不作为评估数据引用。',
+  'preview.footer': '浏览器端本地计算 · 权重来自已发布检查点',
 };
 
 const en = {
@@ -562,6 +576,7 @@ const en = {
   'results.json': 'Download raw evaluation JSON',
   'results.pending': 'Evaluation has not finished yet',
   'results.failed': 'Could not read the evaluation data. Try again shortly.',
+  'results.mismatch': 'The evaluation data shipped with this page belongs to a different checkpoint, so it is not shown.',
   'results.summary.walk': 'independent walking tests passed',
   'results.summary.hold': 'walking per episode',
   'results.summary.elapsed': 'training plus evaluation',
@@ -760,6 +775,19 @@ const en = {
   'footer.bCloud': 'Cloud compute · local rendering · measured data',
   'footer.checkpoint': 'CHECKPOINT',
   'footer.checkpointTitle': 'Checkpoint {hash} · trained for {updates} updates',
+
+  'preview.title': 'Browser demo',
+  'preview.connecting': 'Loading brain and body',
+  'preview.connected': 'Local real-time inference · no server compute',
+  'preview.loading.weights': 'Loading inference weights…',
+  'preview.loading.brain': 'Initializing WebGPU brain…',
+  'preview.loading.body': 'Initializing physics body…',
+  'preview.error.webgpu': 'This browser does not support WebGPU. Please use a recent Chrome or Edge.',
+  'preview.error.insecure': 'This page is not served over HTTPS, so weight hashes cannot be verified (a browser restriction). The demo still runs.',
+  'preview.brain.note': 'Only neurons with measured coordinates are shown',
+  'preview.slow': 'Slow motion ×{rate}',
+  'preview.disclaimer': 'This page runs brain inference and physics locally in your browser for interactive demonstration; numerical accuracy is defined by the server-side independent evaluation and should not be cited as evaluation data.',
+  'preview.footer': 'Local in-browser compute · weights from the published checkpoint',
 };
 
 // Training console: names describe measured quantities, never inferred success.
