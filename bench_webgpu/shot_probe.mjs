@@ -1,0 +1,21 @@
+// Scratch: navigate Edge to the preview, wait for boot, capture a PNG screenshot.
+const fs = await import('node:fs');
+const list = await (await fetch('http://127.0.0.1:9334/json/list')).json();
+const page = list.find(t => t.type === 'page' && t.url.includes('preview'));
+const ws = new WebSocket(page.webSocketDebuggerUrl);
+let id = 0; const pending = new Map();
+const send = (method, params = {}) => new Promise((res) => { const i = ++id; pending.set(i, res); ws.send(JSON.stringify({id: i, method, params})); });
+ws.onmessage = (e) => { const m = JSON.parse(e.data); if (m.id && pending.has(m.id)) { pending.get(m.id)(m.result); pending.delete(m.id); } };
+await new Promise(r => { ws.onopen = r; });
+const evalJs = async (expr) => (await send('Runtime.evaluate', {expression: expr, awaitPromise: true, returnByValue: true})).result?.value;
+await send('Page.enable');
+await send('Page.navigate', {url: 'http://127.0.0.1:8899/web/preview.html'});
+await new Promise(r => setTimeout(r, 20000));
+await send('Page.bringToFront');
+await new Promise(r => setTimeout(r, 1500));
+const state = await evalJs(`(() => { const l = window.__preview; return {running: l && l.running, vis: document.visibilityState, name: document.querySelector('.avatar-name')?.textContent, conn: document.getElementById('connection')?.textContent, speedState: document.getElementById('speedState')?.textContent, meta: document.getElementById('stageMeta')?.textContent, rms: document.getElementById('activityRms')?.textContent, chip: document.getElementById('datasetChip')?.textContent, hash: document.getElementById('checkpointHash')?.textContent}; })()`);
+console.log(JSON.stringify(state));
+const shot = await send('Page.captureScreenshot', {format: 'png'});
+fs.writeFileSync('bench_webgpu/preview_fixed.png', Buffer.from(shot.data, 'base64'));
+console.log('saved bench_webgpu/preview_fixed.png');
+process.exit(0);
