@@ -1,0 +1,42 @@
+      <!-- @server-only -->
+      <section class="panel training-console" aria-labelledby="trainingTitle">
+        <div class="panel-head"><div><strong id="trainingTitle" data-i18n="train.title">训练工作台</strong><span id="trainIdentity" class="quiet">--</span></div><span class="tiny-pill" id="trainPhase" role="status" data-i18n="chart.train.phase">读取训练记录</span></div>
+        <div class="training-toolbar"><button class="primary" id="trainButton" disabled data-i18n="train.start">开始新一轮训练</button><button class="outline" id="trainPause" disabled data-i18n="train.pause">暂停训练</button><button class="outline" id="trainResume" disabled data-i18n="train.resume">继续当前进程</button><button class="outline" id="trainStop" disabled data-i18n="chart.train.stop">停止训练</button></div>
+        <p id="trainAvailability" class="console-note" role="status"></p><p id="trainError" class="console-error" role="alert" hidden></p>
+        <form id="trainConfig" class="training-config">
+          <fieldset id="trainFields"><legend data-i18n="train.config">下一轮配置</legend><div class="config-grid">
+            <label><span data-i18n="train.worlds">并行世界</span><input id="trainWorlds" type="number" min="1" max="64" step="1" value="16" required></label>
+            <label id="trainBatchOption"><span data-i18n="train.batch">监督批大小</span><input id="trainBatch" type="number" min="1" max="256" step="1" value="64" required></label>
+            <label><span data-i18n="train.duration">有效训练时限 (s)</span><input id="trainDuration" type="number" min="1" max="86400" step="1" value="1800" required></label>
+            <label class="ppo-option"><span data-i18n="train.minibatch">PPO 小批大小</span><input id="trainMinibatch" type="number" min="1" max="512" step="1" value="128" required></label>
+            <label class="ppo-option"><span data-i18n="train.steps">每个世界采样步数</span><input id="trainSteps" type="number" min="1" max="512" step="1" value="128" required></label>
+          </div><div class="config-checks"><label><input id="trainWarmStart" type="checkbox" checked><span data-i18n="train.warmStart">从现有权重开始</span></label><label class="ppo-option"><input id="trainFreeze" type="checkbox" checked><span data-i18n="train.freeze">冻结脑内参数 (PPO)</span></label></div><p class="micro" data-i18n="train.warmHint">权重热启动会创建新训练进程，不会恢复优化器或当前暂停进程。</p></fieldset>
+        </form>
+        <div class="run-readout"><span id="trainRun">--</span><span id="trainStats">--</span></div>
+        <progress id="trainProgress" max="100" value="0" data-i18n-attr="aria-label:train.budget"></progress>
+        <p id="trainSubtitle" class="console-note" data-i18n="train.metricsHint">实际记录 · 每项指标独立线性刻度 · 缺失值不绘制</p>
+        <div id="trainingCharts" class="training-charts"></div>
+        <details class="console-details" id="trainingTableDetails"><summary data-i18n="train.table">查看曲线数据表</summary><div id="trainingTable" class="table-scroll"></div></details>
+        <section class="training-log"><div class="log-head"><strong data-i18n="train.logs">训练进程日志</strong><label><input id="trainFollow" type="checkbox" checked><span data-i18n="train.follow">跟随最新</span></label><span id="trainLogState" class="quiet"></span></div><pre id="trainLogs" tabindex="0" data-i18n-attr="aria-label:train.logs">--</pre><p class="micro" data-i18n="train.logHint">仅此页可见时每秒读取 · 最多保留 1,000 行 · 原始进程输出</p></section>
+      </section>
+      <!-- @end -->
+      <section class="panel evaluation-console">
+        <div class="evaluation-heading"><details id="evaluationDetails"><summary class="training-summary"><strong data-i18n="eval.title">独立评估</strong><span id="evaluationState" class="tiny-pill" role="status" data-i18n="eval.absent">尚无匹配结果</span></summary></details><!-- @server-only --><div class="evaluation-actions"><select id="evaluationProtocol" data-i18n-attr="aria-label:eval.protocol"><option value="quick" data-i18n="eval.quick">快速 · 9 × 20 s</option><option value="full" data-i18n="eval.full">完整 · 加长走 / 扰动 / 对照</option></select><button id="evaluateButton" class="outline" data-i18n="eval.run">评估现有检查点</button></div><!-- @end --></div>
+        <!-- @server-only --><p id="evaluationJob" class="console-note" role="status" hidden></p><!-- @end --><p id="evaluationError" class="console-error" role="alert" hidden></p>
+        <div id="evaluationContent" hidden>
+      <section class="document-panel">
+        <div class="eyebrow" data-i18n="results.eyebrow">HELD-OUT EVALUATION</div>
+        <h2 data-i18n="results.h2">用结果，而不是动画，验证行走。</h2>
+        <p id="resultsIntro" data-i18n="results.p">独立测试种子。统计跌倒、速度和双脚触地。断连对照保留同一个运动控制器。</p>
+        <div id="evaluationSummary" class="evaluation-summary"></div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th data-i18n="results.th.seed">种子 / 条件</th><th data-i18n="results.th.target">目标速度</th><th data-i18n="results.th.mean">平均速度</th><th data-i18n="results.th.absError">速度绝对误差</th><th data-i18n="results.th.seconds">时长</th><th data-i18n="results.th.strikes">触地 L / R</th><th data-i18n="results.th.alternations">交替次数</th><th data-i18n="results.th.contacts">触地占比</th><th data-i18n="results.th.upright">最小直立度</th><th data-i18n="results.th.latency">神经延迟 中位 / p95</th><th data-i18n="results.th.outcome">结果</th></tr></thead>
+            <tbody id="evaluationRows"></tbody>
+          </table>
+        </div>
+        <p class="micro" id="resultsCriteria" data-i18n="results.micro">通过条件：连续 30 秒不跌倒；平均速度误差 &lt; 0.2 m/s；双脚分别至少 4 次触地。此测试不证明果蝇连接结构优于随机网络。</p>
+        <a class="text-button" href="/api/evaluation" target="_blank" data-i18n="results.json">下载原始评估 JSON</a>
+      </section>
+        </div>
+      </section>

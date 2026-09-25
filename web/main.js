@@ -6,16 +6,12 @@ import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
 import { activityDisplay } from './brain-activity.js';
 import { t, getLang, setLang, applyStatic, fmtNum } from './i18n.js';
 import { trainingMetrics, trainingCapabilities, appendTrainingLog, speedError, finite } from './training-series.js';
+import { $, setText, setHTML, setKey, escapeHTML, number } from './dom.js';
+import * as evaluationView from './evaluation-view.js';
 
-const $ = (id) => document.getElementById(id);
 const theme = getComputedStyle(document.documentElement);
 const colorToken = (name) => theme.getPropertyValue(name).trim();
 const chartColor = colorToken('--chart-line'), gaitColor = colorToken('--chart-gait');
-/** Writes only on change: these run at SSE rate, and a write breaks focus and selection. */
-const setText = (el, value) => { if (el && el.textContent !== value) el.textContent = value; };
-const setHTML = (el, value) => { if (el && el.innerHTML !== value) el.innerHTML = value; };
-/** Sets the value AND re-points data-i18n, so a later applyStatic() renders it in the new language. */
-const setKey = (el, key, vars) => { if (!el) return; el.dataset.i18n = key; el.textContent = t(key, vars); };
 
 let state = null, meta = null, lastEvent = 0, vrm = null, avatarRoot = null;
 let lastEpisode = null, activeView = 'studio', skeletonMode = false, displayPose = null;
@@ -24,8 +20,6 @@ let toastTimer, pendingTarget = null;
 let trainingData = null, trainingPending = false, trainingFetching = false, metricData = [], trainingEnabled = null, trainingGeneration = 0;
 let logData = { run_id: null, cursor: 0, text: '' }, logFetching = false;
 let evaluationData = null, evaluationActive = false, evaluationFetching = false, evaluationPending = false, evaluationGeneration = 0;
-const escapeHTML = value => String(value ?? '--').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-const number = (value, digits = 3) => finite(value) ? value.toLocaleString(getLang(), { maximumFractionDigits: digits }) : '--';
 const phaseText = phase => { const key = `chart.phase.${phase}`; return t(key) === key ? t('train.unknown', { phase }) : t(key); };
 const reasonText = reason => { const key = `train.reason.${reason}`; return t(key) === key ? t('train.reason.other', { reason }) : t(key); };
 function toast(message) { $('toast').textContent = message; $('toast').classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.remove('show'), 4200); }
@@ -94,7 +88,6 @@ $('evaluateButton').onclick = async () => {
   // while a launch is pending, so calling it inside try was a no-op.
   evaluationStatus();
 };
-$('evaluationDetails').addEventListener('toggle', () => { $('evaluationContent').hidden = !$('evaluationDetails').open; });
 window.addEventListener('keydown', (event) => {
   if (event.ctrlKey || event.metaKey || event.altKey) return;
   if (['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON', 'SUMMARY', 'A'].includes(event.target.tagName)) return;
@@ -640,64 +633,14 @@ async function loadEvaluation() {
   try { evaluationData = await response.json(); if (generation !== evaluationGeneration) return; renderEvaluation(); }
   catch (error) { console.error(error); setEvaluationState('failed', t('results.failed')); }
 }
-/** `state` is 'absent' | 'failed': an empty evaluation collapses quietly, a real
-    failure stays visible even while the details stay collapsed. */
+/** The renderer is shared with the static preview, which parameterises the record
+    and the running flag; these wrappers supply the studio's own state for them. */
 function setEvaluationState(state, message) {
   evaluationData = null;
-  setText($('evaluationState'), evaluationActive && state === 'absent' ? t('eval.running') : message);
-  $('evaluationState').dataset.failed = String(state === 'failed');
-  $('evaluationError').hidden = state !== 'failed';
-  if (state === 'failed') setText($('evaluationError'), message);
-  $('evaluationContent').hidden = true;
-  setHTML($('evaluationSummary'), ''); setText($('evaluationRows'), '');
+  evaluationView.setEvaluationState(state, message, { running: evaluationActive });
 }
 function renderEvaluation() {
-  const data = evaluationData; if (!data) return setEvaluationState('absent', t('results.pending'));
-  // While a job is active the phase pill is owned by evaluationStatus(); the report's
-  // own state only shows when nothing is running, so the pill never flickers.
-  if (!evaluationActive) {
-    setText($('evaluationState'), t(data.complete === false ? 'eval.running' : 'eval.done'));
-    $('evaluationState').dataset.failed = 'false';
-  }
-  $('evaluationError').hidden = true;
-  $('evaluationContent').hidden = !$('evaluationDetails').open;
-  const tests = data.tests || [], longWalks = data.long_walks || [], perturbations = data.perturbations || [];
-  const controls = data.controls || {};
-  const disconnected = Array.isArray(controls) ? controls : controls.disconnected || [];
-  const rewired = Array.isArray(controls) ? [] : controls.rewired || [];
-  setHTML($('evaluationSummary'),
-    `<div><b>${escapeHTML(data.successes ?? '--')} / ${escapeHTML(data.attempts ?? '--')}</b><span>${t('results.summary.walk')}${data.complete === false ? t('results.summary.inProgress') : ''}</span></div>`
-    + `<div><b>${escapeHTML(data.robot || '--')}</b><span>${t('eval.robot')}</span></div>`
-    + `<div><b title="${escapeHTML(data.checkpoint_sha256 || '')}">${escapeHTML((data.checkpoint_sha256 || '').slice(0, 10) || '--')}</b><span>${t('eval.checkpoint')}</span></div>`);
-  const strictGait = data.kind === 'held_out_locomotion';
-  setKey($('resultsIntro'), strictGait ? 'results.pGait' : data.kind === 'held_out_native_mujoco' ? 'results.pFull' : meta?.mode === 'full_connectome' ? 'results.pFullScreening' : 'results.p');
-  if (strictGait) setText($('resultsCriteria'), t('results.microGait', { lateral: number(data.long_lateral_m, 2), recovered: data.yaw_recovered, total: data.yaw_tests?.length || 0 }));
-  else setKey($('resultsCriteria'), data.kind === 'held_out_native_mujoco' ? 'results.microFull' : meta?.mode === 'full_connectome' ? 'results.microFullScreening' : 'results.micro');
-  const groups = [
-    { key: 'walk', rows: tests, expect: 'pass' },
-    { key: 'yaw', rows: data.yaw_tests || [], expect: 'pass' },
-    { key: 'long', rows: longWalks, expect: 'pass' },
-    { key: 'push', rows: perturbations, expect: 'pass' },
-    { key: 'disconnected', rows: disconnected, expect: 'fall' },
-    { key: 'rewired', rows: rewired, expect: 'fall' },
-  ].filter(g => g.rows.length);
-  const failed = ['survived', 'speed', 'both_feet', 'alternation', 'upright', 'direction', ...(strictGait ? ['swing'] : [])];
-  setHTML($('evaluationRows'), groups.map(g => {
-    const rows = g.rows.map(r => {
-      const reason = r.criteria ? failed.filter(k => !r.criteria[k]).map(k => t(`results.fail.${k}`)).join(' / ') : t('results.noTarget');
-      const ok = r.success || (g.expect === 'fall' && r.fallen);
-      const cls = r.success ? 'pass' : ok ? 'neutral' : 'fail';
-      const error = speedError(r);
-      return `<tr><td>${escapeHTML(r.seed)} / ${escapeHTML(r.condition || t(`results.condition.${g.key}`))}</td><td>${number(r.target_speed, 2)} m/s</td>`
-        + `<td>${number(r.mean_speed, 3)} m/s</td><td>${number(error, 3)}</td>`
-        + `<td>${number(r.seconds, 1)} s</td><td>${number(r.foot_strikes?.[0], 0)} / ${number(r.foot_strikes?.[1], 0)}</td>`
-        + `<td>${number(r.alternations, 0)}</td><td>${(r.contact_fraction || []).map(f => number(f, 2)).join(' / ') || '--'}</td>`
-        + `<td>${number(r.minimum_upright, 2)}</td><td>${number(r.inference_ms_median, 2)} / ${number(r.inference_ms_p95, 2)} ms</td>`
-        + `<td class="${cls}">${r.success ? t('results.pass') : r.fallen ? (g.expect === 'fall' ? t('results.expect.fall') : t('results.fallen')) : reason}</td></tr>`;
-    }).join('');
-    return `<tr class="group-row"><td colspan="11">${t(`results.group.${g.key}`)} · ${g.rows.filter(r => g.expect === 'fall' ? r.fallen : r.success).length} / ${g.rows.length}</td></tr>${rows}`;
-  }).join(''));
-  if (!groups.length) setHTML($('evaluationRows'), `<tr><td colspan="11">${t('results.pending')}</td></tr>`);
+  evaluationView.renderEvaluation(evaluationData, { meta, running: evaluationActive });
 }
 async function evaluationStatus() {
   if (evaluationFetching || evaluationPending) return;
