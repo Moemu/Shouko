@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#f3f6fa">
+<!-- No backend behind this page: the build strips the markup that only works against
+     one (the training console, the evaluation controls, the host resource readout). -->
+<meta name="studio-server" content="none">
+<!-- Deploy-time asset location: a static host can repoint this at the published
+     package (Release/CDN) without rebuilding the page. Weights, body config, scene
+     and the MuJoCo-WASM build all come from that package's meta.json, so this is
+     the only path the page needs configured. See app/export_preview_weights.py. -->
+<meta name="preview-package" content="/artifacts/preview/">
+<meta name="preview-vrm" content="/yumi.vrm">
+<link rel="icon" type="image/png" href="/favicon.png">
+<title data-i18n="page.title">ショウコ · 硝子 · 实验室</title>
+<script type="module" src="/preview.js"></script>
+</head>
+<body>
+<div class="shell">
+  <aside class="rail">
+    <button class="brand" id="brandHome" aria-label="ショウコ 首页" data-i18n-attr="aria-label:nav.home,title:nav.home"><img src="/favicon.png" alt="" width="38" height="38"></button>
+    <button class="nav active" data-view="studio" aria-label="实验室" data-i18n-attr="aria-label:nav.studio,title:nav.studio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 8.6A2 2 0 0 0 6.8 21h10.4a2 2 0 0 0 1.8-3.4L14 9V3"/></svg><span class="nav-label" data-i18n="nav.studio">实验室</span></button>
+    <button class="nav" data-view="results" aria-label="评估结果" data-i18n-attr="aria-label:nav.results,title:nav.results"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 20h16M7.5 20v-8M12 20V5M16.5 20v-5.5"/></svg><span class="nav-label" data-i18n="nav.results">评估结果</span></button>
+    <button class="nav" data-view="research" aria-label="研究与方法" data-i18n-attr="aria-label:nav.research,title:nav.research"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v4h4M9.8 12h5M9.8 16h3.4"/></svg><span class="nav-label" data-i18n="nav.research">研究与方法</span></button>
+    <div class="rail-bottom"><span class="local-led" id="railLed"></span><span id="railLabel">BROWSER</span></div>
+  </aside>
+  <main>
+    <header class="topbar">
+      <div class="wordmark">ショウコ<span>硝子</span></div>
+      <div class="breadcrumb" id="breadcrumb" data-i18n="preview.title">浏览器端演示</div>
+      <button class="lang-toggle" id="languageToggle" aria-label="Switch language" data-i18n-attr="aria-label:lang.switch,title:lang.switch"><span id="langCurrent">EN</span></button>
+      <div class="connection"><i></i><span id="connection" data-i18n="preview.connecting">正在载入大脑与身体</span></div>
+      <span class="version" id="datasetChip">—</span>
+    </header>
+    <div id="studioView" class="view active">
+      <div class="metrics">
+        <article><label><i class="dot lilac"></i><span data-i18n="metric.speed">前进速度</span></label><div><b id="speed">—</b><span>m/s</span></div><small id="speedState" data-i18n="metric.upright.waiting">等待物理状态</small></article>
+        <article><label title="躯干朝上的投影" data-i18n-attr="title:metric.upright.hint"><i class="dot mint"></i><span data-i18n="metric.upright">身体直立度</span></label><div><b id="upright">—</b><span>%</span></div><small id="balanceState" data-i18n="metric.upright.waiting">等待物理状态</small><div class="mini-track"><i id="balanceBar"></i></div></article>
+        <article><label><i class="dot blue"></i><span data-i18n="metric.distance">累计移动距离</span></label><div><b id="distance">—</b><span>m</span></div><small><span data-i18n="metric.distance.episode">当前回合</span> · <em id="simTime">0.0</em> s</small></article>
+        <article><label><i class="dot amber"></i><span data-i18n="metric.neurons">参与计算的神经元</span></label><div><b id="neuronCount">—</b></div><small id="edgeCount" data-i18n="metric.neurons.sub">载入实测连接组</small></article>
+      </div>
+      <div class="workspace">
+        <section class="stage panel">
+          <div class="panel-head stage-head"><div><span class="dot mint"></span><strong data-i18n="stage.title">身体实验场</strong><span class="quiet" data-i18n="stage.sub">BODY SIMULATION</span></div></div>
+          <div id="viewport"><div class="loading" id="modelLoading"><span class="loader"></span><span data-i18n="stage.loading">载入 3D 角色…</span></div><div class="stage-overlay" id="stageOverlay" hidden></div></div>
+          <div class="stage-label"><span class="pill" id="liveBadge"><i></i><span data-i18n="stage.live">实时物理仿真</span></span><span class="pill slow" id="slowBadge" hidden><span id="slowLabel"></span></span></div>
+          <!-- 静态文案必须是 Yumi：首访要下载约 235 MiB，在那之前用户看到的就是这一段，
+               之前写成 Hikari 与 pixiv 署名，要等 boot 完成后才被覆盖。 -->
+          <div class="stage-info"><div class="avatar-name">Yumi <span>ゆみ</span></div><p id="stageMeta" data-i18n="stage.meta">VRM 角色 · Yumi 物理身体 · 12 主动关节</p><p id="avatarCredit" title="VRM 许可要求的角色署名" data-i18n-attr="title:stage.credit.hint">原设：松酒 · 画师：7Apoi · 模型：星晨水影工作室 · 发布：墨海徽</p></div>
+          <div class="scene-tools"><button id="cameraReset" title="重置镜头" data-i18n-attr="title:scene.reset,aria-label:scene.reset" aria-label="重置镜头">⌾</button><button id="pushButton" title="侧向轻推，测试恢复" data-i18n-attr="title:scene.push,aria-label:scene.push" aria-label="侧向轻推，测试恢复">↝</button></div>
+          <div class="stage-footer"><span id="rtf">— ×</span><span id="actualHeading">—</span><span data-i18n="stage.drag">拖动旋转 · 滚轮缩放</span></div>
+        </section>
+        <aside class="brain-column">
+          <section class="panel brain-panel">
+            <div class="panel-head"><strong data-i18n="brain.title">神经活动</strong><div class="brain-tabs" aria-label="神经活动显示"><button id="brainchange" aria-pressed="true" data-i18n="brain.change">变化</button><button id="brainstrength" aria-pressed="false" data-i18n="brain.strength">强度</button></div></div>
+            <div id="brainViewport"></div>
+            <div class="brain-legend"><span><span id="brainLegendLow">下降</span><i></i><span id="brainLegendHigh">上升</span></span><small id="brainScale">固定色标 ±0.5/s · 超出饱和</small></div>
+            <p class="brain-readout" id="brainReadout">点越大、颜色越明显，幅度越大</p>
+            <div class="brain-meta"><span id="activityLabel">变化速率 RMS</span><b id="activityRms">—</b><span data-i18n="brain.compute">神经计算</span><b id="brainMs">— ms</b><span title="送往运动层的信号" data-i18n-attr="title:brain.downstream.hint" data-i18n="brain.downstream">下行信号 RMS</span><b id="outputRms">—</b></div>
+            <p class="micro" id="sampleCount" data-i18n="preview.brain.note">仅显示有实测坐标的神经元</p>
+          </section>
+        </aside>
+      </div>
+      <section class="control-strip panel">
+        <div class="playback"><button id="playButton" class="primary" aria-label="开始仿真"><span class="glyph" aria-hidden="true">▶</span><span id="playLabel" data-i18n="ctrl.play">开始</span></button><button id="resetButton" class="square" title="重置回合" data-i18n-attr="title:ctrl.reset,aria-label:ctrl.reset" aria-label="重置回合">↺</button></div>
+        <div class="slider-control"><label for="targetSpeed"><span data-i18n="ctrl.speed">目标速度</span> <b id="targetLabel">0.50 <small>m/s</small></b></label><input type="range" id="targetSpeed" min="0" max="0.75" step="0.05" value="0.5"></div>
+        <div class="slider-control heading"><label for="heading"><span data-i18n="ctrl.heading">目标朝向</span> <b id="headingLabel">0°</b></label><input type="range" id="heading" min="-80" max="80" step="5" value="0"></div>
+        <div class="lesion-control"><label for="lesion" id="lesionLabel" data-i18n="ctrl.lesion" title="断开脑内连接，确认结果确实由连接结构产生。" data-i18n-attr="title:ctrl.lesion.hint">因果对照</label><select id="lesion"><option value="intact" data-i18n="lesion.intact">正常连接</option><option value="disconnected" data-i18n="lesion.disconnected">断开所有连接</option></select></div>
+      </section>
+      <div class="integrity"><span aria-hidden="true">◉</span><p id="integrityText" data-i18n="preview.disclaimer">本页在浏览器本地运行大脑推理与物理仿真，用于交互演示；数值精度以服务端独立评估为准，不作为评估数据引用。</p></div>
+    </div>
+    <div id="resultsView" class="view">
+      <!-- @include views/results.html -->
+    </div>
+    <div id="researchView" class="view">
+    <!-- @include views/research.html -->
+    </div>
+    <footer><span><span data-i18n="footer.a">ショウコ · 硝子</span> <i>/</i> <span data-i18n="footer.tagline">从连接到行动</span></span><span id="footerMode" data-i18n="preview.footer">浏览器端本地计算 · 权重来自已发布检查点</span><span id="checkpointHash">CHECKPOINT —</span></footer>
+  </main>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+</body></html>
