@@ -24,3 +24,16 @@ runs/cloud/target.json
 
 # Optional third-party reference cache; never publish downloaded source copies.
 /.cache/references/
+
+# 浏览器预览权重包：由 app/export_preview_weights.py 生成，体积大，发布走 Release（红线 2/8）
+artifacts/
+
+# 基准测试的二进制夹具与第三方构建产物：脚本与结果入库，二进制不入库
+bench_webgpu/fixtures/
+bench_mujoco/public/mujoco.js
+bench_mujoco/public/mujoco.wasm
+
+debug.log
+
+# 预览静态主机的真实目标（含主机与域名），仅本机保存（红线 1）
+runs/cloud/preview_target.json
