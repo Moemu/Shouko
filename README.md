@@ -4,19 +4,29 @@
 
 **We trained a fruit fly connectome network to control Yumi's legs for flat-ground walking. Here is the training process, and how to run and train it locally.**
 
-Her full name is ショウジョウバエ. A public male *Drosophila* connectome dataset is her brain; the girl is the VRM character [Yumi](research/avatar/YUMI.md). Everything runs in a MuJoCo physics simulation.
+Her full name is ショウジョウバエ. A public male *Drosophila* connectome dataset is her brain; the girl is a virtual character in VRM format, [Yumi](research/avatar/YUMI.md). Everything runs in a simulation built on MuJoCo, an open-source physics engine.
 
-## Motivation and inspirations
+WebGPU online preview version: [Shouko · ショウコ · Studio](https://shouko.snowy.moe/)
+
+## Overview
+
+We set out to validate one engineering chain: **turn a fruit fly's real neural wiring into a control network, and let it drive a walking body.** A fly's **connectome** records which neuron connects to which. It carries no brain function by itself. This project imports that wiring list as a neural network, trains it to output 12 lower-limb joint targets, hands them to MuJoCo for gravity and contact, and lets the character skeleton follow the same physical state.
+
+The data is [MaleCNS v1.0](https://male-cns.janelia.org/): **166,700 neurons and 25,582,938 connections**.
+
+The body has moved twice. The first two generations used **G1**, Unitree's humanoid robot model, as the physical proxy: the 8,192-neuron subgraph prototype handed the connectome's velocity commands to a frozen official gait policy, while the full-connectome cloud generation trained end-to-end, outputting joint targets straight from the connectome — both passed their own acceptance. The current mainline moved to the **Yumi** lower-limb body rebuilt from the VRM character's measured skeleton: joint order, axes and zero positions match, so the network interface is unchanged, but height, mass and torque differ, and weights do not transfer (see [Historical results](#historical-results)).
+
+### Motivation and inspirations
 
 When the fruit fly connectome was released, many interesting projects appeared around it. The two that surprised me most came from X users [@yakshawan](https://x.com/yakshawan) and @satorunet, who each put the fly brain into a 3D body: [FFREP](https://heavyrain39.github.io/ffrep/) trains MaleCNS to drive the SHOKI quadruped and the YUMEKA humanoid, and [hae](https://hae.satoru.net/) ([source](https://github.com/satorunet/hae)) runs a FlyWire connectome as a spiking simulation in the browser. That is where Shouko started — I wanted to build one of these myself.
 
-Shouko differs from both in what is open: the training method, the weights and the records are public, and everything can be reproduced locally. It also differs in scope, and you should know this up front — unlike their full-limb implementations, Shouko currently controls only the lower limbs, with the upper body as one fixed mass, and achieves controlled stable flat-ground walking under speed and heading commands (no goal points). The result is less fun to watch than the two above, but full limbs are the next stage. Our pinned-version survey of both projects lives in [research/references/fly-embodiment/](research/references/fly-embodiment/README.md).
+Shouko differs from both in what is open: the training method, the weights and the records are public, and everything can be reproduced locally. It also differs in scope, and you should know this up front — unlike their full-limb implementations, Shouko currently controls only the lower limbs, with the upper body as one fixed mass, and achieves controlled stable flat-ground walking under speed and heading commands (no goal points). The result is less fun to watch than the two above, but full limbs are already on the roadmap under [Future work](#future-work). Our pinned-version survey of both projects lives in [research/references/fly-embodiment/](research/references/fly-embodiment/README.md).
 
 I am not an expert on fly simulation — my background is some NLP studied years ago — so this project doubles as a multi-agent collaboration experiment: several independent frontier models (GPT 6 Astra, Kimi K3, Qwen 3.8 Max and others) run in parallel with harnesses to discuss proposals and training, GPT 6 Astra acts as the main coordinator for concrete training and goal setting, and training runs on an AutoDL RTX 4090D instance.
 
-A browser-based cloud preview service is in preparation: before long you will be able to watch her walk in your own browser. Community reproduction is welcome — see [Running Locally](#running-locally) and [Reproducing the Training](#reproducing-the-training) — and future directions (full limbs, complex terrain, running, dopamine-based goal rewards, and possibly a small language model) are listed under [Future work](#future-work). Feedback and suggestions are very welcome.
+Community reproduction is welcome — see [Running Locally](#running-locally) and the [training reproduction guide](docs/TRAINING.md) — and future directions (full limbs, running and dopamine-based goal rewards) are listed under [Future work](#future-work). Feedback and suggestions are very welcome.
 
-## Status preview
+### Historical results and current status
 
 **Current milestone: Yumi lower-limb walking on flat ground.** The policy controls 12 hip, knee and ankle joints, six per leg. The upper body is fixed to the pelvis in the physics model. Visible arm swing is display animation; the policy does not control the arms or use them for balance.
 
@@ -25,73 +35,38 @@ A browser-based cloud preview service is in preparation: before long you will be
 | **G1 · earlier stage**<br>`ffcf9a97` · 8.28 s | <img src="assets/preview-g1-model.png" alt="G1 walking at 0.5 m/s, rendered with the pixiv sample avatar" width="300"> | <img src="assets/preview-g1-neural.png" alt="G1 connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
 | **Yumi · current v0.2.0**<br>`f1a20071` · 8.26 s | <img src="assets/preview-yumi-model.png" alt="Current v0.2.0 Yumi model during a left-foot swing" width="300"> | <img src="assets/preview-yumi-neural.png" alt="Current Yumi connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
 
-Each pair freezes one real walking frame at a commanded 0.50 m/s and 0° heading; model and neural images share the same simulation time. Neural views show **2,048 sampled somata out of 166,700 neurons**, using signed model activity at a fixed ±1 scale (blue: negative; orange: positive). These are not biological spikes or new acceptance tests. [Capture details and hashes](assets/preview-metadata.json).
+Each pair freezes one real walking frame at a commanded 0.50 m/s and 0° heading; model and neural images share the same simulation time. Neural views show **2,048 sampled somata out of 166,700 neurons**, using signed model activity at a fixed ±1 scale (blue: negative; orange: positive). These are not biological spikes or new acceptance tests. [Capture details and hashes](assets/preview-metadata.json). The G1 image uses the later `ffcf9a97` checkpoint ([6/9 held-out record](research/experiments/G1_CHECKPOINT_REBIND_20260918.md)); the 9/9 in the [historical results](#historical-results) table below belongs to `f1d5147c`. G1 avatar: © 2022 pixiv Inc. Yumi: concept 松酒, artist 7Apoi, model 星晨水影工作室, publisher 墨海徽. [Asset attribution](THIRD_PARTY.md).
 
-The G1 image uses the later `ffcf9a97` checkpoint ([6/9 held-out record](research/experiments/G1_CHECKPOINT_REBIND_20260918.md)); the historical 9/9 result below belongs to `f1d5147c`. Yumi shows the current release primary model. G1 avatar: © 2022 pixiv Inc. Yumi: concept 松酒, artist 7Apoi, model 星晨水影工作室, publisher 墨海徽. [Asset attribution](THIRD_PARTY.md).
-
-| Stage | Scope and status | Preview / acceptance evidence |
-|---|---|---|
-| **Current: lower-limb walking (v0.2.0)** | Full-connectome readout transfer `f1a20071`; four strict held-out groups passed; precise heading and lateral drift remain open | Preview above; results below |
-| Next stage — reserved | Scope and acceptance criteria to be confirmed | Pending |
-| Later stage — reserved | Fill in after the stage is confirmed | Pending |
+| Version | Checkpoint / stage | Scope | Status |
+|---|---|---|---|
+| Unreleased | `f1d5147c` · G1 cloud full connectome | End-to-end full-connectome training, G1 proxy | Accepted |
+| v0.1.0 | `a7a4281f` · Yumi squat lineage | The same chain on the Yumi body | Accepted |
+| Bundled in v0.2.0 | `458fc465` · Yumi upright source | 50-dim observations, physics interface embedded in the checkpoint | Retained baseline: upright survival and alternating rhythm hold; directed tracking did not |
+| **v0.2.0 (current)** | `f1a20071` · primary model | Full-connectome readout transfer, Yumi lower limbs | Four strict held-out groups passed with zero falls; precise heading and lateral drift remain open |
+| Reserved | Next stage | Solve the issues left open by the previous stage's holdouts (precise heading and lateral drift) | Scope and acceptance criteria to be confirmed |
+| Reserved | Later stages | Everything in [Future work](#future-work) | Pending |
 
 Future rows reserve space for confirmed stages. They do not commit to a schedule or mark candidate research as implemented.
 
-## Overview
-We set out to validate one engineering chain: **turn a fruit fly's real neural wiring into a control network, and let it drive a walking body.**
+#### Historical results
 
-A fly's **connectome** records which neuron connects to which. It carries no brain function by itself. This project imports that wiring list as a neural network, trains it to output 12 lower-limb joint targets, hands them to MuJoCo for gravity and contact, and lets the character skeleton follow the same physical state.
-
-The data is [MaleCNS v1.0](https://male-cns.janelia.org/): **166,700 neurons and 25,582,938 connections**. The project has gone through three generations:
-
-| Generation | Scale | Body | Status |
-|---|---|---|---|
-| Subgraph prototype | 8,192 neurons | G1 proxy + frozen gait policy | Accepted |
-| Cloud full connectome | Full connectome | G1 proxy | Accepted |
-| **Current mainline** | Full connectome | **Yumi lower limbs** | v0.2.0 full-connectome readout transfer accepted under the documented gait screen; real-time local preview |
-
-### Historical lower-limb walking results
-
-These results apply to the listed walking checkpoints. They do not validate upper-limb control, running or natural human gait.
-
-| | Full-graph G1 body | Yumi squat lineage `a7a4281f` |
+| Check | Full-graph G1 body `f1d5147c` | Yumi squat lineage `a7a4281f` |
 |---|---|---|
 | 9 fresh initial states × 30 s | 9/9 | 9/9 |
 | 120 s continuous walk | 55.40 m | 65.55 m (0.13 m lateral drift) |
 | Lateral push recovery | 3/3 | 3/3 |
-| Brain connections severed | 3/3 fall (≈1.4 s) | 3/3 fall (≈1 s) |
-| Record / checkpoint | `runs/local/heldout.json`, `f1d5147c` | `runs/local/heldout_yumi.json`, `a7a4281f` |
+| Brain connections severed | falls in ≈1.4 s | falls in ≈1 s |
+| Record | `runs/local/heldout.json` | `runs/local/heldout_yumi.json` |
 
-Sever the brain connections, keep the body and output layer intact, and the character falls in about a second: walking depends on this wiring. G1 and Yumi have different body parameters, so weights do not transfer between them.
+Sever the brain connections, keep the body and output layer intact, and the character falls in about a second — walking depends on this wiring. Older results use criteria different from the current model — no matched comparison.
 
-### v0.2.0 release model (`f1a20071`)
+#### Current results (v0.2.0 primary model `f1a20071`)
 
-The default model freezes the previously trained full-connectome core and fits only 9,792 readout parameters. A Yumi MLP teacher labels training data; runtime control uses the connectome alone. Explicit phase input remains.
+The default model freezes (fixes after training) the previously trained full-connectome core and fits only the 9,792 readout parameters — the readout is the network's output layer, translating neuron activity into 12 joint targets. Training data is labeled by an MLP (multi-layer perceptron, an ordinary neural network) teacher on the Yumi body; runtime control uses the connectome alone. The explicit phase input (a gait clock cycling every 0.8 s) remains.
 
-| Strict held-out group | Primary | Independent-data branch |
-|---|---:|---:|
-| Normal starts, 30 s | 27/27 | 27/27 |
-| Initial yaw ±0.2 rad | 18/18 | 18/18 |
-| Continuous walk, 120 s | 9/9 | 9/9 |
-| Specified lateral impulse | 9/9 | 9/9 |
+Held-out groups are starting states never seen during training — the final exam. The primary model and the independent-data branch both passed all four strict held-out groups — 27 normal-start episodes, 18 initial-yaw ±0.2 rad episodes, 9 episodes each at 120 s continuous walk and a specified lateral impulse (one sideways shove at second 10) — with zero falls. Strict acceptance includes at least one qualifying swing per foot per second (airborne at least 0.12 s and at least 2.5 cm off the ground); re-running both models on a different sparse backend (native CSR) also passed 27/27. The independent branch needed an extra DAgger round (the teacher correcting the student online — see [How it trains](#how-it-trains)); it is not equal-budget replication.
 
-All groups had zero falls. Strict acceptance includes at least one qualifying swing per foot per second. Native CSR checks also passed 27/27 for each model. The independent branch needed an extra DAgger round; it is not equal-budget replication.
-
-The screen permits some drift: primary mean lateral drift at 120 s is **5.47 m**, and precise yaw recovery is **9/18**. Passing does not establish precise straight-line walking, natural gait, autonomous CPG or topology superiority. Older results above use different criteria and are not matched comparisons. See the [model card](research/releases/v0.2.0/MODEL_CARD.md) and [training record](research/experiments/CONNECTOME_TRANSFER_20260923.md).
-
-### Historical upright source (`458fc465`)
-
-The previous unpublished v0.2.0 plan used the upright-posture obs50 lineage (`458fc465`): pelvis ~0.90 m upright (vs ~0.83 m in the squat lineage), 50-dim observations, physics interface embedded in the checkpoint. Its held-out record (same seeds and criteria as above):
-
-| Held-out check | Result |
-|---|---|
-| 9 fresh initial states × 30 s (full six criteria) | 0/9 strict success; 8/9 survived with the alternating gait held |
-| 120 s continuous walk | survived, 10.99 m forward, 15.43 m lateral drift |
-| Lateral push recovery | 3/3 no fall |
-| Brain connections severed | 3/3 fall (≈1 s) |
-| Record / checkpoint | `runs/yumi/evaluations/95111ceac1b4434696896fedbeb9c7bb/heldout.json`, `458fc465` |
-
-What this stage establishes: upright posture, survival, alternating rhythm, push recovery and connectome dependence, plus the calibrated native evaluation baseline. What it does not: directed speed/heading tracking — the open target at that stage ([route decision record](research/experiments/ROUTE_DECISION_20260922.md)). The squat lineage's 9/9 record above remains valid and bound to its own checkpoint.
+The screen permits some drift (how far the walker strays sideways): primary mean lateral drift at 120 s is **5.47 m**, and precise yaw recovery is **9/18** (9 of 18 yaw starts returned to facing forward within about 3° and held for half a second). Passing does not establish precise straight-line walking, natural gait, an autonomous CPG (a rhythm generated without the external clock) or topology superiority. See the [model card](research/releases/v0.2.0/MODEL_CARD.md) and the [training record](research/experiments/CONNECTOME_TRANSFER_20260923.md).
 
 ### Not attempted yet
 
@@ -99,22 +74,20 @@ A same-scale random-network control, rough terrain, starting and stopping, upper
 
 ### Future work
 
-The following are candidate directions from the technical reviews in `research/experiments/`. They are not confirmed stages or accepted capabilities. Add a stage to the status table after its scope and acceptance criteria are agreed.
+**Upper limbs.** Above the pelvis the body is currently one ~25.7 kg capsule welded to the pelvis, and arm swing is display animation only. Without counter-swinging arms acting as a momentum flywheel, the in-air attitude control running needs is not achievable — so upper-limb control precedes running.
 
-**Upper limbs.** Above the pelvis, the chest, neck, head and both arms are one 25.7 kg capsule welded to the pelvis, leaving 13 bodies in the physics model; arm swing is a frontend JS tween driven by leg angle and takes no part in balance. Running cannot be built on that: a leg kicking forward at speed generates a large yaw moment, and without counter-swinging arms acting as a momentum flywheel the torso whips sideways and the character falls. Once both feet leave the ground, ground reaction moments are zero and arm swing is the only way to tune the landing angle in the air.
+**Running.** The gait clock is hardcoded to a 0.8 s cycle, sized for G1's short legs; Yumi's nearly 1 m legs only produce cramped small steps at walking speed. Running needs a retuned clock, a flight phase and speeds above 1.2 m/s.
 
-**Running.** The gait clock is hardcoded to `2π / 0.8`, sized for G1's short legs. Yumi's legs are nearly 1 m, so a 0.8 s cycle at walking speed only produces cramped small steps. Running needs a retuned clock, a flight phase and speeds above 1.2 m/s.
+**Dopamine-driven learning.** Dynamics are a rate approximation — no STDP, no dopamine reward learning — and connection gains have to stay frozen to remain stable. The fly's mushroom body (sparse Kenyon-cell encoding + MBON value readout + dopaminergic TD error) can be rewritten as a three-factor local plasticity rule, letting the network learn online without global backpropagation.
 
-**Dopamine-driven learning.** Dynamics are a rate approximation — no STDP, no dopamine reward learning — and connection gains have to stay frozen to remain stable; unfreezing them collapses the policy within 12 iterations. The fly's mushroom body is a textbook biological actor-critic: Kenyon cells encode sparse state, MBONs read out value, dopaminergic neurons carry TD error. Rewriting this as a three-factor local plasticity rule would let the network learn online the way a real animal does, without the global backprop that shakes the synapses apart.
-
-**Visual obstacle avoidance.** The optic lobe holds over 60% of the brain's neurons, and the optomotor response and giant-fiber looming escape circuit are hardware that evolution spent tens of millions of years building. Feeding depth or optical flow straight into the visual projection neurons should produce a steering reflex on its own, with no separate CNN to train.
+**Visual obstacle avoidance.** The optic lobe (the fly's visual center) holds over 60% of the brain's neurons. Feeding depth or optical flow straight into the visual projection neurons should produce a steering reflex on its own, with no separate CNN to train.
 
 ## Training Approach & Details
 ### Data flow
 
 ```text
-User target speed / heading + MuJoCo body observation (47 dims)
-    ↓ trainable sensory encoder
+User target speed / heading + MuJoCo body observation (50 dims)
+    ↓ sensory encoder
 Data-labelled sensory neurons
     ↓ 4 rate updates per decision, propagating only along measured pre → post edges
 166,700 neurons / 25,582,938 connections
@@ -126,25 +99,18 @@ Data-labelled VNC / CB motor neurons (readout)
 Pose feedback; the VRM skeleton displays the same physical state
 ```
 
-Edge weights come from `sign × sqrt(contact count)`, normalized per target node. Acetylcholine is treated as excitatory, GABA, glutamate and histamine as inhibitory, neuromodulators and unknown classes default to positive — a simplification policy, not a per-synapse receptor measurement. Dynamics use a rate approximation (`r ← a·r + b·tanh(W·r + sensory drive)`) with no neural memory across decisions, no STDP and no dopamine reward learning. Sensory drive enters the input group only, the output group does not overlap it, and no path bypasses the network to reach the joints.
-
-Neuron biases, sensory encoding, connection gains and motor output train together: 26,575,852 trainable parameters, with about 81.9% of connection gains changed by the end.
+The 815 output neurons are annotated VNC (ventral nerve cord) and CB (central brain) motor neurons. Edge weights come from `sign × sqrt(contact count)`, normalized per target node. Acetylcholine is treated as excitatory, GABA, glutamate and histamine as inhibitory, neuromodulators and unknown classes default to positive — a simplification policy, not a per-synapse receptor measurement. Dynamics use a rate approximation (`r ← a·r + b·tanh(W·r + sensory drive)`) with no neural memory across decisions, no STDP and no dopamine reward learning. Sensory drive enters the input group only, the output group does not overlap it, and no path bypasses the network to reach the joints.
 
 ### How it trains
 
-For v0.2.0, the final stage uses student-state DAgger, impulse data and ridge readout fitting. The core stays frozen relative to the upright source. The paragraphs below describe the earlier G1 and Yumi PPO lineage.
+The v0.2.0 final stage: a Yumi MLP teacher labels actions for the training data; the student then executes on its own, and the states it actually visits (including failures) go back to the teacher for relabeling over several rounds (**DAgger**); ridge regression analytically fits the 9,792 readout parameters on features cached from the frozen core. The core (connections, sensory encoder, neuron biases, normalization) stays bit-identical to its source model. The teacher takes part in training only; evaluation and preview drive the joints straight from the connectome policy.
 
-An existing G1 walking policy acts as the teacher, demonstrating actions that backprop trains the whole control path. The student then walks on its own, and the states it stumbles into go back to the teacher for correct action labels, iterating (**DAgger**). The teacher takes part in training only; evaluation and preview drive the joints straight from the connectome policy.
-
-A new body means retraining. G1 is Unitree's humanoid robot model; Yumi is a 12-joint body rebuilt from the VRM character's measured skeleton (hip height 0.97231 m, roughly 1.55 m overall, 38 kg assumed from Dempster segment ratios). Joint order, axes and zero positions match, so the network interface is unchanged; height, mass, torque limits and fall thresholds differ, and a G1 checkpoint on the Yumi body falls in about 1.6–1.8 s. Even the G1 teacher driving Yumi directly lasts only about 1.7 s. The Yumi stage uses **PPO** to fine-tune from the G1 checkpoint: reward = speed tracking + upright + heading + survival + alternating foot contact − action penalties − fall termination, lr 1e-4, target_kl 0.015, 32 worlds × 128 steps, about 37 s per iteration locally and 9 s per iteration on a cloud 4090D.
-
-The first cloud acceptance run was bottlenecked by heading hold (3.7–12.2 m lateral drift), with survival and gait already solved. Lengthening training and evaluation episodes to 30 s and adding lateral and heading penalties to the reward produced the Yumi results above in the second round.
+A new body means retraining. G1 is Unitree's humanoid robot model; Yumi is a 12-joint body rebuilt from the VRM character's measured skeleton (hip height 0.97231 m, roughly 1.55 m overall, 38 kg assumed from Dempster segment ratios). Joint order, axes and zero positions match, so the network interface is unchanged; height, mass, torque limits and fall thresholds differ, and weights do not transfer. The earlier G1 and Yumi lineages were trained end-to-end with **PPO** (at that time the sensory encoder, neuron biases, connection gains and readout trained together, about 26.6 M parameters); the process and tuning notes live in `research/experiments/` and the [training reproduction guide](docs/TRAINING.md).
 
 ### Compute and cost
 
-- Local: Ryzen 9 7940HX, ~16 GB RAM, RTX 4070 Laptop 8 GB. The subgraph prototype trained and evaluated in about 183 s; the full graph runs inference only on this machine, with a median 10.04 ms per decision.
-- Cloud: AutoDL RTX 4090D. Full-graph training first OOM'd in PyTorch CSR backprop trying to allocate a ~103.52 GiB dense matrix; computing connection gradients only at sparse positions fixed it. Peak tensor VRAM at batch 256 was about 4.42 GiB, and two training rounds took about 13.2 minutes of process time.
-- Cost: ¥0.414 is process time multiplied by the hourly rate. The actual bill runs on total powered-on hours in GPU mode (¥1.88/hour), idle time included, with the no-GPU mode billed separately. Local inference does not shut down the cloud instance.
+- Local: Ryzen 9 7940HX, ~16 GB RAM, RTX 4070 Laptop 8 GB. The full graph runs inference only on this machine, with a median 10.04 ms per decision.
+- Cloud: training runs on an AutoDL RTX 4090D instance, billed on total powered-on time (idle included); instance configuration, benchmarks and cost records are in the [cloud measurements and reproduction record](docs/CLOUD.md).
 
 ## Running Locally
 For a clean checkout, use the [v0.2.0 studio installation guide](research/releases/v0.2.0/STUDIO.md). It downloads the public weights and graph, verifies checksums and installs the default model. Existing prepared environments can use:
@@ -154,15 +120,34 @@ cd D:\Project\Neuromechfly
 .\start.ps1            # defaults to Yumi + CUDA
 ```
 
-Open the [studio](http://127.0.0.1:8740). The VRM character on the page walks in real time, with every action computed on your machine.
-
-Both panels are the same live studio: the left pane displays lower-limb walking and gait stats. Arm motion is display animation. The right pane shows 2,048 sampled neuron activity rates of the 166,700-neuron connectome.
+Open the [studio](http://127.0.0.1:8740). The VRM character on the page walks in real time, with every action computed on your machine. Both panels are the same live studio: the left pane displays lower-limb walking and gait stats; the right pane shows 2,048 sampled neuron activity rates of the 166,700-neuron connectome.
 
 - Defaults to the Yumi body and CUDA. The page's top bar switches between G1 and Yumi live; training must not be running.
 - `.\stop.ps1` stops it. The startup log is `runs/cloud/server-error.log` (or `runs/yumi/server-error.log`).
 - On an RTX 4070 Laptop 8 GB the median decision is 10.04 ms and the Yumi page measured 1.00× real time; heavy system load drops it to 0.7–1.0×.
 
-The UI supports pause, resume, reset, target speed and heading, lateral pushes, character/skeleton toggle, connection severing, retraining, training curves and raw evaluation. Retraining archives the previous round's core results. Hair and upper-limb display following stay out of the physics evaluation.
+The UI supports pause, resume, reset, target speed and heading, lateral pushes, character/skeleton toggle, connection severing (cutting the brain's wiring), retraining, training curves and raw evaluation. Retraining archives the previous round's core results. Hair and upper-limb display following stay out of the physics evaluation.
+
+### From a clean environment
+
+Needs Python 3.12, uv, Node.js 20.19+ or 22.12+, and Git. `setup.ps1` downloads about 1.1 GB of raw connectome data and builds `.venv` (the legacy subgraph-prototype environment; the v0.2.0 weights and graph are installed through [STUDIO.md](research/releases/v0.2.0/STUDIO.md) instead):
+
+```powershell
+.\setup.ps1
+.\start.ps1
+```
+
+Vendor repositories and large data stay out of normal Git history.
+
+### Installing and accepting the v0.2.0 model
+
+Follow [STUDIO.md](research/releases/v0.2.0/STUDIO.md) for the browser or [REPRODUCE.md](research/releases/v0.2.0/REPRODUCE.md) for headless verification. Local acceptance command:
+
+```powershell
+.venv-gpu\Scripts\python.exe -m app.evaluate_locomotion --checkpoints runs/yumi/best.pt --seed-base 140001 --output runs/local/v020_normal.json
+```
+
+The acceptance script neither trains nor selects checkpoints. Measured Yumi skeleton dimensions, physics body construction and the screen-consistency check are in the [Yumi body adaptation record](research/avatar/YUMI_BODY.md); training and tuning notes live in `research/experiments/`.
 
 ### Run modes
 
@@ -170,81 +155,38 @@ The UI supports pause, resume, reset, target speed and heading, lateral pushes, 
 |---|---|---|---|
 | Local studio (mainline) | `.\start.ps1 [-Body g1\|yumi]` | 8740 | Full connectome + MuJoCo locally; body switchable in the page |
 | Cloud full graph | `.\cloud.ps1 Preview` | 8742 | AutoDL instance over an SSH tunnel, bound to localhost |
+| Local static preview | see [PREVIEW.md](docs/PREVIEW.md) (export the preview package, then `python -m app.serve_preview`) | 8741 | Serves the released weight package without a server |
 
 The 8,192-neuron subgraph prototype (`app/server.py`) remains as legacy code without a start script.
 
-On the cloud side, `./cloud.ps1 Status` reports state, `./cloud.ps1 Train -Seconds 1800` resumes training from a checkpoint, and `./cloud.ps1 Sync` syncs code and UI. The SSH target is machine-specific: pass `-CloudHost user@host -CloudPort 12345`, or write it once to `runs/cloud/target.json` (git-ignored) as `{"host": "user@host", "port": "12345"}`. Training does not shut down the instance; the preview keeps running and keeps billing.
+On the cloud side, `./cloud.ps1 Status` reports state, `./cloud.ps1 Train -Seconds 1800` resumes training from a checkpoint, and `./cloud.ps1 Sync` syncs code and UI. The SSH target is machine-specific: pass `-CloudHost user@host -CloudPort 12345`, or write it once to `runs/cloud/target.json` (git-ignored). Training does not shut down the instance; the preview keeps running and keeps billing.
 
-### Checkpoint lineage note
+### Weights and checkpoints
 
-`runs/yumi/best.pt` is the v0.2.0 primary model `f1a20071`. Its ancestor `458fc465` is retained as `runs/yumi/upright-source.pt` and `models/upright-source.pt` in the release package. The installer archives the previous default, training records and optimizer states under `runs/yumi/archive/` before switching.
-
-The older squat model `a7a4281f` remains available in the public v0.1.0 Release. Its historical results remain bound to that model. The new endpoint has no matching PPO optimizer state. The page serves release evidence only when checkpoint hash, Yumi body and physics interface match.
-
-## Reproducing the Training
-### From a clean environment (subgraph prototype)
-
-Needs Python 3.12, uv, Node.js 20.19+ or 22.12+, and Git. Setup downloads about 1.1 GB of raw connectome data.
-
-```powershell
-.\setup.ps1
-.\start.ps1
-```
-
-`.venv` isolates the project and leaves your global Python alone. Vendor repositories and large data stay out of normal Git history. `setup.ps1` builds the subgraph prototype environment; it does not include the `.venv-gpu` and checkpoints the Yumi version needs.
-
-### Training the subgraph prototype
-
-```powershell
-.venv\Scripts\python.exe -m app.prepare
-.venv\Scripts\python.exe -m app.train --samples 1536
-.venv\Scripts\python.exe -m app.check
-npm run build
-```
-
-The server serves the built page, so rebuild after frontend changes and refresh the browser.
-
-### Cloud full-graph training (G1 body)
-
-The cloud instance reuses the base PyTorch 2.12.1+cu130 image, with dependencies pinned in `requirements.cloud.lock.txt`. Do not overwrite a cloud environment with the local CPU prototype installer. Instance configuration, benchmarks and cost records are in the [cloud measurements, cost and reproduction record](research/guides/CLOUD.md).
-
-```bash
-cd /root/autodl-tmp/neuromechfly
-.venv/bin/python -m app.launch_cloud train --seconds 600
-.venv/bin/python -m app.evaluate_full
-.venv/bin/python -m app.check_full
-```
-
-Run acceptance after the training process exits. The acceptance script neither trains nor selects checkpoints.
-
-### Yumi body acceptance
-
-```powershell
-.venv-gpu\Scripts\python.exe -m app.evaluate_locomotion --checkpoints runs/yumi/best.pt --seed-base 140001 --output runs/local/v020_normal.json
-```
-
-Measured Yumi skeleton dimensions, physics body construction and the numerical screen-consistency check are in the [Yumi body adaptation record](research/avatar/YUMI_BODY.md); training and tuning notes live in `research/experiments/`.
+`runs/yumi/best.pt` is the v0.2.0 primary model `f1a20071`; its upright source model `458fc465` is retained as `runs/yumi/upright-source.pt` and shipped in the release package as `models/upright-source.pt`. The installer archives the previous default, training records and optimizer states under `runs/yumi/archive/` before switching. The older squat model `a7a4281f` remains available in the public v0.1.0 Release, with its historical results bound to that checkpoint. The page serves release evidence only when checkpoint hash, Yumi body and physics interface match.
 
 ### Publishing and verifying artifacts
+
 Download [v0.2.0](https://github.com/Moemu/Shouko/releases/tag/v0.2.0): `shouko-v0.2.0.tgz`, `manifest.json` and `SHA256SUMS.txt`. The package includes four model roles, full graph, evaluation evidence, minimal runtime and attribution. The manifest binds exact runtime files to the tagged source commit. Yumi VRM and old PPO states are excluded.
 
-Follow [STUDIO.md](research/releases/v0.2.0/STUDIO.md) for the browser or [REPRODUCE.md](research/releases/v0.2.0/REPRODUCE.md) for headless verification. The old `research/provenance/release.json` describes an earlier local inventory, not the v0.2.0 manifest.
+The old `research/provenance/release.json` describes an earlier local inventory, not the v0.2.0 manifest.
 
-### Key files
+## Key files
 
 - `app/prepare.py`: validates and streams the dataset, builds a traceable subgraph.
 - `app/full_brain.py`: sensory encoding, measured sparse connections and trained readout for the full connectome.
 - `app/yumi_skeleton.py`, `app/yumi_description/`: parse the skeleton from the VRM and build the Yumi physics body.
 - `app/sim.py`: MuJoCo physics and G1 / Yumi body switching.
-- `app/train_full.py`, `app/ppo_yumi.py`: DAgger training and Yumi's PPO fine-tuning.
-- `app/cloud_server.py`, `app/server.py`: real-time event stream, training control and preview.
-- `web/`: Three.js / VRM visualization and the Chinese experiment UI.
+- `app/train_full.py`, `app/ppo_yumi.py`: full-graph training, DAgger and PPO fine-tuning.
+- `app/export_preview_weights.py`, `app/serve_preview.py`: preview weight export and the local static preview server.
+- `app/studio_server.py`: mainline studio service, training control and hash-bound evaluation display.
+- `web/`: Three.js / VRM visualization and the experiment UI.
 - `research/REPORT.md`: literature review, method, results, compute and unfinished scope.
 
 ## About
 ### License
 
-The project's own code and documentation are released under the [MIT License](LICENSE). MIT is compatible with every bundled upstream license: the permissive ones (FlyCube, DOOMFLY, three-vrm, Three.js, Vite, FastAPI — MIT; Unitree RL Gym, NumPy, SciPy, Uvicorn — BSD-3-Clause; MuJoCo — Apache-2.0; PyTorch — BSD-style) only require retaining their notices, which stay in `vendor/` checkouts and the installed packages; `app/sim.py` keeps its Unitree adaptation note in the file header.
+The project's own code and documentation are released under the [MIT License](LICENSE). MIT is compatible with every bundled upstream license: the permissive ones (FlyCube, DOOMFLY, three-vrm, Three.js, Vite, FastAPI — MIT; Unitree RL Gym, NumPy, SciPy, Uvicorn — BSD-3-Clause; MuJoCo — Apache-2.0; PyTorch — BSD-style) only require retaining their notices, which stay in `vendor/` checkouts and installed packages; `app/sim.py` keeps its Unitree adaptation note in the file header.
 
 MIT covers this repository's code only and does not override the data and asset terms: the MaleCNS dataset stays CC BY 4.0 (attribution required), the pixiv VRM sample stays under VRM Public License 1.0, and the Yumi VRM is not redistributed at all under its author's terms. Third-party components are listed in [THIRD_PARTY.md](THIRD_PARTY.md), with license copies under `research/provenance/licenses/`:
 
@@ -261,7 +203,7 @@ This experiment is not affiliated with or endorsed by the cited researchers or o
 
 **Yumi** (1.3.0 / 20240715) — concept: 松酒; artist: 7Apoi; model: 星晨水影工作室; publisher: 墨海徽 ([author's release page](https://www.bilibili.com/video/BV1uG411f72b/)). File `web/public/yumi.vrm`, 25,754,408 bytes, SHA-256 `3f1eaf57…`, path listed in `.gitignore`. The author permits non-profit use, monetized livestreams and derivative works, prohibits redistribution and resale, and the embedded metadata prohibits sexual and violent use. Details in the [Yumi provenance record](research/avatar/YUMI.md).
 
-**Weights and data**: `runs/cloud/best.pt` (`f1d5147c`, G1), `runs/yumi/best.pt.bak` (`a7a4281f`, accepted Yumi version); `data/full_graph.npz` enforces SHA-256 validation on load, with the provenance manifest in `research/provenance/provenance.json`.
+**Weights and data**: `runs/yumi/best.pt` (`f1a20071`, v0.2.0 primary model); historical checkpoints are described under [Weights and checkpoints](#weights-and-checkpoints) and in the GitHub Releases. `data/full_graph.npz` enforces SHA-256 validation on load, with the provenance manifest in `research/provenance/provenance.json`.
 
 ### Disclaimer
 
