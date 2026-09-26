@@ -41,7 +41,7 @@ ARTIFACTS = [
 
 UNIT_NOTES = {
     'L0_subgraph': 'setup.ps1 自动训练；复训命令与种子见 README「复现训练过程」。',
-    'L1_full_g1': '训练与验收经过见 research/guides/CLOUD.md 与 research/experiments/；'
+    'L1_full_g1': '训练与验收经过见 docs/CLOUD.md 与 research/experiments/；'
                   '2026-09-18 独立验收绑定 best.pt（runs/cloud/evaluations/）。',
     'L2_yumi': 'PPO 编年与验收见 research/experiments/PPO_POSTURE_20260916.md；'
                'best.pt 为 9/9 验收世系（a7a4281f…）。',

@@ -23,7 +23,7 @@ if (-not $CloudHost -or -not $CloudPort) {
 if ($Action -eq 'Sync') {
     npm run build
     if ($LASTEXITCODE -ne 0) { throw 'UI build failed' }
-    tar -czf runs/cloud/code.tgz app web/dist research/guides/CLOUD.md
+    tar -czf runs/cloud/code.tgz app web/dist docs/CLOUD.md
     if ($LASTEXITCODE -ne 0) { throw 'Code archive failed' }
     scp -q -P $CloudPort runs/cloud/code.tgz "${CloudHost}:${CloudRoot}/code.tgz"
     if ($LASTEXITCODE -ne 0) { throw 'Code upload failed' }

@@ -247,7 +247,7 @@ def evaluation():
 
 @app.get('/api/report')
 def report():
-    return FileResponse(ROOT/('research/guides/LOCAL.md' if LOCAL else 'research/guides/CLOUD.md'), media_type='text/plain; charset=utf-8')
+    return FileResponse(ROOT/('docs/LOCAL.md' if LOCAL else 'docs/CLOUD.md'), media_type='text/plain; charset=utf-8')
 
 
 app.mount('/', StaticFiles(directory=ROOT/'web/dist', html=True), name='cloud-studio')

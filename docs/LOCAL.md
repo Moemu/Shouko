@@ -1,4 +1,4 @@
-> v0.2.0 公开权重的全新安装与默认预览见 [工作室安装说明](../releases/v0.2.0/STUDIO.md)。下文保留早期原型环境的背景。
+> v0.2.0 公开权重的全新安装与默认预览见 [工作室安装说明](../research/releases/v0.2.0/STUDIO.md)。下文保留早期原型环境的背景。
 
 # 完整连接组 · 本地推理验证
 
@@ -67,7 +67,7 @@ uv pip install --python .venv-gpu\Scripts\python.exe -r requirements.local-gpu.l
 
 VRM 位于 `web/public/yumi.vrm`。服务直接读取文件，不必为更换模型重建前端。文件缺失时保留原角色，并显示“等待 Yumi 文件”。模型使用 VRM0 朝向转换和归一化 Humanoid 骨骼；髋部高度决定物理代理与显示角色的比例。VRM0 的 X/Z 旋转经过方向修正，避免出现手臂举过头顶和腿部动作反向。已检查材质、手臂下垂和实际行走画面。
 
-作者与条款见 [Yumi 来源记录](../avatar/YUMI.md)。模型成本为 0 JPY。模型不进入普通 Git 历史，禁止公开再分发。
+作者与条款见 [Yumi 来源记录](../research/avatar/YUMI.md)。模型成本为 0 JPY。模型不进入普通 Git 历史，禁止公开再分发。
 
 ## 费用口径
 

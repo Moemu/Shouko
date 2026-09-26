@@ -8,7 +8,7 @@ needs neither the project's Python environment nor Caddy/nginx/Docker.
     python -m app.serve_preview                # http://127.0.0.1:8741/
     python -m app.serve_preview --port 9000
 
-What it enforces, and why each one matters (research/guides/PREVIEW.md §4 and §8):
+What it enforces, and why each one matters (docs/PREVIEW.md §4 and §8):
 
 - `/` serves the preview page. In a deployment the file is published as the site's
   index; here it is served by name, so `/` behaves the same either way.

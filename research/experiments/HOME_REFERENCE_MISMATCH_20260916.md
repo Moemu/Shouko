@@ -60,7 +60,7 @@
 | `runs/cloud/best.pt` | — | G1 身体，不受影响 | — |
 
 ⚠️ **回退 home 之后，`runs/yumi/best.pt` 里那份 `666134f2` 是失效的**
-（它按新 home 训练）。而 `local-full.ps1` 默认加载 `RUNS/best.pt`（补注：该 8743 旧入口脚本后已移除，本机完整图预览统一走 `start.ps1`，见 guides/LOCAL.md）。
+（它按新 home 训练）。而 `local-full.ps1` 默认加载 `RUNS/best.pt`（补注：该 8743 旧入口脚本后已移除，本机完整图预览统一走 `start.ps1`，见 docs/LOCAL.md）。
 `666134f2` 与 `best_tall.pt` 逐字节相同，所以内容没有丢失；但
 `best.pt` 该指向哪一份是研究决定，尚未处置。
 

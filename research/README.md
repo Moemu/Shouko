@@ -1,13 +1,13 @@
 # research/ 目录索引
 
-按用途分层：根目录放主报告与当前修正交接，其余按 提案讨论 / 运行指南 / 实验记录 / 角色与身体 / 外部参考 / 溯源数据 分层。
+research/ 专门存放实验过程记录与提案：根目录放主报告与当前修正交接，其余按 提案讨论 / 实验记录 / 角色与身体 / 外部参考 / 溯源数据 / 发行准备 分层。面向使用者的复现与部署指南（LOCAL、CLOUD、PREVIEW、TRAINING）在仓库根目录的 `docs/`。
 
 ## 固定路径（代码与脚本依赖，移动前必须同步改引用）
 
 | 路径 | 依赖方 |
 |---|---|
 | `REPORT.md` | `app/server.py` `/api/report` 直接服务 |
-| `guides/LOCAL.md`、`guides/CLOUD.md` | `app/cloud_server.py` `/api/report`；`cloud.ps1` 打包上云；`start.ps1` 错误提示 |
+| `../docs/LOCAL.md`、`../docs/CLOUD.md` | `app/cloud_server.py` `/api/report`；`cloud.ps1` 打包上云；`start.ps1` 错误提示 |
 | `provenance/provenance.json` | `setup.ps1` 资产哈希校验 |
 
 ## 根目录
@@ -24,10 +24,9 @@
 - [2026-09-20](proposals/README.md#2026-09-20) — Cline 的评估与价值网络提案。
 - [2026-09-21](proposals/README.md#2026-09-21) — Codex 独立提案与综合讨论。
 
-## guides/ — 运行与复现
+## releases/ — 发行准备记录
 
-- `LOCAL.md` — 本机完整图预览：使用、资源、费用口径、复现。
-- `CLOUD.md` — 云端实验：实测、费用、复现记录。
+- `v0.2.0/` — v0.2.0 的决策记录、草稿、校验证据与打包脚本；其中 STUDIO / REPRODUCE / MODEL_CARD 随发行包分发，由 `prepare_v020.py` 按固定路径映射。
 
 ## experiments/ — 实验编年与评审（按时间序）
 

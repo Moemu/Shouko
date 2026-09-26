@@ -16,7 +16,7 @@ try {
     return
 } catch {}
 $localPython = if ($Device -eq 'cuda') { "$taskRoot\.venv-gpu\Scripts\python.exe" } else { "$taskRoot\.venv\Scripts\python.exe" }
-if (-not (Test-Path -LiteralPath $localPython)) { throw 'Missing Python environment. See research/guides/LOCAL.md.' }
+if (-not (Test-Path -LiteralPath $localPython)) { throw 'Missing Python environment. See docs/LOCAL.md.' }
 # No checkpoint required: without best.pt the page still runs and can start training.
 if (-not (Test-Path -LiteralPath "$taskRoot\web\dist\index.html")) {
     npm run build

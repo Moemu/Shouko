@@ -407,4 +407,4 @@ done      # 四个固定名都必须是 no-cache
 - [Caddy file_server](https://caddyserver.com/docs/caddyfile/directives/file_server)
 - [MuJoCo WASM bindings（@mujoco/mujoco）](https://www.npmjs.com/package/@mujoco/mujoco)
 
-模型与数据的溯源见 `research/REPORT.md`、`data/full_graph.json`；角色许可与署名见 `THIRD_PARTY.md`、`research/avatar/YUMI.md`。云实例的计费与保留规则见 `research/guides/CLOUD.md`。
+模型与数据的溯源见 `research/REPORT.md`、`data/full_graph.json`；角色许可与署名见 `THIRD_PARTY.md`、`research/avatar/YUMI.md`。云实例的计费与保留规则见 `docs/CLOUD.md`。
