@@ -39,3 +39,10 @@ debug.log
 
 # 预览静态主机的真实目标（含主机与域名），仅本机保存（红线 1）
 runs/cloud/preview_target.json
+
+# v0.2.0 发布准备的本地工作区。DECISION.md 自己写明它是「工作区源码快照，不能把当前
+# HEAD 冒充已提交的发行源码」，即这里的路径是操作脚手架，不是记录本身。
+# 耐久产物在别处：GitHub Release 附了 manifest.json / SHA256SUMS.txt / shouko-v0.2.0.tgz，
+# 页面截图成品是已入库的 assets/preview-*.png，过程与结论在 research/releases/v0.2.0/。
+# 整个目录由 research/releases/prepare_v020.py 生成，可重建（约 2.9 GiB）。
+runs/releases/
