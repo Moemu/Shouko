@@ -25,24 +25,9 @@ runs/cloud/target.json
 # Optional third-party reference cache; never publish downloaded source copies.
 /.cache/references/
 
-# 浏览器预览权重包：由 app/export_preview_weights.py 生成，体积大，发布走 Release（红线 2/8）
+# 浏览器预览权重包：由 app/export_preview_weights.py 生成（AGENTS.md 常用命令与
+# PREVIEW.md §1 都要求社区用户跑这一步），体积大，发布走 Release（红线 2/8）
 artifacts/
 
-# 基准测试的二进制夹具与第三方构建产物：脚本与结果入库，二进制不入库
-bench_webgpu/fixtures/
-# 由 shot_probe.mjs 生成的可再生输出，不是测量结果本身
-bench_webgpu/preview_fixed.png
-bench_mujoco/public/mujoco.js
-bench_mujoco/public/mujoco.wasm
-
-debug.log
-
-# 预览静态主机的真实目标（含主机与域名），仅本机保存（红线 1）
-runs/cloud/preview_target.json
-
-# v0.2.0 发布准备的本地工作区。DECISION.md 自己写明它是「工作区源码快照，不能把当前
-# HEAD 冒充已提交的发行源码」，即这里的路径是操作脚手架，不是记录本身。
-# 耐久产物在别处：GitHub Release 附了 manifest.json / SHA256SUMS.txt / shouko-v0.2.0.tgz，
-# 页面截图成品是已入库的 assets/preview-*.png，过程与结论在 research/releases/v0.2.0/。
-# 整个目录由 research/releases/prepare_v020.py 生成，可重建（约 2.9 GiB）。
-runs/releases/
+# 本仓库 .gitignore 的纪律：只写「社区用户确会产生」的产物。仅由本机特定状态产生的
+# 文件放 .git/info/exclude（不随仓库分发），不要写在这里。
