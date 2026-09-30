@@ -10,6 +10,6 @@ Two full-connectome Yumi lower-body checkpoints, a self-contained native MuJoCo 
 
 The primary was fixed before holdouts. Different seeds and training histories mean the two final means are not a ranking. Explicit phase and external yaw feedback remain. This is limited flat-ground lower-body control, not autonomous CPG, topology superiority, general navigation or upper-body control. The shared-data matrix does not isolate the cause of improvement.
 
-Download the archive, manifest and SHA256SUMS.txt together, verify them, then follow REPRODUCE.md inside the archive. The package supports inference/evaluation reproduction; complete historical training datasets and VRM assets are excluded.
+Download all five assets: the archive, manifest, primary_native.json, replica_native.json and SHA256SUMS.txt. Keep them together, run `sha256sum -c SHA256SUMS.txt`, then follow REPRODUCE.md inside the archive. The package supports inference/evaluation reproduction; complete historical training datasets and VRM assets are excluded.
 
 The online preview and default installed model remain on v0.2.0. Existing v0.2.0 assets and tag are preserved. See MODEL_CARD.md for hashes, training provenance and limitations, and VALIDATION.md for release checks.
