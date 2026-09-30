@@ -10,7 +10,7 @@ WebGPU 在线预览（v0.2.0）： [Shouko · ショウコ · Studio](https://sh
 
 **最新权重：[v0.3.0——方向稳定性检查点](https://github.com/Moemu/Shouko/releases/tag/v0.3.0)。** 两份固定检查点各通过 72/72 留出测试。每个模型的 9 次 120 秒长走，全程均未偏离起始中线超过 2 米。[模型卡](research/releases/v0.3.0/MODEL_CARD.md) · [下载与运行](research/releases/v0.3.0/REPRODUCE.md)。
 
-在线预览、截图和默认工作室安装仍为 v0.2.0。v0.3.0 已提供独立的原生 MuJoCo 运行包，生产浏览器预览尚未升级。
+在线预览和默认工作室安装仍为 v0.2.0。下方 Yumi 图片来自 v0.3.0 的本地浏览器预览。v0.3.0 已提供独立的原生 MuJoCo 运行包，生产浏览器预览尚未升级。
 
 ## 概述
 
@@ -37,7 +37,9 @@ Shouko 与前两者的不同首先在开放程度：训练方法、发行权重�
 | 身体 / 阶段 | 行走中的模型 | 同一时刻的神经活动 |
 |---|---|---|
 | **G1 · 前序阶段**<br>`ffcf9a97` · 8.28 秒 | <img src="assets/preview-g1-model.png" alt="G1 以目标速度 0.5 m/s 行走，使用 pixiv 示例角色显示" width="300"> | <img src="assets/preview-g1-neural.png" alt="同一仿真时刻的 G1 连接组活动，固定色标负一至正一" width="300"> |
-| **Yumi · 预览 v0.2.0**<br>`f1a20071` · 8.26 秒 | <img src="assets/preview-yumi-model.png" alt="v0.2.0 预览模型的左脚摆动帧" width="300"> | <img src="assets/preview-yumi-neural.png" alt="同一仿真时刻的 v0.2.0 Yumi 连接组活动，固定色标负一至正一" width="300"> |
+| **Yumi · v0.3.0 本地预览**<br>`1e1c3160` · 8.28 秒 | <img src="assets/preview-yumi-v030-model.jpg" alt="v0.3.0 Yumi 在本地浏览器预览中的行走帧" width="300"> | <img src="assets/preview-yumi-v030-neural.jpg" alt="同一仿真时刻的 v0.3.0 Yumi 连接组活动，固定色标负一至正一" width="300"> |
+
+Yumi 图摄于 2026-09-30，运行于本地 WebGPU / MuJoCo-WASM 预览；G1 保留 2026-09-23 的工作室截图。
 
 每组来自目标速度 0.50 m/s、朝向 0° 下真实行走的一帧；暂停后分别截取模型与神经活动，保证同组对应同一仿真时刻。神经图展示 **166,700 个神经元中的 2,048 个胞体采样点**，使用固定 ±1 色标的带符号模型活动（蓝色为负，橙色为正）。这不是生物脉冲记录，也不是新增验收成绩。[截图参数与哈希](assets/preview-metadata.json)。G1 图使用后续检查点 `ffcf9a97`（[留出记录 6/9](research/experiments/G1_CHECKPOINT_REBIND_20260918.md)）；下方[历史成绩](#历史成绩)表中的 9/9 属于 `f1d5147c`。G1 角色：© 2022 pixiv Inc.；Yumi：原设松酒、画师 7Apoi、模型星晨水影工作室、发布墨海徽。[资产署名说明](THIRD_PARTY.md)。
 

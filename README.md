@@ -10,7 +10,7 @@ WebGPU online preview (v0.2.0): [Shouko · ショウコ · Studio](https://shouk
 
 **Latest weights: [v0.3.0 — directional walking](https://github.com/Moemu/Shouko/releases/tag/v0.3.0).** Two fixed checkpoints each pass 72/72 held-out trials. All nine 120-second walks per model stay within 2 m of the starting centerline throughout. [Model card](research/releases/v0.3.0/MODEL_CARD.md) · [Download and run](research/releases/v0.3.0/REPRODUCE.md).
 
-The online preview, screenshots and default studio installation remain on v0.2.0. v0.3.0 is available as an independent native MuJoCo package; its production browser rollout is pending.
+The online preview and default studio installation remain on v0.2.0. The Yumi images below show v0.3.0 running in a local browser. v0.3.0 is available as an independent native MuJoCo package; its production browser rollout is pending.
 
 ## Overview
 
@@ -37,7 +37,9 @@ Community reproduction is welcome — see [Running Locally](#running-locally) an
 | Body / stage | Model during walking | Neural activity at the same instant |
 |---|---|---|
 | **G1 · earlier stage**<br>`ffcf9a97` · 8.28 s | <img src="assets/preview-g1-model.png" alt="G1 walking at 0.5 m/s, rendered with the pixiv sample avatar" width="300"> | <img src="assets/preview-g1-neural.png" alt="G1 connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
-| **Yumi · preview v0.2.0**<br>`f1a20071` · 8.26 s | <img src="assets/preview-yumi-model.png" alt="v0.2.0 preview model during a left-foot swing" width="300"> | <img src="assets/preview-yumi-neural.png" alt="v0.2.0 Yumi connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
+| **Yumi · v0.3.0 local preview**<br>`1e1c3160` · 8.28 s | <img src="assets/preview-yumi-v030-model.jpg" alt="v0.3.0 Yumi walking in the local browser preview" width="300"> | <img src="assets/preview-yumi-v030-neural.jpg" alt="v0.3.0 Yumi connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
+
+Yumi was captured on 2026-09-30 in the local WebGPU / MuJoCo-WASM preview; G1 retains its 2026-09-23 studio capture.
 
 Each pair freezes one real walking frame at a commanded 0.50 m/s and 0° heading; model and neural images share the same simulation time. Neural views show **2,048 sampled somata out of 166,700 neurons**, using signed model activity at a fixed ±1 scale (blue: negative; orange: positive). These are not biological spikes or new acceptance tests. [Capture details and hashes](assets/preview-metadata.json). The G1 image uses the later `ffcf9a97` checkpoint ([6/9 held-out record](research/experiments/G1_CHECKPOINT_REBIND_20260918.md)); the 9/9 in the [historical results](#historical-results) table below belongs to `f1d5147c`. G1 avatar: © 2022 pixiv Inc. Yumi: concept 松酒, artist 7Apoi, model 星晨水影工作室, publisher 墨海徽. [Asset attribution](THIRD_PARTY.md).
 
