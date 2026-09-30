@@ -1,0 +1,221 @@
+{
+  "completed": true,
+  "stage": 2,
+  "dataset": "B",
+  "seed": 4031,
+  "arm": "s1",
+  "repeat": false,
+  "jobs": [],
+  "results": {
+    "normal": {
+      "episodes": 27,
+      "successes": 27,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 27,
+        "speed": 27,
+        "feet": 27,
+        "alternation": 27,
+        "upright": 27,
+        "direction": 27
+      },
+      "lateral_m": 0.09614870392878176,
+      "maximum_lateral_mean": 0.11152174998195125,
+      "mean_abs_yaw": 0.008333529207110576,
+      "mean_height": 0.971707423955245,
+      "speed_mae": 0.023075829460034857,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 27,
+      "direction_passes": 27,
+      "by_speed": {
+        "0.35": {
+          "episodes": 9,
+          "signed_endpoint_mean_m": 0.037009652055311024,
+          "maximum_lateral_m": 0.1275783075439945
+        },
+        "0.5": {
+          "episodes": 9,
+          "signed_endpoint_mean_m": -0.0700574854783844,
+          "maximum_lateral_m": 0.12365292769373656
+        },
+        "0.65": {
+          "episodes": 9,
+          "signed_endpoint_mean_m": -0.1813789742526499,
+          "maximum_lateral_m": 0.2420539588745115
+        }
+      },
+      "evidence_path": "runs/sensory_access_20260930/replica/dagger/round1_eval_normal.json",
+      "evidence_sha256": "15b3a839560c00a8e9b113d889db5c5e79d78bea73c9c9def2d9eb4c0cb326ba"
+    },
+    "long": {
+      "episodes": 9,
+      "successes": 9,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 9,
+        "speed": 9,
+        "feet": 9,
+        "alternation": 9,
+        "upright": 9,
+        "direction": 9
+      },
+      "lateral_m": 0.451051569638235,
+      "maximum_lateral_mean": 0.4729015299755744,
+      "mean_abs_yaw": 0.007595122303719652,
+      "mean_height": 0.9719226295857273,
+      "speed_mae": 0.025610004967725124,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 9,
+      "direction_passes": 9,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": -0.0008154596060389307,
+          "maximum_lateral_m": 0.1275783075439945
+        },
+        "0.5": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": -0.42001512862976687,
+          "maximum_lateral_m": 0.43206347170353854
+        },
+        "0.65": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": -0.9054046064416025,
+          "maximum_lateral_m": 0.9369033564334643
+        }
+      },
+      "evidence_path": "runs/sensory_access_20260930/replica/dagger/round1_eval_long.json",
+      "evidence_sha256": "ca540d7c4b536a667e30b22edc8c9f7138ad694f60817db73a6316042ab6e507"
+    },
+    "yaw": {
+      "episodes": 18,
+      "successes": 18,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 18,
+        "speed": 18,
+        "feet": 18,
+        "alternation": 18,
+        "upright": 18,
+        "direction": 18
+      },
+      "lateral_m": 0.10293530722447383,
+      "maximum_lateral_mean": 0.14525882311461413,
+      "mean_abs_yaw": 0.00911199271793331,
+      "mean_height": 0.9718246683013584,
+      "speed_mae": 0.01906939163893782,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 18,
+      "direction_passes": 18,
+      "by_speed": {
+        "0.35": {
+          "episodes": 6,
+          "signed_endpoint_mean_m": 0.05295968137187009,
+          "maximum_lateral_m": 0.167384590615442
+        },
+        "0.5": {
+          "episodes": 6,
+          "signed_endpoint_mean_m": -0.0437024064575842,
+          "maximum_lateral_m": 0.10250894951572047
+        },
+        "0.65": {
+          "episodes": 6,
+          "signed_endpoint_mean_m": -0.20635205603564413,
+          "maximum_lateral_m": 0.3814938849607471
+        }
+      },
+      "evidence_path": "runs/sensory_access_20260930/replica/dagger/round1_eval_yaw.json",
+      "evidence_sha256": "4b1eac9f9b2640ebcee55528fd3e37d183db58360c98e482dc49afe8ff19bea0"
+    },
+    "push_positive": {
+      "episodes": 9,
+      "successes": 9,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 9,
+        "speed": 9,
+        "feet": 9,
+        "alternation": 9,
+        "upright": 9,
+        "direction": 9
+      },
+      "lateral_m": 0.39686801322116455,
+      "maximum_lateral_mean": 0.4839050435183048,
+      "mean_abs_yaw": 0.009284599621304589,
+      "mean_height": 0.9715876939212303,
+      "speed_mae": 0.02410276027380038,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 9,
+      "direction_passes": 9,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": 0.3286764333020024,
+          "maximum_lateral_m": 0.3924672675229385
+        },
+        "0.5": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": 0.6367312593598652,
+          "maximum_lateral_m": 0.7016006755647264
+        },
+        "0.65": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": 0.22519634700162613,
+          "maximum_lateral_m": 0.4299157631893264
+        }
+      },
+      "evidence_path": "runs/sensory_access_20260930/replica/dagger/round1_eval_push_positive.json",
+      "evidence_sha256": "316eac36497564d09cd6be70b9d492021fa29feb05792c06d12a8f1e475c2712"
+    },
+    "push_negative": {
+      "episodes": 9,
+      "successes": 9,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 9,
+        "speed": 9,
+        "feet": 9,
+        "alternation": 9,
+        "upright": 9,
+        "direction": 9
+      },
+      "lateral_m": 0.3239069304431081,
+      "maximum_lateral_mean": 0.3239069304431081,
+      "mean_abs_yaw": 0.008869475027995344,
+      "mean_height": 0.9714737705776658,
+      "speed_mae": 0.02236020639471394,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 9,
+      "direction_passes": 9,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": -0.2483008667395231,
+          "maximum_lateral_m": 0.2893206496309894
+        },
+        "0.5": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": -0.3224888940763277,
+          "maximum_lateral_m": 0.3324521765533484
+        },
+        "0.65": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": -0.40093103051347345,
+          "maximum_lateral_m": 0.43189868372696605
+        }
+      },
+      "evidence_path": "runs/sensory_access_20260930/replica/dagger/round1_eval_push_negative.json",
+      "evidence_sha256": "6a866c16d7da27718633d0c4be2af1d8cc73d2d95d357ab86600119e3504f585"
+    }
+  },
+  "started_utc": "2026-09-30T05:49:52.842531+00:00",
+  "reused": true,
+  "checkpoint": "runs/sensory_access_20260930/replica/dagger/round1/last.pt",
+  "checkpoint_sha256": "fe386851ed9aa910aa837767ca647967388fba26b10c1c13784d82f996d2c916",
+  "fit_path": "runs/sensory_access_20260930/replica/dagger/round1/fit.json",
+  "fit_sha256": "9097fa5c0ffd63c243a1dfc09e479165511069c3a6444e30f4188765fbf8d2c5",
+  "sample_indices_sha256": "dae52546df98513a8443f0305878c172c28b1feffaf414805070153f1ff050cb",
+  "vy_observation_std": 0.03280811011791229,
+  "development_passed": true,
+  "finished_utc": "2026-09-30T05:49:53.697906+00:00"
+}

@@ -1,0 +1,21 @@
+{
+  "completed": true,
+  "phase": "complete",
+  "jobs": [
+    {
+      "name": "transfer_main",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "runs/direction_control_20260929/run_transfer.py",
+        "--branch",
+        "main"
+      ],
+      "returncode": 0,
+      "wall_seconds": 671.2566613219678
+    }
+  ],
+  "started_utc": "2026-09-29T01:59:56.400273+00:00",
+  "stopped_at_development": "main",
+  "finished_utc": "2026-09-29T02:11:07.659619+00:00"
+}

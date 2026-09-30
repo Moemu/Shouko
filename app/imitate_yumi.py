@@ -1,6 +1,7 @@
 """Isolated native Yumi demonstrations and full-connectome supervised diagnostics."""
 import argparse
 from contextlib import nullcontext
+import hashlib
 import json
 from pathlib import Path
 import time
@@ -22,6 +23,13 @@ def metadata(args):
 
 
 def collect(args):
+    if not args.speeds or any(not np.isfinite(v) or v <= 0 for v in args.speeds):
+        raise ValueError('Collection speeds must be finite and positive')
+    if args.push and args.push_velocity is not None:
+        raise ValueError('Use either --push or --push-velocity')
+    push_velocity = .25 if args.push else (args.push_velocity or 0.0)
+    if not np.isfinite(push_velocity) or (push_velocity and args.seconds <= 10):
+        raise ValueError('A finite push requires an episode longer than ten seconds')
     teacher, cfg, kind = load_policy(args.teacher)
     if kind != 'mlp':
         raise ValueError('Expected the verified MLP teacher')
@@ -42,11 +50,13 @@ def collect(args):
             body.data.qpos[3:7] = [np.cos(yaw/2), 0, 0, np.sin(yaw/2)]
             mujoco.mj_forward(body.model, body.data)
         alive = np.ones(9, dtype=bool)
-        speeds = [0.35, 0.5, 0.65]*3
+        push_applied = np.zeros(9, dtype=bool)
+        speeds = [args.speeds[i % len(args.speeds)] for i in range(9)]
         for step in range(round(args.seconds/dt)):
-            if args.push and step == round(10/dt):
+            if push_velocity and step == round(10/dt):
+                push_applied[alive] = True
                 for body in bodies:
-                    body.data.qvel[1] += .25
+                    body.data.qvel[1] += push_velocity
             obs = np.stack([b.motor_observation([v, 0, float(np.clip(-b.observation()[1]*1.4, -.2, .2))])
                             for b, v in zip(bodies, speeds)])
             tensor = torch.from_numpy(obs).cuda()
@@ -66,7 +76,8 @@ def collect(args):
                     state = body.step_joints(applied[i])
                     if state['fallen'] or step == round(args.seconds/dt)-1:
                         rows.append(dict(seed=seeds[i], initial_yaw=yaws[i], command=speeds[i],
-                                         seconds=state['time'], fallen=bool(state['fallen'])))
+                                         seconds=state['time'], fallen=bool(state['fallen']),
+                                         push_applied=bool(push_applied[i])))
                     alive[i] = not state['fallen']
             if not alive.any():
                 break
@@ -75,11 +86,12 @@ def collect(args):
                 episode_ids=torch.from_numpy(np.concatenate(episode_ids)),
                 physics_interface=cfg['physics_interface'], teacher_sha256=file_sha256(args.teacher),
                 student_sha256=file_sha256(args.student) if args.student else None,
-                episodes=rows, **metadata(args))
+                episodes=rows, effective_push_velocity=push_velocity, **metadata(args))
     torch.save(data, args.output)
     atomic_json(Path(args.output).with_suffix('.json'), dict(samples=len(data['observations']),
                 episodes=rows, teacher_sha256=data['teacher_sha256'], student_sha256=data['student_sha256'],
-                sha256=file_sha256(args.output), wall_seconds=time.monotonic()-started, **metadata(args)))
+                sha256=file_sha256(args.output), effective_push_velocity=push_velocity,
+                wall_seconds=time.monotonic()-started, **metadata(args)))
 
 
 def dataset(paths):
@@ -116,6 +128,53 @@ def predict(model, observations, batch, features=False):
     return torch.cat(values)
 
 
+def feature_identity(model, batch):
+    """Readout changes cannot invalidate the frozen observation-to-feature mapping."""
+    digest = hashlib.sha256()
+    digest.update(json.dumps(dict(neural_steps=model.neural_steps, batch=batch, torch=torch.__version__,
+                                  device=str(model.readout.weight.device)), sort_keys=True).encode())
+    for name in ['imitate_yumi.py', 'full_brain.py', 'ordered_inference.py']:
+        digest.update(file_sha256(ROOT/'app'/name).encode())
+    for name, tensor in sorted(model.state_dict().items()):
+        if name.startswith('readout.'):
+            continue
+        digest.update(name.encode())
+        digest.update(str((tensor.shape, tensor.dtype)).encode())
+        digest.update(tensor.detach().cpu().contiguous().numpy().tobytes())
+    return digest.hexdigest()
+
+
+def cached_features(model, paths, batch, directory, identity):
+    directory = Path(directory)
+    directory.mkdir(parents=True, exist_ok=True)
+    features, audit = [], []
+    for path in paths:
+        data_hash = file_sha256(path)
+        cached = directory/f'{identity}_{data_hash}.pt'
+        manifest = cached.with_suffix('.json')
+        reused = cached.exists()
+        if reused:
+            cache_info = json.loads(manifest.read_text())
+            if file_sha256(cached) != cache_info['sha256']:
+                raise ValueError('Frozen feature cache checksum mismatch')
+            saved = torch.load(cached, map_location='cpu', weights_only=True, mmap=True)
+            if saved['feature_identity'] != identity or saved['data_sha256'] != data_hash:
+                raise ValueError('Frozen feature cache provenance mismatch')
+            values = saved['features']
+        else:
+            data = torch.load(path, map_location='cpu', weights_only=True)
+            values = predict(model, data['observations'], batch, True)
+            temporary = cached.with_suffix('.tmp')
+            torch.save(dict(features=values, feature_identity=identity, data_sha256=data_hash), temporary)
+            temporary.replace(cached)
+            atomic_json(manifest, dict(sha256=file_sha256(cached)))
+        if values.ndim != 2 or values.shape[1] != model.readout.in_features or not torch.isfinite(values).all():
+            raise ValueError('Invalid cached readout features')
+        features.append(values)
+        audit.append(dict(data_sha256=data_hash, cache_sha256=file_sha256(cached), rows=len(values), reused=reused))
+    return torch.cat(features), audit
+
+
 def fit(args):
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=False)
@@ -139,11 +198,22 @@ def fit(args):
     def save_report():
         report['wall_seconds'] = time.monotonic()-started
         atomic_json(out/'fit.json', report)
-    report['initial_validation'] = metrics(predict(model, validation['observations'], args.batch), validation['targets'])
-    save_report()
     if args.mode == 'readout':
-        features = predict(model, train['observations'], args.batch, True).double()
-        vx = predict(model, validation['observations'], args.batch, True).double()
+        if args.feature_cache:
+            identity = feature_identity(model, args.batch)
+            features, training_cache = cached_features(model, args.train, args.batch, args.feature_cache, identity)
+            vx, validation_cache = cached_features(model, args.validation, args.batch, args.feature_cache, identity)
+            report['feature_cache'] = dict(identity=identity, training=training_cache, validation=validation_cache)
+            features, vx = features.double(), vx.double()
+        else:
+            features = predict(model, train['observations'], args.batch, True).double()
+            vx = predict(model, validation['observations'], args.batch, True).double()
+        if len(features) != len(train['targets']) or len(vx) != len(validation['targets']):
+            raise ValueError('Feature cache sample count differs from dataset')
+        report['initial_validation'] = metrics(vx@model.readout.weight.detach().cpu().double().T+
+                                               model.readout.bias.detach().cpu().double(), validation['targets'])
+        report['initial_validation_method'] = 'Frozen features with float64 affine readout; final validation uses actual policy inference'
+        save_report()
         report['initial_training'] = metrics(features@model.readout.weight.detach().cpu().double().T+
                                              model.readout.bias.detach().cpu().double(), train['targets'])
         mean, scale = features.mean(0), features.std(0).clamp_min(1e-4)
@@ -163,6 +233,8 @@ def fit(args):
         model.save(out/'last.pt', extra=dict(method='fixed full-graph features, ridge readout', ridge=args.ridge),
                    physics=train['physics_interface'])
     else:
+        report['initial_validation'] = metrics(predict(model, validation['observations'], args.batch), validation['targets'])
+        save_report()
         model.edge_delta.requires_grad_(args.mode == 'edges')
         model.normalizer.requires_grad_(False)
         optimizer = torch.optim.Adam([
@@ -210,15 +282,20 @@ def main():
     collect_parser.add_argument('--beta', type=float, default=1)
     collect_parser.add_argument('--seconds', type=float, default=12)
     collect_parser.add_argument('--cohorts', type=int, default=3)
+    collect_parser.add_argument('--speeds', nargs='+', type=float, default=[.35, .5, .65])
     collect_parser.add_argument('--yaws', nargs='+', type=float, default=[0, -.15, .15])
     collect_parser.add_argument('--seed-base', type=int, required=True)
     collect_parser.add_argument('--push', action='store_true', help='Add +0.25 m/s lateral velocity at 10 seconds')
+    collect_parser.add_argument('--push-velocity', type=float, default=None,
+                                help='Signed world-y velocity impulse at ten seconds, for bidirectional data')
     fit_parser = sub.add_parser('fit')
     fit_parser.add_argument('--source', required=True)
     fit_parser.add_argument('--train', nargs='+', required=True)
     fit_parser.add_argument('--validation', nargs='+', required=True)
     fit_parser.add_argument('--mode', choices=['readout', 'adapters', 'edges'], default='readout')
     fit_parser.add_argument('--ridge', type=float, default=.001)
+    fit_parser.add_argument('--feature-cache', default=None,
+                            help='Reuse per-dataset frozen features, bound to core/statistics/source/data hashes')
     fit_parser.add_argument('--lr', type=float, default=.0001)
     fit_parser.add_argument('--updates', type=int, default=500)
     fit_parser.add_argument('--report-every', type=int, default=100)

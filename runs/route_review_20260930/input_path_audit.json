@@ -1,0 +1,198 @@
+{
+  "kind": "read_only_input_path_audit",
+  "data_sha256": "ce6142a300ec44ab23fadede86cbfab5bb9db1686283d37f79e7f6a39dfeb468",
+  "rows": [
+    0,
+    2024,
+    4049,
+    6074,
+    8099,
+    10124,
+    12149,
+    14174,
+    16199
+  ],
+  "coordinate_system": "MuJoCo free-joint translational qvel[:2], world frame; observation indices 47 and 48. Height offset at 49.",
+  "limitation": "Input interventions hold other observed fields fixed; they are not physically rolled-out states or causal locomotion tests.",
+  "source_sha256": {
+    "D:\\Project\\Neuromechfly\\runs\\route_review_20260930\\input_path_audit.py": "8c86341cebd7de380c55ed76fb6994e09d0ef993db86cad184ffdf0a112316ae",
+    "app\\full_brain.py": "bd8d51f1512ac495990d9523b546983ff119b4d0caf56ac197fa343d850e84cc",
+    "app\\sim.py": "a9f355a4f43a355d28f62282d31451645408bb3d4aaf047537db6e292fe8af1c"
+  },
+  "checkpoints": [
+    {
+      "checkpoint": "runs\\direction_control_20260929\\transfer_main\\round4\\last.pt",
+      "checkpoint_sha256": "e550239157c4ed2bf1b67914377e4e77c7d38c9d29a64066097abe9369072a10",
+      "encoder_shape": [
+        17336,
+        50
+      ],
+      "new_input_column_norms": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "new_input_nonzero": [
+        0,
+        0,
+        0
+      ],
+      "new_input_means": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "new_input_scales": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "counterfactual_action_change": {
+        "world_vx": {
+          "observation_delta_abs": 0.0125,
+          "max_abs": 0.0,
+          "rms": 0.0
+        },
+        "world_vy": {
+          "observation_delta_abs": 0.0125,
+          "max_abs": 0.0,
+          "rms": 0.0
+        },
+        "height": {
+          "observation_delta_abs": 0.01,
+          "max_abs": 0.0,
+          "rms": 0.0
+        }
+      }
+    },
+    {
+      "checkpoint": "runs\\direction_control_20260929\\transfer_main\\ridge1e5\\last.pt",
+      "checkpoint_sha256": "321d302a587fcf918236036397554b4dac731e9879cb0e5644b5cfbf2a26bb0f",
+      "encoder_shape": [
+        17336,
+        50
+      ],
+      "new_input_column_norms": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "new_input_nonzero": [
+        0,
+        0,
+        0
+      ],
+      "new_input_means": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "new_input_scales": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "checkpoint": "runs\\direction_control_20260929\\readout_ppo_warm3029\\last.pt",
+      "checkpoint_sha256": "f11f727e3d3ab15c98745ab54e08094084166ba9cc2a37b24bf3219ca751063c",
+      "encoder_shape": [
+        17336,
+        50
+      ],
+      "new_input_column_norms": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "new_input_nonzero": [
+        0,
+        0,
+        0
+      ],
+      "new_input_means": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "new_input_scales": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "checkpoint": "runs\\direction_control_20260929\\teacher_control3029\\last.pt",
+      "checkpoint_sha256": "56bf1dfac5fad0459bd184ccd96e96b09b5407fadb071330f7ae365f4f4bd4a7",
+      "encoder_shape": [
+        256,
+        50
+      ],
+      "new_input_column_norms": [
+        8.793582916259766,
+        11.4783353805542,
+        2.2206778526306152
+      ],
+      "new_input_nonzero": [
+        256,
+        256,
+        256
+      ],
+      "new_input_means": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "new_input_scales": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "counterfactual_action_change": {
+        "world_vx": {
+          "observation_delta_abs": 0.0125,
+          "max_abs": 0.1021120548248291,
+          "rms": 0.030169285833835602
+        },
+        "world_vy": {
+          "observation_delta_abs": 0.0125,
+          "max_abs": 0.06454914808273315,
+          "rms": 0.02718113735318184
+        },
+        "height": {
+          "observation_delta_abs": 0.01,
+          "max_abs": 0.01097559928894043,
+          "rms": 0.0032341922633349895
+        }
+      }
+    },
+    {
+      "checkpoint": "runs\\direction_control_20260929\\teacher_control3030\\last.pt",
+      "checkpoint_sha256": "f3965e13b7a8bda1c4c153f271cf2f86bf3dd90647221af92d91cb4de7b66567",
+      "encoder_shape": [
+        256,
+        50
+      ],
+      "new_input_column_norms": [
+        8.738898277282715,
+        11.715399742126465,
+        2.2095463275909424
+      ],
+      "new_input_nonzero": [
+        256,
+        256,
+        256
+      ],
+      "new_input_means": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "new_input_scales": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ]
+}

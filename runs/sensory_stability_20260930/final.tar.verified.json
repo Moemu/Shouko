@@ -1,0 +1,125 @@
+{
+  "archive_sha256": "b973f95ddb860edcfe68d021a1526d7b330b94e02c4e19aabc9f18c71003c688",
+  "files": [
+    {
+      "path": "runs/sensory_stability_20260930/final/main/execution.json",
+      "sha256": "724b33d67defb9760a9e081ea4a046207f69b15dbaa371ffe50d23d91601934d",
+      "bytes": 9545
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/long.json",
+      "sha256": "3096f51dbc95d604011333e883b5a388ccdfc6ca5df23fcf0c0b06fc54afefd6",
+      "bytes": 20961
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/long.log",
+      "sha256": "805166ed49e41b882052b9f342a1a1520c773ae14f75b1ad9fb8c025f9bcbb52",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/long_m0_c0_yaw0.0.npz",
+      "sha256": "aef2f32ee09dc4b76d32a9d43d1ef2d7d0d1d9558273d4144a22dcd3d30eaa08",
+      "bytes": 17623418
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/normal.json",
+      "sha256": "fa7cbe599b29114bf04c93544a2577d1f3cbd3fd03c3a186434ab1de35792826",
+      "bytes": 58656
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/normal.log",
+      "sha256": "60d0492c06db09d8672aa9b57af26fc65c91ba36a047c7da98b281495136ff00",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/push_negative.json",
+      "sha256": "f31a5f3c5f3c8ff4990ead2e007203cd94f6a1518b94c91c54675594c4562ded",
+      "bytes": 21048
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/push_negative.log",
+      "sha256": "a6dc242eecee929aacffd1e4f6ffb7ccfe129f20f4978941f1e5ecec194b47cb",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/push_positive.json",
+      "sha256": "b6d2d575d31e26a4ae7b43235936f9e3ae7999dc5db9c555237ce322807d739f",
+      "bytes": 20992
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/push_positive.log",
+      "sha256": "f72dde42705435a2c81f9ab2e5244f941df2ac4e156d10914d7967252d46e353",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/yaw.json",
+      "sha256": "79999710d300a08c73ae4d3d0eb7ced47c112a90ebc52af8b7a87bd5be19d35e",
+      "bytes": 39955
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/main/yaw.log",
+      "sha256": "72ca4c6b03d83486190b98677aa089de01a2086227a7bb34b4c046e36f84aaf8",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/execution.json",
+      "sha256": "c14d86d8ebb2456a25c699bf7f9318878236df349e552aad2863d1a68eabca7d",
+      "bytes": 9617
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/long.json",
+      "sha256": "f731fd80f2c1b606896f6d7c4bb530520345fbbb9d047027ca169cb3a81fa5de",
+      "bytes": 20963
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/long.log",
+      "sha256": "7b9c84e290b5fdc027a1508a20edbe854838069d05d2075f5ae07356e78bbfba",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/long_m0_c0_yaw0.0.npz",
+      "sha256": "dadcd2d13390696b9b6752bc9c8e5313d31b9fc19d75dcb6b3a2eaf1738d3da7",
+      "bytes": 17254645
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/normal.json",
+      "sha256": "1c8bfc82fb59caf68e9d03c20584354cecc468082848222575a1415118fa7343",
+      "bytes": 58829
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/normal.log",
+      "sha256": "9fcc492c739844deab53b4884772e0e1b48d8dfd08c752dcc49848aebbe3e22f",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/push_negative.json",
+      "sha256": "8fd1418b1645c66182f1fe0f5465cfe03c9436368757e23fe6afd0116a5da8fc",
+      "bytes": 21084
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/push_negative.log",
+      "sha256": "5e5c5ea84b45d7643ed813dad052daf29a8b6d7e3e86939742a404b4860aff00",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/push_positive.json",
+      "sha256": "25149554c7f3b734bb27b474a36a2b525df4f0113b6b1660e377adaafc33be77",
+      "bytes": 21013
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/push_positive.log",
+      "sha256": "c7dbb55bb114666394450a6bceb181289d796babf412c1c7b63da2915397ed97",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/yaw.json",
+      "sha256": "00fbc7c762cd74e766973e2344d1636396874a145bca14fe2dede7212f8d6c24",
+      "bytes": 39937
+    },
+    {
+      "path": "runs/sensory_stability_20260930/final/verification/yaw.log",
+      "sha256": "3185b1b56c66428dca0e15e6882c121bf8ffbafbdf0658764bc02ba4e7df3dc4",
+      "bytes": 308
+    }
+  ]
+}

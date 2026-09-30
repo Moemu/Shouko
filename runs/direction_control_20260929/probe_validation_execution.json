@@ -1,0 +1,376 @@
+{
+  "completed": true,
+  "jobs": [
+    {
+      "name": "validate_hip_roll_offset_negative_m0_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/source_teacher/last.pt",
+        "--output",
+        "runs/direction_control_20260929/validate_hip_roll_offset_negative_m0_long.json",
+        "--seed-base",
+        "310001",
+        "--hip-roll-offset",
+        "-.05",
+        "--seconds",
+        "120",
+        "--trace"
+      ],
+      "returncode": 0,
+      "wall_seconds": 28.04603309929371
+    },
+    {
+      "name": "validate_hip_roll_offset_negative_m1_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/source_main/last.pt",
+        "--output",
+        "runs/direction_control_20260929/validate_hip_roll_offset_negative_m1_long.json",
+        "--seed-base",
+        "310001",
+        "--hip-roll-offset",
+        "-.05",
+        "--seconds",
+        "120",
+        "--trace"
+      ],
+      "returncode": 0,
+      "wall_seconds": 67.45397199317813
+    },
+    {
+      "name": "validate_hip_roll_offset_negative_m1_normal",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/source_main/last.pt",
+        "--output",
+        "runs/direction_control_20260929/validate_hip_roll_offset_negative_m1_normal.json",
+        "--seed-base",
+        "310001",
+        "--hip-roll-offset",
+        "-.05",
+        "--cohorts",
+        "3"
+      ],
+      "returncode": 0,
+      "wall_seconds": 51.8669277317822
+    },
+    {
+      "name": "validate_hip_roll_offset_negative_m1_yaw",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/source_main/last.pt",
+        "--output",
+        "runs/direction_control_20260929/validate_hip_roll_offset_negative_m1_yaw.json",
+        "--seed-base",
+        "310001",
+        "--hip-roll-offset",
+        "-.05",
+        "--yaws",
+        "-.2",
+        ".2"
+      ],
+      "returncode": 0,
+      "wall_seconds": 36.273587595671415
+    },
+    {
+      "name": "validate_hip_roll_offset_negative_m1_push_positive",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/source_main/last.pt",
+        "--output",
+        "runs/direction_control_20260929/validate_hip_roll_offset_negative_m1_push_positive.json",
+        "--seed-base",
+        "310001",
+        "--hip-roll-offset",
+        "-.05",
+        "--push-velocity",
+        ".25",
+        "--trace"
+      ],
+      "returncode": 0,
+      "wall_seconds": 19.974623318761587
+    },
+    {
+      "name": "validate_hip_roll_offset_negative_m1_push_negative",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/source_main/last.pt",
+        "--output",
+        "runs/direction_control_20260929/validate_hip_roll_offset_negative_m1_push_negative.json",
+        "--seed-base",
+        "310001",
+        "--hip-roll-offset",
+        "-.05",
+        "--push-velocity",
+        "-.25",
+        "--trace"
+      ],
+      "returncode": 0,
+      "wall_seconds": 21.027399249374866
+    },
+    {
+      "name": "validate_ankle_roll_offset_positive_m0_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/source_teacher/last.pt",
+        "--output",
+        "runs/direction_control_20260929/validate_ankle_roll_offset_positive_m0_long.json",
+        "--seed-base",
+        "310001",
+        "--ankle-roll-offset",
+        ".05",
+        "--seconds",
+        "120",
+        "--trace"
+      ],
+      "returncode": 0,
+      "wall_seconds": 27.888147715479136
+    },
+    {
+      "name": "validate_ankle_roll_offset_positive_m1_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/source_main/last.pt",
+        "--output",
+        "runs/direction_control_20260929/validate_ankle_roll_offset_positive_m1_long.json",
+        "--seed-base",
+        "310001",
+        "--ankle-roll-offset",
+        ".05",
+        "--seconds",
+        "120",
+        "--trace"
+      ],
+      "returncode": 0,
+      "wall_seconds": 67.79953528940678
+    }
+  ],
+  "candidates": [
+    {
+      "name": "hip_roll_offset_negative",
+      "model": 0,
+      "checkpoint": "runs/source_teacher/last.pt",
+      "passed": false,
+      "long": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 2.22373573738994,
+        "maximum_lateral_mean": 2.22373573738994,
+        "mean_abs_yaw": 0.028110818869122818,
+        "mean_height": 0.9675968628281062,
+        "speed_mae": 0.03220362909990953,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 6
+      }
+    },
+    {
+      "name": "hip_roll_offset_negative",
+      "model": 1,
+      "checkpoint": "runs/source_main/last.pt",
+      "passed": false,
+      "long": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.9717874935156569,
+        "maximum_lateral_mean": 0.971947260348776,
+        "mean_abs_yaw": 0.027846669847000294,
+        "mean_height": 0.9685661637968184,
+        "speed_mae": 0.028571875004855442,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      },
+      "normal": {
+        "episodes": 27,
+        "successes": 27,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 27,
+          "speed": 27,
+          "feet": 27,
+          "alternation": 27,
+          "upright": 27,
+          "direction": 27
+        },
+        "lateral_m": 0.21174221275448116,
+        "maximum_lateral_mean": 0.25827634933658694,
+        "mean_abs_yaw": 0.02797302477705157,
+        "mean_height": 0.9685153309142073,
+        "speed_mae": 0.024054272449386144,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 27,
+        "direction_passes": 27
+      },
+      "yaw": {
+        "episodes": 18,
+        "successes": 18,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 18,
+          "speed": 18,
+          "feet": 18,
+          "alternation": 18,
+          "upright": 18,
+          "direction": 18
+        },
+        "lateral_m": 0.24400210870097,
+        "maximum_lateral_mean": 0.33705886233397514,
+        "mean_abs_yaw": 0.02842588610822573,
+        "mean_height": 0.9684799307621247,
+        "speed_mae": 0.020215515039988564,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 18,
+        "direction_passes": 18
+      },
+      "push_positive": {
+        "episodes": 9,
+        "successes": 6,
+        "falls": 3,
+        "criteria_passes": {
+          "survived": 6,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 8,
+          "direction": 6
+        },
+        "lateral_m": 1.5135176047356997,
+        "maximum_lateral_mean": 1.5225001329981622,
+        "mean_abs_yaw": 0.05573546472416213,
+        "mean_height": 0.964954763740599,
+        "speed_mae": 0.03630792834512105,
+        "qualifying_swings_per_second": 1.237868366747023,
+        "strict_passes": 6,
+        "direction_passes": 6
+      },
+      "push_negative": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.35867475559522854,
+        "maximum_lateral_mean": 0.42322789462665256,
+        "mean_abs_yaw": 0.028163770596630295,
+        "mean_height": 0.9682802596275051,
+        "speed_mae": 0.02104666578945924,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      }
+    },
+    {
+      "name": "ankle_roll_offset_positive",
+      "model": 0,
+      "checkpoint": "runs/source_teacher/last.pt",
+      "passed": false,
+      "long": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 2.732405454819799,
+        "maximum_lateral_mean": 2.732405454819799,
+        "mean_abs_yaw": 0.027992126185718297,
+        "mean_height": 0.967607736818429,
+        "speed_mae": 0.03588115003592073,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 0
+      }
+    },
+    {
+      "name": "ankle_roll_offset_positive",
+      "model": 1,
+      "checkpoint": "runs/source_main/last.pt",
+      "passed": false,
+      "long": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 1.7138010685290952,
+        "maximum_lateral_mean": 1.7138860125851163,
+        "mean_abs_yaw": 0.026254727485688672,
+        "mean_height": 0.9668951192388017,
+        "speed_mae": 0.035408177921830104,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 6
+      }
+    }
+  ],
+  "started_utc": "2026-09-29T01:30:56.705950+00:00",
+  "finished_utc": "2026-09-29T01:36:17.073954+00:00"
+}

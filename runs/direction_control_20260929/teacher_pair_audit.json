@@ -1,0 +1,19 @@
+{
+  "configuration_differences": {
+    "lateral_precision": [
+      6.0,
+      60.0
+    ],
+    "runs_dir": [
+      "runs/direction_control_20260929/teacher_control3029",
+      "runs/direction_control_20260929/teacher_lateral3029"
+    ]
+  },
+  "iterations": 400,
+  "environment_transitions_per_arm": 52428800,
+  "identical_initial_normalization": true,
+  "same_checkpoint_and_resume_state": true,
+  "control_last_sha256": "56bf1dfac5fad0459bd184ccd96e96b09b5407fadb071330f7ae365f4f4bd4a7",
+  "experimental_last_sha256": "e5923053ecc2f9224793ea8fa29ab35f33ac1d7847ce360f040fe218f36a570e",
+  "limitation": "One paired training seed. KL stopping can yield different realized optimizer steps under the same schedule."
+}

@@ -1,0 +1,57 @@
+{
+  "completed": true,
+  "ridge": 1e-05,
+  "reference": "runs/direction_control_20260929/transfer_main/round4",
+  "reference_fit_sha256": "bfcdcca797006bd8d7dbe14ff955439d52e2ea78ecbccf0a4ef8b99fa49cde74",
+  "refit_source_sha256": "ff7d3b905ec2afd2d916350e387d9d340f1ac16071b30548c3544586286bf03f",
+  "baseline_cache_reproduction_max_error": 0.0,
+  "feature_cache_sha256": "900996e08671e3c75cd2c7ea65ef1ca1086a20f6be893c64c87fc9f61a25c252",
+  "data_sha256": {
+    "runs/direction_control_20260929/transfer_main/teacher_train.pt": "55d30e27bf93734189e9f2e1b3367e318c121e2a5b99eb2631d9e5d07546782e",
+    "runs/direction_control_20260929/transfer_main/round1_normal_data.pt": "0189c69e5e6973f6a87833b7c96c9ab460e1b422ddd0da4e08542f845f2b1110",
+    "runs/direction_control_20260929/transfer_main/round1_positive_data.pt": "d562e0259e1914bedd018463532a10446ad0528b646f343df980c9b602e1abc6",
+    "runs/direction_control_20260929/transfer_main/round1_negative_data.pt": "26ee0d40d168613e5e024a99879839f38af51bd890b05b6cef7e835d66c4c033",
+    "runs/direction_control_20260929/transfer_main/round2_normal_data.pt": "de1f1b3194af2ad7f53203b2018c951248c9461ee85a5042c292669854266567",
+    "runs/direction_control_20260929/transfer_main/round2_positive_data.pt": "fa2a57612b4d5de03247b9966fa164682b872ccc05e8e924bb0f2a21605ca12b",
+    "runs/direction_control_20260929/transfer_main/round2_negative_data.pt": "b2c65edcdadde20815d7ed9781d3ded667b695ba07c68e60d08df913739bdc67",
+    "runs/direction_control_20260929/transfer_main/round3_normal_data.pt": "4d2f493672ee5f24f21cdb7c92eb4b13ece33fd14bb053791ff55d94e6b06304",
+    "runs/direction_control_20260929/transfer_main/round3_positive_data.pt": "75a66e1c103219b90b88a56918b51311ee1d1a2f0f026b711f010e5cad1cde21",
+    "runs/direction_control_20260929/transfer_main/round3_negative_data.pt": "287e06af1f92a6ea81d9e83a6a65b9d808da63d31ebc9f5a7b903f0e8eeb6b37",
+    "runs/direction_control_20260929/transfer_main/round4_normal_data.pt": "ce6142a300ec44ab23fadede86cbfab5bb9db1686283d37f79e7f6a39dfeb468",
+    "runs/direction_control_20260929/transfer_main/round4_positive_data.pt": "93647169d0961c82e95c27d40ff6263f88a44dc6f252ddccfcb18d9cefb367e6",
+    "runs/direction_control_20260929/transfer_main/round4_negative_data.pt": "f96c2e360aed35867bcd68ec3f7fb5cdd3fbfd743dcadf7952467ac9d067d223",
+    "runs/direction_control_20260929/transfer_main/teacher_validation.pt": "43239915b29a421e34cd8b879a8cd89fddfe26948d46713cfc4c8fc11d0f5b78"
+  },
+  "checkpoint_sha256": "321d302a587fcf918236036397554b4dac731e9879cb0e5644b5cfbf2a26bb0f",
+  "eigenvalue_quantiles": [
+    2.2429157877564018e-13,
+    3.636833753192899e-05,
+    0.00022105080814179424,
+    0.004378079706790052,
+    0.2602878384471067,
+    18.839312802413318,
+    264.00141513341237
+  ],
+  "eigenvalues_above_ridge": 814,
+  "readout_weight_norm": 113.41404724121094,
+  "training": {
+    "mse": 0.00849792843040539,
+    "executed_mse": 0.008489364272200327,
+    "per_command": {
+      "0.35": 0.006553302171251043,
+      "0.5": 0.00722992539492613,
+      "0.65": 0.0120128501271942
+    }
+  },
+  "validation": {
+    "mse": 0.0015300833219758115,
+    "executed_mse": 0.0015300833219758115,
+    "per_command": {
+      "0.35": 0.0014533107925773128,
+      "0.5": 0.0011912518750071513,
+      "0.65": 0.0019456872983429699
+    }
+  },
+  "wall_seconds": 5.593168877065182,
+  "method": "No new observations, labels, graph features, normalization or physics."
+}

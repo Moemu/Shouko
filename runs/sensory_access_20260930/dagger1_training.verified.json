@@ -1,0 +1,65 @@
+{
+  "archive_sha256": "1567e3c43fa057759d93a3ee6b9bcb4333ca1854901ab8cfb42282627411eb00",
+  "files": [
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1/fit.json",
+      "sha256": "9097fa5c0ffd63c243a1dfc09e479165511069c3a6444e30f4188765fbf8d2c5",
+      "bytes": 16957
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1/last.pt",
+      "sha256": "fe386851ed9aa910aa837767ca647967388fba26b10c1c13784d82f996d2c916",
+      "bytes": 311992765
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1_highspeed.pt",
+      "sha256": "af1066387114c3f1e09dad23cdbca74849cfc6be1cde9ca3c53adf47e5b0ea88",
+      "bytes": 6916402
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1_negative.pt",
+      "sha256": "b318b54ca966cd34473f651f8ff40592230755ffa1b5d56e106fbb0b801bcab2",
+      "bytes": 3460329
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1_normal.pt",
+      "sha256": "8a86c6946174d5b5b083f0c2b76982dc89c87d2ea39925334236dbd031413d7e",
+      "bytes": 4152471
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1_positive.pt",
+      "sha256": "c1968adf0a5fa9ac0ef33e920f00cbdeb8e66a85f5c31560dc372c0e59bbf637",
+      "bytes": 3460329
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1_normal.json",
+      "sha256": "d73d927e53fc11455132aed90f17542670ca8e448bb4283ad37f26a42913982d",
+      "bytes": 4602
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1_positive.json",
+      "sha256": "ea446f937b200dc61ac58273adc679aa2abde2fce9ee48a86e56026ff508a55e",
+      "bytes": 2306
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1_negative.json",
+      "sha256": "f83acc101db6aff55460ccdfd6e0ad179e73cba934fef38d5690b748cb02b8c7",
+      "bytes": 2307
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/round1_highspeed.json",
+      "sha256": "34dcc9ed2e6a381f4f543c6ab1f9577329775454cd62a70ac43fc2f102a5af44",
+      "bytes": 2307
+    },
+    {
+      "path": "runs/sensory_access_20260930/replica/dagger/output_collision_failure.json",
+      "sha256": "531bd6f80ffce011d3bdda056f6d31b8402590adab6df0f912a8664c78c6697e",
+      "bytes": 5819
+    },
+    {
+      "path": "runs/sensory_access_20260930/dagger_driver_v1.tgz",
+      "sha256": "e693fb8fa881a6272bdd4c79f0fe5619d726d70de524d22618c4262fc1379b5d",
+      "bytes": 1926
+    }
+  ]
+}

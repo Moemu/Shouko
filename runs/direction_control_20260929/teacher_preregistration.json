@@ -1,0 +1,21 @@
+{
+  "created_utc": "2026-09-29T01:36:45.008631+00:00",
+  "reason": "All six fixed command/action probes failed combined long-walk and bidirectional disturbance gates; no heldout seeds consumed.",
+  "probe_validation_sha256": "98e25da413805f0fb6b6d79462e3afbe3604dfcee22f6bc453a4d24ec39b9511",
+  "source_sha256": {
+    "app/ppo_yumi.py": "d10065c45adb7daf5768665815859bfea443771c8bbb767d00d049984ea81638",
+    "runs/direction_control_20260929/run_teacher_pair.py": "c07e9e33edd947bf5f164687eaf618d2173fc5b492f247c3f425e243dcecb313"
+  },
+  "source_checkpoint_sha256": "9c5ca9339b26f5af2e8acf94e7edd3b9371ef5efb41d647bcbd7904243ac50e1",
+  "control_precision": 6,
+  "experimental_precision": 60,
+  "iterations": 400,
+  "value_warmup_iterations": 8,
+  "worlds": 1024,
+  "steps": 128,
+  "seed": 3029,
+  "conditional_replica_seed": 3030,
+  "selection": "Fixed final checkpoint only. Both arms receive identical optimization schedule and starting PPO state. Independent training continuation only after experimental full development gate passes.",
+  "new_direction_gate": "Every one of nine 120-second episodes stays within |y|<=2 m while meeting prior strict locomotion criteria.",
+  "limitation": "A changed instantaneous world-vy reward may alter gait oscillation as well as persistent drift; report both separately."
+}

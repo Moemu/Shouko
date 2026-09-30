@@ -51,6 +51,12 @@ def freeze_policy_core(policy):
     policy.normalizer.requires_grad_(False)
 
 
+def freeze_policy_readout(policy):
+    """Keep the observation-to-feature mapping fixed for readout-only PPO."""
+    policy.requires_grad_(False)
+    policy.readout.requires_grad_(True)
+
+
 def quad_yaw(qpos):
     w, x, y, z = qpos[:, 3:7].unbind(1)
     return torch.atan2(2*(w*z+x*y), 1-2*(y*y+z*z))
@@ -103,11 +109,15 @@ def transfer_slope(result):
 
 def train(args):
     global RUNS
+    if not np.isfinite(args.lateral_precision) or args.lateral_precision <= 0:
+        raise ValueError('Lateral reward precision must be finite and positive')
     if args.max_iterations is not None and args.max_iterations < 1:
         raise ValueError('Maximum iterations must be positive')
     if args.value_abort_vloss > 0 and args.value_warmup < 6:
         raise ValueError('The value gate requires at least six warmup iterations')
-    if args.policy == 'mlp' and (args.freeze_brain or args.actor_new_input_std is not None):
+    if args.readout_only and (args.freeze_brain or args.actor_new_input_std is not None):
+        raise ValueError('Readout-only training requires unchanged actor features and scales')
+    if args.policy == 'mlp' and (args.freeze_brain or args.readout_only or args.actor_new_input_std is not None):
         raise ValueError('Connectome-specific optimizer/scales cannot be used for an MLP')
     if args.episode_seconds < 0 or not args.initial_yaws or not all(np.isfinite(args.initial_yaws)):
         raise ValueError('Invalid recovery curriculum')
@@ -157,6 +167,12 @@ def train(args):
     if args.policy == 'mlp':
         optimizer = torch.optim.Adam([dict(params=list(policy.parameters()), lr=args.lr),
                                       dict(params=[log_std], lr=args.lr*0.1)], foreach=False)
+    elif args.readout_only:
+        freeze_policy_readout(policy)
+        optimizer = torch.optim.Adam([
+            dict(params=list(policy.readout.parameters()), lr=args.lr),
+            dict(params=[log_std], lr=args.lr*0.1),
+        ], foreach=False)
     elif args.freeze_brain:
         # Freeze the synaptic edges and normalization parameters.
         # Train neuron_bias (166k operating-point thresholds) + readout +
@@ -204,6 +220,7 @@ def train(args):
                               optimizer_state_skipped=None if opt_loaded else 'incompatible parameter groups')), flush=True)
     value_stats = ValueObservationStats.restore(state, policy.obs_mean, policy.obs_std)
     status['policy_kind'] = args.policy
+    status['trainable_actor_parameters'] = sum(p.numel() for p in policy.parameters() if p.requires_grad)
     status['configuration'] = vars(args)
     if args.actor_new_input_std is not None:
         set_new_actor_scales(policy, args.actor_new_input_std)
@@ -235,7 +252,8 @@ def train(args):
     def save_checkpoint(name, evaluation=None, updates=0, final=False, combined_bar=None):
         state_path = RUNS/('ppo_state_best.pt' if name == 'best' else 'ppo_state.pt')
         extra = dict(evaluation=evaluation, updates=updates, ppo=True, final=final,
-                     gait_reward=args.gait_reward)
+                     gait_reward=args.gait_reward, lateral_precision=args.lateral_precision,
+                     readout_only=args.readout_only)
         if combined_bar is not None:
             # Honest selection bar: the mean the candidate was accepted under,
             # so a later launch recomputes the same threshold instead of a
@@ -323,6 +341,7 @@ def train(args):
         rollout_started = time.perf_counter()
         # ---- collect ----
         obs_buf, act_buf, logp_buf, rew_buf, val_buf, done_buf = [], [], [], [], [], []
+        feature_buf = []
         knee_sum = torch.zeros((), device=device)
         height_sum = torch.zeros((), device=device)
         reward_sum = torch.zeros((), device=device)
@@ -334,7 +353,9 @@ def train(args):
             for t in range(args.steps):
                 env.command[:, 2] = (-quad_yaw(env.qpos) * 1.4).clamp(-0.2, 0.2)
                 obs = env.observation()
-                mean, _ = policy(obs)
+                mean, activity = policy(obs)
+                if args.readout_only:
+                    feature_buf.append(policy.normalizer(activity[policy.outputs].T).detach())
                 std = log_std.exp().clamp(0.05, 1.5)
                 dist = torch.distributions.Normal(mean, std)
                 action = dist.sample()
@@ -351,7 +372,7 @@ def train(args):
                 # Independent terms so drifting sideways or off-heading cannot be
                 # subsidized by the packed velocity/survival terms (ppo5/ppo6 drift).
                 reward = (1.5 * torch.exp(-4 * (vx - env.command[:, 0]).square())
-                          + 0.6 * torch.exp(-6 * vy.square())
+                          + 0.6 * torch.exp(-args.lateral_precision * vy.square())
                           + 0.8 * torch.exp(-3 * yaw.square())
                           + 0.3 * upright.clamp(0, 1) + 0.1
                           + 0.4 * switched.float()
@@ -391,7 +412,7 @@ def train(args):
                 reward_sum += reward.mean()
                 term_sums += torch.stack([
                     (1.5*torch.exp(-4*(vx-env.command[:, 0]).square())).mean(),
-                    (0.6*torch.exp(-6*vy.square())).mean(),
+                    (0.6*torch.exp(-args.lateral_precision*vy.square())).mean(),
                     (0.8*torch.exp(-3*yaw.square())).mean(),
                     (0.3*upright.clamp(0, 1)+0.1).mean(),
                     (0.4*switched.float()).mean(),
@@ -429,6 +450,7 @@ def train(args):
                          reward_config=dict(posture_w=args.posture_w, knee_w=args.knee_w,
                                             knee_gate=args.knee_gate, height_target=args.height_target))
         obs_b = torch.cat(obs_buf); act_b = torch.cat(act_buf); logp_b = torch.cat(logp_buf)
+        features_b = torch.cat(feature_buf) if args.readout_only else None
         adv_b = advantages.reshape(-1); ret_b = returns.reshape(-1)
         adv_b = (adv_b - adv_b.mean()) / (adv_b.std() + 1e-8)
         torch.cuda.synchronize()
@@ -452,7 +474,10 @@ def train(args):
             for start in range(0, len(obs_b), args.minibatch):
                 mb = perm[start:start+args.minibatch]
                 if not policy_frozen:
-                    mean, _ = policy(obs_b[mb])
+                    if args.readout_only:
+                        mean = policy.readout(features_b[mb])
+                    else:
+                        mean, _ = policy(obs_b[mb])
                     std = log_std.exp().clamp(0.05, 1.5)
                     dist = torch.distributions.Normal(mean, std)
                     logp = dist.log_prob(act_b[mb]).sum(-1)
@@ -599,8 +624,12 @@ if __name__ == '__main__':
                         help='if > 0, reset exploration noise to this std after resuming')
     parser.add_argument('--freeze-brain', action='store_true',
                         help='freeze connectome edges; train neuron bias, readout and encoder')
+    parser.add_argument('--readout-only', action='store_true',
+                        help='freeze all actor tensors except readout; reuse rollout features for PPO updates')
     parser.add_argument('--posture-w', type=float, default=0.4,
                         help='weight of the linear pelvis-height posture term')
+    parser.add_argument('--lateral-precision', type=float, default=6.0,
+                        help='inverse squared velocity scale in 0.6*exp(-precision*world_vy^2)')
     parser.add_argument('--knee-w', type=float, default=0.2,
                         help='weight of the soft knee-flexion penalty above 0.5 rad')
     parser.add_argument('--knee-gate', choices=['stance', 'both'], default='both',

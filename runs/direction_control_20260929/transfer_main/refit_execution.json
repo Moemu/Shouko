@@ -1,0 +1,111 @@
+{
+  "completed": true,
+  "jobs": [
+    {
+      "name": "refit_ridge1e5",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "runs/direction_control_20260929/refit_cached.py",
+        "--reference",
+        "runs/direction_control_20260929/transfer_main/round4",
+        "--ridge",
+        ".00001",
+        "--output",
+        "runs/direction_control_20260929/transfer_main/ridge1e5"
+      ],
+      "returncode": 0,
+      "wall_seconds": 8.197128750383854
+    },
+    {
+      "name": "ridge1e5_normal",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/direction_control_20260929/transfer_main/ridge1e5/last.pt",
+        "--seed-base",
+        "310201",
+        "--output",
+        "runs/direction_control_20260929/transfer_main/ridge1e5_normal.json",
+        "--cohorts",
+        "3"
+      ],
+      "returncode": 0,
+      "wall_seconds": 52.061206355690956
+    },
+    {
+      "name": "ridge1e5_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/direction_control_20260929/transfer_main/ridge1e5/last.pt",
+        "--seed-base",
+        "310201",
+        "--output",
+        "runs/direction_control_20260929/transfer_main/ridge1e5_long.json",
+        "--seconds",
+        "120",
+        "--trace"
+      ],
+      "returncode": 0,
+      "wall_seconds": 68.25829019770026
+    }
+  ],
+  "results": {
+    "normal": {
+      "episodes": 27,
+      "successes": 27,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 27,
+        "speed": 27,
+        "feet": 27,
+        "alternation": 27,
+        "upright": 27,
+        "direction": 27
+      },
+      "lateral_m": 0.24168600524891998,
+      "maximum_lateral_mean": 0.24783091215221748,
+      "mean_abs_yaw": 0.008176597485348302,
+      "mean_height": 0.9717095861762003,
+      "speed_mae": 0.021335878074386194,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 27,
+      "direction_passes": 27
+    },
+    "long": {
+      "episodes": 9,
+      "successes": 9,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 9,
+        "speed": 9,
+        "feet": 9,
+        "alternation": 9,
+        "upright": 9,
+        "direction": 9
+      },
+      "lateral_m": 1.0622372531704458,
+      "maximum_lateral_mean": 1.0653635894509945,
+      "mean_abs_yaw": 0.007447830408533893,
+      "mean_height": 0.9719196831867318,
+      "speed_mae": 0.02388494871206602,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 9,
+      "direction_passes": 6
+    }
+  },
+  "source_execution_sha256": "8ff69023bf4da9c7c9910bc6b7306b5ab5b0700e44418a5d8992b5520ab08b6e",
+  "checkpoint_sha256": "321d302a587fcf918236036397554b4dac731e9879cb0e5644b5cfbf2a26bb0f",
+  "changed_tensors": [
+    "readout.weight",
+    "readout.bias"
+  ],
+  "passed": false
+}

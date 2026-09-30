@@ -1,0 +1,235 @@
+{
+  "archive_sha256": "6b113b3ffe08bfad0069ef8ac204baced5a145aaea151e3080d536101c22439e",
+  "files": [
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_long.json",
+      "sha256": "5d9d4f33114e0e167c69777cb33c795d43adea6d5eb2f2e88b3f7a09d9d6906d",
+      "bytes": 21015
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_long.log",
+      "sha256": "0da2c98050222151d99c1ac5828484f8335f2d7ce018a1b0de5851c9781a9ac5",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_long_m0_c0_yaw0.0.npz",
+      "sha256": "9402935bb415b35ce31188e71cb99adc3299c5991ab39615dd593421cecb8091",
+      "bytes": 17774078
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_normal.json",
+      "sha256": "7679f83c61df79f12cb076f867258d3c37d2ac9144f94b903a42c80a7b54d06d",
+      "bytes": 58525
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_normal.log",
+      "sha256": "88916ae652297eb1f8e065b9d67b775764e4ed760c3ce386c7b2001f48cc06cd",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_push_negative.json",
+      "sha256": "bf5cdbeea7e8a42907fddc31846e76d6e0ef9fcd2b84c476fbd28952aed74daf",
+      "bytes": 21012
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_push_negative.log",
+      "sha256": "257a8ef760316138d046a268411feb2fbe0321b942d1d9780823af3019a83cc3",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_push_positive.json",
+      "sha256": "da0c563f786ebe12a61a4ec04f31208124bbd16e9bd18d073f69f8d5c9b37028",
+      "bytes": 21022
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_push_positive.log",
+      "sha256": "56b9bf93fae94edde32db105f69bdd77e2e144b15a2747d1dc9be5d5c0a4872f",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_yaw.json",
+      "sha256": "63f84c1ed4b7d27a76d9aa157b079af47e9468645b09a14e29ea0f5d3acf3280",
+      "bytes": 39909
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/eval_yaw.log",
+      "sha256": "72ca4c6b03d83486190b98677aa089de01a2086227a7bb34b4c046e36f84aaf8",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/execution.json",
+      "sha256": "fe54542c624d91e11a41b8b02cef46a1cab5c42f4fa03d1c7931c9752bc95cab",
+      "bytes": 12000
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/train/fit.json",
+      "sha256": "4c263ede390a3b988187418e3c72d4c7cafbbd01aa95f8b2bec40807aa75622d",
+      "bytes": 16794
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/train/last.pt",
+      "sha256": "b0aa48de6e66579000bd67d2194916c5954814c39ab874f65a14ca44ebaac94c",
+      "bytes": 311992765
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_c0/train.log",
+      "sha256": "53e450b7c5994d865a72aafd88084c0bfc75b6734e19677f7ea87128b3673f4b",
+      "bytes": 2723
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_long.json",
+      "sha256": "a5899453a23524f5ef99ca54a710d24d264a1c1c2c520f4a79917cc2f955dabc",
+      "bytes": 20981
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_long.log",
+      "sha256": "c7dbb55bb114666394450a6bceb181289d796babf412c1c7b63da2915397ed97",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_long_m0_c0_yaw0.0.npz",
+      "sha256": "37f41ca3437bad7b5bb1c7231c51a77a4636f5fafcdcdabb8c389b879054bd96",
+      "bytes": 17525134
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_normal.json",
+      "sha256": "b7f5419889c1f62a93ccc38ac86f981e6ad4e867290487051b440bad0243557d",
+      "bytes": 58514
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_normal.log",
+      "sha256": "d7e39dc06299bc6bbcadaad603b3c562b54e5ff1eabc58a75560957bcb41738b",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_push_negative.json",
+      "sha256": "ad2a8b37341b88c200f66c517b867e7db4223e3bda444e9feb1dbdbcf183acb4",
+      "bytes": 21119
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_push_negative.log",
+      "sha256": "3302ea3f524dfbe27541148e4edf2375a9cc240694e7fe2e27bdb61e72fe2a60",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_push_positive.json",
+      "sha256": "ed8f76f414f0cdd493136f85eaee9ddd2d43af20b5e4ff7314c4d481340bc896",
+      "bytes": 21024
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_push_positive.log",
+      "sha256": "ea952590ea276dc153d1cdbc985d5adee332264bf22c71b5d74b0db77d2c5039",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_yaw.json",
+      "sha256": "aae50f3409e3e0b65e7944720c907010968ac0a32948a61ea8093e4f7935e4a6",
+      "bytes": 39924
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/eval_yaw.log",
+      "sha256": "07b5e00c2e5238b61a5319c860d1cd27406ced5d85d875870baea10fc80eb25d",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/execution.json",
+      "sha256": "df789cb252dce4d43fb98a9070c7b5d4d8eff87ac84a78f5a5d8061633e39300",
+      "bytes": 12024
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/train/fit.json",
+      "sha256": "26fe98441ea1d5653cb7b18d0063466feefe45c4f1d2b1460a58834ef8a17ed0",
+      "bytes": 16984
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/train/last.pt",
+      "sha256": "df65f8fc093b18af566f1e98e46cc1bdcb3886f7950cb10014201845556d8d3c",
+      "bytes": 311992765
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_3031_s1/train.log",
+      "sha256": "7c4f1741611e741ce72bd19d042292454b6b2e91b965177522d18c768470c886",
+      "bytes": 2718
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_long.json",
+      "sha256": "1c9055b984e30e74c64fe6bf57389f8c8b0e363532573c89aa42ad825a2135a3",
+      "bytes": 21035
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_long.log",
+      "sha256": "76e77dcf0d1d7fe17e6f4a5214e021e51b907a0fb0d427ec90baa74b65fb053b",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_long_m0_c0_yaw0.0.npz",
+      "sha256": "12525db4ed27f418e77ac1df8d02a39b791810dabaa9daeff2d2bb67ec855233",
+      "bytes": 17372606
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_normal.json",
+      "sha256": "4be82b074fa6e463dbdb9abc0e4599dba6b0336e52f9607826bcf2b03e356163",
+      "bytes": 58582
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_normal.log",
+      "sha256": "f308f6070b8877451b0e3f0e5d888b2f990956b73bbe3ef048ffcb9e8434819e",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_push_negative.json",
+      "sha256": "1375e4fdd4cf6abaf17e4ba41d0887437b7c35fb21f0605886de8ee2f11f7b73",
+      "bytes": 21068
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_push_negative.log",
+      "sha256": "27809cbbd058fb6615dda8a57a8038db5bb09bbe63728c28f11501549dd78e2a",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_push_positive.json",
+      "sha256": "306366c07557db701d547e03807554a283f4394a1607a349f754f05d3f5b2331",
+      "bytes": 21017
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_push_positive.log",
+      "sha256": "7c9cebdc9ce2817a9852b93a1747d44de6947d8d21e610e173d208270a696e05",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_yaw.json",
+      "sha256": "c9b3fc4345664be775819722a0bee9b5ab4f0feeaf7939d6f07b27de06d2526a",
+      "bytes": 39918
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/eval_yaw.log",
+      "sha256": "3d34503f8aeea68de654b6e3738e7fe7fbef1f4dbf7f1b5082d1912fbf1a2f07",
+      "bytes": 308
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/execution.json",
+      "sha256": "e1a6c758c731721bb4df4da63838c4d9bdf7097dc03fdf003fac44304db005e2",
+      "bytes": 11984
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/train/fit.json",
+      "sha256": "ad75b361204d3a18217ab5cfab326c08bf32b590416f100ede9baf7ab9257335",
+      "bytes": 16785
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/train/last.pt",
+      "sha256": "08321655be6c0111d4c787b8a15972ed3d58268ba5b5a0b73081c52d15117bd4",
+      "bytes": 311992765
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_c0/train.log",
+      "sha256": "3e4fdb8adcea13c9eac4d727fc484801e896b664d920dee49a01b666c0c0af5b",
+      "bytes": 2724
+    },
+    {
+      "path": "runs/sensory_stability_20260930/stage2/B_4031_s1/execution.json",
+      "sha256": "00a0cc3bb3f7087f4f863545e210689769758656fecf5934a8c0b32bc4183dca",
+      "bytes": 7123
+    }
+  ]
+}

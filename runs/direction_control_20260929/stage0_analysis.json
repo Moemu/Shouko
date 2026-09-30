@@ -1,0 +1,577 @@
+{
+  "baselines": [
+    {
+      "checkpoint": "runs/source_teacher/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 4.834589993409857,
+        "maximum_lateral_mean": 4.834589993409857,
+        "mean_abs_yaw": 0.028303057159882166,
+        "mean_height": 0.9677038544281698,
+        "speed_mae": 0.027251910186775197,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 0
+      },
+      "signed_y_30s": [
+        -1.3737923143078143,
+        -0.9059990886829972,
+        -0.892218641402071,
+        -1.3691797582610787,
+        -0.9497964260194015,
+        -0.8736239591988848,
+        -1.3427431547018815,
+        -0.9202059050266971,
+        -0.8817701262494038
+      ],
+      "per_speed": [
+        {
+          "speed": 0.35,
+          "mean_end_y_m": -6.200995599670641,
+          "mean_steady_body_lateral_mps": -0.05342027770639701,
+          "mean_body_lateral_rms_mps": 0.05605172528470543,
+          "mean_heading_y_m": -0.038378717216309755
+        },
+        {
+          "speed": 0.5,
+          "mean_end_y_m": -4.239384892083209,
+          "mean_steady_body_lateral_mps": -0.03574301491947393,
+          "mean_body_lateral_rms_mps": 0.042804272019621614,
+          "mean_heading_y_m": -0.12437087129816758
+        },
+        {
+          "speed": 0.65,
+          "mean_end_y_m": -4.06338948847572,
+          "mean_steady_body_lateral_mps": -0.03506786457900424,
+          "mean_body_lateral_rms_mps": 0.04632779565570869,
+          "mean_heading_y_m": -0.02573949290134994
+        }
+      ]
+    },
+    {
+      "checkpoint": "runs/source_main/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 5.4458296338510985,
+        "maximum_lateral_mean": 5.4458296338510985,
+        "mean_abs_yaw": 0.028480141919132698,
+        "mean_height": 0.9677044130822967,
+        "speed_mae": 0.02695610956245504,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 0
+      },
+      "signed_y_30s": [
+        -1.6772246010995688,
+        -0.8471876607191579,
+        -0.9469128222790761,
+        -1.7381705718534923,
+        -0.8988030134772482,
+        -0.9210709474301715,
+        -1.5796137633753318,
+        -0.8738234047417284,
+        -0.9360626124564285
+      ],
+      "per_speed": [
+        {
+          "speed": 0.35,
+          "mean_end_y_m": -8.056758667846905,
+          "mean_steady_body_lateral_mps": -0.06956030489423531,
+          "mean_body_lateral_rms_mps": 0.07142709777225764,
+          "mean_heading_y_m": -0.14482576185906165
+        },
+        {
+          "speed": 0.5,
+          "mean_end_y_m": -4.056123481052551,
+          "mean_steady_body_lateral_mps": -0.034420869784678045,
+          "mean_body_lateral_rms_mps": 0.0425480569111197,
+          "mean_heading_y_m": -0.09209858299786743
+        },
+        {
+          "speed": 0.65,
+          "mean_end_y_m": -4.224606752653841,
+          "mean_steady_body_lateral_mps": -0.03659409770154823,
+          "mean_body_lateral_rms_mps": 0.047565910256707145,
+          "mean_heading_y_m": 0.006231611781814265
+        }
+      ]
+    },
+    {
+      "checkpoint": "runs/source_replica/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 4.8750983126740275,
+        "maximum_lateral_mean": 4.8750983126740275,
+        "mean_abs_yaw": 0.028195045091800708,
+        "mean_height": 0.9676948227757551,
+        "speed_mae": 0.028000294991161627,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 0
+      },
+      "signed_y_30s": [
+        -1.5508399498967458,
+        -0.8010220956251365,
+        -1.0192392150343075,
+        -1.55562070750898,
+        -0.8494594108353705,
+        -0.9931698676271321,
+        -1.416446552302821,
+        -0.8125481250895462,
+        -0.9902236746854385
+      ],
+      "per_speed": [
+        {
+          "speed": 0.35,
+          "mean_end_y_m": -6.281370991250646,
+          "mean_steady_body_lateral_mps": -0.054859155534402355,
+          "mean_body_lateral_rms_mps": 0.05752446579008421,
+          "mean_heading_y_m": 0.0023039305486198245
+        },
+        {
+          "speed": 0.5,
+          "mean_end_y_m": -3.8086200520361295,
+          "mean_steady_body_lateral_mps": -0.03242623291546421,
+          "mean_body_lateral_rms_mps": 0.04074084193860772,
+          "mean_heading_y_m": -0.08049198564933506
+        },
+        {
+          "speed": 0.65,
+          "mean_end_y_m": -4.535303894735308,
+          "mean_steady_body_lateral_mps": -0.038156029204791046,
+          "mean_body_lateral_rms_mps": 0.04818594823561329,
+          "mean_heading_y_m": -0.1153393654417026
+        }
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "name": "vy_command_positive",
+      "model": 0,
+      "checkpoint": "runs/source_teacher/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 2.2317005338782914,
+        "maximum_lateral_mean": 2.2317005338782914,
+        "mean_abs_yaw": 0.03434890866096671,
+        "mean_height": 0.9688888558888225,
+        "speed_mae": 0.02330643879317164,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 0
+      },
+      "per_speed_lateral_m": [
+        2.0594777622167917,
+        2.4286219259914192,
+        2.2070019134266636
+      ],
+      "improved_all_speeds": false,
+      "qualifies_for_long": false
+    },
+    {
+      "name": "vy_command_positive",
+      "model": 1,
+      "checkpoint": "runs/source_main/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 0,
+        "falls": 5,
+        "criteria_passes": {
+          "survived": 4,
+          "speed": 0,
+          "feet": 6,
+          "alternation": 6,
+          "upright": 4,
+          "direction": 0
+        },
+        "lateral_m": 6.1393944464645385,
+        "maximum_lateral_mean": 6.139484126692366,
+        "mean_abs_yaw": 0.052213239230493876,
+        "mean_height": 0.9516800140504452,
+        "speed_mae": 0.24524805686553217,
+        "qualifying_swings_per_second": 1.1979999054081694,
+        "strict_passes": 0,
+        "direction_passes": 0
+      },
+      "per_speed_lateral_m": [
+        4.033273223825792,
+        8.985702659415773,
+        5.399207456152051
+      ],
+      "improved_all_speeds": false,
+      "qualifies_for_long": false
+    },
+    {
+      "name": "vy_command_negative",
+      "model": 0,
+      "checkpoint": "runs/source_teacher/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 0,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 0
+        },
+        "lateral_m": 4.202687527003416,
+        "maximum_lateral_mean": 4.202687527003416,
+        "mean_abs_yaw": 0.03706700896301618,
+        "mean_height": 0.9645287705446758,
+        "speed_mae": 0.029652792624998234,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 0,
+        "direction_passes": 0
+      },
+      "per_speed_lateral_m": [
+        4.464722414683946,
+        4.21617501481997,
+        3.927165151506332
+      ],
+      "improved_all_speeds": false,
+      "qualifies_for_long": false
+    },
+    {
+      "name": "vy_command_negative",
+      "model": 1,
+      "checkpoint": "runs/source_main/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 0,
+        "falls": 9,
+        "criteria_passes": {
+          "survived": 0,
+          "speed": 9,
+          "feet": 0,
+          "alternation": 0,
+          "upright": 3,
+          "direction": 8
+        },
+        "lateral_m": 2.263656658819416,
+        "maximum_lateral_mean": 2.263656658819416,
+        "mean_abs_yaw": 0.1586113077092904,
+        "mean_height": 0.9428979504594407,
+        "speed_mae": 0.054578344967242634,
+        "qualifying_swings_per_second": 1.1405830018499268,
+        "strict_passes": 0,
+        "direction_passes": 0
+      },
+      "per_speed_lateral_m": [
+        2.124055795314622,
+        2.119552412451243,
+        2.5473617686923813
+      ],
+      "improved_all_speeds": false,
+      "qualifies_for_long": false
+    },
+    {
+      "name": "hip_roll_offset_positive",
+      "model": 0,
+      "checkpoint": "runs/source_teacher/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 6,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 6
+        },
+        "lateral_m": 1.7935738676021111,
+        "maximum_lateral_mean": 1.7935738676021111,
+        "mean_abs_yaw": 0.028952066126031035,
+        "mean_height": 0.9676592999994471,
+        "speed_mae": 0.018185925810094365,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 6,
+        "direction_passes": 6
+      },
+      "per_speed_lateral_m": [
+        2.140397153425382,
+        1.7255665647670557,
+        1.5147578846138965
+      ],
+      "improved_all_speeds": false,
+      "qualifies_for_long": false
+    },
+    {
+      "name": "hip_roll_offset_positive",
+      "model": 1,
+      "checkpoint": "runs/source_main/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 6,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 6
+        },
+        "lateral_m": 2.0790688601677862,
+        "maximum_lateral_mean": 2.079454190694418,
+        "mean_abs_yaw": 0.02757954477619308,
+        "mean_height": 0.9647539082599468,
+        "speed_mae": 0.012176411802236727,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 6,
+        "direction_passes": 3
+      },
+      "per_speed_lateral_m": [
+        2.729557262582125,
+        2.3570920330824747,
+        1.150557284838758
+      ],
+      "improved_all_speeds": false,
+      "qualifies_for_long": false
+    },
+    {
+      "name": "hip_roll_offset_negative",
+      "model": 0,
+      "checkpoint": "runs/source_teacher/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.43784719984315223,
+        "maximum_lateral_mean": 0.4384096182173795,
+        "mean_abs_yaw": 0.028263227518969473,
+        "mean_height": 0.967579939822498,
+        "speed_mae": 0.02785460095882214,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      },
+      "per_speed_lateral_m": [
+        0.690161798970093,
+        0.3340893083817396,
+        0.2892904921776241
+      ],
+      "improved_all_speeds": true,
+      "qualifies_for_long": true
+    },
+    {
+      "name": "hip_roll_offset_negative",
+      "model": 1,
+      "checkpoint": "runs/source_main/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.2016381625922049,
+        "maximum_lateral_mean": 0.2566391950846607,
+        "mean_abs_yaw": 0.027968098986069903,
+        "mean_height": 0.968514560367256,
+        "speed_mae": 0.024041045835435856,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      },
+      "per_speed_lateral_m": [
+        0.06952374516376192,
+        0.49171366515657056,
+        0.04367707745628221
+      ],
+      "improved_all_speeds": true,
+      "qualifies_for_long": true
+    },
+    {
+      "name": "ankle_roll_offset_positive",
+      "model": 0,
+      "checkpoint": "runs/source_teacher/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.5590586493647817,
+        "maximum_lateral_mean": 0.5593971632075506,
+        "mean_abs_yaw": 0.028154633809504073,
+        "mean_height": 0.9675813073554964,
+        "speed_mae": 0.03164308023118138,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      },
+      "per_speed_lateral_m": [
+        0.816832470591657,
+        0.4399647801169293,
+        0.42037869738575884
+      ],
+      "improved_all_speeds": true,
+      "qualifies_for_long": true
+    },
+    {
+      "name": "ankle_roll_offset_positive",
+      "model": 1,
+      "checkpoint": "runs/source_main/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.2714277304303346,
+        "maximum_lateral_mean": 0.2953202721643643,
+        "mean_abs_yaw": 0.02639079612489846,
+        "mean_height": 0.9668439400582884,
+        "speed_mae": 0.032254903782604094,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      },
+      "per_speed_lateral_m": [
+        0.6055594903786289,
+        0.03228447487091345,
+        0.17643922604146137
+      ],
+      "improved_all_speeds": true,
+      "qualifies_for_long": true
+    },
+    {
+      "name": "ankle_roll_offset_negative",
+      "model": 0,
+      "checkpoint": "runs/source_teacher/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 1.558843280298456,
+        "maximum_lateral_mean": 1.558843280298456,
+        "mean_abs_yaw": 0.028681679628327097,
+        "mean_height": 0.9677348349917065,
+        "speed_mae": 0.014182205474115774,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      },
+      "per_speed_lateral_m": [
+        1.8849362580479223,
+        1.4569392447521257,
+        1.33465433809532
+      ],
+      "improved_all_speeds": false,
+      "qualifies_for_long": false
+    },
+    {
+      "name": "ankle_roll_offset_negative",
+      "model": 1,
+      "checkpoint": "runs/source_main/last.pt",
+      "summary": {
+        "episodes": 9,
+        "successes": 6,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 6
+        },
+        "lateral_m": 2.51132416830861,
+        "maximum_lateral_mean": 2.51132416830861,
+        "mean_abs_yaw": 0.03052661156044771,
+        "mean_height": 0.96837204773909,
+        "speed_mae": 0.009090681719557632,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 6,
+        "direction_passes": 0
+      },
+      "per_speed_lateral_m": [
+        2.9759591930701395,
+        2.296001022645099,
+        2.26201228921059
+      ],
+      "improved_all_speeds": false,
+      "qualifies_for_long": false
+    }
+  ],
+  "completed": true
+}

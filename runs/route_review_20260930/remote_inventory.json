@@ -1,0 +1,54 @@
+{
+  "review_date": "2026-09-30",
+  "weights": [
+    {
+      "path": "runs/cloud/best.pt",
+      "sha256": "f1d5147ce4ba76e3365e8d5b037de7c32dae469d0428d5fc987be27ee2cc65ed",
+      "bytes": 311785853,
+      "observation_size": 47,
+      "policy_kind": "connectome",
+      "encoder_shape": [
+        17336,
+        47
+      ]
+    },
+    {
+      "path": "runs/cloud/last.pt",
+      "sha256": "cb1fb9a61b31d81c2a27c707b984880db2aaa8d343d45c022e68630126cb542f",
+      "bytes": 311785661,
+      "observation_size": 47,
+      "policy_kind": "connectome",
+      "encoder_shape": [
+        17336,
+        47
+      ]
+    },
+    {
+      "path": "runs/cloud/straight_v1.pt",
+      "sha256": "12128c7bbf78a99150112071ee9c09752212cda3119c1729d30e7329860f6b5a",
+      "bytes": 311785661,
+      "observation_size": 47,
+      "policy_kind": "connectome",
+      "encoder_shape": [
+        17336,
+        47
+      ]
+    }
+  ],
+  "required_files": {
+    "app/ppo_yumi.py": false,
+    "app/imitate_yumi.py": false,
+    "app/evaluate_direction.py": false,
+    "app/yumi_description/yumi.xml": false
+  },
+  "graph_sha256": "72a6a9ade0117063d3b2515b12ceec3633d9f429ae43f0f8b73b2066a9e51b89",
+  "disk_free_bytes": 51199987712,
+  "runtime": {
+    "torch": "2.12.1+cu130",
+    "mujoco": "3.13.0",
+    "mujoco-warp": "3.13.0",
+    "warp-lang": "1.17.0"
+  },
+  "gpu": "NVIDIA GeForce RTX 4090 D, 24564 MiB, 1 MiB",
+  "gpu_processes": ""
+}

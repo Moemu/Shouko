@@ -1,0 +1,10 @@
+{
+  "kind": "derived_initialization_not_joint_training",
+  "actor_checkpoint_sha256": "e550239157c4ed2bf1b67914377e4e77c7d38c9d29a64066097abe9369072a10",
+  "critic_checkpoint_sha256": "56bf1dfac5fad0459bd184ccd96e96b09b5407fadb071330f7ae365f4f4bd4a7",
+  "critic_state_sha256": "92e1206486ffec2631a8e8694fb4cf3de04cf5d7c96912c1eea9145665775b32",
+  "actor_optimizer": "fresh",
+  "exploration_std": 0.05,
+  "critic_optimizer": "teacher",
+  "critic_observation_stats": "teacher"
+}

@@ -1,0 +1,174 @@
+{
+  "method": "A surviving episode must complete a control step after the ten-second impulse.",
+  "limitation": "Inferred from durations and collection source, not a separately recorded event flag.",
+  "results": [
+    {
+      "source": "runs\\direction_control_20260929\\transfer_main\\round1_negative_data.json",
+      "source_sha256": "b635949cda3548c69b1b6aaae39e487e3d4c28e938f78dcf521493569b002080",
+      "configured_push_velocity": -0.25,
+      "episodes": 9,
+      "inferred_exposed_episodes": 9,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.5": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.65": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        }
+      }
+    },
+    {
+      "source": "runs\\direction_control_20260929\\transfer_main\\round1_positive_data.json",
+      "source_sha256": "d1bd86e5301c532b41737eebcfda9ef568a8fe11140ed49c24ab93141a1d18a3",
+      "configured_push_velocity": 0.25,
+      "episodes": 9,
+      "inferred_exposed_episodes": 9,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.5": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.65": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        }
+      }
+    },
+    {
+      "source": "runs\\direction_control_20260929\\transfer_main\\round2_negative_data.json",
+      "source_sha256": "e5291f3abc1228b5cef6ed4e72e9ac06e69fa1435cfc4b36b4b6e1d1e3768ec7",
+      "configured_push_velocity": -0.25,
+      "episodes": 9,
+      "inferred_exposed_episodes": 1,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "inferred_exposed": 1
+        },
+        "0.5": {
+          "episodes": 3,
+          "inferred_exposed": 0
+        },
+        "0.65": {
+          "episodes": 3,
+          "inferred_exposed": 0
+        }
+      }
+    },
+    {
+      "source": "runs\\direction_control_20260929\\transfer_main\\round2_positive_data.json",
+      "source_sha256": "955fb36a7c7bacd1d173e52bdfb6de62f53563dead1428b927413e1345d28600",
+      "configured_push_velocity": 0.25,
+      "episodes": 9,
+      "inferred_exposed_episodes": 1,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "inferred_exposed": 1
+        },
+        "0.5": {
+          "episodes": 3,
+          "inferred_exposed": 0
+        },
+        "0.65": {
+          "episodes": 3,
+          "inferred_exposed": 0
+        }
+      }
+    },
+    {
+      "source": "runs\\direction_control_20260929\\transfer_main\\round3_negative_data.json",
+      "source_sha256": "8f8b1b12b3864c09e6d740421eabc2de4f3d48013e275ef401b79717a498feec",
+      "configured_push_velocity": -0.25,
+      "episodes": 9,
+      "inferred_exposed_episodes": 9,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.5": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.65": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        }
+      }
+    },
+    {
+      "source": "runs\\direction_control_20260929\\transfer_main\\round3_positive_data.json",
+      "source_sha256": "3e7c744089ddea70e4a8eafe66ed269b7b837419709dc16c517a0c004bb5384c",
+      "configured_push_velocity": 0.25,
+      "episodes": 9,
+      "inferred_exposed_episodes": 9,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.5": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.65": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        }
+      }
+    },
+    {
+      "source": "runs\\direction_control_20260929\\transfer_main\\round4_negative_data.json",
+      "source_sha256": "74546fb948e8da14e099e39ae8a4d99d57f12108341f57952b22dc65f4e17338",
+      "configured_push_velocity": -0.25,
+      "episodes": 9,
+      "inferred_exposed_episodes": 9,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.5": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.65": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        }
+      }
+    },
+    {
+      "source": "runs\\direction_control_20260929\\transfer_main\\round4_positive_data.json",
+      "source_sha256": "7533210ef3e10b7c0589b5b0a8b4e5765c793ebf66cdafb8d03d04010593f4a7",
+      "configured_push_velocity": 0.25,
+      "episodes": 9,
+      "inferred_exposed_episodes": 9,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.5": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        },
+        "0.65": {
+          "episodes": 3,
+          "inferred_exposed": 3
+        }
+      }
+    }
+  ]
+}

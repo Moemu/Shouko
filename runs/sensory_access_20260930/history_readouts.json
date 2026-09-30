@@ -1,0 +1,40 @@
+{
+  "base_sha256": "e550239157c4ed2bf1b67914377e4e77c7d38c9d29a64066097abe9369072a10",
+  "actors": [
+    {
+      "label": "history0",
+      "original_checkpoint_sha256": "f1a200718ebfec845cbf9c02ba743e937ea94c747fba53e7b12dfd12f8d3e1f9",
+      "changed_tensors": [
+        "readout.weight",
+        "readout.bias"
+      ]
+    },
+    {
+      "label": "history1",
+      "original_checkpoint_sha256": "5a0150d8c75cef62400176513dab6468b6b0bbd65d61b291ddc0deecee9fbc62",
+      "changed_tensors": [
+        "readout.weight",
+        "readout.bias"
+      ]
+    },
+    {
+      "label": "history2",
+      "original_checkpoint_sha256": "2e0fbb9dd6dd713229e583e9efc7efc8f0be18d65d7ac40716fcb66dc8947d1e",
+      "changed_tensors": [
+        "readout.weight",
+        "readout.bias"
+      ]
+    },
+    {
+      "label": "history3",
+      "original_checkpoint_sha256": "b58ec1bf77d61cc914d550117ae9712da494639ea6d116d8f95ba0a19355dca4",
+      "changed_tensors": [
+        "readout.weight",
+        "readout.bias"
+      ]
+    }
+  ],
+  "payload_sha256": "363c2c2410f0627130560f0ead0c30f1b75f5cb1342d1bc38c77e06cff328b1a",
+  "source_sha256": "bd428f83df623c47324b9e18ed91e051f2702694415b9a9fae27265cfb393d65",
+  "method": "Every tensor outside readout verified bitwise equal to base. Reconstructed serialization hash may differ."
+}

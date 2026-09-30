@@ -1,0 +1,203 @@
+{
+  "steady_window": "t >= 10 s; arithmetic sample mean of recorded qvel, not finite-difference midpoint decomposition",
+  "paired_initial_states": false,
+  "limitation": "These two files use different development seeds; this audit reconciles metric definitions and does not estimate a paired causal effect.",
+  "results": [
+    {
+      "source": "runs\\direction_control_20260929\\transfer_main\\ridge1e5_long_m0_c0_yaw0.0.npz",
+      "source_sha256": "7b24995fb8f5e6d9225f48530c2c23450d7290007858c1b3f730b9cfa794d052",
+      "episodes": [
+        {
+          "episode": 0,
+          "target_speed": 0.35,
+          "net_displacement_rate_mmps": 0.7001303895520875,
+          "steady_world_vy_mmps": -0.1175039857103622,
+          "steady_body_vy_mmps": 0.15177335640934414,
+          "maximum_abs_y_m": 0.0942131332047328
+        },
+        {
+          "episode": 1,
+          "target_speed": 0.5,
+          "net_displacement_rate_mmps": -8.636495849863746,
+          "steady_world_vy_mmps": -9.228483888772056,
+          "steady_body_vy_mmps": -8.983137283111443,
+          "maximum_abs_y_m": 1.0370488697139724
+        },
+        {
+          "episode": 2,
+          "target_speed": 0.65,
+          "net_displacement_rate_mmps": -16.890557187981997,
+          "steady_world_vy_mmps": -18.443660764510664,
+          "steady_body_vy_mmps": -20.385171905117897,
+          "maximum_abs_y_m": 2.02686686255618
+        },
+        {
+          "episode": 3,
+          "target_speed": 0.35,
+          "net_displacement_rate_mmps": 1.201324959584093,
+          "steady_world_vy_mmps": -0.11780022297839698,
+          "steady_body_vy_mmps": 0.15150562625511407,
+          "maximum_abs_y_m": 0.14700700185497656
+        },
+        {
+          "episode": 4,
+          "target_speed": 0.5,
+          "net_displacement_rate_mmps": -8.71528341650991,
+          "steady_world_vy_mmps": -9.228852137228708,
+          "steady_body_vy_mmps": -8.983479661300901,
+          "maximum_abs_y_m": 1.0465026775330528
+        },
+        {
+          "episode": 5,
+          "target_speed": 0.65,
+          "net_displacement_rate_mmps": -17.4068244853256,
+          "steady_world_vy_mmps": -18.44662058251656,
+          "steady_body_vy_mmps": -20.384702068596013,
+          "maximum_abs_y_m": 2.0888189382373614
+        },
+        {
+          "episode": 6,
+          "target_speed": 0.35,
+          "net_displacement_rate_mmps": 0.3450011755548104,
+          "steady_world_vy_mmps": -0.11771213939046334,
+          "steady_body_vy_mmps": 0.15155024548897994,
+          "maximum_abs_y_m": 0.05448516047229883
+        },
+        {
+          "episode": 7,
+          "target_speed": 0.5,
+          "net_displacement_rate_mmps": -8.61018174370594,
+          "steady_world_vy_mmps": -9.228462911753521,
+          "steady_body_vy_mmps": -8.983112364958423,
+          "maximum_abs_y_m": 1.0338902879156044
+        },
+        {
+          "episode": 8,
+          "target_speed": 0.65,
+          "net_displacement_rate_mmps": -17.16199477977048,
+          "steady_world_vy_mmps": -18.453262315748308,
+          "steady_body_vy_mmps": -20.390571271307962,
+          "maximum_abs_y_m": 2.059439373570771
+        }
+      ],
+      "means_by_speed": {
+        "0.35": {
+          "net_displacement_rate_mmps": 0.7488188415636636,
+          "steady_world_vy_mmps": -0.1176721160264075,
+          "steady_body_vy_mmps": 0.15160974271781272,
+          "maximum_abs_y_m": 0.09856843184400273
+        },
+        "0.5": {
+          "net_displacement_rate_mmps": -8.653987003359864,
+          "steady_world_vy_mmps": -9.228599645918095,
+          "steady_body_vy_mmps": -8.98324310312359,
+          "maximum_abs_y_m": 1.0391472783875433
+        },
+        "0.65": {
+          "net_displacement_rate_mmps": -17.15312548435936,
+          "steady_world_vy_mmps": -18.447847887591845,
+          "steady_body_vy_mmps": -20.38681508167396,
+          "maximum_abs_y_m": 2.0583750581214373
+        }
+      }
+    },
+    {
+      "source": "runs\\direction_control_20260929\\teacher_control3029_long_m0_c0_yaw0.0.npz",
+      "source_sha256": "bb97aef42b4bb72b1a19133d7cd01e854966abcccfe5408242d1017e8cf9a47c",
+      "episodes": [
+        {
+          "episode": 0,
+          "target_speed": 0.35,
+          "net_displacement_rate_mmps": -2.3221649806675315,
+          "steady_world_vy_mmps": -3.0813546027117726,
+          "steady_body_vy_mmps": -2.944129196597347,
+          "maximum_abs_y_m": 0.2805398308182564
+        },
+        {
+          "episode": 1,
+          "target_speed": 0.5,
+          "net_displacement_rate_mmps": -6.876520509945425,
+          "steady_world_vy_mmps": -7.4440980193682025,
+          "steady_body_vy_mmps": -7.523612623460094,
+          "maximum_abs_y_m": 0.826152894934018
+        },
+        {
+          "episode": 2,
+          "target_speed": 0.65,
+          "net_displacement_rate_mmps": -7.617821744169466,
+          "steady_world_vy_mmps": -7.619521440663538,
+          "steady_body_vy_mmps": -10.626005792690835,
+          "maximum_abs_y_m": 0.9146308197866583
+        },
+        {
+          "episode": 3,
+          "target_speed": 0.35,
+          "net_displacement_rate_mmps": -2.2922678069304845,
+          "steady_world_vy_mmps": -3.081353953220817,
+          "steady_body_vy_mmps": -2.9441285269545485,
+          "maximum_abs_y_m": 0.2769521773318534
+        },
+        {
+          "episode": 4,
+          "target_speed": 0.5,
+          "net_displacement_rate_mmps": -6.878862315865948,
+          "steady_world_vy_mmps": -7.444097449539084,
+          "steady_body_vy_mmps": -7.523612035540725,
+          "maximum_abs_y_m": 0.8264339107607066
+        },
+        {
+          "episode": 5,
+          "target_speed": 0.65,
+          "net_displacement_rate_mmps": -7.5279260424089145,
+          "steady_world_vy_mmps": -7.619519826178059,
+          "steady_body_vy_mmps": -10.626004358882263,
+          "maximum_abs_y_m": 0.9038433329556396
+        },
+        {
+          "episode": 6,
+          "target_speed": 0.35,
+          "net_displacement_rate_mmps": -2.516669660856995,
+          "steady_world_vy_mmps": -3.0813576338189637,
+          "steady_body_vy_mmps": -2.944132180261257,
+          "maximum_abs_y_m": 0.3038803973443686
+        },
+        {
+          "episode": 7,
+          "target_speed": 0.5,
+          "net_displacement_rate_mmps": -7.081928901140883,
+          "steady_world_vy_mmps": -7.444105404299572,
+          "steady_body_vy_mmps": -7.523619958967437,
+          "maximum_abs_y_m": 0.8508018977993687
+        },
+        {
+          "episode": 8,
+          "target_speed": 0.65,
+          "net_displacement_rate_mmps": -7.476947966319235,
+          "steady_world_vy_mmps": -7.619518471008908,
+          "steady_body_vy_mmps": -10.626003058394348,
+          "maximum_abs_y_m": 0.8977259620287799
+        }
+      ],
+      "means_by_speed": {
+        "0.35": {
+          "net_displacement_rate_mmps": -2.3770341494850036,
+          "steady_world_vy_mmps": -3.081355396583851,
+          "steady_body_vy_mmps": -2.9441299679377173,
+          "maximum_abs_y_m": 0.28712413516482616
+        },
+        "0.5": {
+          "net_displacement_rate_mmps": -6.945770575650752,
+          "steady_world_vy_mmps": -7.4441002910689535,
+          "steady_body_vy_mmps": -7.523614872656085,
+          "maximum_abs_y_m": 0.8344629011646978
+        },
+        "0.65": {
+          "net_displacement_rate_mmps": -7.540898584299204,
+          "steady_world_vy_mmps": -7.619519912616835,
+          "steady_body_vy_mmps": -10.626004403322481,
+          "maximum_abs_y_m": 0.9054000382570259
+        }
+      }
+    }
+  ]
+}

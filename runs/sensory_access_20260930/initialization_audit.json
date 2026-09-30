@@ -1,0 +1,11 @@
+{
+  "source_sha256": "e550239157c4ed2bf1b67914377e4e77c7d38c9d29a64066097abe9369072a10",
+  "script_sha256": "7d353282812bfb494e8dda60878aac644817c1e261552346c4fdc6651f7ebfb4",
+  "native_repeat_max": 3.337860107421875e-06,
+  "ordered_repeat_max": 0.0,
+  "native_initialization_max": 3.814697265625e-06,
+  "native_after_repeat_max": 3.814697265625e-06,
+  "ordered_initialization_max": 0.0,
+  "ordered_after_repeat_max": 0.0,
+  "native_ordered_max": 4.76837158203125e-06
+}

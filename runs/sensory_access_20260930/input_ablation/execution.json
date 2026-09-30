@@ -1,0 +1,50 @@
+{
+  "completed": true,
+  "source_sha256": "5c8f370bb06e5e47cd2b189220fb3229406daf6a21fb9835918d0cd1e4d5de6a",
+  "checkpoint_sha256": "41a2d580bbc3cbd11b5453878716c20e999e374a632823f50c5c686eaecc1bb3",
+  "changed_tensor": "encoder.weight[:, 48]",
+  "results": {
+    "normal": {
+      "episodes": 27,
+      "successes": 27,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 27,
+        "speed": 27,
+        "feet": 27,
+        "alternation": 27,
+        "upright": 27,
+        "direction": 27
+      },
+      "lateral_m": 0.17831440275095284,
+      "maximum_lateral_mean": 0.19558427256248423,
+      "mean_abs_yaw": 0.008347984092739062,
+      "mean_height": 0.9717694016200875,
+      "speed_mae": 0.019484123555372348,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 27,
+      "direction_passes": 27
+    },
+    "long": {
+      "episodes": 9,
+      "successes": 9,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 9,
+        "speed": 9,
+        "feet": 9,
+        "alternation": 9,
+        "upright": 9,
+        "direction": 9
+      },
+      "lateral_m": 0.7757170630454687,
+      "maximum_lateral_mean": 0.7767527083737897,
+      "mean_abs_yaw": 0.007548682021212548,
+      "mean_height": 0.9719817495756691,
+      "speed_mae": 0.02205565903665234,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 9,
+      "direction_passes": 9
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "completed": true,
+  "source_checkpoint_sha256": "e550239157c4ed2bf1b67914377e4e77c7d38c9d29a64066097abe9369072a10",
+  "branches": {
+    "main": {
+      "checkpoint": "runs\\sensory_access_20260930\\s1\\last.pt",
+      "checkpoint_sha256": "5c8f370bb06e5e47cd2b189220fb3229406daf6a21fb9835918d0cd1e4d5de6a",
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.14421673044290179
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.1724806843953984
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.5888388075196316
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.5663911960065072
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.2783657926315413
+        }
+      },
+      "maximum_long_lateral_m": 1.1218430578426661,
+      "allowed_parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "encoder.weight": 0.015186619013547897,
+        "readout.weight": 0.0008645206689834595,
+        "readout.bias": 5.364418029785156e-05
+      },
+      "cumulative_updates": 500,
+      "final_training_samples": 153977
+    },
+    "replica_extra": {
+      "checkpoint": "runs\\sensory_access_20260930\\replica\\dagger\\round1\\last.pt",
+      "checkpoint_sha256": "fe386851ed9aa910aa837767ca647967388fba26b10c1c13784d82f996d2c916",
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.08656945874204507
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.10581904501294709
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.4574985186579361
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.3843060445706874
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "falls": 0,
+          "mean_absolute_endpoint_lateral_m": 0.3467915586612821
+        }
+      },
+      "maximum_long_lateral_m": 0.9282136203065164,
+      "allowed_parameter_changes": {
+        "obs_std": 0.9671918749809265,
+        "encoder.weight": 0.0252919252961874,
+        "readout.weight": 0.0022736191749572754,
+        "readout.bias": 0.00015234947204589844
+      },
+      "cumulative_updates": 1000,
+      "final_training_samples": 220940
+    }
+  },
+  "verified_data_files": 34,
+  "same_update_replication_passed": false,
+  "tests": [
+    "CPU selected-column gradient/initialization/folding/boundary",
+    "CPU cache integrity and invalidation",
+    "CPU direction metrics",
+    "Full-graph CUDA gradient/initialization/parameter boundary",
+    "Native MuJoCo development and final holdouts"
+  ],
+  "extra_dagger_rounds": 1,
+  "source_sha256": "29ad6cb730fc81c8ba8fc1a2182b8ed7f8ea5d98cef4c0040b50b772187d705d",
+  "interpretation": "Two fixed-source branches pass reserved holdouts; the second required extra convergence. No equal-update or biological topology superiority claim."
+}

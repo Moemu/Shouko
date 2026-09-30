@@ -1,0 +1,19 @@
+{
+  "checked_utc": "2026-09-29T02:58:38.808448+00:00",
+  "checks_passed": [
+    "py_compile: ppo_yumi, imitate_yumi, evaluate_direction, direction_metrics",
+    "app.test_direction_metrics",
+    "app.test_readout_ppo",
+    "app.test_imitation_cache",
+    "git diff --check"
+  ],
+  "source_sha256": {
+    "app/ppo_yumi.py": "b796603ca911a0de634c896c832444766ebb980bf91d76f06ebc8cac53fa2109",
+    "app/imitate_yumi.py": "aede1cd77befbbaef124d06455a8ee3bf6cab42c4b28dd76df0e56402614bc0d",
+    "app/evaluate_direction.py": "9f17e7f67d6dc4709573e0af0fd9b550515913ed9e6df28d5dbbebaaab09032d",
+    "app/direction_metrics.py": "3ce571f18dc83e395b8fb249a0c4cd0a8c2c0f487db63e59e53d733af220db31",
+    "app/test_direction_metrics.py": "c72623c00a127d131601495a0dbcd44f8655592496d4b5f89377b82a58bf9f8a",
+    "app/test_imitation_cache.py": "6dbf33101583f586e3b67dadeb4275ec901c7045d3eb875bc3990aa6a1ca4b9a",
+    "app/test_readout_ppo.py": "f045864f2667f77e09ec3ca12a0f9e9ed60916c97ca6252ad92be2e3bd52a940"
+  }
+}

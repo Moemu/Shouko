@@ -1,0 +1,170 @@
+{
+  "files": {
+    "runs/direction_control_20260929/run_teacher_pair.py": {
+      "sha256": "c07e9e33edd947bf5f164687eaf618d2173fc5b492f247c3f425e243dcecb313",
+      "bytes": 4275
+    },
+    "runs/direction_control_20260929/teacher_control3029/best.pt": {
+      "sha256": "76fc436e7de71e13bb17d190f5b2050b55f8ae689f99ae3534a9ee3a9764d903",
+      "bytes": 550341
+    },
+    "runs/direction_control_20260929/teacher_control3029/evaluation.json": {
+      "sha256": "0dd0682cc6bfdb46ccf013f9f310f99f7a112190b52ecd0b2a882d338cd6dc50",
+      "bytes": 276428
+    },
+    "runs/direction_control_20260929/teacher_control3029/last.pt": {
+      "sha256": "56bf1dfac5fad0459bd184ccd96e96b09b5407fadb071330f7ae365f4f4bd4a7",
+      "bytes": 550341
+    },
+    "runs/direction_control_20260929/teacher_control3029/ppo_state.pt": {
+      "sha256": "92e1206486ffec2631a8e8694fb4cf3de04cf5d7c96912c1eea9145665775b32",
+      "bytes": 1873197
+    },
+    "runs/direction_control_20260929/teacher_control3029/ppo_state_best.pt": {
+      "sha256": "3b24be0ef942974550767f4ce2b0cdbfb6f50f391028e62da1c0a169ffd2cb91",
+      "bytes": 1873497
+    },
+    "runs/direction_control_20260929/teacher_control3029/replay.json": {
+      "sha256": "651ffa2597fec94036b9eb7013f5f570ff856aed345567b3aca7da89120dff35",
+      "bytes": 802787
+    },
+    "runs/direction_control_20260929/teacher_control3029/training.json": {
+      "sha256": "dc88198272cc69e362baf4541e8ab785812bbb61cdfd5c776b6b510b0ee0a2c1",
+      "bytes": 818527
+    },
+    "runs/direction_control_20260929/teacher_control3029.log": {
+      "sha256": "d3be177227643c6598079166aa867b203695140616acbc384c6894d41f5e2269",
+      "bytes": 537865
+    },
+    "runs/direction_control_20260929/teacher_control3029_long.json": {
+      "sha256": "6b3674d12ba644d067cc40b46d2b86b1f94dc4b7a3135730063ee970ac259a62",
+      "bytes": 20905
+    },
+    "runs/direction_control_20260929/teacher_control3029_long.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runs/direction_control_20260929/teacher_control3029_long_m0_c0_yaw0.0.npz": {
+      "sha256": "bb97aef42b4bb72b1a19133d7cd01e854966abcccfe5408242d1017e8cf9a47c",
+      "bytes": 14984004
+    },
+    "runs/direction_control_20260929/teacher_control3029_normal.json": {
+      "sha256": "58675cdbd2faf21b2ef9507d5dc5e300da626b67282f6df2d57d760ae58db6fe",
+      "bytes": 58629
+    },
+    "runs/direction_control_20260929/teacher_control3029_normal.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runs/direction_control_20260929/teacher_control3029_push_negative.json": {
+      "sha256": "4cb6f2d631e39508e91fadb41c1c4b678503dc15cb5329fdb750ef9b4c65237d",
+      "bytes": 21021
+    },
+    "runs/direction_control_20260929/teacher_control3029_push_negative.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runs/direction_control_20260929/teacher_control3029_push_positive.json": {
+      "sha256": "71672de90cc075b06b45d43385bb60ded2b840a595e404fc65b2a1dd2fcc064a",
+      "bytes": 21034
+    },
+    "runs/direction_control_20260929/teacher_control3029_push_positive.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runs/direction_control_20260929/teacher_control3029_yaw.json": {
+      "sha256": "175fc2f087dc4c42719d974d181e830a684ce86c8cbe0f786a36026cc85e2560",
+      "bytes": 39758
+    },
+    "runs/direction_control_20260929/teacher_control3029_yaw.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runs/direction_control_20260929/teacher_execution.json": {
+      "sha256": "0048824856393a3ddb75e4c66e5f2c8895f8e49ad1212970d447c9f9ac14a455",
+      "bytes": 22368
+    },
+    "runs/direction_control_20260929/teacher_lateral3029/best.pt": {
+      "sha256": "89ced4a74abbb76a7342476ebdb62391f8adc64e06294063b9858764151f28e6",
+      "bytes": 550341
+    },
+    "runs/direction_control_20260929/teacher_lateral3029/evaluation.json": {
+      "sha256": "e9f98e3a7b0232365d0bf952103688d1e73ec279786ede42f71964d0ca1a90e5",
+      "bytes": 276728
+    },
+    "runs/direction_control_20260929/teacher_lateral3029/last.pt": {
+      "sha256": "e5923053ecc2f9224793ea8fa29ab35f33ac1d7847ce360f040fe218f36a570e",
+      "bytes": 550341
+    },
+    "runs/direction_control_20260929/teacher_lateral3029/ppo_state.pt": {
+      "sha256": "a5ea19b64fee2b83aff5fd56380bd2954b045611431409fe54fcd2c3cd87aa9b",
+      "bytes": 1873197
+    },
+    "runs/direction_control_20260929/teacher_lateral3029/ppo_state_best.pt": {
+      "sha256": "f9f219212051ea7434c21681b512209e1ab45eae22c802f585ba0a30cdc61440",
+      "bytes": 1873497
+    },
+    "runs/direction_control_20260929/teacher_lateral3029/replay.json": {
+      "sha256": "caaae92ae0920b5d1ae49c4ee06929a96e650241ff41946ee957d41ffd4760e4",
+      "bytes": 803132
+    },
+    "runs/direction_control_20260929/teacher_lateral3029/training.json": {
+      "sha256": "df4557c48113079b252b92310ce21587a8f7e9cdd8d5ab9987654d3e62ec703a",
+      "bytes": 818521
+    },
+    "runs/direction_control_20260929/teacher_lateral3029.log": {
+      "sha256": "85542225fdd40cb90b87b1a2344318a9cce2cd1ada409bc0268730bafc3fb160",
+      "bytes": 537558
+    },
+    "runs/direction_control_20260929/teacher_lateral3029_long.json": {
+      "sha256": "4f4f9116d61688f37f99d131bf821d4409668da412e587b80d14b93eeaf3bd0e",
+      "bytes": 20933
+    },
+    "runs/direction_control_20260929/teacher_lateral3029_long.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runs/direction_control_20260929/teacher_lateral3029_long_m0_c0_yaw0.0.npz": {
+      "sha256": "6929807907bb99371273532c9c343eff971f79bdb75c1eea7a779d8a9f43ad83",
+      "bytes": 15037106
+    },
+    "runs/direction_control_20260929/teacher_lateral3029_normal.json": {
+      "sha256": "370e0698fbdfc43a2e3acd8c5696d15ed3dd31bed1fc451b81b7cf9a23299dda",
+      "bytes": 58628
+    },
+    "runs/direction_control_20260929/teacher_lateral3029_normal.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runs/direction_control_20260929/teacher_lateral3029_push_positive.json": {
+      "sha256": "f370d383b296990e9785ad35bed42994506df0371e5cb828182a207e6d748fd3",
+      "bytes": 20915
+    },
+    "runs/direction_control_20260929/teacher_lateral3029_push_positive.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runs/direction_control_20260929/teacher_lateral3029_yaw.json": {
+      "sha256": "a42baf85532ff43eebe6d609f37274481ae4cb148fbbd0f46846773f618d10a4",
+      "bytes": 39927
+    },
+    "runs/direction_control_20260929/teacher_lateral3029_yaw.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runs/direction_control_20260929/teacher_preregistration.json": {
+      "sha256": "064ade3c22516d2b9792cb6f9f1226433c914e45ec4062504bef2b6b682a7ecd",
+      "bytes": 1334
+    },
+    "runs/direction_control_20260929/teacher_selection.json": {
+      "sha256": "d8666aa3bb0729cbdb2a278886f3f3694bae193e1b16a5a65ce5af491db43e11",
+      "bytes": 4939
+    },
+    "runs/direction_control_20260929/teacher_source.tgz": {
+      "sha256": "dd06af6588ca5f9e4081ceb60ef2777b334c6fdd50f7b470cfb52434d0b2253b",
+      "bytes": 109700
+    }
+  },
+  "archive": "teachers_complete.tgz",
+  "archive_sha256": "fd6562dee3d063d1e3890c4467eec0cdd5086a90b354a3bbfc7ff8fb6d755f35"
+}

@@ -1,0 +1,367 @@
+{
+  "completed": true,
+  "jobs": [
+    {
+      "name": "teacher_control_replica_driver",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "runs/direction_control_20260929/run_teacher_control_replica.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 672.3266684673727
+    },
+    {
+      "name": "teachers_holdout_normal",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/direction_control_20260929/teacher_control3029/last.pt",
+        "runs/direction_control_20260929/teacher_control3030/last.pt",
+        "--seed-base",
+        "550001",
+        "--output",
+        "runs/direction_control_20260929/teachers_holdout_normal.json",
+        "--cohorts",
+        "3"
+      ],
+      "returncode": 0,
+      "wall_seconds": 42.49579854682088
+    },
+    {
+      "name": "teachers_holdout_yaw",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/direction_control_20260929/teacher_control3029/last.pt",
+        "runs/direction_control_20260929/teacher_control3030/last.pt",
+        "--seed-base",
+        "551001",
+        "--output",
+        "runs/direction_control_20260929/teachers_holdout_yaw.json",
+        "--yaws",
+        "-.2",
+        ".2"
+      ],
+      "returncode": 0,
+      "wall_seconds": 33.13920572400093
+    },
+    {
+      "name": "teachers_holdout_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/direction_control_20260929/teacher_control3029/last.pt",
+        "runs/direction_control_20260929/teacher_control3030/last.pt",
+        "--seed-base",
+        "552001",
+        "--output",
+        "runs/direction_control_20260929/teachers_holdout_long.json",
+        "--seconds",
+        "120",
+        "--trace"
+      ],
+      "returncode": 0,
+      "wall_seconds": 59.14936136454344
+    },
+    {
+      "name": "teachers_holdout_push_positive",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/direction_control_20260929/teacher_control3029/last.pt",
+        "runs/direction_control_20260929/teacher_control3030/last.pt",
+        "--seed-base",
+        "553001",
+        "--output",
+        "runs/direction_control_20260929/teachers_holdout_push_positive.json",
+        "--push-velocity",
+        ".25"
+      ],
+      "returncode": 0,
+      "wall_seconds": 20.06202419102192
+    },
+    {
+      "name": "teachers_holdout_push_negative",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/direction_control_20260929/teacher_control3029/last.pt",
+        "runs/direction_control_20260929/teacher_control3030/last.pt",
+        "--seed-base",
+        "554001",
+        "--output",
+        "runs/direction_control_20260929/teachers_holdout_push_negative.json",
+        "--push-velocity",
+        "-.25"
+      ],
+      "returncode": 0,
+      "wall_seconds": 18.95721846073866
+    },
+    {
+      "name": "teacher_source_matched_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/direction-20260929/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/source_teacher/last.pt",
+        "--seed-base",
+        "552001",
+        "--seconds",
+        "120",
+        "--trace",
+        "--output",
+        "runs/direction_control_20260929/teacher_source_matched_long.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 30.532652620226145
+    }
+  ],
+  "results": {
+    "normal": [
+      {
+        "episodes": 27,
+        "successes": 27,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 27,
+          "speed": 27,
+          "feet": 27,
+          "alternation": 27,
+          "upright": 27,
+          "direction": 27
+        },
+        "lateral_m": 0.1357420195733044,
+        "maximum_lateral_mean": 0.1471362414607349,
+        "mean_abs_yaw": 0.008218084422283625,
+        "mean_height": 0.9716647104439127,
+        "speed_mae": 0.027078287034972667,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 27,
+        "direction_passes": 27
+      },
+      {
+        "episodes": 27,
+        "successes": 27,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 27,
+          "speed": 27,
+          "feet": 27,
+          "alternation": 27,
+          "upright": 27,
+          "direction": 27
+        },
+        "lateral_m": 0.17762491216923174,
+        "maximum_lateral_mean": 0.18252593661073643,
+        "mean_abs_yaw": 0.021578484327125703,
+        "mean_height": 0.9673022604743694,
+        "speed_mae": 0.016528741841523777,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 27,
+        "direction_passes": 27
+      }
+    ],
+    "yaw": [
+      {
+        "episodes": 18,
+        "successes": 18,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 18,
+          "speed": 18,
+          "feet": 18,
+          "alternation": 18,
+          "upright": 18,
+          "direction": 18
+        },
+        "lateral_m": 0.12395463555807609,
+        "maximum_lateral_mean": 0.1403172512210014,
+        "mean_abs_yaw": 0.008716501589795296,
+        "mean_height": 0.9717167010344048,
+        "speed_mae": 0.02552762924429248,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 18,
+        "direction_passes": 18
+      },
+      {
+        "episodes": 18,
+        "successes": 18,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 18,
+          "speed": 18,
+          "feet": 18,
+          "alternation": 18,
+          "upright": 18,
+          "direction": 18
+        },
+        "lateral_m": 0.21536937319723176,
+        "maximum_lateral_mean": 0.22822059595436986,
+        "mean_abs_yaw": 0.021958340747634496,
+        "mean_height": 0.9672953868969965,
+        "speed_mae": 0.016224173276564485,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 18,
+        "direction_passes": 18
+      }
+    ],
+    "long": [
+      {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.6661656253778323,
+        "maximum_lateral_mean": 0.6672798521974824,
+        "mean_abs_yaw": 0.007697969445218329,
+        "mean_height": 0.9718588895734526,
+        "speed_mae": 0.029367426966773573,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      },
+      {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.8242055014760586,
+        "maximum_lateral_mean": 0.8243923920553535,
+        "mean_abs_yaw": 0.021162282467457803,
+        "mean_height": 0.9674670937584633,
+        "speed_mae": 0.01780611303537453,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      }
+    ],
+    "push_positive": [
+      {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.39638655067730405,
+        "maximum_lateral_mean": 0.4922463258892096,
+        "mean_abs_yaw": 0.010243995251239976,
+        "mean_height": 0.9715638128979288,
+        "speed_mae": 0.029232685397510876,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      },
+      {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.1168917952433061,
+        "maximum_lateral_mean": 0.2322783484609191,
+        "mean_abs_yaw": 0.0212219636615502,
+        "mean_height": 0.9673552404963546,
+        "speed_mae": 0.01737230390241425,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      }
+    ],
+    "push_negative": [
+      {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.3450152864093926,
+        "maximum_lateral_mean": 0.3450152864093926,
+        "mean_abs_yaw": 0.008544117062807232,
+        "mean_height": 0.971536315517025,
+        "speed_mae": 0.026906716526198478,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      },
+      {
+        "episodes": 9,
+        "successes": 9,
+        "falls": 0,
+        "criteria_passes": {
+          "survived": 9,
+          "speed": 9,
+          "feet": 9,
+          "alternation": 9,
+          "upright": 9,
+          "direction": 9
+        },
+        "lateral_m": 0.48305416535489315,
+        "maximum_lateral_mean": 0.48305416535489315,
+        "mean_abs_yaw": 0.02201943514986177,
+        "mean_height": 0.9672255194850171,
+        "speed_mae": 0.015955173116121643,
+        "qualifying_swings_per_second": 1.25,
+        "strict_passes": 9,
+        "direction_passes": 9
+      }
+    ]
+  },
+  "started_utc": "2026-09-29T02:50:53.110197+00:00",
+  "replica_development_passed": true,
+  "fixed_candidates": {
+    "runs/direction_control_20260929/teacher_control3029/last.pt": "56bf1dfac5fad0459bd184ccd96e96b09b5407fadb071330f7ae365f4f4bd4a7",
+    "runs/direction_control_20260929/teacher_control3030/last.pt": "f3965e13b7a8bda1c4c153f271cf2f86bf3dd90647221af92d91cb4de7b66567"
+  },
+  "both_teachers_heldout_passed": true,
+  "finished_utc": "2026-09-29T03:05:39.817776+00:00"
+}

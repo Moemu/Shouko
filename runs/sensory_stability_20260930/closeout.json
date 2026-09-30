@@ -1,0 +1,715 @@
+{
+  "completed": true,
+  "matrix_sha256": "98da07baf6aab145cc05ca07671be3f857a0f54796585ce522f69ec91a9a507d",
+  "verified_data_files": 34,
+  "cells": {
+    "1/A_3031_s1": {
+      "checkpoint_sha256": "5c8f370bb06e5e47cd2b189220fb3229406daf6a21fb9835918d0cd1e4d5de6a",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "encoder.weight": 0.015186619013547897,
+        "readout.weight": 0.0008645206689834595,
+        "readout.bias": 5.364418029785156e-05
+      }
+    },
+    "1/A_3031_c0": {
+      "checkpoint_sha256": "8003d1176e9099c87b837f44f21d27082bbc607e51bfe3607f8b4bbf6c27b873",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "readout.weight": 0.0005758702754974365,
+        "readout.bias": 3.6716461181640625e-05
+      }
+    },
+    "1/A_4031_c0": {
+      "checkpoint_sha256": "45f65e058356949eb144416166bab3dc9e5250e06c1330dcf0dc4b1d2fa8a8e0",
+      "development_passed": false,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 6,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "readout.weight": 0.0005135834217071533,
+        "readout.bias": 5.218386650085449e-05
+      }
+    },
+    "1/A_4031_s1": {
+      "checkpoint_sha256": "10cfa86dd486e31226f719315b3bf32b23f600abbda51bf03a940fc952e308e8",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "encoder.weight": 0.01606946997344494,
+        "readout.weight": 0.000764794647693634,
+        "readout.bias": 8.001923561096191e-05
+      }
+    },
+    "1/B_3031_c0": {
+      "checkpoint_sha256": "51555d3859b4dd196bfa6ec376928cd9d75eb0229ed70058f9af316c26ae267e",
+      "development_passed": false,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 6,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9671918749809265,
+        "readout.weight": 0.0014742612838745117,
+        "readout.bias": 0.00012183189392089844
+      }
+    },
+    "1/B_4031_c0": {
+      "checkpoint_sha256": "1db52b17fa1a3a69dc8f184379d3b9155053a0783f211f20e04d02a2a37d96a4",
+      "development_passed": false,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 6,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9671918749809265,
+        "readout.weight": 0.001256406307220459,
+        "readout.bias": 0.00014901161193847656
+      }
+    },
+    "1/B_4031_s1": {
+      "checkpoint_sha256": "fd4f5879e2afd16fc14a56630c9ea0e9be3587b571b883e98a85f17e3d10beb9",
+      "development_passed": false,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 6,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9671918749809265,
+        "encoder.weight": 0.016229834407567978,
+        "readout.weight": 0.0012619197368621826,
+        "readout.bias": 0.00011587142944335938
+      }
+    },
+    "1/B_3031_s1": {
+      "checkpoint_sha256": "c8feaf20080f8f7c2a48739d6220a66ec478c2b4343b0e75e6c4940f46803eb9",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9671918749809265,
+        "encoder.weight": 0.015724319964647293,
+        "readout.weight": 0.0014458894729614258,
+        "readout.bias": 7.510185241699219e-05
+      }
+    },
+    "1/A_3031_s1_repeat": {
+      "checkpoint_sha256": "5344af8800bb2f3780fa2ccd1c19c66e000ff2ef7141809dbf63c11f0741eda1",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "encoder.weight": 0.015186624601483345,
+        "readout.weight": 0.0008645057678222656,
+        "readout.bias": 5.364418029785156e-05
+      }
+    },
+    "2/A_3031_c0": {
+      "checkpoint_sha256": "43537e83406f4fc96fc570754937d9d8163d74b26b6579eb94ee635873a32401",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "readout.weight": 0.00128859281539917,
+        "readout.bias": 7.128715515136719e-05
+      }
+    },
+    "2/A_3031_s1": {
+      "checkpoint_sha256": "1e1c3160448f6acaddd28b1a8782dc75b037fed3e296525aa52ae060926801e6",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "encoder.weight": 0.02582177333533764,
+        "readout.weight": 0.0019581615924835205,
+        "readout.bias": 0.00011774525046348572
+      }
+    },
+    "2/A_4031_c0": {
+      "checkpoint_sha256": "b69a5110aa386bf345d00362920beae4fb0bbb223f95cbf3994a376d31631dba",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "readout.weight": 0.0016214251518249512,
+        "readout.bias": 7.384642958641052e-05
+      }
+    },
+    "2/A_4031_s1": {
+      "checkpoint_sha256": "c3924a7df5241f2bed710f7653895f398df31b32c772d231c2b710dac25353fb",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9679751992225647,
+        "encoder.weight": 0.0245747622102499,
+        "readout.weight": 0.0018775463104248047,
+        "readout.bias": 0.00012973695993423462
+      }
+    },
+    "2/B_3031_c0": {
+      "checkpoint_sha256": "b0aa48de6e66579000bd67d2194916c5954814c39ab874f65a14ca44ebaac94c",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9671918749809265,
+        "readout.weight": 0.0023296475410461426,
+        "readout.bias": 0.0002694129943847656
+      }
+    },
+    "2/B_3031_s1": {
+      "checkpoint_sha256": "df65f8fc093b18af566f1e98e46cc1bdcb3886f7950cb10014201845556d8d3c",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9671918749809265,
+        "encoder.weight": 0.025933923199772835,
+        "readout.weight": 0.0023403167724609375,
+        "readout.bias": 0.0002028942108154297
+      }
+    },
+    "2/B_4031_s1": {
+      "checkpoint_sha256": "fe386851ed9aa910aa837767ca647967388fba26b10c1c13784d82f996d2c916",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9671918749809265,
+        "encoder.weight": 0.0252919252961874,
+        "readout.weight": 0.0022736191749572754,
+        "readout.bias": 0.00015234947204589844
+      }
+    },
+    "2/B_4031_c0": {
+      "checkpoint_sha256": "08321655be6c0111d4c787b8a15972ed3d58268ba5b5a0b73081c52d15117bd4",
+      "development_passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      },
+      "parameter_changes": {
+        "obs_std": 0.9671918749809265,
+        "readout.weight": 0.0021428167819976807,
+        "readout.bias": 0.00020647048950195312
+      }
+    }
+  },
+  "final": {
+    "main": {
+      "passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      }
+    },
+    "verification": {
+      "passed": true,
+      "groups": {
+        "normal": {
+          "episodes": 27,
+          "strict_passes": 27,
+          "corridor_passes": 27,
+          "falls": 0
+        },
+        "yaw": {
+          "episodes": 18,
+          "strict_passes": 18,
+          "corridor_passes": 18,
+          "falls": 0
+        },
+        "long": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_positive": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        },
+        "push_negative": {
+          "episodes": 9,
+          "strict_passes": 9,
+          "corridor_passes": 9,
+          "falls": 0
+        }
+      }
+    }
+  },
+  "stability_screen_passed": true,
+  "source_sha256": "fe395086920ed2b1fba888edf7a5563e792da7b0828d2e3f1b9b9d12ec216c35"
+}

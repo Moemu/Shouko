@@ -1,0 +1,178 @@
+{
+  "completed": true,
+  "stage": 1,
+  "dataset": "B",
+  "seed": 3031,
+  "arm": "c0",
+  "repeat": false,
+  "jobs": [
+    {
+      "name": "train",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/sensory-20260930/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.train_sensory_readout",
+        "--source",
+        "runs/direction_control_20260929/transfer_main/round4/last.pt",
+        "--train",
+        "runs/sensory_access_20260930/replica/teacher_train.pt",
+        "runs/sensory_access_20260930/replica/round1_normal_data.pt",
+        "runs/sensory_access_20260930/replica/round1_positive_data.pt",
+        "runs/sensory_access_20260930/replica/round1_negative_data.pt",
+        "runs/sensory_access_20260930/replica/round2_normal_data.pt",
+        "runs/sensory_access_20260930/replica/round2_positive_data.pt",
+        "runs/sensory_access_20260930/replica/round2_negative_data.pt",
+        "runs/sensory_access_20260930/replica/round3_normal_data.pt",
+        "runs/sensory_access_20260930/replica/round3_positive_data.pt",
+        "runs/sensory_access_20260930/replica/round3_negative_data.pt",
+        "runs/sensory_access_20260930/replica/round4_normal_data.pt",
+        "runs/sensory_access_20260930/replica/round4_positive_data.pt",
+        "runs/sensory_access_20260930/replica/round4_negative_data.pt",
+        "--validation",
+        "runs/direction_control_20260929/transfer_main/teacher_validation.pt",
+        "runs/sensory_access_20260930/validation_normal.pt",
+        "runs/sensory_access_20260930/validation_positive.pt",
+        "runs/sensory_access_20260930/validation_negative.pt",
+        "--output",
+        "runs/sensory_stability_20260930/stage1/B_3031_c0/train",
+        "--seed",
+        "3031",
+        "--calibrate-vy"
+      ],
+      "returncode": 0,
+      "wall_seconds": 56.377146541839465
+    },
+    {
+      "name": "eval_normal",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/sensory-20260930/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/sensory_stability_20260930/stage1/B_3031_c0/train/last.pt",
+        "--output",
+        "runs/sensory_stability_20260930/stage1/B_3031_c0/eval_normal.json",
+        "--seed-base",
+        "310201",
+        "--cohorts",
+        "3"
+      ],
+      "returncode": 0,
+      "wall_seconds": 67.84436811506748
+    },
+    {
+      "name": "eval_long",
+      "command": [
+        "/root/autodl-tmp/neuromechfly/diagnostics/sensory-20260930/../../.venv/bin/python",
+        "-u",
+        "-m",
+        "app.evaluate_direction",
+        "--checkpoints",
+        "runs/sensory_stability_20260930/stage1/B_3031_c0/train/last.pt",
+        "--output",
+        "runs/sensory_stability_20260930/stage1/B_3031_c0/eval_long.json",
+        "--seed-base",
+        "310201",
+        "--seconds",
+        "120",
+        "--trace"
+      ],
+      "returncode": 0,
+      "wall_seconds": 124.31343318219297
+    }
+  ],
+  "results": {
+    "normal": {
+      "episodes": 27,
+      "successes": 27,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 27,
+        "speed": 27,
+        "feet": 27,
+        "alternation": 27,
+        "upright": 27,
+        "direction": 27
+      },
+      "lateral_m": 0.27052528240436413,
+      "maximum_lateral_mean": 0.27845237279530477,
+      "mean_abs_yaw": 0.008476251531409197,
+      "mean_height": 0.9717115331251565,
+      "speed_mae": 0.023600585817613946,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 27,
+      "direction_passes": 27,
+      "by_speed": {
+        "0.35": {
+          "episodes": 9,
+          "signed_endpoint_mean_m": 0.06287451478839418,
+          "maximum_lateral_m": 0.15686980290793642
+        },
+        "0.5": {
+          "episodes": 9,
+          "signed_endpoint_mean_m": -0.23325082961294813,
+          "maximum_lateral_m": 0.2993810803968667
+        },
+        "0.65": {
+          "episodes": 9,
+          "signed_endpoint_mean_m": -0.5154505028117502,
+          "maximum_lateral_m": 0.5937565079579878
+        }
+      },
+      "evidence_path": "runs/sensory_stability_20260930/stage1/B_3031_c0/eval_normal.json",
+      "evidence_sha256": "a26e2f48c3c9688f4453863d6bce17175196ab3d62fbeee731865852c0e202e0"
+    },
+    "long": {
+      "episodes": 9,
+      "successes": 9,
+      "falls": 0,
+      "criteria_passes": {
+        "survived": 9,
+        "speed": 9,
+        "feet": 9,
+        "alternation": 9,
+        "upright": 9,
+        "direction": 9
+      },
+      "lateral_m": 1.2468951085071653,
+      "maximum_lateral_mean": 1.2635863893226345,
+      "mean_abs_yaw": 0.007636532984887405,
+      "mean_height": 0.9719136508270727,
+      "speed_mae": 0.026032569134980033,
+      "qualifying_swings_per_second": 1.25,
+      "strict_passes": 9,
+      "direction_passes": 6,
+      "by_speed": {
+        "0.35": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": 0.05715556973648283,
+          "maximum_lateral_m": 0.15686980290793642
+        },
+        "0.5": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": -1.1890540110532692,
+          "maximum_lateral_m": 1.194736286525824
+        },
+        "0.65": {
+          "episodes": 3,
+          "signed_endpoint_mean_m": -2.4944757447317443,
+          "maximum_lateral_m": 2.5396773820965644
+        }
+      },
+      "evidence_path": "runs/sensory_stability_20260930/stage1/B_3031_c0/eval_long.json",
+      "evidence_sha256": "662206013599790d88a85e2d21855a9659fb925a632f0d4b293b9255e8aa8876"
+    }
+  },
+  "started_utc": "2026-09-30T05:19:44.667875+00:00",
+  "reused": false,
+  "checkpoint": "runs/sensory_stability_20260930/stage1/B_3031_c0/train/last.pt",
+  "checkpoint_sha256": "51555d3859b4dd196bfa6ec376928cd9d75eb0229ed70058f9af316c26ae267e",
+  "fit_path": "runs/sensory_stability_20260930/stage1/B_3031_c0/train/fit.json",
+  "fit_sha256": "9e2d65a85143f99e3d7f6dc3c3045f97537d9541029e18aaca5efdd7e9d15bce",
+  "sample_indices_sha256": "0e37f39ee790b4693b4c4901d8c64525462ed6ba64effe04f153a6f73d0177cb",
+  "vy_observation_std": 0.03280811011791229,
+  "development_passed": false,
+  "finished_utc": "2026-09-30T05:23:54.064614+00:00"
+}

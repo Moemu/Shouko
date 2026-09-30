@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "checkpoint_sha256": "6be1e975b11ed09884d90e3bb4b23af1e2dcac54f4d5de48c527b8e8324d123f",
+  "reference_checkpoint_sha256": "e550239157c4ed2bf1b67914377e4e77c7d38c9d29a64066097abe9369072a10",
+  "cache_sha256": "900996e08671e3c75cd2c7ea65ef1ca1086a20f6be893c64c87fc9f61a25c252",
+  "data_sha256": {
+    "runs/direction_control_20260929/transfer_main/teacher_train.pt": "55d30e27bf93734189e9f2e1b3367e318c121e2a5b99eb2631d9e5d07546782e",
+    "runs/direction_control_20260929/transfer_main/round1_normal_data.pt": "0189c69e5e6973f6a87833b7c96c9ab460e1b422ddd0da4e08542f845f2b1110",
+    "runs/direction_control_20260929/transfer_main/round1_positive_data.pt": "d562e0259e1914bedd018463532a10446ad0528b646f343df980c9b602e1abc6",
+    "runs/direction_control_20260929/transfer_main/round1_negative_data.pt": "26ee0d40d168613e5e024a99879839f38af51bd890b05b6cef7e835d66c4c033",
+    "runs/direction_control_20260929/transfer_main/round2_normal_data.pt": "de1f1b3194af2ad7f53203b2018c951248c9461ee85a5042c292669854266567",
+    "runs/direction_control_20260929/transfer_main/round2_positive_data.pt": "fa2a57612b4d5de03247b9966fa164682b872ccc05e8e924bb0f2a21605ca12b",
+    "runs/direction_control_20260929/transfer_main/round2_negative_data.pt": "b2c65edcdadde20815d7ed9781d3ded667b695ba07c68e60d08df913739bdc67",
+    "runs/direction_control_20260929/transfer_main/round3_normal_data.pt": "4d2f493672ee5f24f21cdb7c92eb4b13ece33fd14bb053791ff55d94e6b06304",
+    "runs/direction_control_20260929/transfer_main/round3_positive_data.pt": "75a66e1c103219b90b88a56918b51311ee1d1a2f0f026b711f010e5cad1cde21",
+    "runs/direction_control_20260929/transfer_main/round3_negative_data.pt": "287e06af1f92a6ea81d9e83a6a65b9d808da63d31ebc9f5a7b903f0e8eeb6b37",
+    "runs/direction_control_20260929/transfer_main/round4_normal_data.pt": "ce6142a300ec44ab23fadede86cbfab5bb9db1686283d37f79e7f6a39dfeb468",
+    "runs/direction_control_20260929/transfer_main/round4_positive_data.pt": "93647169d0961c82e95c27d40ff6263f88a44dc6f252ddccfcb18d9cefb367e6",
+    "runs/direction_control_20260929/transfer_main/round4_negative_data.pt": "f96c2e360aed35867bcd68ec3f7fb5cdd3fbfd743dcadf7952467ac9d067d223",
+    "runs/direction_control_20260929/transfer_main/teacher_validation.pt": "43239915b29a421e34cd8b879a8cd89fddfe26948d46713cfc4c8fc11d0f5b78"
+  },
+  "baseline_reconstruction_max_error": 0.0,
+  "weight_min": 1.000027159606475,
+  "weight_max": 5.0,
+  "weight_mean": 4.201732356938151,
+  "observations": 153977,
+  "training_scale_vy": 0.0320248119533062,
+  "training_mse": 0.00877503301386602,
+  "wall_seconds": 3.5595708261244,
+  "source_sha256": "5ef5f9c2320c7905f5d42fb5875e0669e7f7f19e91f43b598e314d3781335aeb",
+  "changed_tensors": [
+    "readout.weight",
+    "readout.bias"
+  ]
+}
