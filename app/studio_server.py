@@ -33,7 +33,7 @@ from pydantic import BaseModel, Field
 from .full_brain import ConnectomePolicy, ROOT, checkpoint_configuration
 from .sim import Body
 from .evaluate_full import interface_digest
-from .release_evidence import matches_checkpoint
+from .release_evidence import matches_checkpoint, body_xml_hashes
 
 DEVICE = os.environ.get('FLYBODY_DEVICE', 'cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -618,7 +618,8 @@ def evaluation():
     is never passed off as independent acceptance."""
     robot = studio.robot
     release = read_json(runs_for(robot)/'release_evaluation.json')
-    if matches_checkpoint(release, studio.checkpoint_hash, robot, studio.body.interface):
+    if matches_checkpoint(release, studio.checkpoint_hash, robot, studio.body.interface,
+                          body_xml_hashes(ROOT) if robot == 'yumi' and release.get('protocol') == 'strict_gait_v2_corridor2' else None):
         return JSONResponse(release)
     candidates = [runs_for(robot)/f'heldout{"_" + robot if robot != "g1" else ""}.json']
     if robot == 'g1':

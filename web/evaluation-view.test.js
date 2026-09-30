@@ -53,4 +53,12 @@ assert.equal(el('evaluationContent').hidden, true);
 assert.equal(el('evaluationSummary').innerHTML, '');
 assert.equal(el('evaluationRows').textContent, '');
 
-console.log('Evaluation view: collapsed by default, expanding reveals the rendered report.');
+renderEvaluation({ kind: 'held_out_locomotion', protocol: 'strict_gait_v2_corridor2',
+  complete: true, long_corridor_passes: 0, long_maximum_lateral_m: 2.1, long_lateral_m: 0.1,
+  tests: [walk(1, { criteria: { ...walk(1).criteria, swing: true } })],
+  long_walks: [walk(2, { success: false, criteria: { ...walk(2).criteria, swing: true, corridor: false } })],
+});
+assert.match(el('resultsCriteria').textContent, /2/);
+assert.ok(el('evaluationRows').innerHTML.includes(t('results.fail.corridor')));
+assert.equal(el('evaluationRows').innerHTML.split(t('results.fail.corridor')).length - 1, 1);
+console.log('Evaluation view: visibility and v2 corridor failure rendering passed.');

@@ -8,6 +8,8 @@ Her full name is ショウジョウバエ. A public male *Drosophila* connectome
 
 WebGPU online preview version: [Shouko · ショウコ · Studio](https://shouko.snowy.moe/)
 
+**Latest weights: [v0.3.0](https://github.com/Moemu/Shouko/releases/tag/v0.3.0).** Both fixed candidates pass 72/72 trials, including 9/9 long walks within the 2 m corridor. [Model card](research/releases/v0.3.0/MODEL_CARD.md) · [Independent runtime and evaluation](research/releases/v0.3.0/REPRODUCE.md). The online preview, screenshots and default studio installation below remain on v0.2.0; the new weights have no browser certification. Explicit phase and yaw feedback remain.
+
 ## Overview
 
 We set out to validate one engineering chain: **turn a fruit fly's real neural wiring into a control network, and let it drive a walking body.** A fly's **connectome** records which neuron connects to which. It carries no brain function by itself. This project imports that wiring list as a neural network, trains it to output 12 lower-limb joint targets, hands them to MuJoCo for gravity and contact, and lets the character skeleton follow the same physical state.
@@ -33,7 +35,7 @@ Community reproduction is welcome — see [Running Locally](#running-locally) an
 | Body / stage | Model during walking | Neural activity at the same instant |
 |---|---|---|
 | **G1 · earlier stage**<br>`ffcf9a97` · 8.28 s | <img src="assets/preview-g1-model.png" alt="G1 walking at 0.5 m/s, rendered with the pixiv sample avatar" width="300"> | <img src="assets/preview-g1-neural.png" alt="G1 connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
-| **Yumi · current v0.2.0**<br>`f1a20071` · 8.26 s | <img src="assets/preview-yumi-model.png" alt="Current v0.2.0 Yumi model during a left-foot swing" width="300"> | <img src="assets/preview-yumi-neural.png" alt="Current Yumi connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
+| **Yumi · preview v0.2.0**<br>`f1a20071` · 8.26 s | <img src="assets/preview-yumi-model.png" alt="Current v0.2.0 Yumi model during a left-foot swing" width="300"> | <img src="assets/preview-yumi-neural.png" alt="Current Yumi connectome activity at the same simulation time, fixed scale minus one to plus one" width="300"> |
 
 Each pair freezes one real walking frame at a commanded 0.50 m/s and 0° heading; model and neural images share the same simulation time. Neural views show **2,048 sampled somata out of 166,700 neurons**, using signed model activity at a fixed ±1 scale (blue: negative; orange: positive). These are not biological spikes or new acceptance tests. [Capture details and hashes](assets/preview-metadata.json). The G1 image uses the later `ffcf9a97` checkpoint ([6/9 held-out record](research/experiments/G1_CHECKPOINT_REBIND_20260918.md)); the 9/9 in the [historical results](#historical-results) table below belongs to `f1d5147c`. G1 avatar: © 2022 pixiv Inc. Yumi: concept 松酒, artist 7Apoi, model 星晨水影工作室, publisher 墨海徽. [Asset attribution](THIRD_PARTY.md).
 
@@ -42,8 +44,8 @@ Each pair freezes one real walking frame at a commanded 0.50 m/s and 0° heading
 | Unreleased | `f1d5147c` · G1 cloud full connectome | End-to-end full-connectome training, G1 proxy | Accepted |
 | v0.1.0 | `a7a4281f` · Yumi squat lineage | The same chain on the Yumi body | Accepted |
 | Bundled in v0.2.0 | `458fc465` · Yumi upright source | 50-dim observations, physics interface embedded in the checkpoint | Retained baseline: upright survival and alternating rhythm hold; directed tracking did not |
-| **v0.2.0 (current)** | `f1a20071` · primary model | Full-connectome readout transfer, Yumi lower limbs | Four strict held-out groups passed with zero falls; precise heading and lateral drift remain open |
-| Reserved | Next stage | Solve the issues left open by the previous stage's holdouts (precise heading and lateral drift) | Scope and acceptance criteria to be confirmed |
+| **v0.2.0 (preview)** | `f1a20071` · primary model | Full-connectome readout transfer, Yumi lower limbs | Four strict held-out groups passed with zero falls; precise heading and lateral drift remain open |
+| **v0.3.0 (latest weights)** | `1e1c3160` primary / `fe386851` verification | Train lateral-velocity encoder column and readout, 27,128 parameters | Each 72/72; each 9/9 long walks within the 2 m corridor; residual drift remains |
 | Reserved | Later stages | Everything in [Future work](#future-work) | Pending |
 
 Future rows reserve space for confirmed stages. They do not commit to a schedule or mark candidate research as implemented.
@@ -60,7 +62,7 @@ Future rows reserve space for confirmed stages. They do not commit to a schedule
 
 Sever the brain connections, keep the body and output layer intact, and the character falls in about a second — walking depends on this wiring. Older results use criteria different from the current model — no matched comparison.
 
-#### Current results (v0.2.0 primary model `f1a20071`)
+#### Default preview results (v0.2.0 primary model `f1a20071`)
 
 The default model freezes (fixes after training) the previously trained full-connectome core and fits only the 9,792 readout parameters — the readout is the network's output layer, translating neuron activity into 12 joint targets. Training data is labeled by an MLP (multi-layer perceptron, an ordinary neural network) teacher on the Yumi body; runtime control uses the connectome alone. The explicit phase input (a gait clock cycling every 0.8 s) remains.
 

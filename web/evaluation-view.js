@@ -52,8 +52,9 @@ export function renderEvaluation(record, { meta = null, running = false } = {}) 
     + `<div><b>${escapeHTML(data.robot || '--')}</b><span>${t('eval.robot')}</span></div>`
     + `<div><b title="${escapeHTML(data.checkpoint_sha256 || '')}">${escapeHTML((data.checkpoint_sha256 || '').slice(0, 10) || '--')}</b><span>${t('eval.checkpoint')}</span></div>`);
   const strictGait = data.kind === 'held_out_locomotion';
+  const corridor = data.protocol === 'strict_gait_v2_corridor2';
   setKey($('resultsIntro'), strictGait ? 'results.pGait' : data.kind === 'held_out_native_mujoco' ? 'results.pFull' : meta?.mode === 'full_connectome' ? 'results.pFullScreening' : 'results.p');
-  if (strictGait) setText($('resultsCriteria'), t('results.microGait', { lateral: number(data.long_lateral_m, 2), recovered: data.yaw_recovered, total: data.yaw_tests?.length || 0 }));
+  if (strictGait) setText($('resultsCriteria'), t(corridor ? 'results.microDirection' : 'results.microGait', { maximum: number(data.long_maximum_lateral_m, 2), corridorPasses: data.long_corridor_passes, lateral: number(data.long_lateral_m, 2), recovered: data.yaw_recovered, total: data.yaw_tests?.length || 0 }));
   else setKey($('resultsCriteria'), data.kind === 'held_out_native_mujoco' ? 'results.microFull' : meta?.mode === 'full_connectome' ? 'results.microFullScreening' : 'results.micro');
   const groups = [
     { key: 'walk', rows: tests, expect: 'pass' },
@@ -66,7 +67,7 @@ export function renderEvaluation(record, { meta = null, running = false } = {}) 
   const failed = ['survived', 'speed', 'both_feet', 'alternation', 'upright', 'direction', ...(strictGait ? ['swing'] : [])];
   setHTML($('evaluationRows'), groups.map(g => {
     const rows = g.rows.map(r => {
-      const reason = r.criteria ? failed.filter(k => !r.criteria[k]).map(k => t(`results.fail.${k}`)).join(' / ') : t('results.noTarget');
+      const reason = r.criteria ? [...failed, ...(corridor && g.key === 'long' ? ['corridor'] : [])].filter(k => !r.criteria[k]).map(k => t(`results.fail.${k}`)).join(' / ') : t('results.noTarget');
       const ok = r.success || (g.expect === 'fall' && r.fallen);
       const cls = r.success ? 'pass' : ok ? 'neutral' : 'fail';
       const error = speedError(r);

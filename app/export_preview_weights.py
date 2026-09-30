@@ -33,7 +33,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from app.full_brain import ConnectomePolicy, checkpoint_configuration  # noqa: E402
-from app.release_evidence import matches_checkpoint  # noqa: E402
+from app.release_evidence import matches_checkpoint, body_xml_hashes  # noqa: E402
 from app.sim import Body  # noqa: E402
 
 SAMPLE_COUNT = 2048
@@ -127,8 +127,6 @@ def main():
     checkpoint = Path(args.checkpoint)
     graph_path = Path(args.graph)
     out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    clear_previous(out)
 
     checkpoint_sha256 = sha256_hex(checkpoint)
     graph_sha256 = json.loads(graph_path.with_suffix('.json').read_text())['graph_sha256']
@@ -136,6 +134,18 @@ def main():
         raise SystemExit(f'{graph_path} does not match its recorded graph_sha256')
 
     configuration = checkpoint_configuration(checkpoint)
+    # The static page shows held-out evidence, so the package must carry evidence for
+    # THIS checkpoint. The studio applies matches_checkpoint() before serving any
+    # record; running the same function here means the two cannot disagree, and a
+    # stale or foreign evidence file is refused at export rather than published.
+    evidence_path = Path(args.evaluation)
+    evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
+    if not matches_checkpoint(evidence, checkpoint_sha256, 'yumi', configuration['physics_interface'], body_xml_hashes(ROOT)):
+        raise SystemExit(f'{evidence_path} is not held-out evidence for checkpoint '
+                         f'{checkpoint_sha256[:8]} (robot/interfaces/protocol must all match)')
+    out.mkdir(parents=True, exist_ok=True)
+    clear_previous(out)
+
     brain = ConnectomePolicy(device='cpu',
                              observation_size=configuration['observation_size']).eval()
     brain.load(str(checkpoint))
@@ -183,15 +193,6 @@ def main():
     config = body_configuration(body)
     (out / 'body_config.json').write_text(json.dumps(config, indent=1), encoding='utf-8')
 
-    # The static page shows held-out evidence, so the package must carry evidence for
-    # THIS checkpoint. The studio applies matches_checkpoint() before serving any
-    # record; running the same function here means the two cannot disagree, and a
-    # stale or foreign evidence file is refused at export rather than published.
-    evidence_path = Path(args.evaluation)
-    evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
-    if not matches_checkpoint(evidence, checkpoint_sha256, 'yumi', body.interface):
-        raise SystemExit(f'{evidence_path} is not held-out evidence for checkpoint '
-                         f'{checkpoint_sha256[:8]} (robot/interfaces/protocol must all match)')
     evidence_name = f'evaluation.{sha256_hex(evidence_path)[:8]}.json'
     (out / evidence_name).write_bytes(evidence_path.read_bytes())
 
