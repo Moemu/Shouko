@@ -6,11 +6,11 @@
 
 Her full name is ショウジョウバエ. A public male *Drosophila* connectome dataset is her brain; the girl is a virtual character in VRM format, [Yumi](research/avatar/YUMI.md). Everything runs in a simulation built on MuJoCo, an open-source physics engine.
 
-WebGPU online preview (v0.2.0): [Shouko · ショウコ · Studio](https://shouko.snowy.moe/)
+WebGPU online preview (v0.3.0): [Shouko · ショウコ · Studio](https://shouko.snowy.moe/)
 
 **Latest weights: [v0.3.0 — directional walking](https://github.com/Moemu/Shouko/releases/tag/v0.3.0).** Two fixed checkpoints each pass 72/72 held-out trials. All nine 120-second walks per model stay within 2 m of the starting centerline throughout. [Model card](research/releases/v0.3.0/MODEL_CARD.md) · [Download and run](research/releases/v0.3.0/REPRODUCE.md).
 
-The online preview and default studio installation remain on v0.2.0. The Yumi images below show v0.3.0 running in a local browser. v0.3.0 is available as an independent native MuJoCo package; its production browser rollout is pending.
+The online preview has used v0.3.0 primary checkpoint `1e1c3160` since 2026-10-01. The Yumi images below show the same checkpoint in a local browser. The default studio installation remains on v0.2.0. See [preview deployment checks](docs/PREVIEW.md#v030-production-update-2026-10-01).
 
 ## Overview
 
@@ -48,8 +48,8 @@ Each pair freezes one real walking frame at a commanded 0.50 m/s and 0° heading
 | Unreleased | `f1d5147c` · G1 cloud full connectome | End-to-end full-connectome training, G1 proxy | Accepted |
 | v0.1.0 | `a7a4281f` · Yumi squat lineage | The same chain on the Yumi body | Accepted |
 | Bundled in v0.2.0 | `458fc465` · Yumi upright source | 50-dim observations, physics interface embedded in the checkpoint | Retained baseline: upright survival and alternating rhythm hold; directed tracking did not |
-| **v0.2.0 (preview)** | `f1a20071` · primary model | Full-connectome readout transfer, Yumi lower limbs | Four strict held-out groups passed with zero falls; precise heading and lateral drift remain open |
-| **v0.3.0 (latest weights)** | `1e1c3160` primary / `fe386851` verification | Train lateral-velocity encoder column and readout, 27,128 parameters | Each 72/72; each 9/9 long walks within the 2 m corridor; residual drift remains |
+| **v0.2.0 (studio default)** | `f1a20071` · primary model | Full-connectome readout transfer, Yumi lower limbs | Four strict held-out groups passed with zero falls; precise heading and lateral drift remain open |
+| **v0.3.0 (latest weights / online preview)** | `1e1c3160` primary / `fe386851` verification | Train lateral-velocity encoder column and readout, 27,128 parameters | Each 72/72; each 9/9 long walks within the 2 m corridor; residual drift remains |
 | Reserved | Later stages | Everything in [Future work](#future-work) | Pending |
 
 Future rows reserve space for confirmed stages. They do not commit to a schedule or mark candidate research as implemented.
@@ -87,9 +87,9 @@ The two models have different training histories and holdout seeds; the smaller 
 
 Sever the brain connections, keep the body and output layer intact, and the character falls in about a second — walking depends on this wiring. Older results use criteria different from the current model — no matched comparison.
 
-#### Default preview results (v0.2.0 primary model `f1a20071`)
+#### Studio default results (v0.2.0 primary model `f1a20071`)
 
-The preview model `f1a20071` fits 9,792 readout parameters while freezing its previously trained core. Its four strict held-out groups passed 63/63 with zero falls; separate native CSR checks passed 27/27. The independent-data branch needed an extra DAgger round and was not an equal-budget replication.
+The v0.2.0 model `f1a20071` fits 9,792 readout parameters while freezing its previously trained core. Its four strict held-out groups passed 63/63 with zero falls; separate native CSR checks passed 27/27. The independent-data branch needed an extra DAgger round and was not an equal-budget replication.
 
 Under that release's older screen, mean 120-second endpoint drift was **5.47 m**, and precise yaw recovery was **9/18**. Its long-walk screen allowed lateral drift up to 20% of the target distance, with a 1 m minimum allowance. It did not enforce the v0.3.0 whole-trajectory 2 m corridor. The releases use different held-out seeds, so their final means are not a paired comparison. See the [v0.2.0 model card](research/releases/v0.2.0/MODEL_CARD.md) and [training record](research/experiments/CONNECTOME_TRANSFER_20260923.md).
 
@@ -150,7 +150,7 @@ Choose the package for the task:
 | Goal | Version and guide |
 |---|---|
 | Run the latest checkpoints and reproduce evaluation | [v0.3.0 independent runtime](research/releases/v0.3.0/REPRODUCE.md), Python 3.12 + NVIDIA CUDA, no VRM needed |
-| Use the existing character and neural-activity UI | [v0.2.0 studio installation](research/releases/v0.2.0/STUDIO.md), still the default preview |
+| Use the existing character and neural-activity UI | [v0.2.0 studio installation](research/releases/v0.2.0/STUDIO.md), still the default local studio |
 
 ### Run and check v0.3.0
 

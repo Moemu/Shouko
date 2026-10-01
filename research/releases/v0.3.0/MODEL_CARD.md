@@ -1,6 +1,6 @@
 # Shouko v0.3.0 — bounded directional walking
 
-Version: v0.3.0, 2026-09-30. This is an experimental flat-ground controller for the 12-joint Yumi lower body. The independent headless package includes two fixed checkpoints, the complete graph, physics, evaluation code and evidence. The online preview remains on v0.2.0.
+Version: v0.3.0, 2026-09-30. This is an experimental flat-ground controller for the 12-joint Yumi lower body. The independent headless package includes two fixed checkpoints, the complete graph, physics, evaluation code and evidence. The online preview was separately upgraded to the primary checkpoint on 2026-10-01. See [deployment checks](../../../docs/PREVIEW.md#v030-production-update-2026-10-01); browser operation is not a native numerical-parity result.
 
 ## Model roles and training
 

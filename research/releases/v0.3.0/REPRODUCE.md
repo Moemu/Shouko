@@ -30,7 +30,7 @@ Rerun the primary's full five-group protocol from the extracted directory:
 
 For replica, use `models/replica.pt`, its hash from MODEL_CARD.md, seed bases 9100001/9101001/9102001/9103001/9104001 and a different output directory. Backend defaults to ordered CSR with nine simultaneous worlds. `build_direction_report` checks configuration, cohorts, hashes and full-trajectory corridor. It deliberately requires all five groups. It does not treat cached summary scores as acceptance.
 
-Extraction does not replace the studio or online preview. The v0.2.0 preview remains the default. To explore integration, use source tag v0.3.0 and docs/LOCAL.md; do not copy these weights over an old evaluation file. The new protocol binds the checkpoint, physics interface and body XML. Browser parity and preview deployment require separate validation.
+Extraction does not replace the studio or online preview. The local studio installation still defaults to v0.2.0. The production browser preview was separately upgraded to v0.3.0 primary on 2026-10-01; see docs/PREVIEW.md for deployment checks. To explore integration, use source tag v0.3.0 and docs/LOCAL.md; do not copy these weights over an old evaluation file. The new protocol binds the checkpoint, physics interface and body XML. The deployment checks verify interactive operation, not numerical parity with the native evaluation.
 
 For historical training methods and current scripts, see docs/TRAINING.md and the included experiment records. Full historical datasets are not in this inference package. The archive manifest binds each included file to its SHA-256 and the release source commit.
 
