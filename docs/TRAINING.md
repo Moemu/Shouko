@@ -93,6 +93,34 @@ foreach ($seed in 101, 202, 303) {
 
 检查点根目录应含 `baseline_404/last.pt`、`baseline_505/last.pt`、`baseline_606/last.pt`，可由上文 `app.screen_goal_controls` 生成。D0 输出目录必须不存在；核验只读取已有结果，并以少量轨迹回放检查控制实现。诊断入口不训练、不生成新权重，不把四秒位移计为原三目标任务验收。
 
+### 自然倒伏后的局部学习对照
+
+这是独立的 `fallen_local_goal_v1` 诊断任务：生成自然倒伏状态，保留实际速度和 warmstart，固定 +x 两米目标，每回合 5 秒。身体和 69/18 接口沿用双臂任务；它不等于原始直立开局、随机三目标的能力验收。
+
+安装上文 `requirements.goal-gpu.lock.txt` 环境后，可直接从随机权重复训，无需私有 checkpoint 或连接组数据：
+
+```powershell
+.venv-gpu\Scripts\python.exe -m app.test_local_goal --output runs/local_goal_contract_trial
+.venv-gpu\Scripts\python.exe -m app.screen_local_goal --output runs/local_goal_trial --max-seconds 10800
+.venv-gpu\Scripts\python.exe -m app.verify_local_goal --output runs/local_goal_trial
+```
+
+筛查固定三个配对种子，比较独立/持续控制分布 × 原/零训练功代价，每组每种子 262,144 次转换。`campaign.json` 记录进度，`summary.json` 给出实际完成数和下一分支。任何输出目录都必须不存在；核验读取已经完成的目录，不重训。
+
+局部权重使用独立 checkpoint schema，并绑定完整 reset 文件哈希、任务期限和 rho。旧评估/预览加载器会拒绝局部权重。持续组的训练 log-prob 和确定性评估都使用相同条件分布，不能绕过其前次动作项。
+
+单独评估已完成的局部 checkpoint：
+
+```powershell
+.venv-gpu\Scripts\python.exe -m app.evaluate_local_goal --checkpoint runs/local_goal_trial/persistent_cost_1401/last.pt --state runs/local_goal_trial/reset.npz --output runs/local_goal_eval_trial --backend native
+```
+
+`--backend cuda` 可复核同一状态、执行规则和权重的后端结论。每份结果绑定 checkpoint、reset、源码和逐步轨迹，不将相同的确定性回合重复计为独立样本。筛查保存执行源码快照，核验器检查其哈希并独立重算原始 rollout 与评估。
+
+阶段预算、固定门和当前结果见[局部学习编年](../research/experiments/LOCAL_GOAL_FACTORIAL_20261116.md)。十二个正式 run 已处理：九个完成固定预算，三个持续零功 run 因随机采样穿透警戒线中止，实际尝试 2,696,976 次转换。四组均为 0/3 种子通过持续推进门。独立零功组能接近目标，但末两秒明显回退；持续功组主要早期推进后停滞。中断权重另作只读诊断，不补成完整候选。
+
+当前分支为 `route_uncertainty_stop`。没有执行原初态恢复课程或远端训练，旧任务与生产权重未替换。下一轮需区分制动/停留、重复推进、信用分配和探索安全条件，按项目路线门交回用户。
+
 ## 历史世系（G1 时代）
 
 项目前两代在 G1 代理身体上完成，以下命令仍可复现。G1 是宇树（Unitree）的人形机器人模型：子图原型经冻结的官方步态策略驱动 G1，云端全图则整路径训练、直接输出 12 个关节目标。

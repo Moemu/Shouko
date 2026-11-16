@@ -32,6 +32,23 @@ class GoalContract:
     task: dict[str, float | int]
 
 
+@dataclass(frozen=True)
+class LocalGoalContext:
+    reset_sha256: str
+    rho: float
+    protocol: str = 'fallen_local_goal_v1'
+    target_seconds: float = 5.
+    target_x_m: float = 2.
+    target_y_m: float = 0.
+    targets_per_episode: int = 1
+
+    def __post_init__(self) -> None:
+        if (self.protocol != 'fallen_local_goal_v1' or self.target_seconds != 5.
+                or self.target_x_m != 2. or self.target_y_m != 0. or self.targets_per_episode != 1
+                or self.rho not in (0., .9) or len(self.reset_sha256) != 64):
+            raise ValueError('Unsupported fallen-local task or execution contract')
+
+
 def goal_contract(body: FreeBody, graph_sha256: str | None = None) -> GoalContract:
     return GoalContract(hashlib.sha256(body.xml.encode()).hexdigest(), graph_sha256,
                         JOINT_NAMES, OBSERVATION_FIELDS, OBSERVATION_SIZE, 18,
@@ -51,7 +68,7 @@ def optimizer_names(policy: nn.Module, value: nn.Module, log_std: nn.Parameter,
 def save_goal_checkpoint(path: Path, *, contract: GoalContract, policy: nn.Module, value: nn.Module,
                          log_std: nn.Parameter, optimizer: torch.optim.Optimizer,
                          value_optimizer: torch.optim.Optimizer, iteration: int, env_steps: int,
-                         settings: dict[str, float | int]) -> str:
+                         settings: dict[str, float | int], local_context: LocalGoalContext | None = None) -> str:
     if not isinstance(policy, MLPPolicy) or contract.graph_sha256 is not None:
         raise ValueError('Version 1 goal-PPO checkpoints support MLP with no connectome graph')
     payload = dict(schema='yumi_goal_ppo', version=1, policy_kind='mlp', contract=asdict(contract),
@@ -62,6 +79,9 @@ def save_goal_checkpoint(path: Path, *, contract: GoalContract, policy: nn.Modul
                    iteration=iteration, env_steps=env_steps, settings=settings,
                    torch_rng=torch.get_rng_state(),
                    cuda_rng=torch.cuda.get_rng_state_all() if log_std.is_cuda else [])
+    if local_context is not None:
+        payload['schema'] = 'yumi_local_goal_ppo'
+        payload['local_context'] = asdict(local_context)
     temporary = path.with_name(path.name + '.pending')
     try:
         torch.save(payload, temporary)
@@ -72,10 +92,14 @@ def save_goal_checkpoint(path: Path, *, contract: GoalContract, policy: nn.Modul
         return hashlib.file_digest(handle, 'sha256').hexdigest()
 
 
-def read_goal_payload(path: Path, contract: GoalContract, device: str | torch.device = 'cpu') -> dict:
+def read_goal_payload(path: Path, contract: GoalContract, device: str | torch.device = 'cpu', *,
+                      local_context: LocalGoalContext | None = None) -> dict:
     payload = torch.load(path, map_location=device, weights_only=True)
-    if payload.get('schema') != 'yumi_goal_ppo' or payload.get('version') != 1 or payload.get('policy_kind') != 'mlp':
+    schema = 'yumi_goal_ppo' if local_context is None else 'yumi_local_goal_ppo'
+    if payload.get('schema') != schema or payload.get('version') != 1 or payload.get('policy_kind') != 'mlp':
         raise ValueError('Expected a version 1 MLP goal-PPO checkpoint')
+    if local_context is not None and payload.get('local_context') != asdict(local_context):
+        raise ValueError('Local task reset or policy execution mismatch')
     if payload.get('contract') != asdict(contract) or contract.graph_sha256 is not None:
         raise ValueError('Goal checkpoint body/graph/control/observation/task contract mismatch')
     if payload['iteration'] < 0 or payload['env_steps'] < 0:

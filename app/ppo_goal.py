@@ -7,6 +7,7 @@ from pathlib import Path
 import time
 import math
 
+import numpy as np
 import torch
 import warp as wp
 
@@ -20,6 +21,7 @@ from .recovery_curriculum import bootstrap_timeouts
 from .training_control import TrainingControl
 from .train_full import atomic_json
 from .value_diagnostics import gae_targets
+from .local_goal import LocalGoalSetup, LocalGoalEnv, action_distribution
 
 
 @dataclass(frozen=True)
@@ -40,13 +42,17 @@ class PPOSettings:
 
 
 def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: float,
-          resume: Path | None = None, *, work_cost: float = GoalTask.work_cost) -> dict:
+          resume: Path | None = None, *, work_cost: float = GoalTask.work_cost,
+          local: LocalGoalSetup | None = None) -> dict:
     if min(settings.worlds, settings.steps, settings.epochs, settings.minibatch, iterations) < 1:
         raise ValueError('PPO dimensions and iteration budget must be positive')
     if settings.worlds * settings.steps < 2 or not math.isfinite(max_seconds) or max_seconds <= 0:
         raise ValueError('Use at least two rollout samples and a finite positive time budget')
     if not math.isfinite(work_cost) or work_cost < 0 or not math.isfinite(settings.initial_std) or not .05 <= settings.initial_std <= 1.5:
         raise ValueError('Use finite nonnegative work cost and initial standard deviation in [0.05, 1.5]')
+    if local is not None and resume is not None:
+        raise ValueError('This local factorial experiment starts from random weights, without resume')
+    local_context = local.context() if local is not None else None
     checkpoint_settings = asdict(settings)
     if work_cost != GoalTask.work_cost:
         checkpoint_settings['training_work_cost'] = work_cost
@@ -59,7 +65,11 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                   resume_kind='optimizer_warm_start_new_environment' if resume else 'random_initialization',
                   max_seconds=max_seconds, max_launch_iterations=iterations)
     atomic_json(output / 'training.json', status)
-    env = GPUGoalEnv(settings.worlds, settings.seed)
+    env = GPUGoalEnv(settings.worlds, settings.seed) if local is None else LocalGoalEnv(settings.worlds, settings.seed, local)
+    if local_context is not None:
+        status['method'] = 'mlp_fallen_local_goal_ppo'
+        status['local_context'] = asdict(local_context)
+        status['attempted_local_transitions'] = 0
     contract = goal_contract(env.body)
     policy = MLPPolicy(OBSERVATION_SIZE, 18, device='cuda')
     value = Value(OBSERVATION_SIZE).cuda()
@@ -76,7 +86,8 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
             status['source_checkpoint_sha256'] = hashlib.file_digest(handle, 'sha256').hexdigest()
     initial_checkpoint_sha256 = save_goal_checkpoint(output / 'initial.pt', contract=contract, policy=policy, value=value,
                                                     log_std=log_std, optimizer=optimizer, value_optimizer=value_optimizer,
-                                                    iteration=iteration, env_steps=env_steps, settings=checkpoint_settings)
+                                                    iteration=iteration, env_steps=env_steps, settings=checkpoint_settings,
+                                                    local_context=local_context)
     initial_weights = {name: tensor.detach().clone() for name, tensor in policy.named_parameters()}
     torch.cuda.synchronize()
     status['initialization_seconds'] = time.perf_counter() - started
@@ -84,6 +95,8 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
     control = TrainingControl(max_seconds)
     torch.cuda.reset_peak_memory_stats()
     observation = env.observation()
+    local_ranges = (torch.as_tensor(env.body.ranges, dtype=env.qpos.dtype, device='cuda')
+                    if local_context is not None else None)
     launch_iterations = 0
     launch_steps = 0
 
@@ -96,25 +109,43 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
             write_status('training')
             rollout_started = time.perf_counter()
             observations, actions, logps, rewards, values, dones = [], [], [], [], [], []
+            capture = local_context is not None and launch_iterations in (0, iterations-1)
+            captured = {name: [] for name in ('mean', 'raw_reward', 'progress', 'work', 'reached', 'truncated', 'next_value')}
             arrivals = completed_episodes = timeout_episodes = arena_episodes = 0
             raw_reward = task_reward_sum = progress_sum = work_sum = 0.
             max_contacts = max_constraints = 0
             max_penetration = 0.
+            max_limit_error = 0.
             with torch.no_grad():
                 for _ in range(settings.steps):
                     if control.budget_exceeded():
                         break
                     mean, _ = policy(observation)
-                    distribution = torch.distributions.Normal(mean, log_std.exp().clamp(.05, 1.5))
+                    distribution = (torch.distributions.Normal(mean, log_std.exp().clamp(.05, 1.5)) if local_context is None
+                                    else action_distribution(mean, log_std, observation, local_context.rho))
                     action = distribution.sample()
                     predicted = value(observation)
                     next_observation, result = env.step(action)
+                    if local_context is not None:
+                        status['attempted_local_transitions'] += settings.worlds
+                        q = env.qpos[:, env.qadr]
+                        limit_error = float(torch.maximum(local_ranges[:, 0]-q, q-local_ranges[:, 1]).clamp_min(0).max())
+                        max_limit_error = max(max_limit_error, limit_error)
+                        if float(env.peak_penetration.max()) > .030 or limit_error > .15:
+                            status['physical_guard'] = dict(penetration_m=float(env.peak_penetration.max()), limit_error_rad=limit_error)
+                            raise RuntimeError('Local physical guard exceeded; no PPO update on this partial rollout')
                     if bool(result.numerical.any()) or not bool(torch.isfinite(next_observation).all()):
                         raise FloatingPointError('Numerical goal transition; PPO update aborted')
                     training_reward = result.reward + (GoalTask.work_cost - work_cost) * result.work_j
                     reward = training_reward
+                    next_prediction = value(next_observation) if capture or bool(result.truncated.any()) else None
                     if bool(result.truncated.any()):
-                        reward = bootstrap_timeouts(reward, value(next_observation), result.truncated, settings.gamma)
+                        reward = bootstrap_timeouts(reward, next_prediction, result.truncated, settings.gamma)
+                    if capture:
+                        for name, tensor in dict(mean=mean, raw_reward=training_reward, progress=result.progress,
+                                                 work=result.work_j, reached=result.reached, truncated=result.truncated,
+                                                 next_value=next_prediction).items():
+                            captured[name].append(tensor.clone())
                     done = result.terminated | result.truncated
                     observations.append(observation)
                     actions.append(action)
@@ -139,6 +170,25 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                 next_value = value(observation)
             advantage, returns = gae_targets(torch.stack(rewards), torch.stack(values + [next_value]),
                                              torch.stack(dones), settings.gamma, settings.lam)
+            if capture:
+                label = f'rollout_{launch_iterations+1}'
+                if launch_iterations == 0:
+                    snapshot = 'initial.pt'
+                else:
+                    snapshot = label + '_policy.pt'
+                    save_goal_checkpoint(output / snapshot, contract=contract, policy=policy, value=value,
+                                         log_std=log_std, optimizer=optimizer, value_optimizer=value_optimizer,
+                                         iteration=iteration, env_steps=env_steps, settings=checkpoint_settings,
+                                         local_context=local_context)
+                arrays = {name: torch.stack(tensors).cpu().numpy() for name, tensors in dict(
+                    observation=observations, action=actions, old_logp=logps, reward=rewards, value=values,
+                    done=dones, **captured).items()}
+                arrays.update(advantage=advantage.cpu().numpy(), returns=returns.cpu().numpy(),
+                              log_std=log_std.detach().cpu().numpy(), bootstrap_value=next_value.cpu().numpy())
+                np.savez_compressed(output / (label+'.npz'), **arrays)
+                atomic_json(output / (label+'.json'), dict(policy_checkpoint=snapshot,
+                            policy_sha256=hashlib.sha256((output/snapshot).read_bytes()).hexdigest(),
+                            trace_sha256=hashlib.sha256((output/(label+'.npz')).read_bytes()).hexdigest()))
             if not bool(torch.isfinite(advantage).all() and torch.isfinite(returns).all()):
                 raise FloatingPointError('Non-finite goal PPO targets')
             obs_batch, act_batch, old_logp = torch.cat(observations), torch.cat(actions), torch.cat(logps)
@@ -155,7 +205,8 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                 for start in range(0, len(obs_batch), settings.minibatch):
                     mb = permutation[start:start + settings.minibatch]
                     mean, _ = policy(obs_batch[mb])
-                    distribution = torch.distributions.Normal(mean, log_std.exp().clamp(.05, 1.5))
+                    distribution = (torch.distributions.Normal(mean, log_std.exp().clamp(.05, 1.5)) if local_context is None
+                                    else action_distribution(mean, log_std, obs_batch[mb], local_context.rho))
                     logratio = distribution.log_prob(act_batch[mb]).sum(-1) - old_logp[mb]
                     ratio = logratio.exp()
                     kl = ((ratio - 1) - logratio).mean()
@@ -204,17 +255,25 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                        max_contacts_total=max_contacts, max_constraints_per_world=max_constraints,
                        max_penetration_m=max_penetration)
             status['history'].append(row)
+            if local_context is not None:
+                row['max_joint_limit_error_rad'] = max_limit_error
             write_status('training')
             print(json.dumps(row, allow_nan=False), flush=True)
     except Exception as error:
         status['error'] = f'{type(error).__name__}: {error}'
+        if local_context is not None:
+            save_goal_checkpoint(output / 'interrupted.pt', contract=contract, policy=policy, value=value,
+                                 log_std=log_std, optimizer=optimizer, value_optimizer=value_optimizer,
+                                 iteration=iteration, env_steps=env_steps, settings=checkpoint_settings,
+                                 local_context=local_context)
         write_status('failed')
         raise
 
     save_started = time.perf_counter()
     checkpoint_sha256 = save_goal_checkpoint(output / 'last.pt', contract=contract, policy=policy, value=value,
                                             log_std=log_std, optimizer=optimizer, value_optimizer=value_optimizer,
-                                            iteration=iteration, env_steps=env_steps, settings=checkpoint_settings)
+                                            iteration=iteration, env_steps=env_steps, settings=checkpoint_settings,
+                                            local_context=local_context)
     actor_change = max(float((tensor.detach() - initial_weights[name]).abs().max()) for name, tensor in policy.named_parameters())
     if launch_steps and actor_change == 0:
         raise AssertionError('PPO sampled transitions without changing the actor')
@@ -244,6 +303,10 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                   history=history, limitation='Training metrics only; capability requires separate held-out evaluation.')
     sources = ('app/free_body.py', 'app/goal_task.py', 'app/gpu_goal.py', 'app/goal_checkpoint.py', 'app/ppo_goal.py',
                'app/mlp_policy.py', 'app/ppo_yumi.py', 'app/recovery_curriculum.py', 'app/value_diagnostics.py')
+    if local_context is not None:
+        sources += ('app/local_goal.py',)
+        report['kind'] = 'local_goal_ppo_run'
+        report['local_context'] = asdict(local_context)
     report['source_sha256'] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in sources}
     atomic_json(output / 'summary.json', report)
     write_status('complete')
