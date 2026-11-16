@@ -95,7 +95,8 @@
 - 训练/评估逻辑：`research/REPORT.md`（方法与边界）、`docs/LOCAL.md`、`docs/CLOUD.md`。
 - 浏览器端预览与静态托管：`docs/PREVIEW.md`（工件布局 + **服务器规格** + 本机 Caddy 参考实现，三层分开；首屏约 235 MiB、HTTPS 是权重哈希校验的前提、评估快照与检查点绑定）。推送实现**有意不入库**（站点特定、不构成社区复现路径），文档只给结果约束。
 - 身体与角色：`research/avatar/YUMI.md`、`YUMI_BODY.md`（VRM 许可约束见 `THIRD_PARTY.md`，署名不可去除）。
-- 当前实验状态：`research/experiments/SENSORY_STABILITY_20260930.md`（完整连接组，vy 编码列与读出共 27,128 个可训练参数；两份固定候选各通过 72/72，新留出长走全程 2 米走廊各 9/9。共享补充池、早期同预算复现失败和速度相关残余漂移均须保留说明；不证明自主 CPG 或拓扑优势。上肢接入另行决策，实例保持开机）。
+- 当前实验状态（双臂目标驱动自由移动）：`research/experiments/LOCAL_GOAL_FACTORIAL_20261116.md`（D0 100 条持续动作菜单中 80 条完整，8 条在同一倒伏类别有局部推进，未过两类姿态门；局部因子 12 个 run 中 9 个完成、3 个持续零功 run 因穿透 31.3–31.9 mm 中止，四组均 0/3 种子过持续推进门；当前 `route_uncertainty_stop`，制动/停留、重复推进与训练-评估分布待区分；未做连接组或远端训练）。
+- 当前实验状态（行走连接组）：`research/experiments/SENSORY_STABILITY_20260930.md`（完整连接组，vy 编码列与读出共 27,128 个可训练参数；两份固定候选各通过 72/72，新留出长走全程 2 米走廊各 9/9。共享补充池、早期同预算复现失败和速度相关残余漂移均须保留说明；不证明自主 CPG 或拓扑优势。上肢接入另行决策，实例保持开机）。
 - 前序身体/任务对照：`research/experiments/ROUTE_EXECUTION_20260923.md`（普通MLP迈步、等预算旧奖励对照与四组留出，作为连接组迁移教师的来源）。
 - 前序路线：`research/experiments/ROUTE_DECISION_20260922.md`；保留历史结论，当前证据以2026-09-23实验编年为准。
 - 前序诊断：`research/experiments/ACTOR_SCALE_AB_20260922.md`、`GPU_CALIBRATION_20260921.md`、`INPUT_LEARNING_AUDIT_20260921.md`、`INPUT_SCALE_CLOUD_20260922.md`；方向讨论见 `research/proposals/2026-09-22/`。
