@@ -80,7 +80,18 @@ foreach ($seed in 101, 202, 303) {
 
 单次训练可用 `--initial-std` 设置初始探索标准差，用 `--work-cost` 设置训练奖励的机械功代价。物理任务和公共评估的功代价保持 0.001，因此不同组仍能按相同任务指标比较。非默认训练功代价写入检查点设置并参与恢复检查；默认配置保留旧检查点的设置结构。参数和观测接口不变。
 
-阶段预算、分支及当前结果见 [本机诊断编年](../research/experiments/GOAL_LOCAL_CAMPAIGN_20261011.md)。九组正式筛查及十二份 GPU 复核均完成，没有到达，三组均为 0/3 种子通过持续推进门槛。当前分支为 `route_uncertainty_stop`：控制命名、奖励记账及后端能力结论已核验，训练预算是否不足、奖励/探索组合或信用分配问题仍不能区分。按项目停机门交回跨厂商路线讨论；尚未执行延长训练、新留出验收或连接组资源阶段，也未达到远端训练准备条件。
+前序阶段预算和结果见 [本机诊断编年](../research/experiments/GOAL_LOCAL_CAMPAIGN_20261011.md)。九组正式筛查及十二份 GPU 复核均完成，没有到达，三组均为 0/3 种子通过持续推进门槛。控制命名、奖励记账及后端能力结论已核验，随后交回跨厂商讨论。
+
+用户定稿后的 [D0 持续动作与分布诊断](../research/experiments/GOAL_CONTROL_D0_20261116.md) 已完成。100 条菜单中 80 条完整完成，20 条按物理警戒线中止；8 条安全菜单在倒伏后有额外推进，但三条生成历史均落入同一姿态类别，未通过“两类低姿态”门。三个既有策略另完成合计 12,288 次采样/均值配对转换，没有更新权重。当前分支为 `coverage_or_local_only`：局部可动已有证据，探索、能耗和完整任务学习仍待路线定稿。尚未达到连接组或远端训练准备条件。
+
+使用已复训的基线检查点，运行同一冻结诊断与证据核验：
+
+```powershell
+.venv-gpu\Scripts\python.exe -m app.diagnose_goal_d0 --checkpoint-root runs/goal_controls_trial --output runs/goal_d0_trial --max-seconds 3600
+.venv-gpu\Scripts\python.exe -m app.verify_goal_d0 --checkpoint-root runs/goal_controls_trial --output runs/goal_d0_trial
+```
+
+检查点根目录应含 `baseline_404/last.pt`、`baseline_505/last.pt`、`baseline_606/last.pt`，可由上文 `app.screen_goal_controls` 生成。D0 输出目录必须不存在；核验只读取已有结果，并以少量轨迹回放检查控制实现。诊断入口不训练、不生成新权重，不把四秒位移计为原三目标任务验收。
 
 ## 历史世系（G1 时代）
 
