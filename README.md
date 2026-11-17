@@ -103,6 +103,8 @@ These are research directions, not completed capabilities or a fixed schedule.
 
 **Upper limbs.** The upper body is currently one fixed mass, and arm swing is display animation. A first prototype needs an articulated body, inertial and collision parameters, actuators, and a matching observation/action interface. It must then recheck standing and lower-limb walking before training arm-assisted balance. v0.3.0 remains a lower-body baseline.
 
+A separate 18-joint MLP proxy now explores goal-driven free movement. Current holding evidence covers one selected near-field state. Both arms failed the original fallen-state two-metre return test (0/3 seeds each). Direction changes and connectome control remain untested. See the [training guide](docs/TRAINING.md#有限终点制动诊断与近场保持) and [braking and holding record](research/experiments/GOAL_BRAKING_20261117.md).
+
 **Running.** Flight phases, higher speeds and gait timing need a separate training task and acceptance criteria. Passing the current walking tests does not validate running.
 
 **Dopamine-driven learning.** The current controller has no STDP or dopamine reward learning. Local plasticity and reward-modulated updates are possible experiments; their stability and control benefit still need evidence.

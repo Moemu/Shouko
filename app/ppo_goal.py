@@ -22,6 +22,7 @@ from .training_control import TrainingControl
 from .train_full import atomic_json
 from .value_diagnostics import gae_targets
 from .local_goal import LocalGoalSetup, LocalGoalEnv, action_distribution
+from .braking_task import HoldingGoalSetup, HoldingGoalEnv, dwell_potential_reward
 
 
 @dataclass(frozen=True)
@@ -43,7 +44,7 @@ class PPOSettings:
 
 def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: float,
           resume: Path | None = None, *, work_cost: float = GoalTask.work_cost,
-          local: LocalGoalSetup | None = None) -> dict:
+          local: LocalGoalSetup | HoldingGoalSetup | None = None) -> dict:
     if min(settings.worlds, settings.steps, settings.epochs, settings.minibatch, iterations) < 1:
         raise ValueError('PPO dimensions and iteration budget must be positive')
     if settings.worlds * settings.steps < 2 or not math.isfinite(max_seconds) or max_seconds <= 0:
@@ -53,6 +54,8 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
     if local is not None and resume is not None:
         raise ValueError('This local factorial experiment starts from random weights, without resume')
     local_context = local.context() if local is not None else None
+    holding = isinstance(local, HoldingGoalSetup)
+    potential_scale = local.potential_scale if holding else 0.
     checkpoint_settings = asdict(settings)
     if work_cost != GoalTask.work_cost:
         checkpoint_settings['training_work_cost'] = work_cost
@@ -65,7 +68,11 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                   resume_kind='optimizer_warm_start_new_environment' if resume else 'random_initialization',
                   max_seconds=max_seconds, max_launch_iterations=iterations)
     atomic_json(output / 'training.json', status)
-    env = GPUGoalEnv(settings.worlds, settings.seed) if local is None else LocalGoalEnv(settings.worlds, settings.seed, local)
+    if holding:
+        env = HoldingGoalEnv(settings.worlds, settings.seed, local)
+        status['training_reward']['dwell_potential_scale'] = potential_scale
+    else:
+        env = GPUGoalEnv(settings.worlds, settings.seed) if local is None else LocalGoalEnv(settings.worlds, settings.seed, local)
     if local_context is not None:
         status['method'] = 'mlp_fallen_local_goal_ppo'
         status['local_context'] = asdict(local_context)
@@ -109,10 +116,13 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
             write_status('training')
             rollout_started = time.perf_counter()
             observations, actions, logps, rewards, values, dones = [], [], [], [], [], []
-            capture = local_context is not None and launch_iterations in (0, iterations-1)
+            capture = local_context is not None and launch_iterations in ((0, 1, iterations-1) if holding else (0, iterations-1))
             captured = {name: [] for name in ('mean', 'raw_reward', 'progress', 'work', 'reached', 'truncated', 'next_value')}
+            if holding:
+                captured.update({name: [] for name in ('potential_reward', 'next_dwell_fraction', 'terminated')})
             arrivals = completed_episodes = timeout_episodes = arena_episodes = 0
             raw_reward = task_reward_sum = progress_sum = work_sum = 0.
+            potential_sum = 0.
             max_contacts = max_constraints = 0
             max_penetration = 0.
             max_limit_error = 0.
@@ -137,6 +147,11 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                     if bool(result.numerical.any()) or not bool(torch.isfinite(next_observation).all()):
                         raise FloatingPointError('Numerical goal transition; PPO update aborted')
                     training_reward = result.reward + (GoalTask.work_cost - work_cost) * result.work_j
+                    if holding:
+                        potential_reward = dwell_potential_reward(observation, next_observation, result.terminated,
+                                                                 settings.gamma, potential_scale)
+                        training_reward = training_reward + potential_reward
+                        potential_sum += float(potential_reward.sum())
                     reward = training_reward
                     next_prediction = value(next_observation) if capture or bool(result.truncated.any()) else None
                     if bool(result.truncated.any()):
@@ -146,6 +161,11 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                                                  work=result.work_j, reached=result.reached, truncated=result.truncated,
                                                  next_value=next_prediction).items():
                             captured[name].append(tensor.clone())
+                        if holding:
+                            for name, tensor in dict(potential_reward=potential_reward,
+                                                     next_dwell_fraction=next_observation[:, 67],
+                                                     terminated=result.terminated).items():
+                                captured[name].append(tensor.clone())
                     done = result.terminated | result.truncated
                     observations.append(observation)
                     actions.append(action)
@@ -257,6 +277,8 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
             status['history'].append(row)
             if local_context is not None:
                 row['max_joint_limit_error_rad'] = max_limit_error
+            if holding:
+                row['potential_reward_sum'] = potential_sum
             write_status('training')
             print(json.dumps(row, allow_nan=False), flush=True)
     except Exception as error:
@@ -307,6 +329,9 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
         sources += ('app/local_goal.py',)
         report['kind'] = 'local_goal_ppo_run'
         report['local_context'] = asdict(local_context)
+    if holding:
+        sources += ('app/braking_task.py',)
+        report['kind'] = 'holding_goal_ppo_run'
     report['source_sha256'] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in sources}
     atomic_json(output / 'summary.json', report)
     write_status('complete')

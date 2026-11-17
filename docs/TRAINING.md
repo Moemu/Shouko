@@ -119,7 +119,44 @@ foreach ($seed in 101, 202, 303) {
 
 阶段预算、固定门和当前结果见[局部学习编年](../research/experiments/LOCAL_GOAL_FACTORIAL_20261116.md)。十二个正式 run 已处理：九个完成固定预算，三个持续零功 run 因随机采样穿透警戒线中止，实际尝试 2,696,976 次转换。四组均为 0/3 种子通过持续推进门。独立零功组能接近目标，但末两秒明显回退；持续功组主要早期推进后停滞。中断权重另作只读诊断，不补成完整候选。
 
-当前分支为 `route_uncertainty_stop`。没有执行原初态恢复课程或远端训练，旧任务与生产权重未替换。下一轮需区分制动/停留、重复推进、信用分配和探索安全条件，按项目路线门交回用户。
+该局部因子阶段结束于 `route_uncertainty_stop`，当时没有执行原初态恢复课程或远端训练。后续已获定稿的有限终点与保持验证见下一节；旧任务与生产权重保留。
+
+### 有限终点、制动诊断与近场保持
+
+旧 `fallen_local_goal_v1` 保留其 timeout 截断语义。新 `fallen_finite_goal_v1` 将原 5 秒截止视为真正终止，超时不自举。近场学习另用 `nearfield_holding_v1`：恢复干预前的完整状态、原目标和已用时间；不会从分叉状态重新获得 5 秒。
+
+使用上一节自行复训的 `runs/local_goal_trial`，可生成只读诊断。该阶段固定九份完整最终策略、九份分叉状态、54 条动作/目标续接，并记录实际终点：
+
+```powershell
+.venv-gpu\Scripts\python.exe -m app.test_braking_task --output runs/braking_contract_trial
+.venv-gpu\Scripts\python.exe -m app.diagnose_goal_braking --source-screen runs/local_goal_trial --output runs/braking_trial/diagnostic --max-seconds 3600
+.venv-gpu\Scripts\python.exe -m app.verify_goal_braking --source-screen runs/local_goal_trial --output runs/braking_trial/diagnostic
+```
+
+先检查 `summary.json` 的分支与 `verification.json`。只有原目标下安全完成连续 1 秒停留，才支持近场课程。重新训练受后端和采样影响，不承诺得到相同阳性状态；阴性结果不应通过搬位置、清速度或放宽停留规则修复。
+
+本轮冻结的课程入口只接受已核验的单一阳性 `1402_145`，并拒绝其他状态集合。它取该探针的**干预前**快照，不读取脚本动作标签。两臂使用三份配对随机初始化、相同初始 std=0.15、rho=0、功系数 0.001；处理臂只加 `gamma*Phi(next)-Phi(current)`，其中 `Phi=0.5*dwell_fraction`，真实终点的 Phi=0。新 checkpoint schema 为 `yumi_holding_goal_ppo`，旧任务/预览加载器拒收。
+
+若自己生成的诊断满足同一冻结条件，运行以下命令。输出目录均须不存在；工程短测使用 1024 次转换，正式对照上限 1,572,864 次转换、训练进程累计 45 分钟。
+
+```powershell
+.venv-gpu\Scripts\python.exe -m app.test_holding_goal --state runs/braking_trial/diagnostic/forks/fork_1402_145.npz --output runs/braking_trial/contracts
+$holdingDeadline = [DateTimeOffset]::UtcNow.AddHours(1).ToUnixTimeSeconds()
+.venv-gpu\Scripts\python.exe -m app.run_holding_goal --diagnostic runs/braking_trial/diagnostic --output runs/braking_trial/learning --wall-deadline $holdingDeadline
+.venv-gpu\Scripts\python.exe -m app.verify_holding_goal --output runs/braking_trial/learning
+```
+
+每个训练种子的最终策略需在全部冻结状态、native/CUDA 两后端都安全完成原停留，组门为至少 2/3。初始策略也评估，防止将已有保持能力误记为学习收益。两臂均通过时优先简单基线；单来源课程不证明跨状态、两米移动或三目标能力。
+
+通过近场门并完成独立核验后，按独立预登记只读回到原自然倒伏两米任务。源权重仍绑定近场状态，目标状态另行绑定，不重训、不替换 checkpoint 合同：
+
+```powershell
+.venv-gpu\Scripts\python.exe -m app.evaluate_holding_transfer --learning runs/braking_trial/learning --original-reset runs/local_goal_trial/reset.npz --output runs/braking_trial/transfer --wall-deadline $holdingDeadline
+```
+
+2026-11-17 执行结果：只读诊断完成 46,080 次转换和 54 条续接，只有一个来源状态能完整保持。两臂近场学习均为 3/3 种子通过，初始策略也全部通过，因此未证明塑形必要或训练创造了保持能力。回到原自然倒伏两米任务的 18 条只读轨迹全部安全，但两臂最终均为 0/3，净进展约为 −0.003～−0.014 米；单状态保持没有自动迁移。
+
+当前分支为 `route_uncertainty_stop`。接近与保持的衔接方式需跨厂商讨论并由用户定稿；不追加训练或启动远端。预算、分支、哈希、复现命令和限制见[制动与保持编年](../research/experiments/GOAL_BRAKING_20261117.md)。这些入口可从自行生成的局部权重和状态运行，不依赖私有服务。它们是开发实验，未接入工作室或发行模型。
 
 ## 历史世系（G1 时代）
 

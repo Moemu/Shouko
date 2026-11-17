@@ -9,7 +9,7 @@ import torch
 
 from .evaluate_goal import file_sha256
 from .free_body import FreeBody, ROOT
-from .goal_checkpoint import LocalGoalContext, goal_contract, read_goal_payload
+from .goal_checkpoint import LocalGoalContext, HoldingGoalContext, goal_contract, read_goal_payload
 from .mlp_policy import MLPPolicy
 from .ppo_yumi import Value
 
@@ -19,7 +19,7 @@ def read(path: Path) -> dict:
 
 
 @torch.inference_mode()
-def verify_rollout(folder: Path, label: str, context: LocalGoalContext) -> dict:
+def verify_rollout(folder: Path, label: str, context: LocalGoalContext | HoldingGoalContext) -> dict:
     metadata = read(folder/(label+'.json'))
     snapshot = folder/metadata['policy_checkpoint']
     trace = folder/(label+'.npz')
@@ -44,6 +44,11 @@ def verify_rollout(folder: Path, label: str, context: LocalGoalContext) -> dict:
         settings=payload['settings']; gamma=settings['gamma'];lam=settings['lam']
         cost=settings.get('training_work_cost',.001)
         raw=z['progress'].astype(float)+z['reached'].astype(float)-cost*z['work'].astype(float)
+        if isinstance(context, HoldingGoalContext):
+            potential=context.potential_scale*(gamma*z['next_dwell_fraction'].astype(float)*~z['terminated']-obs[...,67])
+            assert np.max(np.abs(potential-z['potential_reward']))<1e-7
+            assert not np.any(z['terminated'] & z['truncated'])
+            raw+=potential
         reward_error=float(np.max(np.abs(raw-z['raw_reward'])))
         assert reward_error<1e-6
         reward=raw+gamma*z['next_value'].astype(float)*z['truncated']
