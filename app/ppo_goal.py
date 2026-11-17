@@ -23,6 +23,7 @@ from .train_full import atomic_json
 from .value_diagnostics import gae_targets
 from .local_goal import LocalGoalSetup, LocalGoalEnv, action_distribution
 from .braking_task import HoldingGoalSetup, HoldingGoalEnv, dwell_potential_reward
+from .coverage_goal import CoverageGoalSetup, CoverageGoalEnv, CATEGORIES, CATEGORY_FIELDS
 
 
 @dataclass(frozen=True)
@@ -44,7 +45,7 @@ class PPOSettings:
 
 def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: float,
           resume: Path | None = None, *, work_cost: float = GoalTask.work_cost,
-          local: LocalGoalSetup | HoldingGoalSetup | None = None) -> dict:
+          local: LocalGoalSetup | HoldingGoalSetup | CoverageGoalSetup | None = None) -> dict:
     if min(settings.worlds, settings.steps, settings.epochs, settings.minibatch, iterations) < 1:
         raise ValueError('PPO dimensions and iteration budget must be positive')
     if settings.worlds * settings.steps < 2 or not math.isfinite(max_seconds) or max_seconds <= 0:
@@ -55,6 +56,9 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
         raise ValueError('This local factorial experiment starts from random weights, without resume')
     local_context = local.context() if local is not None else None
     holding = isinstance(local, HoldingGoalSetup)
+    coverage = isinstance(local, CoverageGoalSetup)
+    if coverage and (work_cost != 0. or settings.initial_std != .15):
+        raise ValueError('Coverage comparison requires zero training cost and initial std 0.15')
     potential_scale = local.potential_scale if holding else 0.
     checkpoint_settings = asdict(settings)
     if work_cost != GoalTask.work_cost:
@@ -68,7 +72,9 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                   resume_kind='optimizer_warm_start_new_environment' if resume else 'random_initialization',
                   max_seconds=max_seconds, max_launch_iterations=iterations)
     atomic_json(output / 'training.json', status)
-    if holding:
+    if coverage:
+        env = CoverageGoalEnv(settings.worlds, settings.seed, local)
+    elif holding:
         env = HoldingGoalEnv(settings.worlds, settings.seed, local)
         status['training_reward']['dwell_potential_scale'] = potential_scale
     else:
@@ -79,6 +85,10 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
         status['attempted_local_transitions'] = 0
     contract = goal_contract(env.body)
     policy = MLPPolicy(OBSERVATION_SIZE, 18, device='cuda')
+    if coverage:
+        local.initialize_actor(policy, env.body)
+        status['resume_kind'] = 'actor_initialization_fresh_value_adam'
+        status['source_checkpoint_sha256'] = local_context.source_actor_sha256
     value = Value(OBSERVATION_SIZE).cuda()
     log_std = torch.nn.Parameter(torch.full((18,), settings.initial_std, device='cuda').log())
     parameters = [*policy.parameters(), log_std]
@@ -116,10 +126,15 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
             write_status('training')
             rollout_started = time.perf_counter()
             observations, actions, logps, rewards, values, dones = [], [], [], [], [], []
-            capture = local_context is not None and launch_iterations in ((0, 1, iterations-1) if holding else (0, iterations-1))
+            capture_steps = (0, 1, 2, 3, iterations-1) if coverage else (0, 1, iterations-1) if holding else (0, iterations-1)
+            capture = local_context is not None and launch_iterations in capture_steps
             captured = {name: [] for name in ('mean', 'raw_reward', 'progress', 'work', 'reached', 'truncated', 'next_value')}
             if holding:
                 captured.update({name: [] for name in ('potential_reward', 'next_dwell_fraction', 'terminated')})
+            if coverage:
+                captured.update({name: [] for name in ('category', 'state_index', 'reset_round', 'pre_qpos', 'pre_qvel',
+                                                       'terminated', 'next_observation', 'after_reset_observation')})
+                category_sums = torch.zeros(3, len(CATEGORY_FIELDS), device='cuda', dtype=torch.float64)
             arrivals = completed_episodes = timeout_episodes = arena_episodes = 0
             raw_reward = task_reward_sum = progress_sum = work_sum = 0.
             potential_sum = 0.
@@ -135,6 +150,10 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                                     else action_distribution(mean, log_std, observation, local_context.rho))
                     action = distribution.sample()
                     predicted = value(observation)
+                    if capture and coverage:
+                        for name, tensor in dict(category=env.categories, state_index=env.state_index,
+                                                 reset_round=env.reset_round, pre_qpos=env.qpos, pre_qvel=env.qvel).items():
+                            captured[name].append(tensor.clone())
                     next_observation, result = env.step(action)
                     if local_context is not None:
                         status['attempted_local_transitions'] += settings.worlds
@@ -166,7 +185,15 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                                                      next_dwell_fraction=next_observation[:, 67],
                                                      terminated=result.terminated).items():
                                 captured[name].append(tensor.clone())
+                        if coverage:
+                            captured['terminated'].append(result.terminated.clone())
+                            captured['next_observation'].append(next_observation.clone())
                     done = result.terminated | result.truncated
+                    if coverage:
+                        metrics = torch.stack((torch.ones_like(result.progress), done.float(), result.reached.float(),
+                                               result.timeout.float(), result.arena.float(), result.progress,
+                                               (-result.progress).clamp_min(0), result.work_j), dim=1)
+                        category_sums.index_add_(0, env.categories, metrics.double())
                     observations.append(observation)
                     actions.append(action)
                     logps.append(distribution.log_prob(action).sum(-1))
@@ -185,6 +212,8 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                     max_constraints = max(max_constraints, int(env.peak_constraints.max()))
                     max_penetration = max(max_penetration, float(env.peak_penetration.max()))
                     observation = env.reset(done) if bool(done.any()) else next_observation
+                    if capture and coverage:
+                        captured['after_reset_observation'].append(observation.clone())
                 if not observations:
                     break
                 next_value = value(observation)
@@ -279,6 +308,9 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                 row['max_joint_limit_error_rad'] = max_limit_error
             if holding:
                 row['potential_reward_sum'] = potential_sum
+            if coverage:
+                row['state_categories'] = {name: dict(zip(CATEGORY_FIELDS, category_sums[i].cpu().tolist()))
+                                           for i, name in enumerate(CATEGORIES)}
             write_status('training')
             print(json.dumps(row, allow_nan=False), flush=True)
     except Exception as error:
@@ -288,6 +320,11 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
                                  log_std=log_std, optimizer=optimizer, value_optimizer=value_optimizer,
                                  iteration=iteration, env_steps=env_steps, settings=checkpoint_settings,
                                  local_context=local_context)
+        if coverage:
+            np.savez_compressed(output/'failure_state.npz', qpos=env.qpos.cpu().numpy(), qvel=env.qvel.cpu().numpy(),
+                                observation=env.observation().cpu().numpy(), executed_action=env.actions.cpu().numpy(),
+                                state_index=env.state_index.cpu().numpy(), category=env.categories.cpu().numpy(),
+                                reset_round=env.reset_round.cpu().numpy(), penetration=env.peak_penetration.cpu().numpy())
         write_status('failed')
         raise
 
@@ -332,6 +369,9 @@ def train(output: Path, settings: PPOSettings, iterations: int, max_seconds: flo
     if holding:
         sources += ('app/braking_task.py',)
         report['kind'] = 'holding_goal_ppo_run'
+    if coverage:
+        sources += ('app/coverage_goal.py', 'app/braking_task.py')
+        report['kind'] = 'coverage_goal_ppo_run'
     report['source_sha256'] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in sources}
     atomic_json(output / 'summary.json', report)
     write_status('complete')

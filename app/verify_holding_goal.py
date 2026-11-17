@@ -9,7 +9,7 @@ import torch
 from .diagnose_goal_d0 import write_json
 from .evaluate_goal import file_sha256
 from .free_body import FreeBody, ROOT
-from .goal_checkpoint import HoldingGoalContext, goal_contract, read_goal_payload
+from .goal_checkpoint import HoldingGoalContext, CoverageGoalContext, goal_contract, read_goal_payload
 from .mlp_policy import MLPPolicy
 from .verify_local_goal import verify_rollout
 
@@ -24,10 +24,16 @@ def verify_evaluation(folder: Path, checkpoint: Path, state: Path, *, source_sta
     assert report['checkpoint_sha256'] == file_sha256(checkpoint)
     assert report['state_sha256'] == file_sha256(state)
     assert report['trace_sha256'] == file_sha256(folder/'trace.npz')
-    context = HoldingGoalContext(**(report['source_context'] if source_state is not None else report['local_context']))
-    assert context.reset_sha256 == file_sha256(source_state or state)
+    if report['schema'] == 'coverage_goal_evaluation':
+        context = CoverageGoalContext(**report['source_context'])
+        assert source_state is not None
+        assert context.pool_sha256 == report['pool_sha256'] == file_sha256(source_state)
+    else:
+        context = HoldingGoalContext(**(report['source_context'] if source_state is not None else report['local_context']))
+        assert context.reset_sha256 == file_sha256(source_state or state)
+        if source_state is not None:
+            assert report['source_state_sha256'] == file_sha256(source_state)
     if source_state is not None:
-        assert report['source_state_sha256'] == file_sha256(source_state)
         assert report['transfer_contract']['protocol'] == 'fallen_finite_goal_v1'
         assert report['transfer_contract']['timeout_is_terminal']
     payload = read_goal_payload(checkpoint, goal_contract(FreeBody()), local_context=context)

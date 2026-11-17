@@ -158,6 +158,43 @@ $holdingDeadline = [DateTimeOffset]::UtcNow.AddHours(1).ToUnixTimeSeconds()
 
 当前分支为 `route_uncertainty_stop`。接近与保持的衔接方式需跨厂商讨论并由用户定稿；不追加训练或启动远端。预算、分支、哈希、复现命令和限制见[制动与保持编年](../research/experiments/GOAL_BRAKING_20261117.md)。这些入口可从自行生成的局部权重和状态运行，不依赖私有服务。它们是开发实验，未接入工作室或发行模型。
 
+### 接近与保持联合对照
+
+这是独立的 `approach_holding_v1` 实验。它从旧 `iid_zero` 复制 actor 全部参数与观测尺度，重建 critic、Adam 和探索状态。N 从同一门口状态训练；M 固定半数世界为原两米起点、四分之一为中间分叉、四分之一为门口。中间池按预定次序轮换；比例按控制转换计算，不按回合次数计算。
+
+两臂共同 std=0.15、rho=0、训练功成本 0、势函数 0，原有限 5 秒截止和安全线不变。新 schema 为 `yumi_coverage_goal_ppo`，合同绑定源 actor、源 reset、完整池和分配规则；它是 actor 初始化，不是旧优化器恢复。
+
+先从上述局部因子、制动与保持流程自行生成 `runs/local_goal_trial` 和 `runs/braking_trial`。只有前轮证据及新的范围检查通过，才进入本实验。重新训练可能产生不同分支，不承诺重复本轮数字；不能为了凑池搬位置、清速度或修改截止。输出目录均须不存在。
+
+```powershell
+$coverageDeadline = [DateTimeOffset]::UtcNow.AddHours(3).ToUnixTimeSeconds()
+.venv-gpu\Scripts\python.exe -m app.check_holding_range --source runs/braking_trial --output runs/coverage_trial/range --wall-deadline $coverageDeadline
+if ($LASTEXITCODE -ne 0) { throw 'C0 process failed' }
+$rangeResult = Get-Content runs/coverage_trial/range/summary.json -Raw | ConvertFrom-Json
+if ($rangeResult.branch -ne 'coverage_checked') { throw 'C0 did not permit learning' }
+@'
+from pathlib import Path
+from app.coverage_goal import prepare_pool
+prepare_pool(Path('runs/local_goal_trial'), Path('runs/braking_trial'), Path('runs/coverage_trial/pool'))
+'@ | .venv-gpu\Scripts\python.exe -
+if ($LASTEXITCODE -ne 0) { throw 'Pool preparation failed' }
+.venv-gpu\Scripts\python.exe -m app.test_coverage_goal --pool runs/coverage_trial/pool --source-screen runs/local_goal_trial --output runs/coverage_trial/contracts
+if ($LASTEXITCODE -ne 0) { throw 'Coverage contracts failed' }
+.venv-gpu\Scripts\python.exe -m app.run_coverage_goal --source-screen runs/local_goal_trial --pool runs/coverage_trial/pool --range-check runs/coverage_trial/range --contracts runs/coverage_trial/contracts --output runs/coverage_trial/learning --wall-deadline $coverageDeadline
+if ($LASTEXITCODE -ne 0) { throw 'Coverage process failed; inspect preserved evidence' }
+.venv-gpu\Scripts\python.exe -m app.verify_coverage_goal --output runs/coverage_trial/learning --pool runs/coverage_trial/pool --source-screen runs/local_goal_trial --contracts runs/coverage_trial/contracts
+```
+
+先检查 C0 的 `summary.json` 和 `verification.json`；只有 `coverage_checked` 放行。工程 PPO 短测为 1536 次转换。正式比较三份源 actor，各 N/M 一份，每份最多 262,144 次转换，累计 1,572,864，训练子进程最多 45 分钟。源码与输入在正式前封存，运行期间变更源码会停止后续单元。
+
+每个最终 actor 必须在原两米和门口两个起点、native/CUDA 四条轨迹全部完成停留，才算该来源通过。组门为至少 2/3 个相同来源通过四条，部分净位移不替代到达。初始快照也评估；中断单元不补成完整候选。
+
+保存连续首四轮与最终轮，覆盖原起点第 250 步终点。核验器独立重算奖励/GAE、类别份额与重置，并在同一 CUDA 环境重放保存 RNG 的动作及 minibatch 索引；这些重放没有物理积分、梯度或参数更新。跨环境的历史训练不承诺逐字节一致。
+
+本轮结果：C0 的 48 条新增原生轨迹全部安全，没有扩展保持范围；C1 全部固定预算及 48 条初始/最终评估完成。联合门 N/M 均 0/3；N/1402 在门口学会保持，但原起点推进下降。M 的原起点净进展约 0.82～1.04 米（两后端），没有完成停留；三个类别训练内到达均为 0。原起点实际转换和保存窗口优化批次已核实，不能再将本轮失败仅归于没有采样原起点。
+
+所有 1536 轮都触发 KL 优化早停，首轮更新后的全窗口 Gaussian KL 约 3.19～8.32。它与日志的更新前 minibatch 近似 KL 不是同一指标；这是优化风险，尚未证明其为唯一根因。当前 `route_uncertainty_stop`，不补长训或改设置。完整预算、分支、哈希及解释边界见[接近保持编年](../research/experiments/APPROACH_HOLDING_20261117.md)。未启动远端、连接组训练或发行。
+
 ## 历史世系（G1 时代）
 
 项目前两代在 G1 代理身体上完成，以下命令仍可复现。G1 是宇树（Unitree）的人形机器人模型：子图原型经冻结的官方步态策略驱动 G1，云端全图则整路径训练、直接输出 12 个关节目标。

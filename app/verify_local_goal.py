@@ -9,7 +9,7 @@ import torch
 
 from .evaluate_goal import file_sha256
 from .free_body import FreeBody, ROOT
-from .goal_checkpoint import LocalGoalContext, HoldingGoalContext, goal_contract, read_goal_payload
+from .goal_checkpoint import LocalGoalContext, HoldingGoalContext, CoverageGoalContext, goal_contract, read_goal_payload
 from .mlp_policy import MLPPolicy
 from .ppo_yumi import Value
 
@@ -19,7 +19,7 @@ def read(path: Path) -> dict:
 
 
 @torch.inference_mode()
-def verify_rollout(folder: Path, label: str, context: LocalGoalContext | HoldingGoalContext) -> dict:
+def verify_rollout(folder: Path, label: str, context: LocalGoalContext | HoldingGoalContext | CoverageGoalContext) -> dict:
     metadata = read(folder/(label+'.json'))
     snapshot = folder/metadata['policy_checkpoint']
     trace = folder/(label+'.npz')

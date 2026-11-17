@@ -95,7 +95,7 @@
 - 训练/评估逻辑：`research/REPORT.md`（方法与边界）、`docs/LOCAL.md`、`docs/CLOUD.md`。
 - 浏览器端预览与静态托管：`docs/PREVIEW.md`（工件布局 + **服务器规格** + 本机 Caddy 参考实现，三层分开；首屏约 235 MiB、HTTPS 是权重哈希校验的前提、评估快照与检查点绑定）。推送实现**有意不入库**（站点特定、不构成社区复现路径），文档只给结果约束。
 - 身体与角色：`research/avatar/YUMI.md`、`YUMI_BODY.md`（VRM 许可约束见 `THIRD_PARTY.md`，署名不可去除）。
-- 当前实验状态（双臂目标驱动自由移动）：`research/experiments/GOAL_BRAKING_20261117.md`（D 只有一个距目标约 0.305 米的门口状态在零动作/阻尼下完成停留阳性，原策略继续会冲出；L 两臂各 3/3 通过近场保持，但初始策略也 3/3 通过，且从随机初始化开始、未继承接近策略；T 原自然倒伏两米任务 0/3，最大停留 0；当前 `route_uncertainty_stop`，接近/制动/保持衔接与状态覆盖待区分；未做连接组或远端训练）。
+- 当前实验状态（双臂目标驱动自由移动）：`research/experiments/APPROACH_HOLDING_20261117.md`（C0 新增 48 条原生续接安全，初始/最终保持仍仅一个门口状态；C1 三来源 actor 初始化，N 单状态/M 固定 50/25/25 转换份额混合起点，各 3 个完整 run，联合门均 0/3。N/1402 学会门口保持但原推进下降；M 有约一米部分推进、训练内到达为 0。全部 1536 轮 KL 优化早停，原起点进入采样/保存窗口优化批次已核实。当前 `route_uncertainty_stop`，优化稳定性、成功信号与覆盖权重待区分；未做连接组或远端训练。前轮单状态机制见 `research/experiments/GOAL_BRAKING_20261117.md`）。
 - 当前实验状态（行走连接组）：`research/experiments/SENSORY_STABILITY_20260930.md`（完整连接组，vy 编码列与读出共 27,128 个可训练参数；两份固定候选各通过 72/72，新留出长走全程 2 米走廊各 9/9。共享补充池、早期同预算复现失败和速度相关残余漂移均须保留说明；不证明自主 CPG 或拓扑优势。上肢接入另行决策，实例保持开机）。
 - 前序身体/任务对照：`research/experiments/ROUTE_EXECUTION_20260923.md`（普通MLP迈步、等预算旧奖励对照与四组留出，作为连接组迁移教师的来源）。
 - 前序路线：`research/experiments/ROUTE_DECISION_20260922.md`；保留历史结论，当前证据以2026-09-23实验编年为准。

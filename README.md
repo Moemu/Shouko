@@ -103,7 +103,7 @@ These are research directions, not completed capabilities or a fixed schedule.
 
 **Upper limbs.** The upper body is currently one fixed mass, and arm swing is display animation. A first prototype needs an articulated body, inertial and collision parameters, actuators, and a matching observation/action interface. It must then recheck standing and lower-limb walking before training arm-assisted balance. v0.3.0 remains a lower-body baseline.
 
-A separate 18-joint MLP proxy now explores goal-driven free movement. Current holding evidence covers one selected near-field state. Both arms failed the original fallen-state two-metre return test (0/3 seeds each). Direction changes and connectome control remain untested. See the [training guide](docs/TRAINING.md#有限终点制动诊断与近场保持) and [braking and holding record](research/experiments/GOAL_BRAKING_20261117.md).
+A separate 18-joint MLP proxy explores goal-driven free movement. Holding evidence still covers one selected near-field state. Actor-initialized training with a single start or mixed starts failed the joint two-metre reaching and holding gate (0/3 source actors each). One single-start actor learned holding; mixed starts produced partial progress. Direction changes and connectome control remain untested. See the [training guide](docs/TRAINING.md#接近与保持联合对照) and [approach and holding record](research/experiments/APPROACH_HOLDING_20261117.md).
 
 **Running.** Flight phases, higher speeds and gait timing need a separate training task and acceptance criteria. Passing the current walking tests does not validate running.
 

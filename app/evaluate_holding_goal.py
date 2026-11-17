@@ -9,7 +9,8 @@ from .braking_task import HoldingGoalTask, HoldingGoalEnv, HoldingGoalSetup, Fin
 from .diagnose_goal_d0 import measured_step, write_json
 from .evaluate_goal import file_sha256
 from .free_body import FreeBody, ROOT
-from .goal_checkpoint import HoldingGoalContext, goal_contract, read_goal_payload
+from .goal_checkpoint import HoldingGoalContext, CoverageGoalContext, goal_contract, read_goal_payload
+from .coverage_goal import load_pool
 from .mlp_policy import MLPPolicy
 
 
@@ -20,11 +21,18 @@ def evaluate(checkpoint: Path, state_path: Path, output: Path, backend: str, *,
         raise ValueError('Expected native or cuda backend')
     output.mkdir(parents=True, exist_ok=False)
     raw = torch.load(checkpoint, map_location='cpu', weights_only=True)
-    if raw.get('schema') != 'yumi_holding_goal_ppo':
-        raise ValueError('Expected a versioned holding checkpoint')
-    context = HoldingGoalContext(**raw['local_context'])
-    if context.reset_sha256 != file_sha256(state_path):
-        raise ValueError('Holding reset state mismatch')
+    coverage = raw.get('schema') == 'yumi_coverage_goal_ppo'
+    if coverage:
+        context = CoverageGoalContext(**raw['local_context'])
+        load_pool(state_path.parent)
+        if state_path.name != 'manifest.json' or context.pool_sha256 != file_sha256(state_path) or transfer_state is None:
+            raise ValueError('Coverage evaluation needs its source pool and an explicit target state')
+    else:
+        if raw.get('schema') != 'yumi_holding_goal_ppo':
+            raise ValueError('Expected a versioned finite goal checkpoint')
+        context = HoldingGoalContext(**raw['local_context'])
+        if context.reset_sha256 != file_sha256(state_path):
+            raise ValueError('Holding reset state mismatch')
     device = 'cpu' if backend == 'native' else 'cuda'
     payload = read_goal_payload(checkpoint, goal_contract(FreeBody()), device, local_context=context)
     policy = MLPPolicy(69, 18, device=device).eval()
@@ -40,7 +48,7 @@ def evaluate(checkpoint: Path, state_path: Path, output: Path, backend: str, *,
         def physical():
             return body.data.qpos.copy(), body.data.qvel.copy(), body.center.copy(), body.velocity.copy()
     else:
-        env = HoldingGoalEnv(1, 0, HoldingGoalSetup(evaluation_state, context.potential_scale))
+        env = HoldingGoalEnv(1, 0, HoldingGoalSetup(evaluation_state, 0. if coverage else context.potential_scale))
         observation = env.observation()
         def physical():
             return tuple(x[0].cpu().numpy().copy() for x in (env.qpos, env.qvel, env.center, env.velocity))
@@ -117,5 +125,9 @@ def evaluate(checkpoint: Path, state_path: Path, output: Path, backend: str, *,
         report['source_context'] = report.pop('local_context')
         report['source_state_sha256'] = file_sha256(state_path)
         report['transfer_contract'] = asdict(FiniteTaskContract())
+    if coverage:
+        report['schema'] = 'coverage_goal_evaluation'
+        report['pool_sha256'] = report.pop('source_state_sha256')
+        report['source_sha256']['app/coverage_goal.py'] = file_sha256(ROOT/'app/coverage_goal.py')
     write_json(output/'summary.json', report)
     return report

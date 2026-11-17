@@ -113,14 +113,13 @@ class LocalGoalEnv(GPUGoalEnv):
         super().__init__(worlds, seed)
 
     @torch.no_grad()
-    def reset(self, mask: torch.Tensor) -> torch.Tensor:
+    def restore_physics(self, mask: torch.Tensor, state: LocalResetState) -> None:
         if mask.shape != (self.worlds,) or mask.dtype != torch.bool or mask.device != self.device:
             raise ValueError('Reset requires a CUDA boolean mask for all worlds')
         self.torch_stream.wait_stream(torch.cuda.current_stream(self.device))
         with wp.ScopedStream(self.stream):
             mjw.reset_data(self.model, self.data, wp.from_torch(mask))
         torch.cuda.current_stream(self.device).wait_stream(self.torch_stream)
-        state = self.reset_state
         self.qpos[mask] = torch.as_tensor(state.qpos, dtype=self.qpos.dtype, device=self.device)
         self.qvel[mask] = torch.as_tensor(state.qvel, dtype=self.qvel.dtype, device=self.device)
         wp.to_torch(self.data.qacc_warmstart)[mask] = torch.as_tensor(state.qacc_warmstart, dtype=torch.float32, device=self.device)
@@ -130,9 +129,13 @@ class LocalGoalEnv(GPUGoalEnv):
         wp.to_torch(self.data.time)[mask] = state.time
         self.actions[mask] = torch.as_tensor(state.previous_action, dtype=torch.float32, device=self.device)
         self.work[mask] = 0
+        self.refresh()
+
+    @torch.no_grad()
+    def reset(self, mask: torch.Tensor) -> torch.Tensor:
+        self.restore_physics(mask, self.reset_state)
         self.completed[mask] = self.dwell_steps[mask] = self.target_steps[mask] = 0
         self.done[mask] = False
-        self.refresh()
         self.origin[mask] = self.center[mask, :2]
         self.target[mask] = self.origin[mask] + torch.tensor([2., 0.], device=self.device)
         self.previous_distance[mask] = 2.
